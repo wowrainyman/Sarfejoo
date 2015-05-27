@@ -10,7 +10,7 @@
     }
 </style>
 <div class="row custom-margin-0" style="margin-top: 60px;">
-    <div class="col-md-3 col-xs-push-12" style="padding: 4px">
+    <div class="col-md-3 col-xs-3 col-xs-push-12 col-lg-push-0 col-md-push-0" style="padding: 4px">
         <div class="col-md-12 box-shadow">
             <?php echo $column_right; ?>
         </div>

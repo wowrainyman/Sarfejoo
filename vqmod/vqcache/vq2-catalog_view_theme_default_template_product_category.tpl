@@ -1,17 +1,27 @@
 <?php echo $header; ?><?php if( ! empty( $mfilter_json ) ) { echo '<div id="mfilter-json" style="display:none">' . base64_encode( $mfilter_json ) . '</div>'; } ?>
-<div class="row" style="margin-top: 60px;">
-    <div class="col-md-3" style="padding: 4px">
+<style>
+    @media (max-width: 720px) {
+        .custom-margin-0{
+            margin-top: 0px !important;
+        }
+        .custom-margin-50{
+            margin-top: -50px !important;
+        }
+    }
+</style>
+<div class="row custom-margin-0" style="margin-top: 60px;">
+    <div class="col-md-3 col-xs-3 col-xs-push-12 col-lg-push-0 col-md-push-0" style="padding: 4px">
         <div class="col-md-12 box-shadow">
             <?php echo $column_right; ?>
         </div>
     </div>
-    <div class="col-md-9" style="padding: 4px">
+    <div class="col-md-9 col-xs-12 custom-margin-50" style="padding: 4px">
         <div class="row">
-            <div class="col-md-12 box-shadow">
+            <div class="col-md-12 hidden-xs box-shadow">
                 <?php echo $column_left; ?>
             </div>
         </div>
-        <div class="row" style="margin-top: 60px;">
+        <div class="row custom-margin hidden-xs" style="margin-top: 60px;">
             <div class="col-md-12">
                 <div class="">
                     <?php if ($products) { ?>

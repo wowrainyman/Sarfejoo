@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62ed95a5-404e-4898-9e7c-8ddd40107018" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache\cache.product.2.0.1.5d01e8357163be722a1128ee569b52a8.1432627725" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache\cache.product.2.0.1.94d25ca88f12b9b983d6e95079e7adcd.1432627728" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache\cache.store.1432557288" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.4584c9947eeb7df3131a68c312d41407" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.4584c9947eeb7df3131a68c312d41407.time" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.73be0b60ccb5817912e2e1196fca665c" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.73be0b60ccb5817912e2e1196fca665c.time" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.930ca32d35fbffe009659fd56744416e" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.930ca32d35fbffe009659fd56744416e.time" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.b093d00bf4848b06d6c53cc3d01b19dc" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.b093d00bf4848b06d6c53cc3d01b19dc.time" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.d32427c79c704233de76b6729f60b787" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.d32427c79c704233de76b6729f60b787.time" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.fd103e43e3c3da5cf849ade99f1965c3" afterPath="" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\system\cache_mfp\idx.1.fd103e43e3c3da5cf849ade99f1965c3.time" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vqmod/logs/3_Wed.log" afterPath="$PROJECT_DIR$/vqmod/logs/3_Wed.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl" afterPath="$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/logs/error.txt" afterPath="$PROJECT_DIR$/system/logs/error.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/system/cache_mfp/idx.1.1a536db0fddf860c10dbf256208e4376.time" afterPath="$PROJECT_DIR$/system/cache_mfp/idx.1.1a536db0fddf860c10dbf256208e4376.time" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_category.tpl" afterPath="$PROJECT_DIR$/vqmod/vqcache/vq2-catalog_view_theme_default_template_product_category.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="5aa6aba5-99d0-4a9c-8fbe-1c97f3f7c5ef" name="New changelist" comment="" />
@@ -74,8 +93,8 @@
       <file leaf-file-name="category.tpl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13821138" vertical-offset="0" max-vertical-offset="3349">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.2369338" vertical-offset="0" max-vertical-offset="3349">
+              <caret line="12" column="69" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="69" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -502,7 +521,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432704739262</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="make category view responsive">
+      <created>1432707446863</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432707446863</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -552,7 +577,8 @@
     <MESSAGE value="Init" />
     <MESSAGE value="test-git" />
     <MESSAGE value="Before yhis commit all files uploaded to the host" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before yhis commit all files uploaded to the host" />
+    <MESSAGE value="make category view responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="make category view responsive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -926,8 +952,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13821138" vertical-offset="0" max-vertical-offset="3349">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.2369338" vertical-offset="0" max-vertical-offset="3349">
+          <caret line="12" column="69" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="69" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
