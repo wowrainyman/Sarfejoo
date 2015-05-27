@@ -1,0 +1,1 @@
+SELECT * FROM oc_product WHERE product_id NOT IN (SELECT SUBSTRING(query,12,4) AS id FROM `oc_url_alias` WHERE query LIKE '%product_id%')

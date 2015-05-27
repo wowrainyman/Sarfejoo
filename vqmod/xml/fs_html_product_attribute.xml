@@ -1,0 +1,140 @@
+<modification>
+	<id>HTML Code to Product Attribute</id>
+	<version>1.7</version>
+	<vqmver>2.4.0</vqmver>
+	<author>www.fabiom7.com</author>
+
+<file name="catalog/view/theme/*/template/common/header.tpl">
+	<operation error="log">
+		<search position="before"><![CDATA[
+			<?php echo $google_analytics; ?>
+		]]></search>
+		<add><![CDATA[
+<style type="text/css">
+div.html-pa { margin:0; padding:0; border:0; }
+div.html-pa p { overflow:hidden; margin:0; padding:1em 0; border-bottom:1px solid #ccc; }
+div.html-pa p.last { border-bottom:0; }
+div.html-pa.left, div.html-pa.left p { text-align: left; }
+div.html-pa.right, div.html-pa.right p { text-align: right; }
+div.html-pa.center, div.html-pa.center p { text-align: center; }
+div.html-pa.one p { height:1em; }
+div.html-pa.two p { height:2em; }
+div.html-pa.three p { height:3em; }
+div.html-pa.four p { height:4em; }
+div.html-pa.five p { height:5em; }
+div.html-pa.six p { height:6em; }
+div.html-pa.seven p { height:7em; }
+div.html-pa.eight p { height:8em; }
+div.html-pa.nine p { height:9em; }
+div.html-pa.ten p { height:10em; }
+			</style>
+		]]></add>
+	</operation>
+</file>
+
+<!-- ADMIN -->
+<file name="admin/model/catalog/product.php">
+	<operation error="log">
+		<search position="after"><![CDATA[
+			foreach ($product_attribute['product_attribute_description'] as $language_id => $product_attribute_description) {
+		]]></search>
+		<add><![CDATA[
+			$product_attribute_description['text'] = html_entity_decode($product_attribute_description['text'], ENT_QUOTES, 'UTF-8');
+		]]></add>
+	</operation>
+</file>
+<file name="admin/view/template/catalog/product_form.tpl">
+	<operation error="log">
+		<search position="before"><![CDATA[
+			<?php echo $footer; ?>
+		]]></search>
+		<add><![CDATA[
+<style type="text/css">		
+a.fs-donate{
+	display:inline-block;float:left;text-align:left;
+	font-size:12px; font-family:Arial; font-weight:normal; font-style:italic; font-weight:bold;
+	padding:2px 16px; cursor:pointer;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #003366;
+	color:#003366;
+	border: 1px solid #FF9933;
+	border-radius:50px; -moz-border-radius:50px; -webkit-border-radius:50px; 
+	box-shadow:inset 0px -2px 10px 0px #FF9933; -moz-box-shadow:inset 0px -2px 10px 0px #FF9933; -webkit-box-shadow:inset 0px -2px 10px 0px #FF9933;
+    background:-webkit-linear-gradient(90deg, #FFBA4D 15%, #FFF5E7 83%);
+	background:-moz-linear-gradient(90deg, #FFBA4D 15%, #FFF5E7 83%);
+	background:-ms-linear-gradient(90deg, #FFBA4D 15%, #FFF5E7 83%);
+	background:linear-gradient(180deg, #FFF5E7 15%, #FFBA4D 83%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF5E7', endColorstr='#FFBA4D');
+    /*background-color:#FFBA4D;*/
+}
+a.fs-donate:hover{
+    background:-webkit-linear-gradient(90deg, #FFF5E7 15%, #FFBA4D 83%);
+    background:-moz-linear-gradient(90deg, #FFF5E7 15%, #FFBA4D 83%);
+    background:-ms-linear-gradient(90deg, #FFF5E7 15%, #FFBA4D 83%);
+    background:linear-gradient(180deg, #FFBA4D 15%, #FFF5E7 83%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFBA4D', endColorstr='#FFF5E7');
+    /*background-color:#FFF5E7;*/
+}
+p.fs-donate{padding:5px;color:#fff;background:#333;border-radius:5px;position:absolute;bottom:20px;z-index:999;width:300px;}
+</style>
+			<script type="text/javascript"><!--
+			$('#attribute td').eq(1).prepend('<span onclick="pacHelp($(this));" style="text-decoration:underline;cursor:help;">HTML</span> - ');
+			function pacHelp($this) {
+				$pacVersion = 'HTML Code to Attribute v1.7';
+				$pacHelp  = '<div style="width:300px;position:absolute;padding:7px;background:#eee;color:#000;border:1px solid #000;z-index:999;">';
+				$pacHelp += '  <div style="float:left;">Height: from one to ten.<br />Text-align: left, center, right.</div>';
+				$pacHelp += '  <div style="float:right;font-weight:bold;color:#F00;" onmouseover="$(this).parent().remove();">X</div>';
+				$pacHelp += '  <div style="clear:both;" id="pac-content"><textarea style="box-sizing:border-box;-moz-box-sizing:border-box;width:100%;height:130px;"><div class="html-pa three left">&#xd;&#xd;<p>Text here</p>&#xd;<p style="color:red;">Text here</p>&#xd;<p style="color:green;">Text here</p>&#xd;<p class="last">Text last element</p>&#xd;&#xd;</div></textarea></div>';
+				$pacHelp += '  <a style="float:right;text-align:right;" href="http://www.opencart.com/index.php?route=extension/extension&filter_username=fabiom7" target="_blank" onmouseover="fsDonate($(this));"><span class="help" style="display:inline;text-decoration:underline;">' + $pacVersion + '</span></a>';
+				$pacHelp += '</div>';
+				$($this).before($pacHelp);
+			}
+			function fsDonate($el) {
+				$('.fs-donate').remove();
+				$fsDonate = '  <a class="fs-donate" title="PayPal Gift" target="_blank" href="https://www.paypal.com/sendmoney?country_name=IT&amount=5&amount_ccode=USD&email=fabiome77@hotmail.it&payment_type=Gift" data-tooltip="If you liked it, you can make a gift. You can contribute to the improvement and development of new free extensions. Select Send to Friends or Family. Thanks! Email: fabiome77@hotmail.it - Country: Italy.">Donate</a>';
+				$el.before($fsDonate);
+				$('a.fs-donate').on({mouseover:function(e){e.preventDefault();$(this).before('<p class="fs-donate">' + $(this).attr("data-tooltip") + '</p>');}});
+			}
+			//--></script>
+			<script type="text/javascript"><!--
+			function pacCKEditor($el) {
+				CKEDITOR.replace($el, {
+					//toolbar: 'full',
+					resize_enabled: true, width: '90%', height: '80px', autoParagraph:false,
+					filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+					filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+					filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+					filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+					filebrowserImageUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
+					filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+				});
+			}
+			//--></script>
+		]]></add>
+	</operation>
+	<operation error="log">
+		<search position="before"><![CDATA[
+			<td class="left"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+		]]></search>
+		<add><![CDATA[
+			<?php foreach ($languages as $language) { ?>
+			<script type="text/javascript"><!--
+			$('textarea[name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]"]').on("dblclick", function(){ pacCKEditor(this); });
+			//--></script>
+			<?php } ?>
+		]]></add>
+	</operation>
+	<operation error="log">
+		<search position="before"><![CDATA[
+			html += '    <td class="left"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+		]]></search>
+		<add><![CDATA[
+			<?php foreach ($languages as $language) { ?>
+			html += '<script type="text/javascript">';
+			html += '$(\'textarea[name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]"]\').on("dblclick", function(){ pacCKEditor(this); });';
+			html += '</script>';
+			<?php } ?>
+		]]></add>
+	</operation>
+</file>
+</modification>

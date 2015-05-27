@@ -1,0 +1,2 @@
+$this->document->addStyle("catalog/view/javascript/jRating.jquery.css");
+$this->document->addScript('catalog/view/javascript/jRating.jquery.js');

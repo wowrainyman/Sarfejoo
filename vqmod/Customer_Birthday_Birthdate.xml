@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using vQModerator's XML Generator by The Wizard of Osch for http://www.crystalcopy.nl //-->
+<!-- (Based on vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk) //-->
+<modification>
+	<id><![CDATA[Customer Birthday Birthdate]]></id>
+	<version><![CDATA[2.0]]></version>
+	<vqmver required="true"><![CDATA[2.4.1]]></vqmver>
+	<author><![CDATA[David Sánchez Plaza]]></author>
+	<file path="catalog/controller/account/" name="register.php">
+		<operation error="abort" info="Adding the field">
+			<search position="iafter"><![CDATA[$this->data['entry_lastname'] = $this->language->get('entry_lastname');]]></search>
+			<add><![CDATA[	$this->data['entry_birthday_date'] = $this->language->get('entry_birthday_date');]]></add>
+		</operation>
+		<operation error="abort" info="Showing Error for BirthDate Message">
+			<search position="after" offset="4"><![CDATA[if (isset($this->error['lastname'])) {]]></search>
+			<add><![CDATA[		if (isset($this->error['birthday_date'])) {             
+			$this->data['error_birthday_date'] = $this->error['birthday_date'];         
+		} else {             
+			$this->data['error_birthday_date'] = ''; 
+		}]]></add>
+		</operation>
+		<operation error="abort" info="Request the BirthDay Information">
+			<search position="after" offset="4"><![CDATA[if (isset($this->request->post['lastname'])) {]]></search>
+			<add><![CDATA[		if (isset($this->request->post['birthday_date'])) {             
+			$this->data['birthday_date'] = $this->request->post['birthday_date'];         
+		} else {             
+			$this->data['birthday_date'] = ''; 
+		}]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="2"><![CDATA[      		$this->error['email'] = $this->language->get('error_email');]]></search>
+			<add><![CDATA[    	if (utf8_strlen($this->request->post['birthday_date']) != 10) {
+      		$this->error['birthday_date'] = $this->language->get('error_birthday_date');
+    	}		
+]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/english/account/" name="register.php">
+		<operation error="abort" info="Adding Birthday info to language">
+			<search position="iafter"><![CDATA[$_['entry_lastname']       = 'Last Name:';]]></search>
+			<add><![CDATA[$_['entry_birthday_date']     = 'Birthday Date:';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['error_email']          = 'E-Mail Address does not appear to be valid!';]]></search>
+			<add><![CDATA[$_['error_birthday_date']  = 'Your birthday date is invalid!';]]></add>
+		</operation>
+	</file>
+	<file path="catalog/model/account/" name="customer.php">
+		<operation error="abort" info="">
+			<search position="replace"><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$customer_group_id . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");]]></search>
+			<add><![CDATA[      	$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET store_id = '" . (int)$this->config->get('config_store_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', birthday_date = '" . $this->db->escape($data['birthday_date']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', newsletter = '" . (isset($data['newsletter']) ? (int)$data['newsletter'] : 0) . "', customer_group_id = '" . (int)$customer_group_id . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', status = '1', approved = '" . (int)!$customer_group_info['approval'] . "', date_added = NOW()");]]></add>
+		</operation>
+	</file>
+	<file path="catalog/view/theme/*/template/account/" name="register.tpl">
+		<operation error="abort" info="">
+			<search position="before" offset="1"><![CDATA[<td><span class="required">*</span> <?php echo $entry_email; ?></td>]]></search>
+			<add><![CDATA[        <tr>    
+          <td><span class="required">*</span> <?php echo $entry_birthday_date; ?></td>    
+          <td><input type="text" name="birthday_date" value="<?php echo $birthday_date; ?>" size="12" id="birthday_date" />    
+            <?php if ($error_birthday_date) { ?>    
+            <span class="error"><?php echo $error_birthday_date; ?></span>    
+            <?php } ?></td> 
+        </tr>]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="ibefore"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[<script type="text/javascript" src="catalog/view/javascript/jquery/ui/ui.datepicker.js"></script>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+    $('#birthday_date').datepicker({changeMonth: true, changeYear: true, yearRange: '-80:+0', dateFormat: 'yy-mm-dd'});
+});
+//--></script>]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/sale/" name="customer.php">
+		<operation error="log" info="El ultimo da error">
+			<search position="after" offset="2" index="1,2,3"><![CDATA[			if (isset($this->request->get['filter_email'])) {]]></search>
+			<add><![CDATA[			if (isset($this->request->get['filter_birthday_date'])) {
+				$url .= '&filter_birthday_date=' . $this->request->get['filter_birthday_date'];
+			}
+			]]></add>
+		</operation>
+		<operation error="abort" info="Caso normal. Cuidado que hay otro">
+			<search position="after" offset="2" index="1,2,3,4,6,7,8,9"><![CDATA[		if (isset($this->request->get['filter_email'])) {]]></search>
+			<add><![CDATA[		if (isset($this->request->get['filter_birthday_date'])) {
+			$filter_birthday_date = $this->request->get['filter_birthday_date'];
+		} else {
+			$filter_birthday_date = null;
+		}
+				]]></add>
+		</operation>
+		<operation error="abort" info="Caso raro">
+			<search position="before" index="5"><![CDATA[		if (isset($this->request->get['filter_email'])) {]]></search>
+			<add><![CDATA[		if (isset($this->request->get['filter_birthday_date'])) {
+			$filter_birthday_date = $this->request->get['filter_birthday_date'];
+		} else {
+			$filter_birthday_date = null;
+		}
+			]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="2"><![CDATA[			$filter_email = null;]]></search>
+			<add><![CDATA[		if (isset($this->request->get['filter_birthday_date'])) {
+			$filter_birthday_date = $this->request->get['filter_birthday_date'];
+		} else {
+			$filter_birthday_date = null;
+		}
+			]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[			'filter_email'             => $filter_email,]]></search>
+			<add><![CDATA[			'filter_birthday_date'     => $filter_birthday_date,]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="iafter"><![CDATA[				'email'          => $result['email'],]]></search>
+			<add><![CDATA[				'birthday_date'  => $result['birthday_date'],]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="iafter"><![CDATA[		$this->data['column_email'] = $this->language->get('column_email');]]></search>
+			<add><![CDATA[		$this->data['column_birthday_date'] = $this->language->get('column_birthday_date');]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="iafter"><![CDATA[		$this->data['sort_email'] = $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&sort=c.email' . $url, 'SSL');]]></search>
+			<add><![CDATA[		$this->data['sort_birthday_date'] = $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&sort=c.birthday_date' . $url, 'SSL');]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="iafter"><![CDATA[		$this->data['filter_email'] = $filter_email;]]></search>
+			<add><![CDATA[		$this->data['filter_birthday_date'] = $filter_birthday_date;]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="iafter"><![CDATA[    	$this->data['entry_email'] = $this->language->get('entry_email');]]></search>
+			<add><![CDATA[    	$this->data['entry_birthday_date'] = $this->language->get('entry_birthday_date');]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="7"><![CDATA[    	if (isset($this->request->post['email'])) {]]></search>
+			<add><![CDATA[    	if (isset($this->request->post['birthday_date'])) {
+      		$this->data['birthday_date'] = $this->request->post['birthday_date'];
+    	} elseif (!empty($customer_info)) { 
+			$this->data['birthday_date'] = $customer_info['birthday_date'];
+		} else {
+      		$this->data['birthday_date'] = '';
+    	}]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="4"><![CDATA[ 		if (isset($this->error['email'])) {]]></search>
+			<add><![CDATA[ 		if (isset($this->error['birthday_date'])) {
+			$this->data['error_birthday_date'] = $this->error['birthday_date'];
+		} else {
+			$this->data['error_birthday_date'] = '';
+		}
+				]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="3"><![CDATA[		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {]]></search>
+			<add><![CDATA[    	if ((utf8_strlen($this->request->post['birthday_date']) < 1) || (utf8_strlen($this->request->post['birthday_date']) > 10)) {
+      		$this->error['birthday_date'] = $this->language->get('error_birthday_date');
+    	}]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/english/sale/" name="customer.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['column_email']          = 'E-Mail';]]></search>
+			<add><![CDATA[$_['column_birthday_date']  = 'Birthday Date. <a title=" Discover new features in the PRO version " href="http://www.alzoco.com/CUSTOMERSBIRTHDAYEMAIL">¿Go PRO?</a>';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['entry_email']           = 'E-Mail:';]]></search>
+			<add><![CDATA[$_['entry_birthday_date']   = 'Birthday Date:  (<a title= " Discover new features in the PRO version "href="http://www.alzoco.com/CUSTOMERSBIRTHDAYEMAIL">¿Go PRO?</a>)';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['error_email']           = 'E-Mail Address does not appear to be valid!';]]></search>
+			<add><![CDATA[$_['error_birthday_date']   = 'Birthday date does not appear to be valid! (<a title= " Discover new features in the PRO version "href="http://www.alzoco.com/CUSTOMERSBIRTHDAYEMAIL">¿Go PRO?</a>)';]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/spanish/sale/" name="customer.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['column_email']]]></search>
+			<add><![CDATA[$_['column_birthday_date']  = 'Fecha de nacimiento. <a title=" Descubra nuevas funciones en la versión PRO " href="http://www.alzoco.com/CUSTOMERSBIRTHDAYEMAIL">¿Go PRO?</a>';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['entry_email']]]></search>
+			<add><![CDATA[$_['entry_birthday_date']   = 'Fecha de nacimiento:  (<a title= " Descubra nuevas funciones en la versión PRO "href="href="http://www.alzoco.com/CUSTOMERSBIRTHDAYEMAIL">¿Hacerse PRO?</a>)';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['error_email']]]></search>
+			<add><![CDATA[$_['error_birthday_date']   = 'La fecha de nacimiento parece no ser correcta! (<a title= " Descubra nuevas funciones en la versión PRO "href="href="http://www.alzoco.com/CUSTOMERSBIRTHDAYEMAIL">¿Hacerse PRO?</a>)';]]></add>
+		</operation>
+	</file>
+	<file path="admin/model/sale/" name="customer.php">
+		<operation error="abort" info="">
+			<search position="replace"><![CDATA[      	$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");]]></search>
+			<add><![CDATA[      	$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', birthday_date = '" . $this->db->escape($data['birthday_date']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', salt = '" . $this->db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="replace"><![CDATA[		$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', status = '" . (int)$data['status'] . "' WHERE customer_id = '" . (int)$customer_id . "'");]]></search>
+			<add><![CDATA[		$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', birthday_date = '" . $this->db->escape($data['birthday_date']). "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', newsletter = '" . (int)$data['newsletter'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', status = '" . (int)$data['status'] . "' WHERE customer_id = '" . (int)$customer_id . "'");]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="1"><![CDATA[			$implode[] = "c.email LIKE '" . $this->db->escape($data['filter_email']) . "%'";]]></search>
+			<add><![CDATA[		if (!empty($data['filter_birthday_date'])) {
+			$implode[] = "DATE(c.birthday_date) = DATE('" . $this->db->escape($data['filter_birthday_date']) . "')";
+		}		
+]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[			'c.email',]]></search>
+			<add><![CDATA[			'c.birthday_date',]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/sale/" name="customer_form.tpl">
+		<operation error="abort" info="">
+			<search position="after" offset="5"><![CDATA[                <td><span class="required">*</span> <?php echo $entry_email; ?></td>]]></search>
+			<add><![CDATA[              <tr>
+                <td><span class="required">*</span> <?php echo $entry_birthday_date; ?></td>
+                <td><input type="text" name="birthday_date" value="<?php echo $birthday_date; ?>" id="birthday_date" />
+                
+                  <?php if ($error_birthday_date) { ?>
+                  <span class="error"><?php echo $error_birthday_date; ?></span>
+                  <?php  } ?></td>
+              </tr>]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" index="2"><![CDATA[$('.vtabs a').tabs();]]></search>
+			<add><![CDATA[$('#birthday_date').datepicker({changeMonth: true, changeYear: true, yearRange: '-80:+0', dateFormat: 'yy-mm-dd'});]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/sale/" name="customer_list.tpl">
+		<operation error="abort" info="">
+			<search position="after" offset="1"><![CDATA[                <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?></a>]]></search>
+			<add><![CDATA[              <td class="left"><?php if ($sort == 'c.birthday_date') { ?>
+                <a href="<?php echo $sort_birthday_date; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_birthday_date; ?></a>
+                <?php } else { ?>
+                <a href="<?php echo $sort_birthday_date; ?>"><?php echo $column_birthday_date; ?></a>
+                <?php } ?></td>]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[              <td><input type="text" name="filter_email" value="<?php echo $filter_email; ?>" /></td>]]></search>
+			<add><![CDATA[              <td><input type="text" name="filter_birthday_date" value="<?php echo $filter_birthday_date; ?>" size="12" id="birthday_date" /></td>]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[              <td class="left"><?php echo $customer['email']; ?></td>]]></search>
+			<add><![CDATA[              <td class="left"><?php echo $customer['birthday_date']; ?></td>]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="replace"><![CDATA[              <td class="center" colspan="10"><?php echo $text_no_results; ?></td>]]></search>
+			<add><![CDATA[              <td class="center" colspan="11"><?php echo $text_no_results; ?></td>]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="2"><![CDATA[		url += '&filter_email=' + encodeURIComponent(filter_email);]]></search>
+			<add><![CDATA[	var filter_birthday_date = $('input[name=\'filter_birthday_date\']').attr('value');	
+
+	if (filter_birthday_date) {
+		url += '&filter_birthday_date=' + encodeURIComponent(filter_birthday_date);
+	}
+	]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[	$('#date').datepicker({dateFormat: 'yy-mm-dd'});]]></search>
+			<add><![CDATA[	$('#birthday_date').datepicker({changeMonth: true, changeYear: true, yearRange: '-80:+0', dateFormat: 'yy-mm-dd'});]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/checkout/" name="register.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[		$this->data['entry_email'] = $this->language->get('entry_email');]]></search>
+			<add><![CDATA[                $this->data['entry_birthday_date'] = $this->language->get('entry_birthday_date');]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" offset="3"><![CDATA[			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {]]></search>
+			<add><![CDATA[			if (utf8_strlen($this->request->post['birthday_date']) != 10) {
+				$json['error']['birthday_date'] = $this->language->get('error_birthday_date');
+                }
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/spanish/checkout/checkout.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['entry_lastname']]]></search>
+			<add><![CDATA[$_['entry_birthday_date']            = 'Fecha de nacimiento:';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['error_email']]]></search>
+			<add><![CDATA[$_['error_birthday_date']            = 'La fecha de nacimiento no es valida!';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/checkout/checkout.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['entry_lastname']]]></search>
+			<add><![CDATA[$_['entry_birthday_date']            = 'Birthday Date:';]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[$_['error_email']]]></search>
+			<add><![CDATA[$_['error_birthday_date']            = 'Birthday Date does not appear to be valid!';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/default/template/checkout/register.tpl">
+		<operation error="abort" info="">
+			<search position="after" offset="1"><![CDATA[  <input type="text" name="email" value="" class="large-field" />]]></search>
+			<add><![CDATA[  <br />
+                <span class="required">*</span> <?php echo $entry_birthday_date; ?><br />
+                <input type="text" name="birthday_date" value="" id="birthday_date" />
+                <br /> ]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="before" index="3"><![CDATA[//--></script>]]></search>
+			<add><![CDATA[$('#birthday_date').datepicker({changeMonth: true, changeYear: true, yearRange: '-80:+0', dateFormat: 'yy-mm-dd'});]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/default/template/checkout/checkout.tpl">
+		<operation error="abort" info="Only the first one corresponding the Register part.">
+			<search position="after" offset="1"><![CDATA[					$('#payment-address input[name=\'email\'] + br').after('<span class="error">' + json['error']['email'] + '</span>');]]></search>
+			<add><![CDATA[				if (json['error']['birthday_date']) {
+                $('#payment-address input[name=\'birthday_date\'] + br').after('<span class="error">' + json['error']['birthday_date'] + '</span>');
+				}
+            ]]></add>
+		</operation>
+	</file>
+</modification>

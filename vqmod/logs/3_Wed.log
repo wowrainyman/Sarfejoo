@@ -1,0 +1,15 @@
+---------- Date: 2015-05-27 08:27:13 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+

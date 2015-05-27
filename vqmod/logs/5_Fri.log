@@ -1,0 +1,15 @@
+---------- Date: 2014-11-14 16:16:50 ~ IP : 172.16.19.102 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/register
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/pu-group-select.xml
+   id        : PU - Customer Group Explain
+   version   : 1.0
+   vqmver    : 2.3.0
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/default/template/account/register.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />
+
+----------------------------------------------------------------------
+
+

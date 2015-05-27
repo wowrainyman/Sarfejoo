@@ -1,0 +1,14 @@
+<modification>
+	<id>List/Grid Categoury</id>
+	<version>0.6</version>
+	<vqmver>2.2.1</vqmver>
+	<author>M.Abooali</author>
+		<file name="catalog/view/theme/*/template/common/footer.tpl">
+			<operation error="log">
+				<search position="before"><![CDATA[<div id="s-footer">]]></search>
+				<add><![CDATA[<script type="text/javascript"><!--
+$(function(){$(".display").css("display","none");btnhtml='<div class="list" onclick="display(\'list\');"></div><div class="grid" onclick="display(\'grid\');"></div>';$(".display").replaceWith(btnhtml);$("div .list").bind("click",btndisplay);$("div .grid").bind("click",btndisplay);btndisplay()}); function btndisplay(){"list"==$.totalStorage("display")?($("div .list").addClass("list-active"),$("div .grid").removeClass("grid-active")):($("div .grid").addClass("grid-active"),$("div .list").removeClass("list-active"))};
+//--></script>]]></add>
+			</operation>
+		</file>
+</modification>

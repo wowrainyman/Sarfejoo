@@ -1,0 +1,251 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {        /* Smartphones (portrait and landscape) */
+     body {
+          margin-top:125px;
+     }
+     #s-header, #s-f-information, #s-f-account, #s-f-mobile,#compareblock {
+          display:none;
+     }
+     #rs-fix-search {
+          display:block !important;
+          position:fixed;
+          margin:auto;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index:1000
+     }
+     #rs-he-search {
+         position: relative;
+         display: block;
+         margin:auto;
+         margin-top: 0 !important;
+         width: 100%;
+     }
+    .rs-b-search {
+          position: absolute;
+          left: 20px;
+          background: url('../../image/sarfejoo/button-search.png') center left no-repeat;
+          width: 28px;
+          height: 68px;
+          border-right: 1px solid #CCCCCC;
+          cursor: pointer;
+     }
+     #rs-he-search input {
+          background: #FFF;
+          padding: 1px 13px 1px 1px;
+          width: 100% !important;
+          height: 64px;   /* 54 */
+          border: 1px solid #818181;
+          border-radius: 0 !important;
+          background: url('../../image/sarfejoo/sarfejoo.png') no-repeat;
+         	background-position: left 75px top 6px;
+          background-color: #FFF;
+          font-family: BYekan;
+          font-size: 21px;
+     }
+     .s-row {
+     }
+     .l-border {
+          border-left: 0 solid #ccc !important;
+     }
+     #category_list {
+          display:none !important;
+     }
+     #boxed-cat  {
+          margin-right: 5%;
+     }
+     #boxed-cat > ul > li:last-child {
+          display:none !important;
+     }
+     .s-block-3 {
+          margin-right:5%;
+          width: 40% !important;
+     }
+     .s-block-12 {
+          width: 90% !important;
+     }
+     .rs-f-mobile {
+          width: 90% !important;
+     }
+     #column-right {
+          display:block !important;
+          position:fixed;
+          top: 67px;
+          left: -175px;
+          z-index:1000
+          transition-duration: 0.2s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+     }
+     #rs-column-right-key {
+          display:block !important;
+          position:fixed;
+          top: 80px;
+          left: 0;
+          z-index:5000;
+          width: 40px;
+          height: 40px;
+          background: #ccc url('../../image/mobile/settings.png') no-repeat center;
+          text-align:center;
+          transition-duration: 0.2s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+     }
+     .right-rs-slide {
+          left: 0 !important;
+          transition-duration: 0.4s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+          z-index:5800 !important;
+     }
+     .right-key-rs-slide {
+          left: 175px !important;
+          transition-duration: 0.4s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+          z-index:5800 !important;
+     }
+     .box .box-heading {
+          background-color:#EBEBEB !important;
+     }
+     .s-pc-c-center {
+          float: none !important;
+          width: 100% !important;
+     }
+     .product-grid > div {
+          margin-right: 25px !important;
+     }
+     .compare, .wishlist {
+          display:none !important;
+     }
+     .product-info img {
+          width: 150px !important;
+     }
+     .p-availability, .p-pric {
+          max-width: 50%;
+          margin-right:120px !important;
+    }
+    .informa > p {
+          max-width: 60%;
+     }
+     .rs-menu {
+          display:block !important;
+          position:fixed !important;
+          top: 67px !important;
+          right: -175px !important;
+          z-index:1800 !important;
+          transition-duration: 0.2s !important;
+          transition-timing-function: linear !important;
+          transition-delay: 0s !important;
+          background-color:#383838 !important;
+          width: 175px !important;
+          height: 100% !important;
+     }
+     #rs-column-left-key {
+         display:block !important;
+          position:fixed;
+          top: 80px;
+          right: 0;
+          z-index:5000;
+          width: 40px;
+          height: 40px;
+         background: #ccc url('../../image/mobile/right-bar.png') no-repeat center;
+         text-align:center;
+          transition-duration: 0.2s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+     }
+     .rs-menu-slide {
+          right: 0 !important;
+          transition-duration: 0.4s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+          z-index:58000 !important;
+     }
+     .rs-column-left-key-slide {
+          right: 175px !important;
+          transition-duration: 0.4s;
+          transition-timing-function: linear;
+          transition-delay: 0s;
+          z-index:58000 !important;
+     }
+     #fi-links > a {
+          font-size:17px;
+          font-family: 'BYekan';
+          margin-top:8px;
+          display: block !important;
+          width: 170px;
+    }
+    #fi-links > a + a {
+         margin-right: 0 !important;
+         border-right: 0 solid #AAA !important;
+    }
+    #fi-cats {
+          margin-top:8px;
+    }
+     #fi-cats > ul > li {
+          float: none !important;
+          font-size:17px;
+          font-family: 'BYekan';
+          margin-top:8px;
+          display: block !important;
+          border-right: 0 solid #AAA !important;
+     }
+     #fi-cats > ul > li > a {
+         padding-right: 0 !important;
+         background: url('../../image/sarfejoo/left.png') no-repeat left 15px top 50% !important;
+         width: 170px;
+         margin-top:15px;
+     }
+     #fi-cats > ul > li > div {
+         display: none;
+         background: none repeat scroll 0 0 #444;
+         position: absolute;
+         border-bottom: 1px solid #AAA;
+         right: 166px;
+     }
+     .rs-lightbox {
+         position:fixed;
+         display:block !important;
+         z-index:500;
+         width: 100%;
+         height: 100%;
+         top:65px;
+         background-color:rgba(0,0,0,0.8);
+     }
+     .rs-lightbox-2 {
+         position:fixed;
+         display:block !important;
+         z-index:500;
+         width: 100%;
+         height: 100%;
+         top:65px;
+         background-color:rgba(0,0,0,0.8);
+     }
+     #fi-left {
+          float: right !important;
+         margin-top:35px;
+     }
+
+}
+@media only screen and (min-width : 321px) { /* Smartphones (landscape) */
+
+}
+@media only screen and (max-width : 320px) { /* Smartphones (portrait) */
+
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {       /* iPads (portrait and landscape) */
+
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {  /* iPads (landscape) */
+
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {        /* iPads (portrait) */
+
+}
+@media only screen and (min-width : 1224px) {     /* Desktops and laptops */
+
+}
+@media only screen and (min-width : 1824px) {     /* Large screens */
+
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id><![CDATA[vQModerator Installation]]></id>
+	<version><![CDATA[1.1.6]]></version>
+	<vqmver><![CDATA[2.4.1]]></vqmver>
+	<author><![CDATA[The Wizard of Osch, for www.CrystalCopy.nl]]></author>
+	<file name="admin/controller/common/header.php" error="abort">
+		<operation info="Adding Link to vQModerator in Header">
+			<search position="after" index="1"><![CDATA[$this->data['text_zone']]]></search>
+			<add><![CDATA[// BOF - Zappo - vQModerator - ONE LINE - Added vQModerator Text
+		$this->data['text_vqmoderator'] = $this->language->get('text_vqmoderator');]]></add>
+		</operation>
+		<operation info="Adding Link to vQModerator in Header">
+			<search position="before" index="1"><![CDATA[$this->data['stores'] = array(]]></search>
+			<add><![CDATA[// BOF - Zappo - vQModerator - ONE LINE - Added vQModerator Link
+			$this->data['vqmoderator'] = $this->url->link('tool/vqmod', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/*/common/header.php" error="abort">
+		<operation info="Adding Link to vQModerator in Header (Language definitions)">
+			<search position="before" index="1"><![CDATA[?>]]></search>
+			<add><![CDATA[// BOF - Zappo - vQModerator - ONE LINE - Added vQModerator Text
+$_['text_vqmoderator']                       = 'vQModerator';]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/header.tpl" error="abort">
+		<operation info="Adding Link to vQModerator in Header (Change this operation to change the location of the header-link)">
+			<search position="after" index="1"><![CDATA[<li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>]]></search>
+			<add><![CDATA[<?php // BOF - Zappo - vQModerator - ONE LINE - Added vQModerator to Menu ?>
+          <li><a href="<?php echo $vqmoderator; ?>"><?php echo $text_vqmoderator; ?></a></li>]]></add>
+		</operation>
+	</file>
+</modification>

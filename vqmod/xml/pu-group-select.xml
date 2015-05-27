@@ -1,0 +1,22 @@
+<modification>
+	<id>PU - Customer Group Explain</id>
+	<version>1.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>M.Abooali</author>
+	<file name="catalog/view/theme/default/template/account/register.tpl">
+		<operation>
+			<search position="replace" offset="5"><![CDATA[<input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>" checked="checked" />]]></search>
+			<add><![CDATA[
+			<label class="radio" ><span class="jqToolTip" title="<?php echo $customer_group['description']; ?>"><input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>" checked="checked" /> <?php echo $customer_group['name']; ?>
+			</span>
+			</label>
+			<br />
+			<?php } else { ?>
+			<label class="radio"><span class="jqToolTip" title="<?php echo $customer_group['description']; ?>"><input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>" id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>" /> <?php echo $customer_group['name']; ?>
+			</span>
+			</label>
+			<br />
+			]]></add>
+		</operation>
+	</file>
+</modification>
