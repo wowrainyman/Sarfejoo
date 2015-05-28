@@ -1,2 +1,11 @@
 image/
 ProvidersScans/
+system/cache/
+system/logs/
+system/cache_mfp/
+vqmod/vqcache/
+vqmod/logs/
+*.log
+*.html
+.idea/workspace.xml
+system/logs/error.txt

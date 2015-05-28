@@ -289,7 +289,7 @@ if (!isset($_GET["v"])) {
 }
 $data = array();
 $offset = $page * 6;
-$withFilter = flase;
+$withFilter = false;
 if ($category_id && $category_id != "false") {
     $data = array(
         'filter_category_id' => $category_id,
