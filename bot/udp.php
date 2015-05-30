@@ -27,7 +27,21 @@
       } else  {
      $c_id = $_GET["c_id"]; 
       }
-
+        if (!isset($_GET["auto_update"]))  {
+            $auto_update = false;
+        } else  {
+            $auto_update = $_GET["auto_update"];
+        }
+        if (!isset($_GET["subprofile_name"]))  {
+            $subprofile_name = "";
+        } else  {
+            $subprofile_name = $_GET["subprofile_name"];
+        }
+        if (!isset($_GET["text"]))  {
+            $text = "";
+        } else  {
+            $text = $_GET["text"];
+        }
 
  if (!empty($subprofile_id)) {
 
@@ -69,6 +83,22 @@
                                                                                 
           mysqli_query($link_DB, $sql_update) or die(mysqli_error());
 
+}
+
+if ($auto_update) {
+    $sql_insert = "INSERT INTO `auto_update`(
+                                 `related_id`,
+                                 `subprofile_name`,
+                                 `text`,
+                                 `update_until`
+                  ) VALUES (
+                                 '$product_id',
+                                 '$subprofile_name',
+                                 '$text',
+                                  DATE_ADD(current_date,INTERVAL 7 DAY)
+                            );";
+    echo $sql_insert;
+    mysqli_query($link_DB, $sql_insert) or die(mysqli_error());
 }
 
  ?>

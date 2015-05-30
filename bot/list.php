@@ -315,87 +315,87 @@ if ($withFilter) {
     if ($subprofile_name && $subprofile_name != "false") {
         if ($view_sort && $view_sort != "false") {
             $products_id = getProducts($data, $link_OC_DB);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "')";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "')";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id WHERE time > CURDATE() AND `emalls_updated_price`.subprofile_name = '$subprofile_name' AND `emalls_updated_price`.related_id IN ('" . implode($products_id, "', '") . "') ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id WHERE auto_update<>1 AND time > CURDATE() AND `emalls_updated_price`.subprofile_name = '$subprofile_name' AND `emalls_updated_price`.related_id IN ('" . implode($products_id, "', '") . "') ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }else{
             $products_id = getProducts($data, $link_OC_DB);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "')";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "')";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "') limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' AND related_id IN ('" . implode($products_id, "', '") . "') limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }
     } else {
         if ($view_sort && $view_sort != "false") {
             $products_id = getProducts($data, $link_OC_DB);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "')";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "')";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id WHERE time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id WHERE auto_update<>1 AND time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }else{
             $products_id = getProducts($data, $link_OC_DB);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "')";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "')";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') AND is_r =1";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND related_id IN ('" . implode($products_id, "', '") . "') limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }
     }
 } else {
     if ($subprofile_name && $subprofile_name != "false") {
         if ($view_sort && $view_sort != "false") {
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name'";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name'";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND is_r =1 AND subprofile_name = '$subprofile_name'";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND is_r =1 AND subprofile_name = '$subprofile_name'";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }else{
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name'";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name'";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND is_r =1 AND subprofile_name = '$subprofile_name'";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND is_r =1 AND subprofile_name = '$subprofile_name'";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND subprofile_name = '$subprofile_name' limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND subprofile_name = '$subprofile_name' limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }
     } else {
         if ($view_sort && $view_sort != "false") {
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE()";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE()";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND is_r =1";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND is_r =1";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id  WHERE time > CURDATE() ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` LEFT JOIN manirahn_sarfe_oc.oc_product ON manirahn_sarfe_oc.oc_product.product_id = `emalls_updated_price`.related_id  WHERE auto_update<>1 AND time > CURDATE() ORDER BY manirahn_sarfe_oc.oc_product.viewed $view_sort limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }else{
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE()";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE()";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() AND is_r =1";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() AND is_r =1";
             $result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
             $site_bot_aded_count = mysqli_num_rows($result);
-            $sql = "SELECT * FROM `emalls_updated_price` WHERE time > CURDATE() limit 6 OFFSET $offset";
+            $sql = "SELECT * FROM `emalls_updated_price` WHERE auto_update<>1 AND time > CURDATE() limit 6 OFFSET $offset";
             $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
         }
     }
@@ -550,6 +550,9 @@ foreach ($categories as $category) {
                 <?php if ($is_r == 0) { ?>
                 <?php if ($price_sp != 0) { ?>
                 <span id="upd<?php echo $count ?>" class="upd">ثبت قیمت جدید</span>
+                <input type="checkbox" name="auto-update<?php echo $count ?>" value="male">
+                بروزرسانی خودکاربرای یک هفته
+                <br/>
             <?php } else { ?>
                 <span id="ins<?php echo $count ?>" class="ins">افزودن کالا</span>
             <?php } ?>
@@ -558,15 +561,19 @@ foreach ($categories as $category) {
             <?php } ?>
 
                 <script language="JavaScript" type="text/javascript">
+
                     $(document).ready(function () {
                         $("#upd<?php echo $count  ?>").click(function () {
+                            var isChecked = $("input[name='auto-update<?php echo $count ?>']").is(":checked") ? 1:0;
                             var subprofile = '<?php echo $subprofile_id  ?>';
-                            var dec = '<?php echo$text ?>';
+                            var dec = '<?php echo $text ?>';
                             var price = '<?php echo $price ?>';
                             var product = '<?php echo $related_id ?>';
                             var c_id = '<?php echo $c_id ?>';
+                            var subprofile_name = '<?php echo $subprofile_name; ?>';
+                            var text = '<?php echo $text ?>';
 
-                            var url = 'udp.php?pid=' + product + '&s=' + subprofile + '&p=' + price + '&d=' + dec + '&c_id=' + c_id;
+                            var url = 'udp.php?pid=' + product + '&s=' + subprofile + '&p=' + price + '&d=' + dec + '&c_id=' + c_id + '&auto_update=' + isChecked + '&subprofile_name=' + subprofile_name + '&text=' + text;
 
                             $.ajax({
                                 type: "GET",
@@ -638,7 +645,6 @@ foreach ($categories as $category) {
                     <img
                         src="../ProvidersScans/<?php echo $i_customer_id_r . '/' . $subprofile_id . '/' . 'logo_' . $i_logo ?>"/>
                 </div>
-                <span style="color:#55aa55;font-size:12px;direction:ltr;">امروز</span>
             <?php } else { ?>
                 <span style="color:#FF2255;font-size:12px;direction:ltr;"><?php echo date("Y-m-d", $timestamp) ?></span>
             <?php } ?><br/><br/>
