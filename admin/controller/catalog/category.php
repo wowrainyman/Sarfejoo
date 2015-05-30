@@ -227,7 +227,8 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['entry_parent'] = $this->language->get('entry_parent');
 		$this->data['entry_filter'] = $this->language->get('entry_filter');
 		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
+        $this->data['entry_keyword'] = $this->language->get('entry_keyword');
+        $this->data['entry_seo_generator'] = $this->language->get('entry_seo_generator');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_top'] = $this->language->get('entry_top');
 		$this->data['entry_column'] = $this->language->get('entry_column');		
@@ -352,6 +353,14 @@ class ControllerCatalogCategory extends Controller {
 		} else {
 			$this->data['keyword'] = '';
 		}
+
+        if (isset($this->request->post['seo_generator'])) {
+            $this->data['seo_generator'] = $this->request->post['seo_generator'];
+        } elseif (!empty($category_info)) {
+            $this->data['seo_generator'] = $category_info['seo_generator'];
+        } else {
+            $this->data['seo_generator'] = '';
+        }
 
 		if (isset($this->request->post['image'])) {
 			$this->data['image'] = $this->request->post['image'];

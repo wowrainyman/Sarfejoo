@@ -102,6 +102,10 @@
               <td><?php echo $entry_keyword; ?></td>
               <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" /></td>
             </tr>
+              <tr>
+                  <td><?php echo $entry_seo_generator; ?></td>
+                  <td><input type="text" name="seo_generator" value="<?php echo $seo_generator; ?>" /></td>
+              </tr>
             <tr>
               <td><?php echo $entry_image; ?></td>
               <td valign="top"><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
