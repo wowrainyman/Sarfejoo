@@ -547,7 +547,8 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$this->data['entry_description'] = $this->language->get('entry_description');
 		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
+        $this->data['entry_keyword'] = $this->language->get('entry_keyword');
+        $this->data['entry_seo_generator'] = $this->language->get('entry_seo_generator');
 		$this->data['entry_model'] = $this->language->get('entry_model');
 		$this->data['entry_sku'] = $this->language->get('entry_sku');
 		$this->data['entry_upc'] = $this->language->get('entry_upc');
@@ -837,6 +838,14 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$this->data['keyword'] = '';
 		}
+
+        if (isset($this->request->post['seo_generator'])) {
+            $this->data['seo_generator'] = $this->request->post['seo_generator'];
+        } elseif (!empty($product_info)) {
+            $this->data['seo_generator'] = $product_info['seo_generator'];
+        } else {
+            $this->data['seo_generator'] = '';
+        }
 
 		if (isset($this->request->post['image'])) {
 			$this->data['image'] = $this->request->post['image'];
