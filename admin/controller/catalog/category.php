@@ -228,6 +228,7 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['entry_filter'] = $this->language->get('entry_filter');
 		$this->data['entry_store'] = $this->language->get('entry_store');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
+        $this->data['entry_rss_link'] = $this->language->get('entry_rss_link');
         $this->data['entry_seo_generator'] = $this->language->get('entry_seo_generator');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_top'] = $this->language->get('entry_top');
@@ -360,6 +361,14 @@ class ControllerCatalogCategory extends Controller {
             $this->data['seo_generator'] = $category_info['seo_generator'];
         } else {
             $this->data['seo_generator'] = '';
+        }
+
+        if (isset($this->request->post['rss_link'])) {
+            $this->data['rss_link'] = $this->request->post['rss_link'];
+        } elseif (!empty($category_info)) {
+            $this->data['rss_link'] = $category_info['rss_link'];
+        } else {
+            $this->data['rss_link'] = '';
         }
 
 		if (isset($this->request->post['image'])) {
