@@ -164,6 +164,10 @@
                   <td><?php echo $entry_seo_generator; ?></td>
                   <td><input type="text" name="seo_generator" value="<?php echo $seo_generator; ?>" /></td>
               </tr>
+              <tr>
+                  <td><?php echo $entry_rss_link; ?></td>
+                  <td><input type="text" name="rss_link" value="<?php echo $rss_link; ?>" /></td>
+              </tr>
             <tr>
               <td><?php echo $entry_image; ?></td>
               <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />

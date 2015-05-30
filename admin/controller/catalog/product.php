@@ -549,6 +549,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_store'] = $this->language->get('entry_store');
         $this->data['entry_keyword'] = $this->language->get('entry_keyword');
         $this->data['entry_seo_generator'] = $this->language->get('entry_seo_generator');
+        $this->data['entry_rss_link'] = $this->language->get('entry_rss_link');
 		$this->data['entry_model'] = $this->language->get('entry_model');
 		$this->data['entry_sku'] = $this->language->get('entry_sku');
 		$this->data['entry_upc'] = $this->language->get('entry_upc');
@@ -845,6 +846,14 @@ class ControllerCatalogProduct extends Controller {
             $this->data['seo_generator'] = $product_info['seo_generator'];
         } else {
             $this->data['seo_generator'] = '';
+        }
+
+        if (isset($this->request->post['rss_link'])) {
+            $this->data['rss_link'] = $this->request->post['rss_link'];
+        } elseif (!empty($product_info)) {
+            $this->data['rss_link'] = $product_info['rss_link'];
+        } else {
+            $this->data['rss_link'] = '';
         }
 
 		if (isset($this->request->post['image'])) {
