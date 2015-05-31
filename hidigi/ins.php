@@ -1,7 +1,10 @@
-<?php 
-###############################
-### ins.php - 10:47 AM 3/9/2015 by M.Abooali
-###############################
+<?php
+// load the login class
+require_once("classes/Login.php");
+
+// create a login object. when this object is created, it will do all login/logout stuff automatically
+// so this single line handles the entire login process. in consequence, you can simply ...
+$login = new Login();
      require_once "config.php";
      if (!isset($_GET["pid"]))  {     $product_id = ""; 
       } else  {
