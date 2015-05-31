@@ -66,10 +66,11 @@
                                                                                 )";
           mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
 
-
+     $username=$_SESSION['user_name'];
 
           $sql_update = "UPDATE `digikala_updated_price` SET
-                                                                                `is_r`='1'
+                                                                                `is_r`='1',
+                                                                                user='$username'
                                                                       WHERE 
                                                                                 `id` = $c_id";
                                                                                 
