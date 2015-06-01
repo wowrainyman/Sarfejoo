@@ -882,6 +882,8 @@ $(document).ready(function() {
     $(window).on('resize', centerModals);
 </script>
 
-<?php include 'seo-keyword.php'; ?>
+<div id="bseo">
+    <?php echo $stext; ?>
+</div>
 
 <?php echo $footer; ?>
