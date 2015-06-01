@@ -1,4 +1,4 @@
-<?php
+<?php 
 // load the login class
 require_once("classes/Login.php");
 
@@ -69,7 +69,7 @@ $login = new Login();
                                                                                 )";
           mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
 
-     $username=$_SESSION['user_name'];
+$username=$_SESSION['user_name'];
 
           $sql_update = "UPDATE `digikala_updated_price` SET
                                                                                 `is_r`='1',

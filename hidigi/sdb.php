@@ -27,26 +27,23 @@
      }
 
      $local_file = $date . '/' . $product_id  . '.html';
+
      $page_content = file_get_contents($page_url);
      
      $myfile = fopen("$local_file", "w") or die("Unable to open file!");
      fwrite($myfile, $page_content);
+     
 
-     $page_content = file_get_contents($local_file);     
+     $page_content = file_get_contents($local_file);
      
-     $page_content = str_replace("<head>","<head><script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>",$page_content);
-     $page_content = str_replace("class='finalprice green'","id='priceee'",$page_content);
-     $page_content = str_replace("<span id='priceee'>","<price>",$page_content);
-     $page_content = str_replace("<span style=\"font-size: 16px\">","</price>",$page_content);
-     $page_content = strip_tags($page_content, '<price>');
-     $page_content = strstr($page_content, '<price>');
+     $doc = new DOMDocument();
      
-     $rowbyrow = explode('</price>', $page_content);
+     $page_content = str_replace("itemprop=\"price\"","id='priceee'",$page_content);
      
-     echo $rowbyrow[0];
-
-     $price = trim($rowbyrow[0]);
-     $price = preg_replace("/[^0-9.]/", "", $price);
+     $doc->loadHTML($page_content);
+     $i = $doc->getElementById('priceee');
+     $price = $i->nodeValue;
+     $price = str_replace(",", "", $price);
      
      echo $price;
 ?>

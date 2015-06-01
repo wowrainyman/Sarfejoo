@@ -2,7 +2,7 @@
 ###############################
 ### config.php - 10:47 AM 3/9/2015 by M.Abooali
 ###############################
-$local = 1;
+$local = 0;
 if ($local=='1') {
      $DB_host = 'localhost';
      $DB_user = 'root';

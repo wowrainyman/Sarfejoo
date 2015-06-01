@@ -1,8 +1,19 @@
 <?php
-###############################
-### list.php - 10:47 AM 3/9/2015 by M.Abooali
-###############################
-?>
+
+// include the configs / constants for the database connection
+require_once("config/db.php");
+
+// load the login class
+require_once("classes/Login.php");
+
+// create a login object. when this object is created, it will do all login/logout stuff automatically
+// so this single line handles the entire login process. in consequence, you can simply ...
+$login = new Login();
+
+// ... ask if we are logged in here:
+if ($login->isUserLoggedIn() != true) {
+    include("views/not_logged_in.php");
+} else { ?>
 <html>
 <head>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -392,3 +403,4 @@ $(document).ready(function() {
           });
      });
 </script>
+<?php } ?>
