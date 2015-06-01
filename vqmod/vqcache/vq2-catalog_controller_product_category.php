@@ -144,6 +144,7 @@ class ControllerProductCategory extends Controller {
 		$category_info = $this->model_catalog_category->getCategory($category_id);
 
 		if ($category_info) {
+            $this->data['stext'] = $this->generateSeoText($category_info['seo_generator'],$category_info['rss_link']);
 			($category_info['custom_title'] == '')?$this->document->setTitle($category_info['name']):$this->document->setTitle($category_info['custom_title']);
 			$this->document->setDescription($category_info['meta_description']);
 			$this->document->setKeywords($category_info['meta_keyword']);
@@ -734,5 +735,57 @@ class ControllerProductCategory extends Controller {
 			$this->response->setOutput($this->render());
 		}
 	}
+
+    public function generateSeoText($seo_generator_terms,$rss_link){
+        $text="";
+        $terms = explode("-", $seo_generator_terms);
+        if(count($terms)==5){
+            $content = file_get_contents($rss_link);
+            $x = new SimpleXmlElement($content);
+            $text = "";
+            foreach($x->channel->item as $entry) {
+                $text .= $entry->description;
+            }
+            $text = strip_tags($text);
+
+            $all_words = explode(" ", $text);
+            $all_words_count = count($all_words);
+            $ac = intval(($all_words_count/100)*3.5);
+            $ad = intval(($all_words_count/100)*3);
+            $ae = intval(($all_words_count/100)*2.5);
+            $bc = intval(($all_words_count/100)*2);
+            $bd = intval(($all_words_count/100)*1.5);
+            $be = intval(($all_words_count/100)*1);
+            for($i=0;$i<$ac;$i++){
+                $place = rand(0,$all_words_count-1);
+                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[2] . ' ';
+            }
+            for($i=0;$i<$ad;$i++){
+                $place = rand(0,$all_words_count-1);
+                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[3] . ' ';
+            }
+            for($i=0;$i<$ae;$i++){
+                $place = rand(0,$all_words_count-1);
+                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[4] . ' ';
+            }
+
+            for($i=0;$i<$bc;$i++){
+                $place = rand(0,$all_words_count-1);
+                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[2] . ' ';
+            }
+            for($i=0;$i<$bd;$i++){
+                $place = rand(0,$all_words_count-1);
+                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[3] . ' ';
+            }
+            for($i=0;$i<$be;$i++){
+                $place = rand(0,$all_words_count-1);
+                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[4] . ' ';
+            }
+
+            $text = implode(" ",$all_words);
+        }
+        return $text;
+    }
+
 }
 ?>

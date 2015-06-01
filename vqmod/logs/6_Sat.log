@@ -253,3 +253,453 @@ VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
 ----------------------------------------------------------------------
 
 
+---------- Date: 2015-05-30 12:27:43 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 12:29:17 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:20:48 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:27:39 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:27:52 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:29:46 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:29:56 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:34:18 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:42:58 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:43:33 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:44:41 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:51:35 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:53:06 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 14:53:38 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:04:04 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:05:00 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:06:34 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:14:27 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:25:44 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:26:15 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-05-30 15:27:08 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/seo-single-url-products-categories.xml
+   id        : SEO Single Url - Category Products
+   version   : 1
+   vqmver    : 2.1.7
+   author    : www.zadenzo.com
+
+File Name    : catalog/controller/product/category.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
