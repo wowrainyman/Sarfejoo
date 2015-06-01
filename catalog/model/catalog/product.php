@@ -54,7 +54,9 @@ class ModelCatalogProduct extends Model {
 				'status'           => $query->row['status'],
 				'date_added'       => $query->row['date_added'],
 				'date_modified'    => $query->row['date_modified'],
-				'viewed'           => $query->row['viewed']
+				'viewed'           => $query->row['viewed'],
+                'seo_generator'    => $query->row['seo_generator'],
+                'rss_link'         => $query->row['rss_link']
 			);
 		} else {
 			return false;
