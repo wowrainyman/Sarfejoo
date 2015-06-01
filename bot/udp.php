@@ -1,5 +1,10 @@
-<?php 
+<?php
+// load the login class
+require_once("classes/Login.php");
 
+// create a login object. when this object is created, it will do all login/logout stuff automatically
+// so this single line handles the entire login process. in consequence, you can simply ...
+$login = new Login();
      require_once "config.php";
 
      if (!isset($_GET["pid"]))  {
@@ -74,10 +79,11 @@
                                                                                      '1'
                                                                                 )";
           mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
-
+     $username=$_SESSION['user_name'];
 
           $sql_update = "UPDATE `emalls_updated_price` SET
-                                                                                `is_r`='1'
+                                                                                `is_r`='1',
+                                                                                user='$username'
                                                                       WHERE 
                                                                                 `id` = $c_id";
                                                                                 

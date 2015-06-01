@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62ed95a5-404e-4898-9e7c-8ddd40107018" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hidigi/index.php" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\1066.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\1197.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\1821.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\1844.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\2334.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\778.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-09-2015\963.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sarfejoo\bot\05-10-2015\778.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hidigi/config.php" afterPath="$PROJECT_DIR$/hidigi/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hidigi/db.php" afterPath="$PROJECT_DIR$/hidigi/db.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hidigi/ins.php" afterPath="$PROJECT_DIR$/hidigi/ins.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hidigi/list.php" afterPath="$PROJECT_DIR$/hidigi/list.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hidigi/sdb.php" afterPath="$PROJECT_DIR$/hidigi/sdb.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hidigi/udp.php" afterPath="$PROJECT_DIR$/hidigi/udp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bot/udp.php" afterPath="$PROJECT_DIR$/bot/udp.php" />
     </list>
     <list id="5aa6aba5-99d0-4a9c-8fbe-1c97f3f7c5ef" name="New changelist" comment="" />
     <ignored path="sarfejoo.iws" />
@@ -47,94 +32,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="category.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/controller/product/category.php">
+      <file leaf-file-name="udp.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bot/udp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.153846" vertical-offset="7952" max-vertical-offset="8789">
-              <caret line="508" column="4" selection-start-line="508" selection-start-column="4" selection-end-line="557" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.456621" vertical-offset="1045" max-vertical-offset="1955">
+              <caret line="85" column="96" selection-start-line="85" selection-start-column="96" selection-end-line="85" selection-end-column="96" />
               <folding>
-                <element signature="n#generateSeoText#0;n#ControllerProductCategory#0;n#!!top" expanded="false" />
+                <marker date="1433143887462" expanded="true" signature="2473:2566" placeholder="SELECT id FR..pu_subprofile_product..." />
+                <marker date="1433143887462" expanded="true" signature="2867:3657" placeholder="INSERT INTO ..." />
+                <marker date="1433143887462" expanded="true" signature="4387:4875" placeholder="INSERT INTO ..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/product/product.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.961538" vertical-offset="14335" max-vertical-offset="15198">
-              <caret line="860" column="21" selection-start-line="860" selection-start-column="21" selection-end-line="860" selection-end-column="21" />
-              <folding>
-                <marker date="1433140933209" expanded="true" signature="36159:36173" placeholder="..." />
-                <marker date="1433140933209" expanded="true" signature="37082:37100" placeholder="..." />
-                <marker date="1433140933209" expanded="true" signature="41696:41735" placeholder="..." />
-                <marker date="1433140933209" expanded="true" signature="43310:43327" placeholder="..." />
-                <marker date="1433140933209" expanded="true" signature="44519:44536" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/controller/product/product.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.269231" vertical-offset="17378" max-vertical-offset="18513">
-              <caret line="1041" column="38" selection-start-line="1041" selection-start-column="38" selection-end-line="1041" selection-end-column="38" />
-              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="udp.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bot/udp.php">
+        <entry file="file://$PROJECT_DIR$/hidigi/udp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.576923" vertical-offset="977" max-vertical-offset="1853">
-              <caret line="92" column="47" selection-start-line="92" selection-start-column="47" selection-end-line="92" selection-end-column="47" />
+            <state vertical-scroll-proportion="-23.884615" vertical-offset="569" max-vertical-offset="1445">
+              <caret line="70" column="90" selection-start-line="70" selection-start-column="90" selection-end-line="71" selection-end-column="96" />
               <folding>
-                <marker date="1432797708024" expanded="true" signature="2198:2291" placeholder="SELECT id FR..pu_subprofile_product..." />
-                <marker date="1432797708024" expanded="true" signature="2592:3382" placeholder="INSERT INTO ..." />
-                <marker date="1432797708024" expanded="true" signature="3976:4464" placeholder="INSERT INTO ..." />
+                <marker date="1431333374000" expanded="true" signature="1915:2008" placeholder="SELECT id FR..pu_subprofile_product..." />
+                <marker date="1431333374000" expanded="true" signature="2309:3099" placeholder="INSERT INTO ..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hidigi/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="876">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="category.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-123.57692" vertical-offset="0" max-vertical-offset="3383">
-              <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="191" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/common/footer.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2482" max-vertical-offset="3332">
-              <caret line="172" column="49" selection-start-line="172" selection-start-column="48" selection-end-line="172" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seo-keyword.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/seo-keyword.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="6392">
-              <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -194,7 +114,6 @@
         <option value="$PROJECT_DIR$/test" />
         <option value="$PROJECT_DIR$/catalog/view/theme/default/template/module/mega_filter.tpl" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/bot/udp.php" />
         <option value="$PROJECT_DIR$/bot/db.php" />
         <option value="$PROJECT_DIR$/bot/list.php" />
         <option value="$PROJECT_DIR$/catalog/controller/common/footer.php" />
@@ -213,6 +132,7 @@
         <option value="$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl" />
         <option value="$PROJECT_DIR$/catalog/view/theme/default/template/product/product.tpl" />
         <option value="$PROJECT_DIR$/catalog/controller/product/product.php" />
+        <option value="$PROJECT_DIR$/bot/udp.php" />
       </list>
     </option>
   </component>
@@ -824,7 +744,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/common/footer.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2482" max-vertical-offset="3332">
+        <state vertical-scroll-proportion="0.53424656" vertical-offset="2456" max-vertical-offset="3332">
           <caret line="172" column="49" selection-start-line="172" selection-start-column="48" selection-end-line="172" selection-end-column="49" />
           <folding />
         </state>
@@ -832,7 +752,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/seo-keyword.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="6392">
+        <state vertical-scroll-proportion="0.29548088" vertical-offset="204" max-vertical-offset="6392">
           <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
           <folding />
         </state>
@@ -843,18 +763,18 @@
         <state vertical-scroll-proportion="-10.961538" vertical-offset="14335" max-vertical-offset="15198">
           <caret line="860" column="21" selection-start-line="860" selection-start-column="21" selection-end-line="860" selection-end-column="21" />
           <folding>
-            <marker date="1433140933209" expanded="true" signature="36159:36173" placeholder="..." />
-            <marker date="1433140933209" expanded="true" signature="37082:37100" placeholder="..." />
-            <marker date="1433140933209" expanded="true" signature="41696:41735" placeholder="..." />
-            <marker date="1433140933209" expanded="true" signature="43310:43327" placeholder="..." />
-            <marker date="1433140933209" expanded="true" signature="44519:44536" placeholder="..." />
+            <marker date="1433140933209" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1433140933209" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1433140933209" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1433140933209" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1433140933209" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catalog/view/theme/default/template/product/category.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-123.57692" vertical-offset="0" max-vertical-offset="3383">
+        <state vertical-scroll-proportion="3.7230592" vertical-offset="0" max-vertical-offset="3383">
           <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="191" selection-end-column="6" />
           <folding />
         </state>
@@ -878,23 +798,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bot/udp.php">
+    <entry file="file://$PROJECT_DIR$/hidigi/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.576923" vertical-offset="977" max-vertical-offset="1853">
-          <caret line="92" column="47" selection-start-line="92" selection-start-column="47" selection-end-line="92" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.21347032" vertical-offset="0" max-vertical-offset="876">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hidigi/udp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.884615" vertical-offset="569" max-vertical-offset="1445">
+          <caret line="70" column="90" selection-start-line="70" selection-start-column="90" selection-end-line="71" selection-end-column="96" />
           <folding>
-            <marker date="1432797708024" expanded="true" signature="2198:2291" placeholder="SELECT id FR..pu_subprofile_product..." />
-            <marker date="1432797708024" expanded="true" signature="2592:3382" placeholder="INSERT INTO ..." />
-            <marker date="1432797708024" expanded="true" signature="3976:4464" placeholder="INSERT INTO ..." />
+            <marker date="1431333374000" expanded="true" signature="1915:2008" placeholder="SELECT id FR..pu_subprofile_product..." />
+            <marker date="1431333374000" expanded="true" signature="2309:3099" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hidigi/config.php">
+    <entry file="file://$PROJECT_DIR$/bot/udp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="902">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.456621" vertical-offset="1045" max-vertical-offset="1955">
+          <caret line="85" column="96" selection-start-line="85" selection-start-column="96" selection-end-line="85" selection-end-column="96" />
+          <folding>
+            <marker date="1433143887462" expanded="true" signature="2473:2566" placeholder="SELECT id FR..pu_subprofile_product..." />
+            <marker date="1433143887462" expanded="true" signature="2867:3657" placeholder="INSERT INTO ..." />
+            <marker date="1433143887462" expanded="true" signature="4387:4875" placeholder="INSERT INTO ..." />
+          </folding>
         </state>
       </provider>
     </entry>
