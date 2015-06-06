@@ -34,6 +34,12 @@
                 <td class="left">
                     <?php echo $column_type; ?>
                 </td>
+                <td class="left">
+                    <?php echo $column_class; ?>
+                </td>
+                <td class="left">
+                    <?php echo $column_sort_order; ?>
+                </td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
           </thead>
@@ -41,6 +47,8 @@
             <tr class="filter">
               <td><input type="text" name="filter_subattribute_name" value="<?php echo $filter_subattribute_name; ?>" /></td>
               <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
               <td align="right"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
             </tr>
@@ -58,6 +66,8 @@
                     </select>
                 </td>
                 <td class="left"><input type="text" name="class[<?php echo $blockAttribute['id']; ?>]" value="<?php echo $blockAttribute['class']; ?>" /></td>
+                <td class="left"><input type="text" name="sort_order[<?php echo $blockAttribute['id']; ?>]" value="<?php echo $blockAttribute['sort_order']; ?>" /></td>
+                <td></td>
             </tr>
             <?php } ?>
             <?php } else { ?>
@@ -69,6 +79,7 @@
               <td></td>
               <td></td>
               <td></td>
+
               <td class="right"><input type="submit" class="button" value="<?php echo $text_edit; ?>" /></td>
           </tr>
           </tbody>

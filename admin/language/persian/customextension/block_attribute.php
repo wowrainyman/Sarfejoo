@@ -24,11 +24,15 @@ $_['column_quantity']        = 'Quantity';
 $_['column_status']          = 'Status';
 $_['column_action']          = 'Action';
 $_['column_type']            = 'Type';
+$_['column_class']           = 'Class';
+$_['column_sort_order']      = 'Sort Order';
 
 // Entry
 $_['entry_name']             = 'Block Name:';
 $_['text_subattribute_name']             = 'SubAttribute Name:';
 $_['text_type']             = 'Type:';
+$_['text_class']             = 'Class:';
+$_['text_sort_order']             = 'Sort Order:';
 $_['entry_block_name']       = 'Block Name:';
 $_['entry_meta_keyword'] 	 = 'Meta Tag Keywords:';
 $_['entry_meta_description'] = 'Meta Tag Description:';

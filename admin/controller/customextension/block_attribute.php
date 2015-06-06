@@ -16,6 +16,9 @@ class ControllerCustomextensionBlockAttribute extends Controller
             foreach ($_POST['type'] as $key => $value) {
                 $this->model_customextension_pu_block_attribute->updateType($key, $value);
             }
+            foreach ($_POST['sort_order'] as $key => $value) {
+                $this->model_customextension_pu_block_attribute->updateSortOrder($key, $value);
+            }
         }
         $this->getList();
     }
@@ -28,8 +31,9 @@ class ControllerCustomextensionBlockAttribute extends Controller
             $block_id = $this->request->post['block_id'];
             $subattribute_name = $this->request->post['subattribute_name'];
             $type = $this->request->post['type'];
+            $sort_order = $this->request->post['sort_order'];
             $class = $this->request->post['class'];
-            $this->model_customextension_pu_block_attribute->addBlockAttribute($block_id, $subattribute_name, $type, $class);
+            $this->model_customextension_pu_block_attribute->addBlockAttribute($block_id, $subattribute_name, $type, $class,$sort_order);
             $this->session->data['success'] = $this->language->get('text_success');
             $url = '';
             if (isset($this->request->get['filter_subattribute_name'])) {
@@ -182,6 +186,7 @@ class ControllerCustomextensionBlockAttribute extends Controller
                 'block_id' => $block_info['block_name'],
                 'subattribute_name' => $result['subattribute_name'],
                 'type' => $result['type'],
+                'sort_order' => $result['sort_order'],
                 'class' => $result['class'],
                 'action' => $action
             );
@@ -196,6 +201,8 @@ class ControllerCustomextensionBlockAttribute extends Controller
         $this->data['column_type'] = $this->language->get('column_type');
         $this->data['column_action'] = $this->language->get('column_action');
         $this->data['column_type'] = $this->language->get('column_type');
+        $this->data['column_class'] = $this->language->get('column_class');
+        $this->data['column_sort_order'] = $this->language->get('column_sort_order');
         $this->data['button_insert'] = $this->language->get('button_insert');
         $this->data['button_filter'] = $this->language->get('button_filter');
         $this->data['text_edit'] = $this->language->get('text_edit');
@@ -352,6 +359,8 @@ class ControllerCustomextensionBlockAttribute extends Controller
         $this->data['entry_reward'] = $this->language->get('entry_reward');
         $this->data['entry_layout'] = $this->language->get('entry_layout');
         $this->data['entry_profile'] = $this->language->get('entry_profile');
+        $this->data['text_class'] = $this->language->get('text_class');
+        $this->data['text_sort_order'] = $this->language->get('text_sort_order');
 
         $this->data['text_subattribute_name'] = $this->language->get('text_subattribute_name');
         $this->data['text_type'] = $this->language->get('text_type');

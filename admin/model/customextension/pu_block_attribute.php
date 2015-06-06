@@ -147,13 +147,35 @@ class ModelCustomextensionPuBlockAttribute extends Model
         }
     }
 
-    public function addBlockAttribute($block_id, $subattribute_name, $type , $class)
+    public function updateSortOrder($id, $value)
+    {
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM $pu_database_name.pu_block_attribute WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE $pu_database_name.pu_block_attribute SET " .
+                "`sort_order`='$value'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function addBlockAttribute($block_id, $subattribute_name, $type , $class,$sort_order)
     {
         $pu_database_name = $GLOBALS['pu_database_name'];
         $con_PU_db = $GLOBALS['con_PU_db'];
         $sql_insert_string = "INSERT INTO $pu_database_name.pu_block_attribute" .
-            "(`block_id`, `subattribute_name`, `type`, `class`)" .
-            "VALUES ('$block_id', '$subattribute_name', '$type', '$class');";
+            "(`block_id`, `subattribute_name`, `type`, `class`, `sort_order`)" .
+            "VALUES ('$block_id', '$subattribute_name', '$type', '$class', '$sort_order');";
         echo $sql_insert_string;
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $return_id = mysqli_insert_id($con_PU_db);

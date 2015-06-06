@@ -44,6 +44,10 @@
                     <td><?php echo $text_class; ?></td>
                     <td><input type="text" name="class" id="" value=""></td>
                 </tr>
+                <tr>
+                    <td><?php echo $text_sort_order; ?></td>
+                    <td><input type="text" name="sort_order" id="" value=""></td>
+                </tr>
             </table>
           </div>
           <?php } ?>
