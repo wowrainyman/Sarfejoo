@@ -196,7 +196,7 @@ return "$difference $periods[$j] پیش ";
                             <div class="row row-centered">
                                 <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 col-xs-5">
                                             <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
                                         </div>
                                         <div class="col-md-3">
