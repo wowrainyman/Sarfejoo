@@ -36,7 +36,7 @@ class ModelCustomextensionPuBlockAttributeSubprofileValue extends Model
 
         $con_PU_db = $GLOBALS['con_PU_db'];
         $pu_database_name = $GLOBALS['pu_database_name'];
-        $sql_select_string = "SELECT * FROM $pu_database_name.pu_block_attribute_subprofile_value AS basv LEFT JOIN $pu_database_name.pu_block_attribute AS ba ON basv.block_attribute_id = ba.id LEFT JOIN $pu_database_name.pu_block ON ba.block_id = $pu_database_name.pu_block.id  WHERE `subprofile_id` = $subprofile_id AND `product_id` = $product_id AND $pu_database_name.pu_block.attribute_id = $block_attribute_id ORDER BY basv.row";
+        $sql_select_string = "SELECT * FROM $pu_database_name.pu_block_attribute_subprofile_value AS basv LEFT JOIN $pu_database_name.pu_block_attribute AS ba ON basv.block_attribute_id = ba.id LEFT JOIN $pu_database_name.pu_block ON ba.block_id = $pu_database_name.pu_block.id  WHERE `subprofile_id` = $subprofile_id AND `product_id` = $product_id AND $pu_database_name.pu_block.attribute_id = $block_attribute_id ORDER BY basv.row,ba.sort_order";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         $result = array();
         while ($row = mysqli_fetch_assoc($result_select)) {

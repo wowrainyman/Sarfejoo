@@ -507,6 +507,7 @@ class ControllerProductProduct extends Controller
                                             'subattribute_name' => $this_selected_value['subattribute_name'],
                                             'type' => $this_selected_value['type'],
                                             'class' => $this_selected_value['class'],
+                                            'sort_order' => $this_selected_value['sort_order'],
                                             'attribute_id' => $this_selected_value['attribute_id'],
                                             'block_name' => $this_selected_value['block_name']
                                         );
