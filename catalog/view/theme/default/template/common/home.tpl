@@ -262,11 +262,13 @@
                 <div class="col-md-12" style="">
                     <img src="catalog/view/images/splitter2.png" height="10" width="10" />
                     <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoServices[0]['providers_count'])?></span>
+                    <a href="<?php echo $twoServices[0]['href']?>">
                     <span>
                         عرضه کننده
                         <?php echo $twoServices[0]['name']?>
                         را ارائه میدهند
                     </span>
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -296,9 +298,11 @@
                     <img src="catalog/view/images/splitter2.png" height="10" width="10" />
                     <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoProducts[0]['providers_count'])?></span>
                     <span>
-                        عرضه کننده
-                        <?php echo $twoProducts[0]['name']?>
-                        را ارائه میدهند
+                    		  <a href="<?php echo $twoProducts[0]['href']?>">
+                                  عرضه کننده
+                                  <?php echo $twoProducts[0]['name']?>
+                                  را ارائه میدهند
+                              </a>
                     </span>
                 </div>
             </div>
@@ -331,15 +335,17 @@
                 <div class="col-md-12" style="">
                     <img src="catalog/view/images/splitter2.png" height="10" width="10" />
                     <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoServices[1]['providers_count'])?></span>
+                    <a href="<?php echo $twoServices[1]['href']?>">
                     <span>
                         عرضه کننده
                         <?php echo $twoServices[1]['name']?>
                         را ارائه میدهند
                     </span>
+                    </a>
                 </div>
             </div>
             <div class="row">
-                <img src="<?php echo $twoServices[0]['image']?>" width="130" height="130" style="float: right;" />
+                <img src="<?php echo $twoServices[1]['image']?>" width="130" height="130" style="float: right;" />
                 <img src="catalog/view/images/up-down-arrow.png" style="float: right;margin-right: 10px;margin-top: 20px;" />
                 <div  style="float: right;margin-top: 20px;margin-right: 30px;">
                     <span style="display: block;">
@@ -364,15 +370,17 @@
                 <div class="col-md-12"  style="">
                     <img src="catalog/view/images/splitter2.png" height="10" width="10" />
                     <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoProducts[1]['providers_count'])?></span>
+                    <a href="<?php echo $twoProducts[1]['href']?>">
                     <span>
                         عرضه کننده
                         <?php echo $twoProducts[1]['name']?>
                         را ارائه میدهند
                     </span>
+                    </a>
                 </div>
             </div>
             <div class="row">
-                <img src="<?php echo $twoProducts[0]['image']?>" width="130" height="130" style="float: right;" />
+                <img src="<?php echo $twoProducts[1]['image']?>" width="130" height="130" style="float: right;" />
                 <img src="catalog/view/images/up-down-arrow.png" style="float: right;margin-right: 10px;margin-top: 20px;" />
                 <div  style="float: right;margin-top: 20px;margin-right: 30px;">
                     <span style="display: block;">
@@ -434,7 +442,7 @@
             <span>
                 <i class="" ></i>
                 <a class="mj-font"  style="font-size: 20px;margin-right: 10px;">
-پربازدیدترین خدمات
+                    پربازدیدترین خدمات
                 </a>
             </span>
         </div>
@@ -443,20 +451,20 @@
 
 <div class="row row-centered">
     <?php foreach ($topServices as $service) { ?>
-        <div class="col-md-2 col-xs-6 col-centered" style="padding: 4px;" >
-            <div class="col-md-12 box-shadow" style="text-align: center;padding: 20px;">
-                <div class="row" style="height: 50px;">
-                    <a href="<?php echo $service['href']; ?>">
+    <div class="col-md-2 col-xs-6 col-centered" style="padding: 4px;" >
+        <div class="col-md-12 box-shadow" style="text-align: center;padding: 20px;">
+            <div class="row" style="height: 50px;">
+                <a href="<?php echo $service['href']; ?>">
                         <span style="margin: auto;">
                             <?php echo $service['name']; ?>
                         </span>
-                    </a>
-                </div>
-                <div class="row">
-                    <img src="<?php echo $service['image']; ?>" width="100" height="100" />
-                </div>
+                </a>
+            </div>
+            <div class="row">
+                <img src="<?php echo $service['image']; ?>" width="100" height="100" />
             </div>
         </div>
+    </div>
     <?php } ?>
 </div>
 
@@ -482,16 +490,16 @@
 </style>
 <div class="row hidden-xs">
     <?php foreach ($list_updates as $list_update) { ?>
-        <div class="row" style="margin-right: 10px;">
-            <div class="col-md-2" style="padding: 0px;">
-                <div class="col-md-12 box-shadow">
-                    <a href="index.php?route=product/product&product_id=<?php echo $list_update['product_id']; ?>" title="مشاهده">
-                        <img width="120" height="30" src="ProvidersScans/<?php echo $list_update['customer_id'] . '/' . $list_update['id'] . '/' . 'logo_' . $list_update['logo'] ?>" alt="<?php echo $list_update['title'] ?>" />
-                    </a>
-                </div>
+    <div class="row" style="margin-right: 10px;">
+        <div class="col-md-2" style="padding: 0px;">
+            <div class="col-md-12 box-shadow">
+                <a href="index.php?route=product/product&product_id=<?php echo $list_update['product_id']; ?>" title="مشاهده">
+                    <img width="120" height="30" src="ProvidersScans/<?php echo $list_update['customer_id'] . '/' . $list_update['id'] . '/' . 'logo_' . $list_update['logo'] ?>" alt="<?php echo $list_update['title'] ?>" />
+                </a>
             </div>
-            <div class="col-md-10" style="text-align: center;">
-                <div class="col-md-12 box-shadow">
+        </div>
+        <div class="col-md-10" style="text-align: center;">
+            <div class="col-md-12 box-shadow">
                     <span class="col-md-3 arrow-bg">
                             <?php echo $list_update['title'] ?>
                     </span>
@@ -515,9 +523,9 @@
                     <span class="col-md-2">
                         <?php echo ago(strtotime($list_update['update_date']));?>
                     </span>
-                </div>
             </div>
         </div>
+    </div>
     <?php } ?>
 </div>
 <div class="row">
@@ -686,7 +694,7 @@ function ago($time) {
        $difference     = $now - $time;
        $tense         = "ago";
    for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
-$difference /= $lengths[$j]; 
+$difference /= $lengths[$j];
 }
 $difference = round($difference);
 return "$difference $periods[$j] پیش ";
