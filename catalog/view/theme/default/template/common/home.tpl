@@ -493,11 +493,13 @@
             <div class="col-md-10" style="text-align: center;">
                 <div class="col-md-12 box-shadow">
                     <span class="col-md-3 arrow-bg">
-                        <a href="index.php?route=product/product&product_id=<?php echo $list_update['product_id']; ?>" title="مشاهده">
                             <?php echo $list_update['title'] ?>
+                    </span>
+                    <span class="col-md-4 arrow-bg" style="text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp: 1;height: 30px;">
+                        <a href="index.php?route=product/product&product_id=<?php echo $list_update['product_id']; ?>" title="مشاهده">
+                            <?php echo $list_update['name']; ?>
                         </a>
                     </span>
-                    <span class="col-md-4 arrow-bg" style="text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp: 1;height: 30px;"><?php echo $list_update['name']; ?></span>
                     <span class="arrow-bg col-md-2
                            <?php if ($list_update['price']>0) {
                                echo 'red-ls';
