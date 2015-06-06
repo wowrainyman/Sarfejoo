@@ -225,7 +225,7 @@ class ControllerProductSearch extends Controller {
 			$product_total = $this->model_catalog_product->getTotalProducts($data);
 
 			$results = $this->model_catalog_product->getProducts($data);
-
+            $this->load->model('provider/pu_subprofile');
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
@@ -257,6 +257,14 @@ class ControllerProductSearch extends Controller {
 					$rating = false;
 				}
 
+                $minprice = $this->model_provider_pu_subprofile->GetMinimumPriceOfProduct($result['product_id']);
+                $minprice = $minprice['MIN(price)'];
+                $maxprice = $this->model_provider_pu_subprofile->GetMaximumPriceOfProduct($result['product_id']);
+                $maxprice = $maxprice['MAX(price)'];
+                $avg_price = $this->model_provider_pu_subprofile->GetAveragepricePriceOfProduct($result['product_id']);
+                $providers = $this->model_provider_pu_subprofile->GetAllSubprofileOfProducts($result['product_id']);
+                $providers_count = count($providers);
+
 				$this->data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
@@ -267,8 +275,13 @@ class ControllerProductSearch extends Controller {
 					'tax'         => $tax,
 					'rating'      => $result['rating'],
 					'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
-				);
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
+                    'minprice'   		=> $minprice,
+                    'maxprice'   		=> $maxprice,
+                    'avg_price'  		=> $avg_price,
+                    'providers_count'	=> $providers_count,
+
+                );
 			}
 
 			$url = '';

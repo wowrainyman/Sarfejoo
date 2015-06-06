@@ -13,6 +13,7 @@ $difference = round($difference);
 return "$difference $periods[$j] پیش ";
 }
 ?>
+
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
     <!-- The container for the modal slides -->
@@ -882,6 +883,8 @@ $(document).ready(function() {
     $(window).on('resize', centerModals);
 </script>
 
-<?php include 'seo-keyword.php'; ?>
+<div id="bseo">
+    <?php echo $stext; ?>
+</div>
 
 <?php echo $footer; ?>
