@@ -23,6 +23,24 @@
                 <span class="footer-seprator"></span>
                 <a  href="http://sarfejoo.com/%D8%AD%D8%B1%DB%8C%D9%85-%D8%AE%D8%B5%D9%88%D8%B5%DB%8C-%DA%A9%D8%A7%D8%B1%D8%A8%D8%B1%D8%A7%D9%86">حریم خصوصی کاربران</a>
             </div>
+            <br/>
+            <div id="s-f-information" class="s-foo-block s-block-21  right">
+                <div id="br-footer">
+                    <span class="br-title"><h2>صرفه جو</h2></span>
+                    <span class="br-footer-big"></span>
+                </div>
+                <div>
+                    <a  href="http://sarfejoo.com/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D8%B5%D8%B1%D9%81%D9%87-%D8%AC%D9%88">درباره ما</a>
+                    <span class="footer-seprator"></span>
+                    <a  href="http://sarfejoo.com/%DA%86%D8%B1%D8%A7-%D8%B5%D8%B1%D9%81%D9%87-%D8%AC%D9%88">چرا صرفه جو؟</a>
+                    <span class="footer-seprator"></span>
+                    <a  href="http://sarfejoo.com/contact">تماس با ما</a>
+                    <span class="footer-seprator"></span>
+                    <a  href="http://sarfejoo.com/%D9%81%D8%B1%D8%B5%D8%AA-%D8%B4%D8%BA%D9%84%DB%8C">فرصت های شغلی</a>
+                    <span class="footer-seprator"></span>
+                    <a  href="http://sarfejoo.com/%D8%AF%D8%B3%D8%AA%D8%A7%D9%88%D8%B1%D8%AF%D9%87%D8%A7">دستاوردها</a>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <div id="br-footer">
