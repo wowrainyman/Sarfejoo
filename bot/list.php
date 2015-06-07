@@ -677,8 +677,9 @@ foreach ($categories as $category) {
                              style="float:left;color:#888;font-size:14px;"><b><?php echo number_format($price_sp) ?></b></span>
             <br/>
             قیمت جدید:
-            <input type="text" id="newPrice<?php echo $count ?>" value="<?php echo $price ?>" />
-            <span style="float:left;color:#FF2255;font-size:14px;"><b><?php echo number_format($price) ?></b></span>
+            <span style="float:left;color:#FF2255;font-size:14px;"><b><?php echo number_format($price) ?></b></span><br/>
+            <input type="text" style="float:left;width:30%;text-align:left;" id="newPrice<?php echo $count ?>" value="<?php echo $price ?>" />
+
             <br/>
             قیمت صرفه جو: <span
                 style="float:left;color:#55aa55;font-size:14px;"><b><?php echo number_format($price_avg) ?></b></span><br/>
