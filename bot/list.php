@@ -427,15 +427,15 @@ foreach ($categories as $category) {
 ?>
 <select id="sel-views">
     <option value="false" selected>
-نمایش بر اساس تعداد بازدید کالا    </option>
-        <option
-            value="ASC" <?php if ("ASC" == $cur_view_sort) echo 'selected="selected"'; ?>>
-بیشترین بازدید در ابتدا
-        </option>
-        <option
-            value="DESC" <?php if ("DESC" == $cur_view_sort) echo 'selected="selected"'; ?>>
-کمترین بازدید در ابتدا
-        </option>
+        نمایش بر اساس تعداد بازدید کالا    </option>
+    <option
+        value="ASC" <?php if ("ASC" == $cur_view_sort) echo 'selected="selected"'; ?>>
+        بیشترین بازدید در ابتدا
+    </option>
+    <option
+        value="DESC" <?php if ("DESC" == $cur_view_sort) echo 'selected="selected"'; ?>>
+        کمترین بازدید در ابتدا
+    </option>
 </select>
 <select id="sel-providers">
     <option value="false" selected>
@@ -550,9 +550,9 @@ foreach ($categories as $category) {
                 <?php if ($is_r == 0) { ?>
                 <?php if ($price_sp != 0) { ?>
                 <span id="upd<?php echo $count ?>" class="upd">ثبت قیمت جدید</span>
-                <input type="checkbox" name="auto-update<?php echo $count ?>" value="male">
+            <input type="checkbox" name="auto-update<?php echo $count ?>" value="male">
                 بروزرسانی خودکاربرای یک هفته
-                <br/>
+            <br/>
             <?php } else { ?>
                 <span id="ins<?php echo $count ?>" class="ins">افزودن کالا</span>
             <?php } ?>
@@ -567,7 +567,7 @@ foreach ($categories as $category) {
                             var isChecked = $("input[name='auto-update<?php echo $count ?>']").is(":checked") ? 1:0;
                             var subprofile = '<?php echo $subprofile_id  ?>';
                             var dec = '<?php echo $text ?>';
-                            var price = '<?php echo $price ?>';
+                            var price = $("#newPrice<?php echo $count ?>").val();
                             var product = '<?php echo $related_id ?>';
                             var c_id = '<?php echo $c_id ?>';
                             var subprofile_name = '<?php echo $subprofile_name; ?>';
@@ -676,7 +676,9 @@ foreach ($categories as $category) {
             قیمت فعلی: <span id="old-<?php echo $count ?>"
                              style="float:left;color:#888;font-size:14px;"><b><?php echo number_format($price_sp) ?></b></span>
             <br/>
-            قیمت جدید: <span style="float:left;color:#FF2255;font-size:14px;"><b><?php echo number_format($price) ?></b></span>
+            قیمت جدید:
+            <input type="text" id="newPrice<?php echo $count ?>" value="<?php echo $price ?>" />
+            <span style="float:left;color:#FF2255;font-size:14px;"><b><?php echo number_format($price) ?></b></span>
             <br/>
             قیمت صرفه جو: <span
                 style="float:left;color:#55aa55;font-size:14px;"><b><?php echo number_format($price_avg) ?></b></span><br/>
