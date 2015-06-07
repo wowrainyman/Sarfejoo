@@ -1,4 +1,18 @@
 <?php echo $header; ?>
+<?php if(isset($myurl)){ ?>
+
+<?php echo $url; ?>
+<script type="text/javascript">
+    var delay=2000; //3 seconds
+
+    setTimeout(function(){
+        window.location="<?php echo $myurl; ?>";
+    }, delay);
+    <!--
+
+    //-->
+</script>
+<?php } ?>
 <?php
 function ago($time) {
    $periods = array("ثانیه", "دقیقه", "ساعت", "روز", "هفته", "ماه", "سال", "دهه");

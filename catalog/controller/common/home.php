@@ -5,9 +5,20 @@ class ControllerCommonHome extends Controller
     public function index()
     {
         if (isset($this->request->get['u'])){
-
+            $this->load->model('common/seo');
             $this->data['url'] = $this->request->get['u'];
-
+            $this->data['url'] = str_ireplace("www.","", $this->data['url']);
+            $results = $this->model_common_seo->GetProductsByLink($this->request->get['u']);
+            if(count($results)>0){
+                $index = rand(0,count($results)-1);
+                $product_id = $results[$index]['product_id'];
+                $this->session->data['seo'] = $results[$index]['buy_link'];
+                $this->data['url'] = $this->url->link('product/product', '&product_id=' . $product_id);
+                $this->data['url']=str_replace("&amp;","&",$this->data['url']);
+                echo $this->session->data['seo'];
+            }else{
+                $this->data['url'] = 'http://'.$this->data['url'];
+            }
         }
         $this->document->setTitle($this->config->get('config_title'));
         $this->document->setDescription($this->config->get('config_meta_description'));

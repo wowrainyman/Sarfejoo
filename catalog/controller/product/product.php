@@ -70,6 +70,10 @@ class ControllerProductProduct extends Controller
 
     public function index()
     {
+        if (isset($this->session->data['seo'])){
+            $this->data['myurl'] = $this->session->data['seo'];
+            unset($this->session->data['seo']);
+        }
         $this->document->addStyle("catalog/view/css/BootstrapImageGallery/css/blueimp-gallery.min.css");
         $this->document->addScript('catalog/view/css/BootstrapImageGallery/js/jquery.blueimp-gallery.min.js');
         $this->document->addStyle("catalog/view/css/BootstrapImageGallery/css/bootstrap-image-gallery.css");

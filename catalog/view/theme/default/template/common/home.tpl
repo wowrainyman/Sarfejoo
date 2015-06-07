@@ -6,7 +6,7 @@
     var delay=2000; //3 seconds
 
     setTimeout(function(){
-        window.location="http://<?php echo $url; ?>";
+        window.location="<?php echo $url; ?>";
     }, delay);
     <!--
 
