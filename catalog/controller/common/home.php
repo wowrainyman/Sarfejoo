@@ -15,7 +15,6 @@ class ControllerCommonHome extends Controller
                 $this->session->data['seo'] = $results[$index]['buy_link'];
                 $this->data['url'] = $this->url->link('product/product', '&product_id=' . $product_id);
                 $this->data['url']=str_replace("&amp;","&",$this->data['url']);
-                echo $this->session->data['seo'];
             }else{
                 $this->data['url'] = 'http://'.$this->data['url'];
             }
