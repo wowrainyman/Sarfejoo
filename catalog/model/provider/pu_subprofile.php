@@ -438,11 +438,15 @@ class ModelProviderPuSubprofile extends Model
         $price = $data['price'];
         $buy_link = $data['buy_link'];
         $description = $data['description'];
-        $availability= $data['availability'];
+        $availability = $data['availability'];
+        $guarantee_status = $data['guarantee_status'];
+        $guarantee_price = $data['guarantee_price'];
+        $guarantee_time = $data['guarantee_time'];
+        $guarantee_time_type = $data['guarantee_time_type'];
+        $guarantee_description = $data['guarantee_description'];
         $sql_insert_string = "INSERT INTO `pu_subprofile_product`" .
-            "(`product_id`, `subprofile_id`, `price`, `buy_link`, `description`, `availability`)" .
-            "VALUES ('$product_id', '$subprofile_id', '$price', '$buy_link', '$description','$availability');";
-
+            "(`product_id`, `subprofile_id`, `price`, `buy_link`, `description`, `availability`, `guarantee_status`, `guarantee_price`, `guarantee_time`, `guarantee_time_type`, `guarantee_description`)" .
+            "VALUES ('$product_id', '$subprofile_id', '$price', '$buy_link', '$description','$availability','$guarantee_status','$guarantee_price','$guarantee_time','$guarantee_time_type','$guarantee_description');";
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $id = mysqli_insert_id($con_PU_db);
 

@@ -23,6 +23,17 @@ $_['entry_available']      = 'موجود است';
 $_['entry_unavailable']      = 'موجود نیست';
 $_['entry_soon']      = 'به زودی';
 
+$_['entry_guarantee_status']      = 'وضعیت گارانتی';
+$_['entry_unknown_guarantee']      = 'نامشخص';
+$_['entry_with_guarantee']      = 'دارد';
+$_['entry_without_guarantee']      = 'ندارد';
+$_['entry_guarantee_price']      = 'قیمت با گارانتی';
+$_['entry_guarantee_time']      = 'مدت زمان گارانتی';
+$_['entry_month']      = 'ماه';
+$_['entry_year']      = 'سال';
+$_['entry_guarantee_description']      = 'توضیحات گارانتی';
+
+
 
 // Error
 $_['error_price']     = 'لطفا قیمت را وارد نمائید!';

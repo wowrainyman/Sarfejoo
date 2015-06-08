@@ -572,7 +572,7 @@ class ControllerProviderProduct extends Controller
             $this->redirect($this->url->link('account/account', '', 'SSL'));
         }
         $this->language->load('provider/AddProductToSubprofile');
-
+        $this->data += $this->language->load('provider/AddProductToSubprofile');
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('provider/pu_subprofile');

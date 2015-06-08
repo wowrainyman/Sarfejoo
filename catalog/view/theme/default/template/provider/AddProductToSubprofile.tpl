@@ -56,21 +56,61 @@
                                 </tr>
                                 <tr>
                                     <td><?php echo $entry_buy_link; ?></td>
-                                    <td><input dir="ltr" type="url" name="buy_link" value="http://"/>
+                                    <td><input dir="ltr"  class="form-control" type="url" name="buy_link" value="http://"/>
                                         <?php if ($buy_link) { ?>
                                         <span class="error"><?php echo $buy_link; ?></span>
                                         <?php } ?></td>
                                 </tr>
                                 <tr>
                                     <td><span class="required">*</span> <?php echo $entry_availability; ?></td>
-                                    <td><select  class="form-control" name="availability" id="availability">
+                                    <td>
+                                        <select  class="form-control" name="availability" id="availability">
                                             <option value="0"><?php echo $entry_available; ?></option>
                                             <option value="1"><?php echo $entry_unavailable; ?></option>
                                             <option value="2"><?php echo $entry_soon; ?></option>
                                         </select>
                                         <?php if ($error_availability) { ?>
                                         <span class="error"><?php echo $error_availability; ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="required">*</span> <?php echo $entry_guarantee_status; ?></td>
+                                    <td><select  class="form-control" name="guarantee_status" id="guarantee_status">
+                                            <option value="2"><?php echo $entry_unknown_guarantee; ?></option>
+                                            <option value="1"><?php echo $entry_with_guarantee; ?></option>
+                                            <option value="0"><?php echo $entry_without_guarantee; ?></option>
+                                        </select>
+                                        <?php if ($error_guarantee_status) { ?>
+                                        <span class="error"><?php echo $error_guarantee_status; ?></span>
                                         <?php } ?></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="required">*</span> <?php echo $entry_guarantee_price; ?></td>
+                                    <td><input  class="form-control" type="text" name="guarantee_price" value="<?php echo $guarantee_price; ?>"/>
+                                        <?php if ($error_guarantee_price) { ?>
+                                        <span class="error"><?php echo $error_guarantee_price; ?></span>
+                                        <?php } ?></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="required">*</span> <?php echo $entry_guarantee_time; ?></td>
+                                    <td>
+                                        <select  class="form-control" name="guarantee_time" id="guarantee_time">
+                                            <?php for($i=0;$i<25;$i++){ ?>
+                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <select  class="form-control" name="guarantee_time_type" id="guarantee_time_type">
+                                            <option value="0"><?php echo $entry_month; ?></option>
+                                            <option value="1"><?php echo $entry_year; ?></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="required">*</span> <?php echo $entry_guarantee_description; ?></td>
+                                    <td>
+                                        <textarea  class="form-control" rows="4" cols="50" name="guarantee_description"></textarea>
+                                    </td>
                                 </tr>
                                 <?php if(isset($attributes)) { ?>
                                 <?php foreach ($attributes as $attribute) { ?>
