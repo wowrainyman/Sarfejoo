@@ -3,7 +3,7 @@
 
 <?php echo $url; ?>
 <script type="text/javascript">
-    var delay=2000; //3 seconds
+    var delay=1000; //1 seconds
 
     setTimeout(function(){
         window.location="<?php echo $url; ?>";
