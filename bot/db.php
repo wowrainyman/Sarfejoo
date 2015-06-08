@@ -29,7 +29,6 @@
  if (!empty($subprofile_name)) {
     $auto_update = false;
      $sql_pu = "SELECT * FROM auto_update WHERE related_id = '$related_id' AND subprofile_name = '$subprofile_name' AND text = '$text' AND update_until > current_date";
-     echo $sql_pu;
      $result_select_pu = mysqli_query($link_DB, $sql_pu) or die(mysqli_error());
      while ($row = mysqli_fetch_assoc($result_select_pu)) {
          $auto_update = true;
@@ -54,6 +53,11 @@
         mysqli_query($link_DB, $sql) or die(mysqli_error());
 
      if ($auto_update) {
+         $sql_related_subprofile = "SELECT subprofile_id FROM emalls_related_subprofile WHERE emalls_subprofile = '$subprofile_name'";
+         $result_related_subprofile = mysqli_query($link_DB, $sql_related_subprofile) or die(mysqli_error());
+         while ($row = mysqli_fetch_assoc($result_related_subprofile)) {
+             $subprofile_id = $row['subprofile_id'];
+         }
 
          $sql_update = "UPDATE `pu_subprofile_product` SET
                                                                                 `price`='$price',
@@ -62,14 +66,14 @@
                                                                                 `description`='$text',
                                                                                 `update_date`= NOW()
                                                                       WHERE
-                                                                                `product_id` = $product_id
+                                                                                `product_id` = $related_id
                                                                          AND
                                                                                 `subprofile_id` = $subprofile_id";
 
          mysqli_query($link_PU_DB, $sql_update) or die(mysqli_error());
 
 
-         $sql_id = "SELECT id FROM pu_subprofile_product WHERE `product_id` = $product_id  AND `subprofile_id` = $subprofile_id";
+         $sql_id = "SELECT id FROM pu_subprofile_product WHERE `product_id` = $related_id  AND `subprofile_id` = $subprofile_id";
          $result_id = mysqli_query($link_PU_DB, $sql_id) or die(mysqli_error());
          while ($row = mysqli_fetch_assoc($result_id)) {
              $subprofile_product_id = $row['id'];
@@ -84,14 +88,6 @@
                                                                                      '1'
                                                                                 )";
          mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
-
-
-         $sql_update = "UPDATE `emalls_updated_price` SET
-                                                                                `is_r`='1'
-                                                                      WHERE
-                                                                                `id` = $c_id";
-
-         mysqli_query($link_DB, $sql_update) or die(mysqli_error());
 
      }
 }
