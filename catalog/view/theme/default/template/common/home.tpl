@@ -436,7 +436,7 @@
 
 
 
-<div class="row">
+<!--<div class="row">
     <div class="col-md-12" style="padding: 0px;">
         <div class="strike-black" style="margin: 0px;padding: 0px;">
             <span>
@@ -466,7 +466,7 @@
         </div>
     </div>
     <?php } ?>
-</div>
+</div>-->
 
 
 <div class="row hidden-xs">
