@@ -19,6 +19,7 @@ $_['text_newsletter_plan']      = 'Newsletter Plan';
 
 $_['text_subprofile_comment']      = 'Subprofiles Comment';
 
+$_['text_color']                       = 'Colors';
 $_['text_affiliate']                   = 'Affiliates';
 $_['text_attribute']                   = 'Attributes';
 $_['text_attribute_group']             = 'Attribute Groups';

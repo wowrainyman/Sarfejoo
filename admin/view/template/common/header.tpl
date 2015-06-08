@@ -84,6 +84,7 @@ $(document).ready(function(){
           <li><a href="<?php echo $profile; ?>"><?php echo $text_profile; ?></a></li>
           <li><a class="parent"><?php echo $text_attribute; ?></a>
             <ul>
+                <li><a href="<?php echo $color; ?>"><?php echo $text_color; ?></a></li>
               <li><a href="<?php echo $attribute; ?>"><?php echo $text_attribute; ?></a></li>
                 <li><a href="<?php echo $attribute_value; ?>"><?php echo $text_attribute_value; ?></a></li>
               <li><a href="<?php echo $attribute_group; ?>"><?php echo $text_attribute_group; ?></a></li>

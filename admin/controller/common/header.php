@@ -22,7 +22,8 @@ class ControllerCommonHeader extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
         $this->data['text_payment'] = $this->language->get('text_payment');
-		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
+        $this->data['text_affiliate'] = $this->language->get('text_affiliate');
+		$this->data['text_color'] = $this->language->get('text_color');
 		$this->data['text_attribute'] = $this->language->get('text_attribute');
 		$this->data['text_attribute_group'] = $this->language->get('text_attribute_group');
         $this->data['text_attribute_value'] = $this->language->get('text_attribute_value');
@@ -159,6 +160,8 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$this->data['logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());
 			$this->data['pp_express_status'] = $this->config->get('pp_express_status');
+
+            $this->data['color'] = $this->url->link('customextension/color', 'token=' . $this->session->data['token'], 'SSL');
 
 			$this->data['home'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['affiliate'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
