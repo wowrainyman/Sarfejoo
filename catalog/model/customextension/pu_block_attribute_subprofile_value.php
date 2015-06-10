@@ -11,6 +11,15 @@ require_once "settings.php";
  */
 class ModelCustomextensionPuBlockAttributeSubprofileValue extends Model
 {
+    public function removeAll($subprofile_id,$product_id){
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $sql_delete_string = "DELETE FROM $pu_database_name.pu_block_attribute_subprofile_value WHERE subprofile_id='$subprofile_id' AND product_id='$product_id'";
+        $result_select = mysqli_query($con_PU_db, $sql_delete_string) or die(mysqli_error());
+
+    }
+
     public function add($subprofile_id,$product_id,$block_attribute_id,$value,$row){
         $pu_database_name = $GLOBALS['pu_database_name'];
         $con_PU_db = $GLOBALS['con_PU_db'];

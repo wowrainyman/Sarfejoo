@@ -96,7 +96,7 @@
                                     <td><span class="required">*</span> <?php echo $entry_guarantee_time; ?></td>
                                     <td>
                                         <select  class="form-control" name="guarantee_time" id="guarantee_time">
-                                            <?php for($i=0;$i<25;$i++){ ?>
+                                            <?php for($i=1;$i<25;$i++){ ?>
                                                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                             <?php } ?>
                                         </select>

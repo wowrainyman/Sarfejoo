@@ -48,134 +48,18 @@
                                 <?php if (isset($productinfos)) { ?>
                                 <?php foreach ($productinfos as $productinfo) { ?>
                                 <tr>
-                                    <td rowspan="4" class="upit">
-                                        <img src="<?php echo $productinfo['image']; ?>" />
-                                        <span><?php echo $productinfo['name']; ?></span>
-                                    </td>
-                                    <td style="width:40%">
-                                        <?php echo $entry_yourprice; ?>
-                                        <input type="text" name="price[<?php echo $productinfo['id']; ?>]"
-                                               value="<?php echo $productinfo['yourprice']; ?>"/>
+                                    <td>
+                                        <img width="80" height="80" src="<?php echo $productinfo['image']; ?>" />
+
                                     </td>
                                     <td>
-                                        <?php echo $entry_minimumprice . ":"; ?>
-                                        <?php echo number_format($productinfo['minimumprice']); ?>
+                                        <?php echo $productinfo['name']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo $productinfo['editHref']; ?>">ویرایش</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <?php echo $entry_availability; ?>
-                                        <select name="availability[<?php echo $productinfo['id']; ?>]" id="availability">
-                                            <option value="0"
-                                            <?php if($productinfo['availability']==0) echo "selected='selected'"; ?>
-                                            ><?php echo $entry_available; ?></option>
-                                            <option value="1"
-                                            <?php if($productinfo['availability']==1) echo "selected='selected'"; ?>
-                                            ><?php echo $entry_unavailable; ?></option>
-                                            <option value="2"
-                                            <?php if($productinfo['availability']==2) echo "selected='selected'"; ?>
-                                            ><?php echo $entry_soon; ?></option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <?php echo $entry_averageprice . ":"; ?>
-                                        <?php echo number_format($productinfo['averageprice']); ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <?php echo $entry_link; ?>
-                                        <input type="text" name="buy_link[<?php echo $productinfo['id']; ?>]"
-                                               value="<?php echo $productinfo['buy_link']; ?>"/>
-                                    </td>
-                                    <td>
-                                        <?php echo $entry_maximumprice . ":"; ?>
-                                        <?php echo number_format($productinfo['maximumprice']); ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <?php echo $entry_description; ?>
-                                        <textarea name="description[<?php echo $productinfo['id']; ?>]" cols="30" rows="4"><?php echo $productinfo['description']; ?></textarea>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <?php if(isset($productinfo['customAttributes'])) { ?>
-                                <?php foreach ($productinfo['customAttributes'] as $attribute) { ?>
-                                <?php if($attribute['type']=="Selectbox") { ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $attribute['name']; ?>
-                                    </td>
-                                    <td>
-                                        <select name="attribute[<?php echo $attribute['selected_value']['id'];?>]">
-                                            <?php foreach ($attribute['values'] as $opt) { ?>
-                                            <?php if($opt['id'] == $attribute['selected_value']['value']) { ?>
-                                            <option value="<?php echo $opt['id']; ?>" selected="selected"><?php echo $opt['value']; ?></option>
-                                            <?php }else{ ?>
-                                            <option value="<?php echo $opt['id']; ?>"><?php echo $opt['value']; ?></option>
-                                            <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <?php echo $attribute['class']; ?>
-                                    </td>
-                                </tr>
-                                <?php }else if($attribute['type']=="Radiobutton"){ ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $attribute['name']; ?>
-                                    </td>
-                                    <td>
-                                        <?php foreach ($attribute['values'] as $opt) { ?>
-                                        <?php if($opt['id'] == $attribute['selected_value']['value']) { ?>
-                                        <input type="radio" checked="checked" name="attribute[<?php echo $attribute['selected_value']['id']; ?>]" value="<?php echo $opt['id']; ?>" /><?php echo $opt['value']; ?>
-                                        <?php }else{ ?>
-                                        <input type="radio" name="attribute[<?php echo $attribute['selected_value']['id']; ?>]" value="<?php echo $opt['id']; ?>" /><?php echo $opt['value']; ?>
-                                        <?php } ?>
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $attribute['class']; ?>
-                                    </td>
-                                </tr>
-                                <?php }else if($attribute['type']=="Text"){ ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $attribute['name']; ?>
-                                    </td>
-                                    <td>
-                                        <input type="text" value="<?php echo $attribute['selected_value']['value'];?>" name="attribute[<?php echo $attribute['selected_value']['id']; ?>]" />
-                                    </td>
-                                    <td>
-                                        <?php echo $attribute['class']; ?>
-                                    </td>
-                                </tr>
-                                <?php }else if($attribute['type']=="Multiselect"){ ?>
-                                <?php $all_ids = explode(",", $attribute['selected_value']['value']);?>
-                                <tr>
-                                    <td>
-                                        <?php echo $attribute['name']; ?>
-                                    </td>
-                                    <td>
-                                        <select style="height:100px;" name="attribute[<?php echo $attribute['selected_value']['id']; ?>][]" multiple>
-                                            <?php foreach ($attribute['values'] as $opt) { ?>
-                                            <?php if(in_array($opt['id'], $all_ids)) { ?>
-                                            <option selected="selected" value="<?php echo $opt['id']; ?>"><?php echo $opt['value']; ?></option>
-                                            <?php }else { ?>
-                                            <option value="<?php echo $opt['id']; ?>"><?php echo $opt['value']; ?></option>
-                                            <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <?php echo $attribute['class']; ?>
-                                    </td>
-                                </tr>
-                                <?php } ?>
-                                <?php } ?>
-                                <?php } ?>
+
                                 <?php } ?>
                                 <?php } ?>
                             </table>

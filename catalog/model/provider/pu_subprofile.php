@@ -409,6 +409,106 @@ class ModelProviderPuSubprofile extends Model
             return false;
         }
     }
+    public function UpdateProductGuaranteeStatus($id,$guarantee_status)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_subprofile_product` SET " .
+                "`guarantee_status`='$guarantee_status'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function UpdateProductGuaranteePrice($id,$guarantee_price)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_subprofile_product` SET " .
+                "`guarantee_price`='$guarantee_price'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function UpdateProductGuaranteeTime($id,$guarantee_time)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_subprofile_product` SET " .
+                "`guarantee_time`='$guarantee_time'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function UpdateProductGuaranteeTimeType($id,$guarantee_time_type)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_subprofile_product` SET " .
+                "`guarantee_time_type`='$guarantee_time_type'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function UpdateProductGuaranteeDescription($id,$guarantee_description)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_subprofile_product` SET " .
+                "`guarantee_description`='$guarantee_description'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function UpdateProductAvailability($id,$status)
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
@@ -483,6 +583,18 @@ class ModelProviderPuSubprofile extends Model
         $sql_select_string.=" LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         return $result_select;
+    }
+    public function GetProductOfSubprofile($subprofileProductId)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $result = array();
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `id` = $subprofileProductId AND status_id <> 0";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            return $row;
+        }
+
     }
     public function GetAllProductsOfSubprofile($subprofile_id)
     {

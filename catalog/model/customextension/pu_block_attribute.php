@@ -107,7 +107,7 @@ class ModelCustomextensionPuBlockAttribute extends Model
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
         $pu_database_name = $GLOBALS['pu_database_name'];
-        $sql_select_string = "SELECT * FROM $pu_database_name.pu_block_attribute WHERE block_id = $block_id";
+        $sql_select_string = "SELECT * FROM $pu_database_name.pu_block_attribute WHERE block_id = $block_id ORDER BY sort_order ASC";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         $result = array();
         while ($row = mysqli_fetch_assoc($result_select)) {
