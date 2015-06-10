@@ -619,6 +619,10 @@ foreach ($categories as $category) {
 
                         $("#upblc-<?php echo $count  ?>").click(function () {
                             var link = $('#in-upblc-<?php echo $count;  ?>').val();
+                            for(var i=0;i<10;i++){
+
+                                var link = link.replace("&", "%26");
+                            }
                             var subprofile = '<?php echo $subprofile_id  ?>';
                             var product = '<?php echo $related_id ?>';
 
