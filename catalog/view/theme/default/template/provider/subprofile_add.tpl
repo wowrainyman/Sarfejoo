@@ -112,24 +112,28 @@
                                     <td colspan="2">
                                         <fieldset class="gllpLatlonPicker">
                                             <span class="required">*</span>
-                                            <?php echo $entry_address; ?>
-                                            <input class="form-control"  size="110" id="address" type="text" name="address" value="<?php echo $address; ?>"
-                                                   onchange="addressset()" />
-                                            <?php if ($error_address) { ?>
-                                            <span class="error"><?php echo $error_address; ?></span>
+                                            <?php echo $entry_address_1; ?>
+                                            <input size="110" id="address" type="text" name="address_1" value="<?php echo $address; ?>"
+                                                   onchange="addressset()"/>
+                                            <?php if ($error_address_1) { ?>
+                                            <span class="error"><?php echo $error_address_1; ?></span>
                                             <?php } ?>
                                             <br/><br/>
-                                            <input class="form-control"  id="Search" type="text" class="gllpSearchField"
+                                            <input id="Search" type="text" class="gllpSearchField" style="visibility: hidden;display:none;">
+                                            <input type="text" class="gllpLatitude" value="32" name="lat"
                                                    style="visibility: hidden;display:none;">
-                                            <input class="form-control"  type="text" class="gllpLatitude" value="<?php echo $lat; ?>" name="lat"
+                                            <input type="text" class="gllpLongitude" value="54" name="lon"
                                                    style="visibility: hidden;display:none;">
-                                            <input class="form-control"  type="text" class="gllpLongitude" value="<?php echo $lon; ?>" name="lon"
+                                            <input type="text" class="gllpZoom" value="5" name="zoom" style="visibility: hidden;display:none;">
+                                            <input type="button" class="gllpUpdateButton" value="update map"
                                                    style="visibility: hidden;display:none;">
-                                            <input class="form-control"  type="text" class="gllpZoom" value="<?php echo $zoom; ?>" name="zoom"
+                                            <input type="text" name="address_2" value="<?php echo $address_2; ?>"
                                                    style="visibility: hidden;display:none;">
-                                            <input class="form-control"  type="button" class="gllpUpdateButton" value="update map"
+                                            <input type="text" name="postcode" value="<?php echo $postcode; ?>"
                                                    style="visibility: hidden;display:none;">
+
                                             <div class="gllpMap">Google Maps</div>
+
                                         </fieldset>
                                     </td>
                                 </tr>
