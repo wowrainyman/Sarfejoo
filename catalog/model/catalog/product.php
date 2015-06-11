@@ -1,4 +1,8 @@
 <?php
+
+require_once "provider.php";
+
+require_once "settings.php";
 class ModelCatalogProduct extends Model {
 	public function updateViewed($product_id) {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET viewed = (viewed + 1) WHERE product_id = '" . (int)$product_id . "'");
@@ -87,7 +91,10 @@ class ModelCatalogProduct extends Model {
 		} else {
 			$sql .= " FROM " . DB_PREFIX . "product p";
 		}
-
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        if(!empty($data['filter_subprofile']) && $data['filter_subprofile']){
+            $sql .= " LEFT JOIN $pu_database_name.pu_subprofile_product msp ON (p.product_id = msp.product_id) LEFT JOIN $pu_database_name.pu_subprofile_verification msv ON (msp.subprofile_id = msv.subprofile_id) LEFT JOIN $pu_database_name.pu_subprofile ms ON (msp.subprofile_id = ms.id)";
+        }
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
 		if (!empty($data['filter_category_id'])) {
@@ -173,6 +180,11 @@ class ModelCatalogProduct extends Model {
 		if (!empty($data['filter_manufacturer_id'])) {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
+
+        if(!empty($data['filter_subprofile']) && $data['filter_subprofile']){
+            $subprofile_id = $data['filter_subprofile'];
+            $sql .= " AND msp.subprofile_id = '$subprofile_id' AND msp.status_id <> 0 AND (msp.price <> 0 OR msp.guarantee_price <> 0) AND ((msv.expire_date > CURDATE()) OR ms.financial_exception = 1) AND msp.`update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND(msp.`availability` = 0 OR msp.`availability` = 2)";
+        }
 
         if(isset($data['sort']) && $data['sort'] == 'p.price') {
             $sql .= " AND p.price != 0";
@@ -496,6 +508,10 @@ class ModelCatalogProduct extends Model {
 		} else {
 			$sql .= " FROM " . DB_PREFIX . "product p";
 		}
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        if(!empty($data['filter_subprofile']) && $data['filter_subprofile']){
+            $sql .= " LEFT JOIN $pu_database_name.pu_subprofile_product msp ON (p.product_id = msp.product_id) LEFT JOIN $pu_database_name.pu_subprofile_verification msv ON (msp.subprofile_id = msv.subprofile_id) LEFT JOIN $pu_database_name.pu_subprofile ms ON (msp.subprofile_id = ms.id)";
+        }
 
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
@@ -586,6 +602,11 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+        if(!empty($data['filter_subprofile']) && $data['filter_subprofile']){
+            $subprofile_id = $data['filter_subprofile'];
+            $sql .= " AND msp.subprofile_id = '$subprofile_id' AND msp.status_id <> 0 AND (msp.price <> 0 OR msp.guarantee_price <> 0) AND ((msv.expire_date > CURDATE()) OR ms.financial_exception = 1) AND msp.`update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND(msp.`availability` = 0 OR msp.`availability` = 2)";
+        }
+
 		$query = $this->db->query($sql);
 
 		return $query->row['total'];
@@ -627,5 +648,18 @@ class ModelCatalogProduct extends Model {
 			return 0;	
 		}
 	}
+
+    public function getAllSubprofiles($products_id) {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $result = array();
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $sql_select_string = "SELECT DISTINCT ms.id,ms.title FROM $pu_database_name.pu_subprofile_product msp LEFT JOIN $pu_database_name.pu_subprofile ms ON(msp.subprofile_id = ms.id) LEFT JOIN $pu_database_name.pu_subprofile_verification msv ON (msp.subprofile_id = msv.subprofile_id) WHERE msp.product_id IN ( '" . implode($products_id, "', '") . "' )  AND msp.status_id <> 0 AND (msp.price <> 0 OR msp.guarantee_price <> 0) AND ((msv.expire_date > CURDATE()) OR ms.financial_exception = 1) AND msp.`update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND(msp.`availability` = 0 OR msp.`availability` = 2)";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $result[]=$row;
+        }
+        return $result;
+    }
 }
 ?>

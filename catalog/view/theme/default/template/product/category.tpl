@@ -12,6 +12,21 @@
 <div class="row custom-margin-0" style="margin-top: 60px;">
     <div class="col-md-3 col-xs-3 col-xs-push-12 col-lg-push-0 col-md-push-0" style="padding: 4px">
         <div class="col-md-12 box-shadow">
+            <span>
+                نمایش بر اساس عرضه کننده
+            </span>
+            <select id="filter-subprofile" class="form-control">
+                <option value="0">
+بدون فیلتر
+                </option>
+                <?php foreach($allsubs as $subprofile){ ?>
+                <option value="<?php echo $subprofile['id'] ?>" <?php if($subprofile['id'] == $filter_subprofile) echo 'selected'; ?>>
+                    <?php echo $subprofile['title'] ?>
+                </option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-md-12 box-shadow">
             <?php echo $column_right; ?>
         </div>
     </div>
@@ -185,6 +200,24 @@
         display('grid');
         
     }
+    $("#filter-subprofile").change(function () {
+        if($( this ).val() != 0){
+            var link = "<?php echo $currentUrl; ?>";
+            for(var i=0;i<10;i++){
+
+                var link = link.replace("&amp;", "&");
+            }
+            window.location.href = link+"&subprofile_id="+$( this ).val();
+        }else{
+            var link = "<?php echo $Url; ?>";
+            for(var i=0;i<10;i++){
+
+                var link = link.replace("&amp;", "&");
+            }
+            window.location.href = link;
+        }
+
+    });
 </script>
 </div>
 

@@ -201,6 +201,11 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+            if (isset($this->request->get['subprofile_id'])) {
+                if($this->request->get['subprofile_id']!=0){
+                    $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
+                }
+            }
 
 			$this->data['categories'] = array();
 
@@ -219,17 +224,41 @@ class ControllerProductCategory extends Controller {
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}
-
+            $filter_subprofile=false;
+            if (isset($this->request->get['subprofile_id'])) {
+                if($this->request->get['subprofile_id']!=0){
+                    $filter_subprofile = $this->request->get['subprofile_id'];
+                }
+            }
 			$this->data['products'] = array();
 
+            $data = array(
+                'filter_category_id'    => $category_id,
+                'filter_sub_category'   => true,
+                'filter_filter'         => $filter,
+                'sort'                  => $sort,
+                'order'                 => $order,
+                'start'                 => ($page - 1) * $limit,
+                'limit'                 => $limit
+            );
+            $allproducts = $this->model_catalog_product->getProducts($data);
+            $allproductsIds = array();
+            foreach($allproducts as $prod){
+                $allproductsIds[]=$prod['product_id'];
+            }
+            $allsubs = $this->model_catalog_product->getAllSubprofiles($allproductsIds);
+            $this->data['allsubs'] = $allsubs;
+            $this->data['filter_subprofile'] = $filter_subprofile;
+
 			$data = array(
-				'filter_category_id' => $category_id,
-				'filter_sub_category' => true,
-				'filter_filter'      => $filter, 
-				'sort'               => $sort,
-				'order'              => $order,
-				'start'              => ($page - 1) * $limit,
-				'limit'              => $limit
+				'filter_category_id'    => $category_id,
+                'filter_subprofile'    => $filter_subprofile,
+				'filter_sub_category'   => true,
+				'filter_filter'         => $filter,
+				'sort'                  => $sort,
+				'order'                 => $order,
+				'start'                 => ($page - 1) * $limit,
+				'limit'                 => $limit
 			);
 			$product_total = $this->model_catalog_product->getTotalProducts($data);
 
@@ -305,6 +334,11 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+            if (isset($this->request->get['subprofile_id'])) {
+                if($this->request->get['subprofile_id']!=0){
+                    $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
+                }
+            }
 
 			$this->data['sorts'] = array();
 
@@ -377,6 +411,11 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['order'])) {
 				$url .= '&order=' . $this->request->get['order'];
 			}
+            if (isset($this->request->get['subprofile_id'])) {
+                if($this->request->get['subprofile_id']!=0){
+                    $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
+                }
+            }
 
 			$this->data['limits'] = array();
 
@@ -409,6 +448,11 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+            if (isset($this->request->get['subprofile_id'])) {
+                if($this->request->get['subprofile_id']!=0){
+                    $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
+                }
+            }
 
 			$pagination = new Pagination();
 			$pagination->total = $product_total;
@@ -417,6 +461,8 @@ class ControllerProductCategory extends Controller {
 			$pagination->text = $this->language->get('text_pagination');
 			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
 
+            $this->data['currentUrl'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $myurl);
+            $this->data['Url'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url);
 			$this->data['pagination'] = $pagination->render();
 
 			$this->data['sort'] = $sort;
