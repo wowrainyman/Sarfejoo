@@ -685,6 +685,9 @@
 خریدار
         </span>
     </div>
+    <div class="col-md-2 box-shadow col-centered" style="margin-left: 10px;border-top-color: #129F8C;border-top-style: solid;border-top-width: 4px;">
+        <iframe src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true" style="width: 150px; height:150px;"></iframe>
+    </div>
 </div>
 <?php
 function ago($time) {
