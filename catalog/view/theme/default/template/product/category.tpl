@@ -63,8 +63,17 @@
                                 <div class="col-md-12 box-shadow" style="text-align: center;padding: 4px;">
                                     <div class="row" style="height: 50px;">
                                         <a href="<?php echo $product['href']; ?>">
-                                            <span style="margin: auto;">
-                                                <?php echo $product['name']; ?>
+                                            <?php
+                                                    mb_internal_encoding("UTF-8");
+                                                    $str = $product['name'];
+                                                    $trimedStr = mb_substr($product['name'], 0, 36);
+                                            ?>
+                                            <span style="margin: auto;" title="<?php echo $product['name']; ?>" ><?php echo $trimedStr?>
+                                                <?php
+                                                    if($str!=$trimedStr){
+                                                        echo '...';
+                                                    }
+                                                ?>
                                             </span>
                                         </a>
                                     </div>
