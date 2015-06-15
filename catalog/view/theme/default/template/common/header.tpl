@@ -451,10 +451,22 @@ DD_belatedPNG.fix('#logo img');
                                         </span>
                                     </div>
                                     <?php if ($category['children'][$i]['children_level2']) { ?>
-                                    <ul class="custom-list-green">
+                                    <ul class="custom-list-green row">
                                         <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                        <li style="display: inline;margin-right: 5px;margin-top: 5px;">
-                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                        <li class="col-md-4" style="display: inline;padding: 0;margin: 0;margin-top: 5px;">
+                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                                    <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                             </a>
                                         </li>
                                         <?php } ?>
@@ -487,10 +499,22 @@ DD_belatedPNG.fix('#logo img');
                                         </span>
                                     </div>
                                     <?php if ($category['children'][$i]['children_level2']) { ?>
-                                    <ul class="custom-list-green">
+                                    <ul class="custom-list-green row">
                                         <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                        <li style="display: inline;margin-right: 5px;margin-top: 5px;">
-                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                        <li class="col-md-4" style="display: inline;margin-top: 5px;padding: 0;margin: 0;">
+                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                                    <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                             </a>
                                         </li>
                                         <?php } ?>
@@ -649,10 +673,10 @@ DD_belatedPNG.fix('#logo img');
                 -ms-filter: blur(15px);
                 filter: blur(15px);
             }
-            .custom-list-purple li:not(:first-child):before{
+            .custom-list-purple li:before{
                 content: url(catalog/view/images/splitter.png);
             }
-            .custom-list-green li:not(:first-child):before{
+            .custom-list-green li:before{
                 content: url(catalog/view/images/splitter2.png);
             }
 
@@ -714,10 +738,22 @@ DD_belatedPNG.fix('#logo img');
                                         </span>
                                     </div>
                                     <?php if ($category['children'][$i]['children_level2']) { ?>
-                                    <ul class="custom-list-purple">
+                                    <ul class="custom-list-purple row">
                                         <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                        <li style="display: inline;margin-top: 5px;">
-                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                        <li class="col-md-4" style="display: inline;padding: 0;margin: 0;margin-top: 5px;">
+                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                                    <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                             </a>
                                         </li>
                                         <?php } ?>
@@ -750,10 +786,22 @@ DD_belatedPNG.fix('#logo img');
                                                                 </span>
                                                             </div>
                                                             <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                <ul class="custom-list-purple">
+                                                                <ul class="custom-list-purple row">
                                                                     <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                    <li style="display: inline;margin-right: 5px;margin-top: 5px;">
-                                                                        <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                                                    <li class="col-md-4" style="display: inline;padding: 0;margin: 0;;margin-top: 5px;">
+                                                                        <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                                            <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                            <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                                                         </a>
                                                                     </li>
                                                                     <?php } ?>
