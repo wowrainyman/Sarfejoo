@@ -1,13 +1,13 @@
 
 			.mfilter-counter {
-				background: #428bca;
+				background: #87b23c;
 				color: #ffffff;
 			}
 			.mfilter-counter:after {
-				border-right-color: #428bca;
+				border-right-color: #87b23c;
 			}
 		
 				.mfilter-search #mfilter-opts-search_button {
-					background-color: #428bca;
+					background-color: #87b23c;
 				}
 			
