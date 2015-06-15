@@ -183,7 +183,7 @@ return "$difference $periods[$j] پیش ";
                 <div class="col-md-12 box-shadow" style="text-align: right;padding: 0px;margin: 0px;">
                     <div class="tab-content">
                         <div id="providers-tab" class="tab-pane fade in active">
-                            <div class="row" style="padding-right: 20px;padding-top: 25px;">
+                            <div class="row" style="padding-right: 20px;padding-top: 5px;">
                                 <div class="col-md-5">
                                     مرتب سازی بر اساس
                                     <select class="form-control" id="sel1" onchange="location = this.value;">
@@ -205,100 +205,218 @@ return "$difference $periods[$j] پیش ";
                                         </option>
                                     </select>
                                 </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-3" style="margin-top: 5px;padding: 0px;">
+                                    <input id="guarantee-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
+فیلتر گارانتی
+                                    <br/>
+                                    <input id="online-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
+فیلتر خرید آنلاین
+                                </div>
                             </div>
                             <?php foreach ($providers as $provider) { ?>
-                            <div class="row row-centered">
-                                <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
-                                    <div class="row">
-                                        <div class="col-md-3 col-xs-5">
-                                            <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <?php echo $provider['title']; ?>
-                                            <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <span>
-                                                وضعیت:
-                                            </span>
-                                            <span>
-                                                موجود
-                                            </span>
-                                            <br/>
-                                            <span>
-بروز رسانی:
-                                            </span>
-                                            <span><?php echo ago(strtotime($provider['update_date']));?></span>
-                                            <!--<span>
-                                                گارانتی
-                                            </span>
-                                            <span>
-                                                ندارد
-                                            </span>-->
-                                        </div>
-                                        <div class="col-md-3">
+                                <?php if($provider['price']){ ?>
+                                    <div class="row row-centered no-guarantee <?php if(empty($provider['buy_link'])) echo 'no-online'; ?>">
+                                    <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
+                                        <div class="row">
+                                            <div class="col-md-3 col-xs-5">
+                                                <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <?php echo $provider['title']; ?>
+                                                <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
+                                            </div>
 
                                         </div>
-                                        <div class="col-md-5">
-                                            <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
-                                                <?php echo number_format($provider['price']);?>
-                                            </button>
-                                            <?php if(!empty($provider['buy_link'])) { ?>
-                                                <a role="button" href="index.php?route=linkrelay/external&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                    <?php echo $p_buy_online;?>
-                                                </a>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <span>
-                                                توضیحات فروشگاه:
-                                            </span>
-                                            <span>
-                                                <?php echo $provider['description'];?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <table>
-                                    <?php if (isset($provider['custom_attributes'])) { ?>
-                                        <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <span>
+                                                    وضعیت:
+                                                </span>
+                                                <span>
+                                                    موجود
+                                                </span>
+                                                <br/>
+                                                <span>
+    بروز رسانی:
+                                                </span>
+                                                <span><?php echo ago(strtotime($provider['update_date']));?></span>
+                                                <span>
+                                                    گارانتی
+                                                </span>
+                                                <span>
+                                                    ندارد
+                                                </span>
+                                            </div>
+                                            <div class="col-md-3">
 
-                                                <tr>
-                                                    <td><?php echo $cAttributes['name'];?></td>
-                                                    <td>
-                                                        <?php if ($cAttributes['type'] == 'Text') { ?>
-                                                            <?php echo $cAttributes['selected_value']['value'];?>
-                                                        <?php }else{ ?>
-                                                            <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
-                                                            <?php $str=''; ?>
-                                                            <?php foreach ($ids as $id) { ?>
-                                                                <?php foreach ($cAttributes['values'] as $value) { ?>
-                                                                    <?php if ($value['id'] == $id) { ?>
-                                                                        <?php if ($str == '') { ?>
-                                                                            <?php $str = $value['value'];  ?>
-                                                                        <?php }else{ ?>
-                                                                            <?php $str .= ' و ' . $value['value'];  ?>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
+                                                    <?php echo number_format($provider['price']);?>
+                                                </button>
+                                                <?php if(!empty($provider['buy_link'])) { ?>
+                                                    <a role="button" href="index.php?route=linkrelay/external&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                        <?php echo $p_buy_online;?>
+                                                    </a>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<span>
+                                                    توضیحات فروشگاه:
+                                                </span>
+                                                <span>
+                                                    <?php echo $provider['description'];?>
+                                                </span>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table>
+                                        <?php if (isset($provider['custom_attributes'])) { ?>
+                                            <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+
+                                                    <tr>
+                                                        <td><?php echo $cAttributes['name'];?></td>
+                                                        <td>
+                                                            <?php if ($cAttributes['type'] == 'Text') { ?>
+                                                                <?php echo $cAttributes['selected_value']['value'];?>
+                                                            <?php }else{ ?>
+                                                                <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
+                                                                <?php $str=''; ?>
+                                                                <?php foreach ($ids as $id) { ?>
+                                                                    <?php foreach ($cAttributes['values'] as $value) { ?>
+                                                                        <?php if ($value['id'] == $id) { ?>
+                                                                            <?php if ($str == '') { ?>
+                                                                                <?php $str = $value['value'];  ?>
+                                                                            <?php }else{ ?>
+                                                                                <?php $str .= ' و ' . $value['value'];  ?>
+                                                                            <?php } ?>
                                                                         <?php } ?>
                                                                     <?php } ?>
                                                                 <?php } ?>
+                                                                <?php echo $str;?>
                                                             <?php } ?>
-                                                            <?php echo $str;?>
+                                                        </td>
+                                                    </tr>
+
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </table>
+                                </div>
+                                <?php } ?>
+                                <?php if($provider['guarantee_status'] == 1){ ?>
+                                    <div class="row row-centered <?php if(empty($provider['buy_link'])) echo 'no-online'; ?>">
+                                    <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
+                                        <div class="row">
+                                            <div class="col-md-3 col-xs-5">
+                                                <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <?php echo $provider['title']; ?>
+                                                <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                    <span>
+                                                        وضعیت:
+                                                    </span>
+                                                    <span>
+                                                        موجود
+                                                    </span>
+                                                <br/>
+                                                    <span>
+        بروز رسانی:
+                                                    </span>
+                                                <span><?php echo ago(strtotime($provider['update_date']));?></span>
+                                                    <span>
+                                                        گارانتی
+                                                    </span>
+                                                    <span>
+دارد
+                                                    </span>
+
+                                            </div>
+                                            <div class="col-md-3">
+
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
+                                                    <?php echo number_format($provider['guarantee_price']);?>
+                                                </button>
+                                                <?php if(!empty($provider['buy_link'])) { ?>
+                                                <a role="button" href="index.php?route=linkrelay/external&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                    <?php echo $p_buy_online;?>
+                                                </a>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                    <span>
+مدت زمان گارانتی                                                    :
+                                                    </span>
+                                                    <span>
+                                                        <?php echo $provider['guarantee_time'];?>
+                                                        <?php if($provider['guarantee_time_type']==0){ ?>
+                                                            &nbsp;
+                                                            ماه
+                                                        <?php }else{ ?>
+                                                            &nbsp;
+                                                            سال
                                                         <?php } ?>
-                                                    </td>
-                                                </tr>
+                                                    </span><br/>
+                                                    <span>
+توضیحات گارانتی:
+                                                    </span>
+                                                    <span>
+                                                        <?php echo $provider['guarantee_description'];?>
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table>
+                                        <?php if (isset($provider['custom_attributes'])) { ?>
+                                        <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+
+                                        <tr>
+                                            <td><?php echo $cAttributes['name'];?></td>
+                                            <td>
+                                                <?php if ($cAttributes['type'] == 'Text') { ?>
+                                                <?php echo $cAttributes['selected_value']['value'];?>
+                                                <?php }else{ ?>
+                                                <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
+                                                <?php $str=''; ?>
+                                                <?php foreach ($ids as $id) { ?>
+                                                <?php foreach ($cAttributes['values'] as $value) { ?>
+                                                <?php if ($value['id'] == $id) { ?>
+                                                <?php if ($str == '') { ?>
+                                                <?php $str = $value['value'];  ?>
+                                                <?php }else{ ?>
+                                                <?php $str .= ' و ' . $value['value'];  ?>
+                                                <?php } ?>
+                                                <?php } ?>
+                                                <?php } ?>
+                                                <?php } ?>
+                                                <?php echo $str;?>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
 
                                         <?php } ?>
-                                    <?php } ?>
-                                </table>
-                            </div>
+                                        <?php } ?>
+                                    </table>
+                                </div>
+                                <?php } ?>
                             <?php } ?>
                         </div>
                         <div id="map-tab" class="tab-pane fade">
@@ -895,6 +1013,22 @@ $(document).ready(function() {
     }
     $('.modal').on('show.bs.modal', centerModals);
     $(window).on('resize', centerModals);
+</script>
+<script type="text/javascript">
+    $("#guarantee-btn").change(function() {
+        if(this.checked) {
+            $('.no-guarantee').css("display","none");
+        }else{
+            $('.no-guarantee').css("display","");
+        }
+    });
+    $("#online-btn").change(function() {
+        if(this.checked) {
+            $('.no-online').css("display","none");
+        }else{
+            $('.no-online').css("display","");
+        }
+    });
 </script>
 
 <div id="bseo">

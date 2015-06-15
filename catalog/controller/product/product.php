@@ -80,6 +80,8 @@ class ControllerProductProduct extends Controller
         $this->document->addScript('catalog/view/css/BootstrapImageGallery/js/bootstrap-image-gallery.js');
         $this->document->addStyle("catalog/view/javascript/jRating.jquery.css");
         $this->document->addScript('catalog/view/javascript/jRating.jquery.js');
+        $this->document->addStyle("catalog/view/css/bootstrap-toggle/css/bootstrap2-toggle.css");
+        $this->document->addScript('catalog/view/css/bootstrap-toggle/js/bootstrap2-toggle.js');
 
         $this->language->load('product/product');
 
