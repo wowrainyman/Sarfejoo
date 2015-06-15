@@ -69,25 +69,25 @@ return $pageURL;
         <div id="refinebyprice" class="box-content">
             <div class="row" style="padding-top: 20px;">
                 <div class="col-md-12">
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="margin: 0;">
                         <img src="catalog/view/icons/category-rl-icon.png"/>
-                        <span class="mj-font" style="margin-right: 10px;">
+                        <span class="mj-font" style="margin-right: 10px;font-size: 13px;">
                             <?php echo $text_filter_price; ?>
                             (تومان)
                         </span>
                     </div>
                     <div class="col-md-2" style="text-align: left;margin: 0px;padding-left: 8px;">
                         <img src="catalog/view/icons/high-price-icon.png"/>
-                        <span class="mj-font" style="margin-right: 10px;font-size: 18px;">
+                        <span class="mj-font" id="max-price2" style="margin-right: 0px;font-size: 18px;font-size: 14px;">
                             <?php echo number_format ($datahighercategory); ?>
                         </span>
                     </div>
-                    <div class="col-md-4" style="margin: 0px;padding: 0px;">
+                    <div class="col-md-4" style="margin: 0px;padding: 0px;font-size: 13px;">
                         <div id="slider-range"></div>
                         <input type="text" id="amount" maxlength="20"/>
                     </div>
                     <div class="col-md-2" style="margin: 0px;padding-right: 8px;">
-                        <span class="mj-font" style="margin-right: 10px;font-size: 18px;">
+                        <span class="mj-font"  id="min-price2" style="margin-right: 0px;font-size: 18px;font-size: 16px;">
                             <?php echo number_format ($datalowercategory); ?>
                         </span>
                         <img src="catalog/view/icons/low-price-icon.png"/>
@@ -114,6 +114,7 @@ return $pageURL;
                 min: <?php echo $lowerlimit ?> ,
             max: <?php echo $upperlimit ?>,
             values: [ "<?php echo $datalowercategory;?>", "<?php echo $datahighercategory;?>" ],
+            slide: function( event, ui ) { $( "#max-price2" ).text(ui.values[ 1 ]); $( "#min-price2" ).text(ui.values[ 0 ]); },
             change : function (event, ui) {
                 $.ajax({
                     url: target,
