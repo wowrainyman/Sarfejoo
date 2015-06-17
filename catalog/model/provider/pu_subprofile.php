@@ -268,6 +268,28 @@ class ModelProviderPuSubprofile extends Model
         $id = mysqli_insert_id($con_PU_db);
         return $id;
     }
+    public function AddTempSubprofile($data)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $customer_id = $this->customer->getId();
+        $group_id = $data['group_id'];
+        $title = $data['title'];
+        $sql_insert_string = "INSERT INTO `pu_subprofile`" .
+            "(`customer_id`, `group_id`, `title`, `legalperson_id`,
+                 `province_id`, `city`,
+                 `address`, `lat`,
+                  `lon`, `zoom`,
+                   `tel`, `mobile`,
+                  `email`, `website`, `status_id`)" .
+            "VALUES ('$customer_id', '$group_id', '$title',''
+                ,'','',''
+                ,'','',''
+                ,'','','','','0');";
+
+        $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
+        $id = mysqli_insert_id($con_PU_db);
+        return $id;
+    }
     public function UpdateSubprofilePayedStatus($id,$timestamp){
         $con_PU_db = $GLOBALS['con_PU_db'];
         $exist = false;

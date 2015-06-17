@@ -75,12 +75,57 @@
                                         <input type="radio" name="customer_group_id" value="<?php echo $customer_group['customer_group_id']; ?>"
                                                id="customer_group_id<?php echo $customer_group['customer_group_id']; ?>"/>
                                         <label for="customer_group_id<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?>
-                                            (شامل 1000 تومان هزینه)
                                         </label>
                                         <br/>
                                         <?php } ?>
                                         <?php } ?></td>
                                 </tr>
+                                <script>
+                                    $(document).ready(function () {
+                                        $("input:radio['name=customer_group_id']").change(function () {
+                                            if ($("input[name='customer_group_id']:checked").val() == '1') {
+                                                $('#sub_row').css("display","none");
+                                                $('#sub_name').css("display","none");
+                                            }
+                                            if ($("input[name='customer_group_id']:checked").val() == '2') {
+                                                $('#sub_row').css("display","");
+                                                $('#sub_name').css("display","");
+                                            }
+                                        });
+                                        if ($("input[name='customer_group_id']:checked").val() == '2') {
+                                            $('#sub_row').css("display","");
+                                            $('#sub_name').css("display","");
+                                        }
+                                    });
+                                </script>
+                                <tr id="sub_row" style="display: none;">
+                                    <td></td>
+                                    <td>
+                                        <input type="radio" name="group_id" value="0" id="group_id0" checked="checked"/>
+                                        <label for="group_id0">
+عرضه کننده کالا هستم
+                                        </label>
+                                        <br/>
+                                        <input type="radio" name="group_id" value="1" id="group_id1"/>
+                                        <label for="group_id1">
+عرضه کننده خدمات هستم
+                                        </label>
+                                        <br/>
+                                        <label style="color:red;">
+شامل پرداخت هزینه
+                                        </label>
+                                    </td>
+
+                                </tr>
+                                <tr id="sub_name" style="display: none;">
+                                    <td>
+                                        نام شرکت
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" name="title" value="">
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td><span class="required">*</span> <?php echo $entry_country; ?></td>
                                     <td><select class="form-control" name="country_id">
@@ -217,64 +262,13 @@
                     $('input[name=\'customer_group_id\']:checked').live('change', function () {
                         var customer_group = [];
 
-                        <
-                        ? php foreach($customer_groups
-                        as
-                        $customer_group
-                        )
-                        {
-                            ?
-                        >
-                            customer_group[ < ? php echo
-                            $customer_group['customer_group_id'];
-                            ?
-                        >]
-                            = [];
-                            customer_group[ < ? php echo
-                            $customer_group['customer_group_id'];
-                            ?
-                        >]
-                            [
-                            'company_id_display'
-                        ]
-                            = '<?php echo $customer_group['
-                            company_id_display
-                            ']; ?>';
-                            customer_group[ < ? php echo
-                            $customer_group['customer_group_id'];
-                            ?
-                        >]
-                            [
-                            'company_id_required'
-                        ]
-                            = '<?php echo $customer_group['
-                            company_id_required
-                            ']; ?>';
-                            customer_group[ < ? php echo
-                            $customer_group['customer_group_id'];
-                            ?
-                        >]
-                            [
-                            'tax_id_display'
-                        ]
-                            = '<?php echo $customer_group['
-                            tax_id_display
-                            ']; ?>';
-                            customer_group[ < ? php echo
-                            $customer_group['customer_group_id'];
-                            ?
-                        >]
-                            [
-                            'tax_id_required'
-                        ]
-                            = '<?php echo $customer_group['
-                            tax_id_required
-                            ']; ?>';
-                        <
-                            ? php
-                        }
-                        ?
-                        >
+                        <?php foreach($customer_groups as $customer_group){ ?>
+                            customer_group[ <? php echo $customer_group['customer_group_id'];?>]= [];
+                            customer_group[ <? php echo $customer_group['customer_group_id'];?>]['company_id_display'] = '<?php echo $customer_group['company_id_display']; ?>';
+                            customer_group[ <? php echo $customer_group['customer_group_id'];?>]['company_id_required'] = '<?php echo $customer_group['company_id_required']; ?>';
+                            customer_group[ < ? php echo $customer_group['customer_group_id'];?>]['tax_id_display'] = '<?php echo $customer_group['tax_id_display']; ?>';
+                            customer_group[ < ? php echo $customer_group['customer_group_id'];?>]['tax_id_required'] = '<?php echo $customer_group['tax_id_required']; ?>';
+                        <?php } ?>
 
                         if (customer_group[this.value]) {
                             if (customer_group[this.value]['company_id_display'] == '1') {

@@ -282,6 +282,13 @@ class ControllerFinancialSubprofilePlan extends Controller
             echo $subprofile_id;
             echo $expire_date;
             $this->model_provider_pu_subprofile->setSubprofileExpireDate($subprofile_id,$expire_date);
+            $subprofile_info = $this->model_provider_pu_subprofile->GetSubprofileInfo($subprofile_id);
+            if($subprofile_info['address']==''){
+                $callbackUrl = $this->url->link('provider/subprofile/Add','&id=' . $subprofile_id, 'SSL');
+                $go= $callbackUrl;
+                header("Location: $go");
+                die();
+            }
             $callbackUrl = $this->url->link('provider/subprofile','', 'SSL');
             $go= $callbackUrl;
             header("Location: $go");
