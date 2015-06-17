@@ -20,10 +20,6 @@
                <div id="s-page-content" class="s-row">
 
                     <div id="content" class="s-pc-c-center">
-                         <?php if(!$isCustomerPayed) { ?>
-                         <div class="error" style="font-size: large;"><?php echo $text_user_not_payed; ?></div>
-                         <div class="error" style="font-size: large;"><a href="<?php echo $buy_plan_link; ?>" class="error" style="font-size: large;"><?php echo $text_link; ?></a> </div>
-                         <?php } ?>
                          <?php echo $content_top; ?>
                          <div class="breadcrumb s-pc-c-c-bread">
                               <?php foreach ($breadcrumbs as $breadcrumb) { ?>
