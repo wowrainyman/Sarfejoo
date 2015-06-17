@@ -679,7 +679,7 @@
         <br/>
         <img src="catalog/view/images/buyer_icon.png"  height="50" /><br/><br/>
         <span style="padding: 10px;font-size: 20px;">
-            <?php echo $totalCustomers ?>
+            12<?php echo $totalCustomers ?>
         </span><br/>
         <span style="padding: 5px;font-size: 20px;">
 خریدار
