@@ -8,29 +8,11 @@
  */
 class ControllerProviderPrice extends Controller
 {
-    protected function isCustomerPayed($id){
-        $this->load->model('account/customer');
-        $expire_date = $this->model_account_customer->getCustomerExpireDate($id);
-        if(!$expire_date)
-            return false;
-        $expire_date = strtotime($expire_date);
-        $current_date = new DateTime();
-        if($expire_date>date_timestamp_get($current_date))
-        {
-            return true;
-        }else{
-            return false;
-        }
-    }
     public function index()
     {
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
-        }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
         }
         $this->language->load('provider/price_allsubprofiles');
 
