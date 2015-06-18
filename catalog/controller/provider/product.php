@@ -12,10 +12,6 @@ class ControllerProviderProduct extends Controller
 
     public function index()
     {
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         $this->language->load('provider/product');
 
         $this->load->model('catalog/category');
@@ -553,10 +549,6 @@ class ControllerProviderProduct extends Controller
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         $this->language->load('provider/AddProductToSubprofile');
         $this->data += $this->language->load('provider/AddProductToSubprofile');
         $this->document->setTitle($this->language->get('heading_title'));
@@ -784,10 +776,6 @@ class ControllerProviderProduct extends Controller
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         $this->language->load('provider/product_allsubprofiles');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -948,10 +936,6 @@ class ControllerProviderProduct extends Controller
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
-        }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
         }
         $this->language->load('provider/blockAttribute');
         $this->document->setTitle($this->language->get('heading_title'));

@@ -128,10 +128,6 @@ class ControllerProviderPrice extends Controller
 
     public function editsubprofileproduct()
     {
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
@@ -435,10 +431,6 @@ class ControllerProviderPrice extends Controller
 
     public function listsubprofileproduct()
     {
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));

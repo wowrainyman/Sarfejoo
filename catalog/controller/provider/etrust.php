@@ -136,10 +136,6 @@ class ControllerProviderEtrust extends Controller {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         $this->language->load('provider/etrust_view');
 
         $this->document->setTitle($this->language->get('heading_title'));

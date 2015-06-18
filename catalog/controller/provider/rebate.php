@@ -125,10 +125,6 @@ class ControllerProviderRebate extends Controller
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
-        }
         $this->language->load('provider/rebate_listsubprofileproduct');
 
         $this->document->setTitle($this->language->get('heading_title'));
@@ -250,10 +246,6 @@ class ControllerProviderRebate extends Controller
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
-        }
-        if (!$this->isCustomerPayed($this->customer->getId()))
-        {
-            $this->redirect($this->url->link('account/account', '', 'SSL'));
         }
         $this->language->load('provider/rebate_submitrebate');
 
