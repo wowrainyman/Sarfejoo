@@ -129,56 +129,35 @@ class ControllerAdAdvertising extends Controller
                                 $plan_id = $this->request->post['all-pages-click-plan'];
                                 $plan_info = $this->model_ad_pu_advertising->getClickPlanInfo($plan_id);
                                 $real_price = (double)$plan_info['price'];
-                                $this->load->model('payment/balance');
-                                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                                $balance_value = $balance_info['balance'];
-                                if ($balance_value < $real_price) {
-                                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                                    $this->redirect($this->url->link('ad/advertising', '', 'SSL'));
-                                }
                                 $this->load->model('purchase/pu_transaction');
                                 $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $real_price, 1);
-                                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$real_price * (-1));
-                                $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
+                                $added_id = $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
                                     $plan_type, $plan_id, $file_90_728, $file_60_468, $file_240_120, $file_125_125, $plan_info['clicks'], 0, date('Y-m-d H:i:s',
-                                        $date->getTimestamp()), 0, $transaction_id, 0);
+                                        $date->getTimestamp()), 0, $transaction_id, 0, $real_price, 0);
+                                $this->redirect($this->url->link('financial/advertising_plan/confirm', '&id=' . $added_id, 'SSL'));
                             } elseif ($all_pages_type == 'view') {
                                 $plan_type = 2;
                                 $plan_id = $this->request->post['all-pages-view-plan'];
                                 $plan_info = $this->model_ad_pu_advertising->getViewPlanInfo($plan_id);
                                 $real_price = (double)$plan_info['price'];
-                                $this->load->model('payment/balance');
-                                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                                $balance_value = $balance_info['balance'];
-                                if ($balance_value < $real_price) {
-                                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                                    $this->redirect($this->url->link('ad/advertising', '', 'SSL'));
-                                }
                                 $this->load->model('purchase/pu_transaction');
                                 $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $real_price, 1);
-                                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$real_price * (-1));
-                                $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
+                                $added_id = $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
                                     $plan_type, $plan_id, $file_90_728, $file_60_468, $file_240_120, $file_125_125, 0, $plan_info['views'], date('Y-m-d H:i:s',
-                                        $date->getTimestamp()), 0, $transaction_id, 0);
+                                        $date->getTimestamp()), 0, $transaction_id, 0, $real_price, 0);
+                                $this->redirect($this->url->link('financial/advertising_plan/confirm', '&id=' . $added_id, 'SSL'));
                             } elseif ($all_pages_type == 'time') {
                                 $plan_type = 3;
                                 $plan_id = $this->request->post['all-pages-time-plan'];
                                 $plan_info = $this->model_ad_pu_advertising->getTimePlanInfo($plan_id);
                                 $real_price = (double)$plan_info['price'];
-                                $this->load->model('payment/balance');
-                                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                                $balance_value = $balance_info['balance'];
-                                if ($balance_value < $real_price) {
-                                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                                    $this->redirect($this->url->link('ad/advertising', '', 'SSL'));
-                                }
                                 $this->load->model('purchase/pu_transaction');
                                 $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $real_price, 1);
-                                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$real_price * (-1));
                                 $end_date = date('Y-m-d H:i:s', strtotime('+' . $plan_info['times'] . ' days' . date('Y-m-d H:i:s', $date->getTimestamp())));
-                                $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
+                                $added_id = $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
                                     $plan_type, $plan_id, $file_90_728, $file_60_468, $file_240_120, $file_125_125, 0, 0, date('Y-m-d H:i:s',
-                                        $date->getTimestamp()), $end_date, $transaction_id, 0);
+                                        $date->getTimestamp()), $end_date, $transaction_id, 0, $real_price, 0);
+                                $this->redirect($this->url->link('financial/advertising_plan/confirm', '&id=' . $added_id, 'SSL'));
                             }
                         }
                     } elseif ($this->request->post['pages'] == 'special') {
@@ -193,59 +172,38 @@ class ControllerAdAdvertising extends Controller
                                 $plan_info = $this->model_ad_pu_advertising->getClickPlanInfo($plan_id);
                                 $position_info = $this->model_ad_pu_advertising->getPositionInfo($special_page_position);
                                 $real_price = (double)$plan_info['price'] * (double)$position_info['factor'];
-                                $this->load->model('payment/balance');
-                                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                                $balance_value = $balance_info['balance'];
-                                if ($balance_value < $real_price) {
-                                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                                    $this->redirect($this->url->link('ad/advertising', '', 'SSL'));
-                                }
                                 $this->load->model('purchase/pu_transaction');
                                 $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $real_price, 1);
-                                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$real_price * (-1));
-                                $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
+                                $added_id = $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
                                     $plan_type, $plan_id, $file_90_728, $file_60_468, $file_240_120, $file_125_125, $plan_info['clicks'], 0, date('Y-m-d H:i:s',
-                                        $date->getTimestamp()), 0, $transaction_id, $special_page_position);
+                                        $date->getTimestamp()), 0, $transaction_id, $special_page_position, $real_price, 0);
+                                $this->redirect($this->url->link('financial/advertising_plan/confirm', '&id=' . $added_id, 'SSL'));
                             } elseif ($special_pages_type == 'view') {
                                 $plan_type = 2;
                                 $plan_id = $this->request->post['special-pages-view-plan'];
                                 $plan_info = $this->model_ad_pu_advertising->getViewPlanInfo($plan_id);
                                 $position_info = $this->model_ad_pu_advertising->getPositionInfo($special_page_position);
                                 $real_price = (double)$plan_info['price'] * (double)$position_info['factor'];
-                                $this->load->model('payment/balance');
-                                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                                $balance_value = $balance_info['balance'];
-                                if ($balance_value < $real_price) {
-                                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                                    $this->redirect($this->url->link('ad/advertising', '', 'SSL'));
-                                }
                                 $this->load->model('purchase/pu_transaction');
                                 $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $real_price, 1);
-                                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$real_price * (-1));
-                                $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
+                                $added_id = $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
                                     $plan_type, $plan_id, $file_90_728, $file_60_468, $file_240_120, $file_125_125, 0, $plan_info['views'], date('Y-m-d H:i:s',
-                                        $date->getTimestamp()), 0, $transaction_id, $special_page_position);
+                                        $date->getTimestamp()), 0, $transaction_id, $special_page_position, $real_price, 0);
+                                $this->redirect($this->url->link('financial/advertising_plan/confirm', '&id=' . $added_id, 'SSL'));
                             } elseif ($special_pages_type == 'time') {
                                 $plan_type = 3;
                                 $plan_id = $this->request->post['special-pages-time-plan'];
                                 $plan_info = $this->model_ad_pu_advertising->getTimePlanInfo($plan_id);
                                 $position_info = $this->model_ad_pu_advertising->getPositionInfo($special_page_position);
                                 $real_price = (double)$plan_info['price'] * (double)$position_info['factor'];
-                                $this->load->model('payment/balance');
-                                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                                $balance_value = $balance_info['balance'];
-                                if ($balance_value < $real_price) {
-                                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                                    $this->redirect($this->url->link('ad/advertising', '', 'SSL'));
-                                }
                                 $this->load->model('purchase/pu_transaction');
                                 $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $real_price, 1);
-                                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$real_price * (-1));
                                 $available_timestamp = $position_timestamps[$special_page_position];
                                 $end_date = date('Y-m-d H:i:s', strtotime('+' . $plan_info['times'] . ' days' . date('Y-m-d H:i:s', $available_timestamp)));
-                                $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
+                                $added_id = $this->model_ad_pu_advertising->AddAdPlanCustomer($this->customer->getId(),
                                     $plan_type, $plan_id, $file_90_728, $file_60_468, $file_240_120, $file_125_125, 0, 0, date('Y-m-d H:i:s',
-                                        $available_timestamp), $end_date, $transaction_id, $special_page_position);
+                                        $available_timestamp), $end_date, $transaction_id, $special_page_position, $real_price, 0);
+                                $this->redirect($this->url->link('financial/advertising_plan/confirm', '&id=' . $added_id, 'SSL'));
                             }
                         }
                     }

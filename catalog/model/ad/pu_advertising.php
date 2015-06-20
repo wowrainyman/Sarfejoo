@@ -104,7 +104,9 @@ class ModelAdPuAdvertising extends Model {
         $start_date,
         $end_date,
         $transaction_id,
-        $position_id){
+        $position_id,
+        $price,
+        $is_pay){
         $pu_database_name = $GLOBALS['pu_database_name'];
         $oc_database_name = $GLOBALS['oc_database_name'];
         $con_PU_db = $GLOBALS['con_PU_db'];
@@ -112,10 +114,9 @@ class ModelAdPuAdvertising extends Model {
             "(`customer_id`, `plan_type`, `plan_id`, `file_90_728`, `file_60_468`, `file_240_120`, `file_125_125`,
                  `dest_click`, `dest_view`,
                  `start_date`, `end_date`,
-                  `transaction_id`,`position_id`)" .
+                  `transaction_id`,`position_id`, `price`, `is_pay`)" .
             "VALUES ('$customer_id', '$plan_type', '$plan_id','$file_90_728','$file_60_468','$file_240_120','$file_125_125'
-                ,'$dest_click','$dest_view','$start_date'
-                ,'$end_date','$transaction_id','$position_id');";
+                ,'$dest_click','$dest_view','$start_date','$end_date','$transaction_id','$position_id','$price','$is_pay');";
 
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $id = mysqli_insert_id($con_PU_db);
@@ -125,7 +126,7 @@ class ModelAdPuAdvertising extends Model {
     public function getUserAds($customer_id){
         $pu_database_name = $GLOBALS['pu_database_name'];
         $oc_database_name = $GLOBALS['oc_database_name'];
-        $sql = "SELECT * FROM $pu_database_name.pu_ad_plan_customer tab1 WHERE customer_id = $customer_id";
+        $sql = "SELECT * FROM $pu_database_name.pu_ad_plan_customer tab1 WHERE customer_id = $customer_id AND is_pay = 1";
         $query = $this->db->query($sql);
         return $query->rows;
     }

@@ -264,7 +264,32 @@ class ControllerAdPlanByclick extends Controller
 
     protected function getForm()
     {
+        $this->data += $this->language->load('ad/plan_byclick');
 
+        if (isset($this->error['warning'])) {
+            $this->data['error_warning'] = $this->error['warning'];
+        } else {
+            $this->data['error_warning'] = '';
+        }
+
+        if (!isset($this->request->get['product_id'])) {
+            $this->data['action'] = $this->url->link('ad/plan_byclick/insert', 'token=' . $this->session->data['token'], 'SSL');
+        } else {
+            $this->data['action'] = $this->url->link('ad/plan_byclick/update', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'], 'SSL');
+        }
+
+        $this->data['cancel'] = $this->url->link('ad/plan_byclick', 'token=' . $this->session->data['token'], 'SSL');
+        $this->load->model('design/layout');
+
+        $this->data['layouts'] = $this->model_design_layout->getLayouts();
+
+        $this->template = 'ad/plan_byclick_form.tpl';
+        $this->children = array(
+            'common/header',
+            'common/footer'
+        );
+
+        $this->response->setOutput($this->render());
     }
 
     protected function validateForm()
