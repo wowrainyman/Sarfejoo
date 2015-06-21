@@ -43,8 +43,7 @@
                                                                            description,
                                                                            availability,
                                                                            update_date,
-                                                                           status_id,
-                                                                           is_payed
+                                                                           status_id
                                                             ) VALUES (
                                                                            '$product_id',
                                                                            '$subprofile_id',
@@ -52,7 +51,6 @@
                                                                            '$description',
                                                                            0,
                                                                            NOW(),
-                                                                           1,
                                                                            1
                                                                       )";
      
