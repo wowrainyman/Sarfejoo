@@ -136,6 +136,15 @@ $(document).ready(function() {
      });
 
      $('.bar-full-fix').hide();
+
+    $(".first-search").change(function() {
+        // Check input( $( this ).val() ) for validity here
+        $(".second-search").val($(".first-search").val());
+    });
+    $(".second-search").change(function() {
+        // Check input( $( this ).val() ) for validity here
+        $(".first-search").val($(".second-search").val());
+    });
 });
 
 $(window).scroll(function(){
@@ -251,11 +260,9 @@ DD_belatedPNG.fix('#logo img');
         <div class="row row-offcanvas row-offcanvas-left" style="background-color: #8926a8">
             <!-- sidebar -->
             <div class="column col-sm-2 col-xs-1 sidebar-offcanvas visible-xs" id="sidebar">
-
                 <ul class="nav">
                     <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
                 </ul>
-
                 <ul class="nav hidden-xs" id="lg-menu">
                     <li class="active">
                         <a href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%AF%D8%A7%D8%A6%D9%85%DB%8C-%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1%DB%8C"><i class="fa fa-wifi"></i>
@@ -338,7 +345,7 @@ DD_belatedPNG.fix('#logo img');
             </div>
             <div id="search" class="s-he-search top-search" style="margin-top: -2px;margin-right: 160px;display: none;">
                 <div class="button-search b-search"></div>
-                <input type="text" name="search" id="q-input" class="q-input" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <input type="text" name="search" id="q-input" class="q-input first-search" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
             </div>
             <div  id="fi-left" class="s-fi-block">
                 <ul>
@@ -356,13 +363,15 @@ DD_belatedPNG.fix('#logo img');
                         <div>
                             <ul>
                                 <li>
-                                    <a href="http://blog.sarfejoo.com/category/%d8%a7%d8%ae%d8%a8%d8%a7%d8%b1-%d8%b5%d8%b1%d9%81%d9%87-%d8%ac%d9%88/" >اخبار صرفه جو</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d8%b4%d8%a7%d8%af-%d8%b2%db%8c%d8%b3%d8%aa%d9%86/" >شاد زیستن</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d8%ab%d8%b1%d9%88%d8%aa%d9%85%d9%86%d8%af-%d8%b4%d9%88%db%8c%d8%af/" >ثروتمند شوید</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d9%85%d8%b5%d8%b1%d9%81-%d8%a8%d9%87%db%8c%d9%86%d9%87/" >مصرف بهینه</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d9%88%d9%82%d8%aa-%d8%b7%d9%84%d8%a7%d8%b3%d8%aa/" >وقت طلاست</a>
-                                    <a href="http://blog.sarfejoo.com/category/%da%86%da%af%d9%88%d9%86%d9%87-%d8%a8%d9%87%d8%aa%d8%b1-%d8%a7%d9%86%d8%aa%d8%ae%d8%a7%d8%a8-%da%a9%d9%86%db%8c%d9%85/" >چگونه بهتر انتخاب کنیم</a>
-                                    <a href="http://blog.sarfejoo.com/category/%da%a9%d8%b3%d8%a8-%d9%88-%da%a9%d8%a7%d8%b1-%d9%85%d9%88%d9%81%d9%82/" >کسب و کار موفق</a>
+                                    <?php
+                                         $url = "http://blog.sarfejoo.com/get_categories.php";
+                                         $ch = curl_init();
+                                         curl_setopt($ch, CURLOPT_URL, $url);
+                                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                         $data = curl_exec($ch);
+                                         curl_close($ch);
+                                         echo $data;
+                                     ?>
                                 </li>
                             </ul>
                         </div>
@@ -384,7 +393,7 @@ DD_belatedPNG.fix('#logo img');
         <div class="col-md-6 hidden-xs">
             <div id="search" class="s-he-search">
                 <div class="button-search b-search"></div>
-                <input type="text" name="search" id="q-input" class="q-input" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <input type="text" name="search" id="q-input" class="q-input second-search" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
             </div>
 
 
