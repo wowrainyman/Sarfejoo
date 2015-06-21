@@ -28,24 +28,11 @@
             <div class="col-md-12">
                 <div class="">
                     <div class="category-list col-md-9">
-                        <?php if (count($categories) <= 5) { ?>
                         <ul class="double" style="width: 100% !important;">
                             <?php foreach ($categories as $category) { ?>
                             <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
                             <?php } ?>
                         </ul>
-                        <?php } else { ?>
-                        <?php for ($i = 0; $i < count($categories);) { ?>
-                        <ul class="double">
-                            <?php $j = $i + ceil(count($categories) / 4); ?>
-                            <?php for (; $i < $j; $i++) { ?>
-                            <?php if (isset($categories[$i])) { ?>
-                            <li><a href="<?php echo $categories[$i]['href']; ?>"><?php echo $categories[$i]['name']; ?></a></li>
-                            <?php } ?>
-                            <?php } ?>
-                        </ul>
-                        <?php } ?>
-                        <?php } ?>
                     </div>
                     <div class="product-filter col-md-3">
                         <div class="display">
