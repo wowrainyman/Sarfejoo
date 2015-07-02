@@ -263,11 +263,11 @@
                         var customer_group = [];
 
                         <?php foreach($customer_groups as $customer_group){ ?>
-                            customer_group[ <? php echo $customer_group['customer_group_id'];?>]= [];
-                            customer_group[ <? php echo $customer_group['customer_group_id'];?>]['company_id_display'] = '<?php echo $customer_group['company_id_display']; ?>';
-                            customer_group[ <? php echo $customer_group['customer_group_id'];?>]['company_id_required'] = '<?php echo $customer_group['company_id_required']; ?>';
-                            customer_group[ < ? php echo $customer_group['customer_group_id'];?>]['tax_id_display'] = '<?php echo $customer_group['tax_id_display']; ?>';
-                            customer_group[ < ? php echo $customer_group['customer_group_id'];?>]['tax_id_required'] = '<?php echo $customer_group['tax_id_required']; ?>';
+                            customer_group[ <?php echo $customer_group['customer_group_id'];?>] = [];
+                            customer_group[ <?php echo $customer_group['customer_group_id'];?>]['company_id_display'] = '<?php echo $customer_group['company_id_display']; ?>';
+                            customer_group[ <?php echo $customer_group['customer_group_id'];?>]['company_id_required'] = '<?php echo $customer_group['company_id_required']; ?>';
+                            customer_group[ <?php echo $customer_group['customer_group_id'];?>]['tax_id_display'] = '<?php echo $customer_group['tax_id_display']; ?>';
+                            customer_group[ <?php echo $customer_group['customer_group_id'];?>]['tax_id_required'] = '<?php echo $customer_group['tax_id_required']; ?>';
                         <?php } ?>
 
                         if (customer_group[this.value]) {
