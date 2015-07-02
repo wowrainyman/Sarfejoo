@@ -683,8 +683,19 @@ foreach ($categories as $category) {
                            value="<?php echo $buy_link; ?>" class="buy-link"/>
                     <span class="upblc" id="upblc-<?php echo $count ?>">UP</span>
                 </div>
-            <?php } ?>
-            فروشگاه: <span style="color:#5555FF;font-size:10px;"><?php echo $subprofile_name ?></span>
+            <?php }
+            if(isset($subprofile_id)&&$subprofile_id) {
+                $sql_pu = "SELECT website FROM pu_subprofile WHERE id = $subprofile_id ";
+                $result_select_pu = mysqli_query($link_PU_DB, $sql_pu) or die(mysqli_error());
+                while ($row = mysqli_fetch_assoc($result_select_pu)) {
+                    $website = $row['website'];
+                }
+            }else{
+                $website="";
+            }
+            ?>
+            فروشگاه:
+            <a href="<?php echo $website ?>"><span style="color:#5555FF;font-size:10px;"><?php echo $subprofile_name ?></span></a>
             <span style="float:left;color:#993DD5;font-size:10px;">[<?php echo $i_customer_id ?>]</span>
             <span style="float:left;">&nbsp;<?php echo $i_title ?>&nbsp;</span>
             <br/>
