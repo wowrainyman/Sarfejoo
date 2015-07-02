@@ -16,7 +16,8 @@ class ControllerCommonHome extends Controller
                 $this->data['url'] = $this->url->link('product/product', '&product_id=' . $product_id);
                 $this->data['url']=str_replace("&amp;","&",$this->data['url']);
             }else{
-                $this->data['url'] = 'http://'.$this->data['url'];
+                $this->data['url'] = $this->url->link('product/category', '&path=59_66');
+                $this->data['url']=str_replace("&amp;","&",$this->data['url']);
             }
         }
         $this->document->setTitle($this->config->get('config_title'));
@@ -158,7 +159,7 @@ class ControllerCommonHome extends Controller
         $this->data['topServices'] = $topServices;
 
 //total Products
-        $data = array(
+        /*$data = array(
             'filter_category_id' => '59',
             'filter_sub_category' => true,
             'filter_filter'      => '',
@@ -167,11 +168,11 @@ class ControllerCommonHome extends Controller
             'start'              => '0',
             'limit'              => '10000'
         );
-        $topProducts_info = $this->model_catalog_product->getProducts($data);
-        $this->data['totalProducts'] = count($topProducts_info);
+        $topProducts_info = $this->model_catalog_product->getProducts($data);*/
+        $this->data['totalProducts'] = "1140";
 
 //total Services
-        $data = array(
+       /* $data = array(
             'filter_category_id' => '60',
             'filter_sub_category' => true,
             'filter_filter'      => '',
@@ -180,8 +181,8 @@ class ControllerCommonHome extends Controller
             'start'              => '0',
             'limit'              => '10000'
         );
-        $topServices_info = $this->model_catalog_product->getProducts($data);
-        $this->data['totalServices'] = count($topServices_info);
+        $topServices_info = $this->model_catalog_product->getProducts($data);*/
+        $this->data['totalServices'] = "881";
 
 //total subprofiles
         $subs = $this->model_provider_pu_subprofile->GetCountSubprofiles();
