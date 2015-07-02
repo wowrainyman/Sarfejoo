@@ -2,6 +2,11 @@
 require_once "jdf.php";
 class ControllerCommonHeader extends Controller
 {
+    public function getDate()
+    {
+        $this->data['date'] = jdate("l - j F o");
+        echo $this->data['date'];
+    }
     protected function index()
     {
         $this->load->model('tool/image');
