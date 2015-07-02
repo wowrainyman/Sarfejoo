@@ -622,7 +622,11 @@
             <div class="col-md-8"  style="text-align: center;vertical-align: middle;padding-top:10px;height: 50px;font-size: 17px;font-weight: bold;">
                 846841 نفر / آگاهی کسب کرده اند
             </div>
-            <div class="col-md-4" style="background-color: #129F8C;margin:auto;padding-top:10px;color:#FFFFFF;height: 50px;font-size: 17px;font-weight: bold;">ورود به وبلاگ</div>
+            <div class="col-md-4" style="background-color: #129F8C;margin:auto;padding-top:10px;color:#FFFFFF;height: 50px;font-size: 17px;font-weight: bold;">
+                <a href="http://blog.sarfejoo.com" style="font-size: 17px;font-weight: bold;color:#FFFFFF;">
+                ورود به وبلاگ
+                </a>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12" style="padding: 0px;">
