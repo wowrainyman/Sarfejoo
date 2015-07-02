@@ -66,60 +66,7 @@
                                         </div>
                                    </a>
                               </div>
-                              <?php if ($Customer_Group_Id ==2) {
-                          if(!$isCustomerPayed) { ?>
-                              <div class="a-rows">
-                                   <h2><?php echo $text_profile   ?></h2>
-                              </div>
-                              <div class="a-rows">
-                                   <a href="#" >
-                                        <div class="a-box">
-                                             <i class="flaticon-career"></i><br />
-                                             <?php echo $text_menu_profiles   ?>
-                                        </div>
-                                   </a>
-                                   <a href="#" >
-                                        <div class="a-box">
-                                             <i class="flaticon-services"></i><br />
-                                             <?php echo $text_menu_sub_profiles   ?>
-                                        </div>
-                                   </a>
-                                   <a href="#" >
-                                        <div class="a-box">
-                                             <i class="flaticon-recovery"></i><br />
-                                             <?php echo $text_menu_add_products   ?>
-                                        </div>
-                                   </a>
-                                   <a href="#" >
-                                        <div class="a-box">
-                                             <i class="flaticon-seo12"></i><br />
-                                             <?php echo $text_menu_set_prices   ?>
-                                        </div>
-                                   </a>
-                                   <a href="#" >
-                                        <div class="a-box">
-                                             <i class="flaticon-like3"></i><br />
-                                             <?php echo $text_menu_set_discounts   ?>
-                                        </div>
-                                   </a>
-                                   <!--
-                                   <div class="a-box">
-                                        <i class="flaticon-seo1"></i><br />
-                                        <?php echo $text_menu_pofiles_stat   ?>
-                                   </div>
-                                   <div class="a-box">
-                                        <i class="flaticon-affiliate"></i><br />
-                                        <?php echo $text_menu_bank   ?>
-                                   </div>
-                                   -->
-                                   <a href="#" >
-                                        <div class="a-box">
-                                             <i class="flaticon-active"></i><br />
-                                             <?php echo $text_menu_namads   ?>
-                                        </div>
-                                   </a>
-                              </div>
-                              <?php }else{ ?>
+                              <?php if ($Customer_Group_Id ==2) { ?>
                               <div class="a-rows">
                                    <h2><?php echo $text_profile   ?></h2>
                               </div>
@@ -171,7 +118,6 @@
                                         </div>
                                    </a>
                               </div>
-                              <?php } ?>
                               <?php } ?>
                          </div>
                          <?php echo $content_bottom; ?>
