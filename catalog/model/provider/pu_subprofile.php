@@ -13,7 +13,6 @@ class ModelProviderPuSubprofile extends Model
 {
     public function GetCustomerSubProfilesByStatusId($customerid,$statusid)
     {
-
         $con_PU_db = $GLOBALS['con_PU_db'];
         $exist = false;
         $result = array();
@@ -31,10 +30,11 @@ class ModelProviderPuSubprofile extends Model
         $result = array();
         $sql_select_string = "SELECT * FROM `pu_subprofile` WHERE `customer_id` = $customerid ";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
-        if ($result_select)
-            return $result_select;
-        else
-            return false;
+        $myres = array();
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $myres[] = $row;
+        }
+        return $myres;
     }
     public function GetCustomerSubProfile($subprofile_id)
     {
