@@ -20,6 +20,12 @@ class ControllerCommonHome extends Controller
                 $this->data['url']=str_replace("&amp;","&",$this->data['url']);
             }
         }
+        if (isset($this->request->get['lifetime'])){
+            $this->session->data['lifetime'] = "true";
+        }
+        if (isset($this->request->get['unsetlifetime'])){
+            unset($this->session->data['lifetime']);
+        }
         $this->document->setTitle($this->config->get('config_title'));
         $this->document->setDescription($this->config->get('config_meta_description'));
 

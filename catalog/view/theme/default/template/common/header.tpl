@@ -76,6 +76,12 @@
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/jquery-gmaps-latlon-picker.css"/>
 <script src="catalog/view/javascript/map/jquery-gmaps-latlon-picker.js"></script>
 <script>
+    if (typeof String.prototype.startsWith != 'function') {
+        // see below for better implementation!
+        String.prototype.startsWith = function (str){
+            return this.indexOf(str) === 0;
+        };
+    }
 $(document).ready(function() {
 
      $("#go-top").click(function(){
@@ -884,3 +890,21 @@ width:140px!important;
 }
 </style>
  <![endif]-->
+<?php if(isset($this->session->data['lifetime'])){ ?>
+    <script>
+        $(document).ready(function() {
+            var base = "http://sarfejoo.com";
+            var arr = [], l = document.links;
+            for(var i=0; i<l.length; i++) {
+                if(l[i].href.startsWith(base)){
+                    arr.push(l[i].href);
+                }
+            }
+            var myRand = Math.floor(Math.random() * (arr.length-1));
+            var delay=1000; //1 seconds
+            setTimeout(function(){
+                window.location=arr[myRand];
+            }, delay);
+        });
+    </script>
+<?php } ?>
