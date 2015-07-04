@@ -575,6 +575,9 @@ foreach ($categories as $category) {
             <input type="checkbox" name="auto-update<?php echo $count ?>" value="male">
                 بروزرسانی خودکاربرای یک هفته
             <br/>
+            <input type="checkbox" name="dont-insert<?php echo $count ?>" value="male">
+عدم فراخوانی برای یک ماه
+            <br/>
             <?php } else { ?>
                 <span id="ins<?php echo $count ?>" class="ins">افزودن کالا</span>
             <?php } ?>
@@ -587,6 +590,7 @@ foreach ($categories as $category) {
                     $(document).ready(function () {
                         $("#upd<?php echo $count  ?>").click(function () {
                             var isChecked = $("input[name='auto-update<?php echo $count ?>']").is(":checked") ? 1:0;
+                            var notRelated = $("input[name='dont-insert<?php echo $count ?>']").is(":checked") ? 1:0;
                             var subprofile = '<?php echo $subprofile_id  ?>';
                             var dec = '<?php echo $text ?>';
                             var price = $("#newPrice<?php echo $count ?>").val();
@@ -594,8 +598,7 @@ foreach ($categories as $category) {
                             var c_id = '<?php echo $c_id ?>';
                             var subprofile_name = '<?php echo $subprofile_name; ?>';
                             var text = '<?php echo $text ?>';
-
-                            var url = 'udp.php?pid=' + product + '&s=' + subprofile + '&p=' + price + '&d=' + dec + '&c_id=' + c_id + '&auto_update=' + isChecked + '&subprofile_name=' + subprofile_name + '&text=' + text;
+                            var url = 'udp.php?pid=' + product + '&s=' + subprofile + '&p=' + price + '&d=' + dec + '&c_id=' + c_id + '&auto_update=' + isChecked + '&subprofile_name=' + subprofile_name + '&text=' + text + '&not_related=' + notRelated;
 
                             $.ajax({
                                 type: "GET",

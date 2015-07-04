@@ -37,6 +37,11 @@ $login = new Login();
         } else  {
             $auto_update = $_GET["auto_update"];
         }
+        if (!isset($_GET["not_related"]))  {
+            $not_related = false;
+        } else  {
+            $not_related = $_GET["not_related"];
+        }
         if (!isset($_GET["subprofile_name"]))  {
             $subprofile_name = "";
         } else  {
@@ -102,6 +107,21 @@ if ($auto_update) {
                                  '$subprofile_name',
                                  '$text',
                                   DATE_ADD(current_date,INTERVAL 7 DAY)
+                            );";
+    echo $sql_insert;
+    mysqli_query($link_DB, $sql_insert) or die(mysqli_error());
+}
+if ($not_related) {
+    $sql_insert = "INSERT INTO `not_related`(
+                                 `related_id`,
+                                 `subprofile_name`,
+                                 `text`,
+                                 `update_until`
+                  ) VALUES (
+                                 '$product_id',
+                                 '$subprofile_name',
+                                 '$text',
+                                  DATE_ADD(current_date,INTERVAL 30 DAY)
                             );";
     echo $sql_insert;
     mysqli_query($link_DB, $sql_insert) or die(mysqli_error());
