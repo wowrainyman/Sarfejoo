@@ -4,7 +4,7 @@
 <!-- Start Open Web Analytics Tracker -->
 <script type="text/javascript">
     //<![CDATA[
-    var owa_baseUrl = 'http://hediyeirani.com/tracking/';
+    var owa_baseUrl = 'http://tracking.sarfejoo.com/';
     var owa_cmds = owa_cmds || [];
     owa_cmds.push(['setSiteId', '695b13e2138927c89b621acc0e57b574']);
     owa_cmds.push(['trackPageView']);
@@ -894,9 +894,10 @@ width:140px!important;
     <script>
         $(document).ready(function() {
             var base = "http://sarfejoo.com";
+            var forbid = "http://sarfejoo.com/index.php?route=linkrelay/external";
             var arr = [], l = document.links;
             for(var i=0; i<l.length; i++) {
-                if(l[i].href.startsWith(base)){
+                if(l[i].href.startsWith(base) && !l[i].href.startsWith(forbid)){
                     arr.push(l[i].href);
                 }
             }
