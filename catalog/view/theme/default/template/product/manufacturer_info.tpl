@@ -1,171 +1,212 @@
-<?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
-  <div class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-    <?php } ?>
-  </div>
-  <h1><?php echo $heading_title; ?></h1>
-  <?php if ($products) { ?>
-  <div class="product-filter">
-    <div class="display"><b><?php echo $text_display; ?></b> <?php echo $text_list; ?> <b>/</b> <a onclick="display('grid');"><?php echo $text_grid; ?></a></div>
-    <div class="limit"><?php echo $text_limit; ?>
-      <select onchange="location = this.value;">
-        <?php foreach ($limits as $limits) { ?>
-        <?php if ($limits['value'] == $limit) { ?>
-        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
-        <?php } ?>
-        <?php } ?>
-      </select>
+<?php echo $header; ?>
+<style>
+    @media (max-width: 720px) {
+        .custom-margin-0{
+            margin-top: 0px !important;
+        }
+        .custom-margin-50{
+            margin-top: -50px !important;
+        }
+    }
+</style>
+<div class="row custom-margin-0" style="margin-top: 0px;">
+    <div class="col-md-12 col-xs-12 custom-margin-50" style="padding: 4px">
+        <div class="row custom-margin hidden-xs" style="margin-top: 60px;">
+            <div class="col-md-12">
+                <div class="">
+                    <?php if ($products) { ?>
+                    <div class="product-filter">
+                        <div class="display">
+                            <a style="margin: 5px;" onclick="display('list');"><img id="list-icon" src="catalog/view/icons/view-list.png" width="25" height="25" /></a>
+                            <a style="margin: 5px;" onclick="display('grid');"><img id="grid-icon" src="catalog/view/icons/view-column-inactive.png" width="25" height="25" /></a>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="padding: 4px;">
+                <div id="content" class="row">
+                    <?php echo $content_top; ?>
+                    <?php if ($products) { ?>
+                    <div class="product-list">
+                        <div id="grid-div"  style="display: none;">
+                            <?php foreach ($products as $product) { ?>
+                            <!-- GridView -->
+                            <div class="col-md-3 col-xs-6 col-centered grid-div" style="padding: 4px;" >
+                                <div class="col-md-12 box-shadow" style="text-align: center;padding: 4px;">
+                                    <div class="row" style="height: 50px;">
+                                        <a href="<?php echo $product['href']; ?>">
+                                            <?php
+                                                    mb_internal_encoding("UTF-8");
+                                                    $str = $product['name'];
+                                                    $trimedStr = mb_substr($product['name'], 0, 36);
+                                            ?>
+                                            <span style="margin: auto;" title="<?php echo $product['name']; ?>" ><?php echo $trimedStr?>
+                                                <?php
+                                                    if($str!=$trimedStr){
+                                                        echo '...';
+                                                    }
+                                                ?>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <img src="<?php echo $product['thumb']; ?>" style="width: 120px;height: 120px;" width="120" height="120" />
+                                    </div>
+                                    <div class="row">
+                                <span style="display: block;margin-top: 7px;font-size: 15px;;color: #5AA103;">
+                                    <?php if (!$product['special']) { ?>
+                                    <?php if ($product['price']!=0) { ?>
+                                    <img src="catalog/view/icons/green-down.png" width="15" height="10" />
+                                    <?php echo $product['price']; ?>
+                                    <?php }else { ?>
+                                    <?php echo $text_without_price; ?>
+                                    <?php } ?>
+                                    <?php } else { ?>
+                                    <span class="price-old">
+                                    <?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+                                    <?php } ?>
+                                </span>
+                                    </div>
+                                    <div class="row" style="margin-top: 5px;margin-right: -10px;">
+
+                                        <a class="btn btn-default" style="font-size: 13px;" role="button" onclick="addToWishList('<?php echo $product['product_id']; ?>','<?php echo $product['thumb']; ?>','<?php echo $product['href']; ?>','<?php echo $product['name']; ?>');">
+                                            <img src="catalog/view/icons/favorite-icon.png" width="10" height="10" />
+                                            افزودن به علاقه مندی ها
+                                        </a>
+                                    </div>
+                                    <div class="row" style="margin-top: 5px;">
+                                        <a class="btn btn-default" style="font-size: 13px;" role="button" onclick="addToCompare('<?php echo $product['product_id']; ?>','<?php echo $product['thumb']; ?>','<?php echo $product['href']; ?>','<?php echo $product['name']; ?>');">
+                                            <img src="catalog/view/icons/compare-icon.png" width="17" height="10" />
+                                            مقایسه
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } ?>
+                        </div>
+                        <div id="list-div"  style="padding-top: 0px;">
+                            <?php foreach ($products as $product) { ?>
+                            <!-- ListView -->
+                            <div class="col-md-6 col-xs-6 col-centered" class="" style="padding: 4px;" >
+                                <div class="col-md-12 box-shadow right-align" style="padding: 4px;">
+                                    <div class="row row-centered" style="margin: 10px;height: 50px;">
+                                        <div class="col-md-12 col-centered">
+                                            <a href="<?php echo $product['href']; ?>">
+                                                <span style="margin: auto;">
+                                                    <?php echo $product['name']; ?>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <img src="<?php echo $product['thumb']?>" width="130" height="130" style="float: right;" />
+                                        <img src="catalog/view/images/up-down-arrow.png" style="float: right;margin-right: 10px;margin-top: 20px;" />
+                                        <div  style="float: right;margin-top: 20px;margin-right: 30px;">
+                                    <span style="display: block;">
+                                        <?php echo number_format($product['maxprice'])?>
+                                        تومان
+                                    </span>
+                                    <span style="display: block;margin-top: 7px;font-size: large;color: #8AB705;">
+                                        <?php echo number_format($product['avg_price'])?>
+                                        تومان
+                                    </span>
+                                    <span style="display: block;margin-top: 7px;">
+                                        <?php echo number_format($product['minprice'])?>
+                                        تومان
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-centered" style="margin-top: 5px;">
+                                        <div class="col-md-12 col-centered">
+                                            <img src="catalog/view/images/splitter2.png" height="10" width="10" />
+                                            <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($product['providers_count'])?></span>
+                                    <span>
+                                        عرضه کننده
+                                        این محصول
+                                        را ارائه میدهند
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-centered" style="margin-top: 5px;">
+
+                                        <a class="btn btn-default" style="font-size: 13px;margin: 3px;" role="button" onclick="addToWishList('<?php echo $product['product_id']; ?>','<?php echo $product['thumb']; ?>','<?php echo $product['href']; ?>','<?php echo $product['name']; ?>');">
+                                            <img src="catalog/view/icons/favorite-icon.png" width="10" height="10" />
+                                            افزودن به علاقه مندی ها
+                                        </a>
+
+                                        <a class="btn btn-default" style="font-size: 13px;margin: 3px;"" role="button" onclick="addToCompare('<?php echo $product['product_id']; ?>','<?php echo $product['thumb']; ?>','<?php echo $product['href']; ?>','<?php echo $product['name']; ?>');">
+                                        <img src="catalog/view/icons/compare-icon.png" width="17" height="10" />
+                                        مقایسه
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="s-pc-c-c-pagenation"><?php echo $pagination; ?></div>
+                    <?php } ?>
+                    <?php if (!$categories && !$products) { ?>
+                    <div class="content"><?php echo $text_empty; ?></div>
+                    <div class="buttons">
+                        <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
+                    </div>
+                    <?php } ?>
+                    <?php echo $content_bottom; ?></div>
+            </div>
+        </div>
     </div>
-    <div class="sort"><?php echo $text_sort; ?>
-      <select onchange="location = this.value;">
-        <?php foreach ($sorts as $sorts) { ?>
-        <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-        <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-        <?php } else { ?>
-        <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
-        <?php } ?>
-        <?php } ?>
-      </select>
-    </div>
-  </div>
-  <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
-  <div class="product-list">
-    <?php foreach ($products as $product) { ?>
-    <div>
-      <?php if ($product['thumb']) { ?>
-      <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
-      <?php } ?>
-      <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-      <div class="description"><?php echo $product['description']; ?></div>
-      <?php if ($product['price']) { ?>
-      <div class="price">
-        <?php if (!$product['special']) { ?>
-        <?php echo $product['price']; ?>
-        <?php } else { ?>
-        <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
-        <?php } ?>
-        <?php if ($product['tax']) { ?>
-        <br />
-        <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
-        <?php } ?>
-      </div>
-      <?php } ?>
-      <?php if ($product['rating']) { ?>
-      <div class="rating"><img src="catalog/view/theme/default/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
-      <?php } ?>
-      <div class="cart">
-        <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
-      </div>
-      <div class="wishlist"><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><?php echo $button_wishlist; ?></a></div>
-      <div class="compare"><a onclick="addToCompare('<?php echo $product['product_id']; ?>');"><?php echo $button_compare; ?></a></div>
-    </div>
-    <?php } ?>
-  </div>
-  <div class="pagination"><?php echo $pagination; ?></div>
-  <?php } else { ?>
-  <div class="content"><?php echo $text_empty; ?></div>
-  <div class="buttons">
-    <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
-  </div>
-  <?php }?>
-  <?php echo $content_bottom; ?></div>
-<script type="text/javascript"><!--
-function display(view) {
-	if (view == 'list') {
-		$('.product-grid').attr('class', 'product-list');
-		
-		$('.product-list > div').each(function(index, element) {
-			html  = '<div class="right">';
-			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
-			html += '  <div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
-			html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';
-			html += '</div>';			
-			
-			html += '<div class="left">';
-			
-			var image = $(element).find('.image').html();
-			
-			if (image != null) { 
-				html += '<div class="image">' + image + '</div>';
-			}
-			
-			var price = $(element).find('.price').html();
-			
-			if (price != null) {
-				html += '<div class="price">' + price  + '</div>';
-			}
-					
-			html += '  <div class="name">' + $(element).find('.name').html() + '</div>';
-			html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
-			
-			var rating = $(element).find('.rating').html();
-			
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
-				
-			html += '</div>';
-						
-			$(element).html(html);
-		});		
-		
-		$('.display').html('<b><?php echo $text_display; ?></b> <?php echo $text_list; ?> <b>/</b> <a onclick="display(\'grid\');"><?php echo $text_grid; ?></a>');
-		
-		$.totalStorage('display', 'list'); 
-	} else {
-		$('.product-list').attr('class', 'product-grid');
-		
-		$('.product-grid > div').each(function(index, element) {
-			html = '';
-			
-			var image = $(element).find('.image').html();
-			
-			if (image != null) {
-				html += '<div class="image">' + image + '</div>';
-			}
-			
-			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
-			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
-			
-			var price = $(element).find('.price').html();
-			
-			if (price != null) {
-				html += '<div class="price">' + price  + '</div>';
-			}
-						
-			var rating = $(element).find('.rating').html();
-			
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
-						
-			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
-			html += '<div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
-			html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';
-			
-			$(element).html(html);
-		});	
-					
-		$('.display').html('<b><?php echo $text_display; ?></b> <a onclick="display(\'list\');"><?php echo $text_list; ?></a> <b>/</b> <?php echo $text_grid; ?>');
-		
-		$.totalStorage('display', 'grid');
-	}
-}
+</div>
+<script type="text/javascript">
+    function display(view) {
+        if (view == 'list') {
+            $('#grid-icon').attr("src","catalog/view/icons/view-column-inactive.png");
+            $('#grid-div').css("display","none");
+            $('#list-icon').attr("src","catalog/view/icons/view-list.png");
+            $('#list-div').css("display","");
+            $.totalStorage('display', 'list');
+        } else {
+            $('#grid-icon').attr("src","catalog/view/icons/view-column.png");
+            $('#grid-div').css("display","");
+            $('#list-icon').attr("src","catalog/view/icons/view-list-inactive.png");
+            $('#list-div').css("display","none");
+            $.totalStorage('display', 'grid');
+        }
+    }
+    view = $.totalStorage('display');
+    if (view) {
+        display(view);
+    } else {
+        display('grid');
 
-view = $.totalStorage('display');
+    }
+    $("#filter-subprofile").change(function () {
+        if($( this ).val() != 0){
+            var link = "<?php echo $currentUrl; ?>";
+            for(var i=0;i<10;i++){
 
-if (view) {
-	display(view);
-} else {
-	display('list');
-}
-//--></script> 
+                var link = link.replace("&amp;", "&");
+            }
+            window.location.href = link+"&subprofile_id="+$( this ).val();
+        }else{
+            var link = "<?php echo $Url; ?>";
+            for(var i=0;i<10;i++){
 
+                var link = link.replace("&amp;", "&");
+            }
+            window.location.href = link;
+        }
 
-<?php include 'seo-keyword.php'; ?>
+    });
+</script>
+</div>
+
+<div id="bseo">
+    <?php echo $stext; ?>
+</div>
 
 <?php echo $footer; ?>
