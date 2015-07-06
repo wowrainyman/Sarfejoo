@@ -135,7 +135,11 @@ class ControllerProductCategory extends Controller
 
         if ($category_info) {
             $this->data['stext'] = $this->generateSeoText($category_info['seo_generator'], $category_info['rss_link']);
-            $this->document->setTitle($category_info['name']);
+            if($category_info['custom_title']!=""){
+                $this->document->setTitle($category_info['custom_title']);
+            }else{
+                $this->document->setTitle($category_info['name']);
+            }
             $this->document->setDescription($category_info['meta_description']);
             $this->document->setKeywords($category_info['meta_keyword']);
             $this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
