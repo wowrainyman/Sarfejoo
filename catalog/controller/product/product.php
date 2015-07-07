@@ -270,6 +270,8 @@ class ControllerProductProduct extends Controller
 
         $this->data['date_added'] = jdate("l - j F o",strtotime($product_info['date_added']));
 
+
+
         if ($product_info) {
             $this->data['stext'] = $this->generateSeoText($product_info['seo_generator'],$product_info['rss_link']);
             $url = '';
@@ -414,6 +416,7 @@ class ControllerProductProduct extends Controller
             } else {
                 $this->data['price'] = false;
             }
+            $this->data['lastUpdate'] = jdate("l - j F o",strtotime($this->model_provider_pu_subprofile->getLastUpdateTimeOfProduct($this->request->get['product_id'])));
 # Start Prices
             $this->data['minprice'] = $this->model_provider_pu_subprofile->GetMinimumPriceOfProduct($this->request->get['product_id']);
             $this->data['maxprice'] = $this->model_provider_pu_subprofile->GetMaximumPriceOfProduct($this->request->get['product_id']);

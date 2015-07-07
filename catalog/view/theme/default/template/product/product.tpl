@@ -133,6 +133,14 @@ return "$difference $periods[$j] پیش ";
                 <div class="row row-centered" style="margin-top: 20px;margin-bottom: 20px;">
                     <div class="col-md-12 col-centered">
                         <button type="button" class="btn btn-default" style="cursor: default;">
+                            آخرین بروز رسانی:
+                            <?php echo $lastUpdate; ?>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-centered" style="margin-top: 20px;margin-bottom: 20px;">
+                    <div class="col-md-12 col-centered">
+                        <button type="button" class="btn btn-default" style="cursor: default;">
                             <?php echo $date_added; ?>
 معرفی شده است
                         </button>

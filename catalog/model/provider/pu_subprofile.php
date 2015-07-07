@@ -698,7 +698,7 @@ class ModelProviderPuSubprofile extends Model
         while ($row = mysqli_fetch_assoc($result_select)) {
            return $row['cnt'];
         }
-        return $result;
+        return false;
     }
     public function GetListOfProductsOfSubprofileByID($subprofile_id,$page,$limit)  // Products Of Subprofile (list Image, price, Name, ID)
     {
@@ -865,5 +865,17 @@ class ModelProviderPuSubprofile extends Model
         }
 
         return false;
+    }
+    public function getLastUpdateTimeOfProduct($product_id){
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $result = array();
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` WHERE `product_id` = $product_id AND status_id <> 0 ORDER BY update_date DESC";
+        // $sql_select_string.=" LIMIT " . (int)$data['start'] . "," . (int)$data['limit']
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            return $row['update_date'];
+        }
+        return $result_select;
     }
 }
