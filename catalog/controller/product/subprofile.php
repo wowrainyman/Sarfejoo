@@ -18,11 +18,18 @@ class ControllerProductSubprofile extends Controller
             'href' => $this->url->link('common/home'),
             'separator' => false
         );
-        $this->data['breadcrumbs'][] = array(
-            'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('product/subprofiles'),
-            'separator' => $this->language->get('text_separator')
-        );
+
+        if (isset($this->request->get['page'])) {
+            $page = $this->request->get['page'];
+        } else {
+            $page = 1;
+        }
+
+        if (isset($this->request->get['limit'])) {
+            $limit = $this->request->get['limit'];
+        } else {
+            $limit = $this->config->get('config_catalog_limit');
+        }
 
         $this->load->model('provider/pu_subprofile');
         $this->load->model('provider/pu_rating');
@@ -127,8 +134,15 @@ class ControllerProductSubprofile extends Controller
         }
         $this->data['rates_info'] = $rates_info;
 
-
-        $products = $this->model_provider_pu_subprofile->GetListOfProductsOfSubprofileByID($subprofile_id);
+        $total = $this->model_provider_pu_subprofile->CountGetListOfProductsOfSubprofileByID($subprofile_id);
+        $products = $this->model_provider_pu_subprofile->GetListOfProductsOfSubprofileByID($subprofile_id,$page,$limit);
+        for($i=0;$i<count($products)-1;$i++){
+            $info = $this->model_provider_pu_subprofile->GetSpecificProductsOfSubprofile($subprofile_id,$products[$i]['product_id']);
+            $products[$i]['sub_price'] = $info['price'];
+            $products[$i]['buy_link'] = $info['buy_link'];
+            $products[$i]['description'] = $info['description'];
+            $products[$i]['update_date'] = $info['update_date'];
+        }
 
         $this->data['comments'] = $this->model_provider_pu_subprofile->GetSubprofileComments($subprofile_id);
         if (isset($products)) {
@@ -145,6 +159,15 @@ class ControllerProductSubprofile extends Controller
         } else {
             $this->template = 'default/template/product/subprofile.tpl';
         }
+        $this->data['total'] = $total;
+
+        $pagination = new Pagination();
+        $pagination->total = $total;
+        $pagination->page = $page;
+        $pagination->limit = $limit;
+        $pagination->text = $this->language->get('text_pagination');
+        $pagination->url = $this->url->link('product/subprofile', 'id=' . $subprofile_id . '&page={page}');
+        $this->data['pagination'] = $pagination->render();
 
 # Children
         $this->children = array(

@@ -7,18 +7,17 @@ function ago($time) {
        $difference     = $now - $time;
        $tense         = "ago";
    for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
-$difference /= $lengths[$j]; 
+$difference /= $lengths[$j];
 }
 $difference = round($difference);
 return "$difference $periods[$j] پیش ";
 }
 ?>
-<div id="s-page-content" class="s-row">
+<div id="" class="">
      <div class="s-pc-title"><h1><?php echo $subprofile['title']; ?></h1></div>
-     <div class="s-row s-pc-option-bar">     </div>
      <?php echo $column_left; ?><?php echo $column_right; ?>
 
-<div id="content" class="s-pc-c-center">
+<div id="" class="">
      <?php echo $content_top; ?>
 
   <div class="breadcrumb">
@@ -96,7 +95,7 @@ return "$difference $periods[$j] پیش ";
                               </select>
                           <?php } ?>
                       <?php } ?>
-                  <input type="submit" value="ثبت رای"/>
+                  <!--<input type="submit" value="ثبت رای"/>-->
                   </form>
               </p>
           </div>
@@ -106,14 +105,76 @@ return "$difference $periods[$j] پیش ";
 </div>
 
   <div id="tabs" class="htabs">
-    <a href="#tab-provider"><?php echo $text_products; ?> (<?php echo count($products); ?>)</a>
-    <a href="#tab-map"><?php echo $text_map; ?></a>
-    <a href="#tab-cmments"><?php echo $text_cmments; ?></a>
+    <a href="#tab-provider"><?php echo $text_products; ?> (<?php echo $total; ?>)</a>
+   <!-- <a href="#tab-map"><?php echo $text_map; ?></a>
+    <a href="#tab-cmments"><?php echo $text_cmments; ?></a>-->
   </div>
 <div id="tab-provider" class="tab-content">
-     provider
+    <?php foreach ($products as $product) { ?>
+    <div class="row">
+        <div class="col-md-12 box-shadow">
+            <div class="row row-centered no-guarantee <?php if(empty($product['buy_link'])) echo 'no-online'; ?>">
+                <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-5">
+                            <img style="width: 100px;height: 100px;" height="100" width="100" src="image/<?php echo $product['image'] ?>" />
+                        </div>
+                        <div class="col-md-3">
+                            <?php echo $provider['title']; ?>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                                                <span>
+                                                    وضعیت:
+                                                </span>
+                                                <span>
+                                                    موجود
+                                                </span>
+                            <br/>
+                                                <span>
+    بروز رسانی:
+                                                </span>
+                            <span><?php echo ago(strtotime($product['update_date']));?></span><br/>
+                                                <span>
+                                                    گارانتی
+                                                </span>
+                                                <span>
+                                                    ندارد
+                                                </span>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-5">
+                            <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
+                                <?php echo number_format($product['price']);?>
+                            </button>
+                            <?php if(!empty($product['buy_link'])) { ?>
+                            <a role="button" href="index.php?route=linkrelay/external&type=buy&url=<?php echo $product['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                خرید آنلاین
+                            </a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<span>
+                                توضیحات فروشگاه:
+                            </span>
+                            <span>
+                                <?php echo $provider['description'];?>
+                            </span>-->
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <?php } ?>
+        <div class="s-pc-c-c-pagenation"><?php echo $pagination; ?></div>
 </div>
-<div id="tab-map" class="tab-content">
+<!--<div id="tab-map" class="tab-content">
                         <fieldset class="gllpLatlonPicker">
                             <input id="Search" type="text" class="gllpSearchField"
                                    style="visibility: hidden;display:none;">
@@ -160,269 +221,13 @@ return "$difference $periods[$j] پیش ";
         </tr>
         </form>
     </table>
-</div>
-  
+</div>-->
+
   <?php echo $content_bottom; ?></div>
   </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.subRate').jRating({
-            step:true,
-            length : 5
-        });
-    });
-</script>
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('.colorbox').colorbox({
-		overlayClose: true,
-		opacity: 0.5,
-		rel: "colorbox"
-	});
-});
-//--></script> 
-<script type="text/javascript"><!--
-
-$('select[name="profile_id"], input[name="quantity"]').change(function(){
-    $.ajax({
-		url: 'index.php?route=product/product/getRecurringDescription',
-		type: 'post',
-		data: $('input[name="product_id"], input[name="quantity"], select[name="profile_id"]'),
-		dataType: 'json',
-        beforeSend: function() {
-            $('#profile-description').html('');
-        },
-		success: function(json) {
-			$('.success, .warning, .attention, information, .error').remove();
-            
-			if (json['success']) {
-                $('#profile-description').html(json['success']);
-			}	
-		}
-	});
-});
-    
-$('#button-cart').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=checkout/cart/add',
-		type: 'post',
-		data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
-		dataType: 'json',
-		success: function(json) {
-			$('.success, .warning, .attention, information, .error').remove();
-			
-			if (json['error']) {
-				if (json['error']['option']) {
-					for (i in json['error']['option']) {
-						$('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
-					}
-				}
-                
-                if (json['error']['profile']) {
-                    $('select[name="profile_id"]').after('<span class="error">' + json['error']['profile'] + '</span>');
-                }
-			} 
-			
-			if (json['success']) {
-				$('#notification').html('<div class="success" style="display: none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
-					
-				$('.success').fadeIn('slow');
-					
-				$('#cart-total').html(json['total']);
-				
-				$('html, body').animate({ scrollTop: 0 }, 'slow'); 
-			}	
-		}
-	});
-});
-//--></script>
-<script type="text/javascript"><!--
-$('#review .pagination a').live('click', function() {
-	$('#review').fadeOut('slow');
-		
-	$('#review').load(this.href);
-	
-	$('#review').fadeIn('slow');
-	
-	return false;
-});			
-
-$('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
-
-$('#button-review').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
-		type: 'post',
-		dataType: 'json',
-		data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
-		beforeSend: function() {
-			$('.success, .warning').remove();
-			$('#button-review').attr('disabled', true);
-			$('#review-title').after('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-review').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(data) {
-			if (data['error']) {
-				$('#review-title').after('<div class="warning">' + data['error'] + '</div>');
-			}
-			
-			if (data['success']) {
-				$('#review-title').after('<div class="success">' + data['success'] + '</div>');
-								
-				$('input[name=\'name\']').val('');
-				$('textarea[name=\'text\']').val('');
-				$('input[name=\'rating\']:checked').attr('checked', '');
-				$('input[name=\'captcha\']').val('');
-			}
-		}
-	});
-});
-//--></script> 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
-//--></script> 
-<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	if ($.browser.msie && $.browser.version == 6) {
-		$('.date, .datetime, .time').bgIframe();
-	}
-
-	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-	$('.datetime').datetimepicker({
-		dateFormat: 'yy-mm-dd',
-		timeFormat: 'h:m'
-	});
-	$('.time').timepicker({timeFormat: 'h:m'});
-});
-//--></script> 
-
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBM_cpcmVumeIbUSmEZLhhgfThkbV678CA&sensor=false" />
-<script type="text/javascript">
-
-</script>
-<script type="text/javascript">
-    function initializeMap(MapId, Lat, Lng, MapType, Zoom) {
-        var mapProp = {
-            center: new google.maps.LatLng(Lat, Lng),
-            zoom: Zoom,
-            mapTypeId: MapType,
-            scrollwheel: true,
-            zoomControl: false,
-            streetViewControl: false,
-            panControl: false,
-            panControlOptions:
-            {
-                position: google.maps.ControlPosition.LEFT_TOP
-            },
-            zoomControlOptions:
-            {
-                position: google.maps.ControlPosition.RIGHT_CENTER
-            },
-            tilt: 45,
-            mapTypeControl:false
-        };
-        var map = new google.maps.Map(document.getElementById(MapId), mapProp);
-        return map;
-    }
-    var map;//نقشه سایت
-    google.maps.event.addDomListener(window, 'load', MakeMap());
-    markers = new Array();
-    points = new Array();
-    infowindow = new Array();
-    infoWindowses = new Array();
-    var point = new Array();
-    var marker = new Array();
-    var count=0;
-    function loadPoints() {
-    <?php foreach ($providers as $provider) { ?>
-        point[count] = new google.maps.LatLng(<?php echo $provider['lat'] ?>, <?php echo $provider['lon'] ?>);
-        marker[count] = new google.maps.Marker({
-            position: point[count],
-            animation: google.maps.Animation.DROP
-        });
-        infowindow[count] = new google.maps.InfoWindow({
-            content: "<span style='text-align: center;padding-right: 20px;'><?php echo $provider['title'] ?></span>"
-        });
-        google.maps.event.addListener(marker[count], 'click', function () {
-            for (var i = 0; i < infoWindowses.length; i++) {
-                infoWindowses[i].close();
-            }
-            infoWindowses[count-1].open(map, marker[count]);
-            map.panTo(point[count]);
-        });
-        marker[count].setMap(map);
-        markers.push(marker[count]);
-        points.push(point[count]);
-        infoWindowses.push(infowindow[count]);
-        count++;
-    <?php } ?>
-    }
-    function MakeMap() {
-        if (navigator.geolocation) {
-            $("#preloader").fadeIn("slow");
-            navigator.geolocation.getCurrentPosition(success, error);
-        } else {
-            error('not supported');
-            $("#preloader").delay(350).fadeOut("slow");
-        }
-    }
-    function error(msg) {
-        map = initializeMap("Gmap", 35.6961, 51.4231, google.maps.MapTypeId.ROADMAP, 15);
-
-        var point = new google.maps.LatLng(35.6961, 51.4231);
-        var marker = new google.maps.Marker({
-            position: point,
-            animation: google.maps.Animation.DROP
-        });
-        var infowindow = new google.maps.InfoWindow({
-            content: "<span style='padding-top:20px;'>محل قرارگیری شما</span>"
-        });
-        infoWindowses.push(infowindow);
-        google.maps.event.addListener(marker, 'click', function () {
-            for (var i = 0; i < infoWindowses.length; i++) {
-                infoWindowses[i].close();
-            }
-            infowindow.open(map, marker);
-            map.panTo(point);
-        });
-        marker.setMap(map);
-        markers.push(marker);
-        points.push(point);
-        loadPoints();
-    }
-    function success(position) {
-        map = initializeMap("Gmap", position.coords.latitude, position.coords.longitude, google.maps.MapTypeId.ROADMAP, 15);
-        var point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        var marker = new google.maps.Marker({
-            position: point,
-            animation: google.maps.Animation.DROP
-        });
-        var infowindow = new google.maps.InfoWindow({
-            content:"<span style='padding-top:20px;'>محل قرارگیری شما</span>"
-        });
-        infoWindowses.push(infowindow);
-        google.maps.event.addListener(marker, 'click', function () {
-            for (var i = 0; i < infoWindowses.length; i++) {
-                infoWindowses[i].close();
-            }
-            infowindow.open(map, marker);
-            map.panTo(point);
-        });
-        marker.setMap(map);
-        markers.push(marker);
-        points.push(point);
-        loadPoints();
-    }
-    function ShowProvidersOnMap() {
-        for (var i = 0; i < markers.length; i++) {
-            marker.setMap(map);
-        }
-    }
-</script>
+//--></script>
 
 <?php include 'seo-keyword.php'; ?>
 

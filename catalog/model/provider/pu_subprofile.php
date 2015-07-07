@@ -606,6 +606,18 @@ class ModelProviderPuSubprofile extends Model
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         return $result_select;
     }
+    public function GetSpecificProductsOfSubprofile($subprofile_id,$product_id)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $result = array();
+        $sql_select_string = "SELECT * FROM `pu_subprofile_product` LEFT JOIN`pu_subprofile` ON  `pu_subprofile`.id = `pu_subprofile_product`.subprofile_id LEFT JOIN `pu_subprofile_verification` ON pu_subprofile.id=`pu_subprofile_verification`.subprofile_id WHERE `pu_subprofile_product`.status_id <> 0 AND (`pu_subprofile_product`.price <> 0 OR `pu_subprofile_product`.guarantee_price <> 0) AND ((`pu_subprofile_verification`.expire_date > CURDATE()) OR `pu_subprofile`.financial_exception = 1) AND `pu_subprofile_product`.`update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY)  AND `pu_subprofile_product`.`subprofile_id` = $subprofile_id AND `pu_subprofile_product`.`product_id` = $product_id  AND(`pu_subprofile_product`.`availability` = 0 or`pu_subprofile_product`.`availability` = 2)  ORDER BY `pu_subprofile_product`.`update_date` DESC";
+
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            return $row;
+        }
+    }
     public function GetProductOfSubprofile($subprofileProductId)
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
@@ -671,7 +683,7 @@ class ModelProviderPuSubprofile extends Model
         }
         return false;
     }
-    public function GetListOfProductsOfSubprofileByID($subprofile_id)  // Products Of Subprofile (list Image, price, Name, ID)
+    public function CountGetListOfProductsOfSubprofileByID($subprofile_id)  // Products Of Subprofile (list Image, price, Name, ID)
     {
         $pu_database_name = $GLOBALS['pu_database_name'];
         $oc_database_name = $GLOBALS['oc_database_name'];
@@ -680,7 +692,24 @@ class ModelProviderPuSubprofile extends Model
         $exist = false;
         $result = array();
 
-        $sql_select_string = "SELECT ocp.`product_id`, ocp.`image`,ocd.`name`,pusp.`price` FROM `oc_product` ocp, `oc_product_description` ocd, $pu_database_name.`pu_subprofile_product` pusp WHERE ocp.`product_id`= pusp.`product_id` and ocp.`product_id` = ocd.`product_id`and pusp.`subprofile_id` = $subprofile_id";
+        $sql_select_string = "SELECT COUNT(ocp.`product_id`) AS cnt FROM `oc_product` ocp, `oc_product_description` ocd, $pu_database_name.`pu_subprofile_product` pusp WHERE ocp.`product_id`= pusp.`product_id` and ocp.`product_id` = ocd.`product_id`and pusp.`subprofile_id` = $subprofile_id";
+        $result_select = mysqli_query($con_OC_db, $sql_select_string) or die(mysqli_error());
+
+        while ($row = mysqli_fetch_assoc($result_select)) {
+           return $row['cnt'];
+        }
+        return $result;
+    }
+    public function GetListOfProductsOfSubprofileByID($subprofile_id,$page,$limit)  // Products Of Subprofile (list Image, price, Name, ID)
+    {
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+
+        $con_OC_db = $GLOBALS['con_OC_db'];
+        $exist = false;
+        $result = array();
+        $offset = ($page - 1)* $limit;
+        $sql_select_string = "SELECT ocp.`product_id`, ocp.`image`,ocd.`name`,pusp.`price` FROM `oc_product` ocp, `oc_product_description` ocd, $pu_database_name.`pu_subprofile_product` pusp WHERE ocp.`product_id`= pusp.`product_id` and ocp.`product_id` = ocd.`product_id`and pusp.`subprofile_id` = $subprofile_id limit $limit OFFSET $offset";
 
         $result_select = mysqli_query($con_OC_db, $sql_select_string) or die(mysqli_error());
 
