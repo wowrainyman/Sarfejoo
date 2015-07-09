@@ -23,14 +23,21 @@ class ControllerLinkRelayExternal extends Controller {
      } else {
           $this->data['logo'] = '';
      }
+    if (isset($this->request->get['return_id'])) {
+        $return_id  =$this->request->get['return_id'];
+    } else {
+        $return_id = HTTP_SERVER;
+    }
 
-     $this->data['site_link'] = HTTP_SERVER;
+     $this->data['site_link'] = $this->url->link('product/product', '&product_id=' . $return_id);
 
      if (isset($this->request->get['url'])) {
           $relay_url  =$this->request->get['url'];
      } else {
           $relay_url = HTTP_SERVER;
      }
+
+
 
      if (isset($this->request->get['type'])) {
           $type = $this->request->get['type'];
