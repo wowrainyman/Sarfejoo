@@ -28,7 +28,8 @@ $text = trim($text);
 $price = preg_replace("/[^0-9.]/", "", $price);
 if (!empty($subprofile_name)) {
     $not_related = false;
-    $sql_pu = "SELECT * FROM not_related WHERE related_id = '$related_id' AND subprofile_name = '$subprofile_name' AND text = '$text' AND update_until > current_date";
+    $sql_pu = "SELECT * FROM not_related WHERE related_id = '$related_id' AND subprofile_name = '$subprofile_name' AND text = '$text' AND remove_until > current_date";
+    echo $sql_pu;
     $result_select_pu = mysqli_query($link_DB, $sql_pu) or die(mysqli_error());
     while ($row = mysqli_fetch_assoc($result_select_pu)) {
         $not_related = true;

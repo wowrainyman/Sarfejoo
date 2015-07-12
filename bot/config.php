@@ -10,6 +10,9 @@ if ($local=='1') {
      $DB_name = 'sarfe_bot';
      $OC_DB_name = 'sarfe_oc';
      $PU_DB_name = 'sarfe_pu';
+    $GLOBALS['pu_database_name'] = "sarfe_pu";
+    $GLOBALS['oc_database_name'] = "sarfe_oc";
+    $GLOBALS['bot_database_name'] = "sarfe_bot";
 } else {
      $DB_host = 'localhost';
      $DB_user = 'manirahn_sarfe';
@@ -17,6 +20,9 @@ if ($local=='1') {
      $DB_name = 'manirahn_sarfe_bot';
      $OC_DB_name = 'manirahn_sarfe_oc';
      $PU_DB_name = 'manirahn_sarfe_pu';
+    $GLOBALS['pu_database_name'] = "manirahn_sarfe_pu";
+    $GLOBALS['oc_database_name'] = "manirahn_sarfe_oc";
+    $GLOBALS['bot_database_name'] = "manirahn_sarfe_bot";
 }
 
 $link_DB = mysqli_connect($DB_host, $DB_user, $DB_pwd, $DB_name) or die ('Cannot connect to server');

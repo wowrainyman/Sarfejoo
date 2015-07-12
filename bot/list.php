@@ -1,9 +1,10 @@
 <?php
 // include the configs / constants for the database connection
 require_once("config/db.php");
-$oc_db_name = 'sarfe_oc';
-$pu_db_name = 'sarfe_pu';
-$bot_db_name = 'sarfe_bot';
+require_once("config.php");
+$oc_db_name = $GLOBALS['oc_database_name'];
+$pu_db_name = $GLOBALS['pu_database_name'];
+$bot_db_name = $GLOBALS['bot_database_name'];
 // load the login class
 require_once("classes/Login.php");
 
@@ -676,7 +677,7 @@ foreach ($categories as $category) {
                 </div>
             <?php } else { ?>
                 <span style="color:#FF2255;font-size:12px;direction:ltr;"><?php echo date("Y-m-d", $timestamp) ?></span>
-            <?php } ?><br/><br/>
+            <?php } ?>
             <?php if (!empty($subprofile_id) && isset($subprofile_id)) { ?>
                 <div class="bl-c">
                     <?php if (!empty($buy_link)) { ?>

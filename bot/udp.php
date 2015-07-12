@@ -116,7 +116,7 @@ if ($not_related) {
                                  `related_id`,
                                  `subprofile_name`,
                                  `text`,
-                                 `update_until`
+                                 `remove_until`
                   ) VALUES (
                                  '$product_id',
                                  '$subprofile_name',
