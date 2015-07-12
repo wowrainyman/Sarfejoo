@@ -443,7 +443,7 @@ foreach ($categories as $category) {
 ?>
 <select id="sel-lastupdate">
     <option value="false" selected>
-نمایش بر اساس  بروزرسانی
+        نمایش بر اساس  بروزرسانی
     </option>
     <option value="true" <?php if ($latest_last) echo 'selected="selected"'; ?>>
         دیرترین بروزرسانی در ابتدا
@@ -577,7 +577,7 @@ foreach ($categories as $category) {
                 بروزرسانی خودکاربرای یک هفته
             <br/>
             <input type="checkbox" name="dont-insert<?php echo $count ?>" value="male">
-عدم فراخوانی برای یک ماه
+                عدم فراخوانی برای یک ماه
             <br/>
             <?php } else { ?>
                 <span id="ins<?php echo $count ?>" class="ins">افزودن کالا</span>
@@ -585,7 +585,7 @@ foreach ($categories as $category) {
             <?php } else { ?>
                 <span id="is_r<?php echo $count ?>" class="ins2">امروز ثبت شده است.</span>
             <?php } ?>
-
+                <br/>
                 <script language="JavaScript" type="text/javascript">
 
                     $(document).ready(function () {
