@@ -11,11 +11,34 @@ class ControllerInformationNewsletter extends Controller
 {
     private $error = array();
 
+    public function invitedUser(){
+        if (!$this->customer->isLogged()) {
+            $this->session->data['warning'] = "ابتدا باید در وبسایت عضو شوید";
+            $this->redirect($this->url->link('account/login', '', 'SSL'));
+        }
+        if (!isset($this->request->get['key'])) {
+            $this->redirect($this->url->link('account/login', '', 'SSL'));
+        }
+        $this->load->model('information/pu_newsletter');
+        $this->load->model('financial/pu_newsletter');
+        $key = $this->request->get['key'];
+        $result = $this->model_information_pu_newsletter->getCustomerNewsletterStatusByKey($key);
+        if(isset($result)&&isset($result[0]['customer_id'])){
+            $this->model_financial_pu_newsletter->UpdateSuccessfulNewsletter($this->customer->getId(),0,$result[0]['customer_id']);
+            $this->redirect($this->url->link('information/newsletter', '', 'SSL'));
+        }
+
+    }
+
     public function index()
     {
         if (!$this->customer->isLogged()) {
             $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
+        }
+        if(!$this->canUseNewsletter()){
+            $this->session->data['redirect'] = $this->url->link('provider/profile', '', 'SSL');
+            $this->redirect($this->url->link('financial/newsletter_plan/confirm', '', 'SSL'));
         }
         $this->load->model('information/pu_newsletter');
 
@@ -51,87 +74,11 @@ class ControllerInformationNewsletter extends Controller
             }
             $result = $this->model_information_pu_newsletter->getCustomerNewsletterInfo($this->customer->getId());
             if ($result) {
-                $this->load->model('payment/balance');
-                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                $balance_value = $balance_info['balance'];
-                $this->load->model('setting/pu_setting');
-                $sms_price_setting_info = $this->model_setting_pu_setting->getSettingValue('newsletter_sms_price');
-                $email_price_setting_info = $this->model_setting_pu_setting->getSettingValue('newsletter_email_price');
-
-                $sms_price = $sms_price_setting_info[0]['value'];
-                $email_price = $email_price_setting_info[0]['value'];
-                $total_price = 0;
-
-                if ($email_plans != '' && !$result[0]['email_pay_status']) {
-                    $hasEmail = true;
-                    $total_price += $email_price;
-                }
-                if ($sms_plans != '' && !$result[0]['sms_pay_status']) {
-                    $hasSms = true;
-                    $total_price += $sms_price;
-                }
-                if ($balance_value < $total_price) {
-                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                    $this->redirect($this->url->link('information/newsletter', '', 'SSL'));
-                }
-
-                if($hasSms || $hasEmail){
-                    $this->load->model('purchase/pu_transaction');
-                    $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $total_price, 1);
-                    $this->load->model('purchase/pu_transaction');
-                    $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$total_price * (-1));
-                    $this->model_information_pu_newsletter->updateCustomerNewsletterSecondTransaction($result[0]['id'],$transaction_id);
-                    $this->model_information_pu_newsletter->updateCustomerNewsletterPrice($result[0]['id'],$result[0]['price']+$total_price);
-                    if($hasSms){
-                        $this->model_information_pu_newsletter->updateCustomerNewsletterSmsPay($result[0]['id'],1);
-                    }else{
-                        $this->model_information_pu_newsletter->updateCustomerNewsletterEmailPay($result[0]['id'],1);
-                    }
-                }
                 $this->model_information_pu_newsletter->updateCustomerNewsletter(
                     $result[0]['id'], $email_plans, $sms_plans);
             } else {
-                $this->load->model('payment/balance');
-                $balance_info = $this->model_payment_balance->getBalance($this->customer->getId());
-                $balance_value = $balance_info['balance'];
-
-                $this->load->model('setting/pu_setting');
-                $sms_price_setting_info = $this->model_setting_pu_setting->getSettingValue('newsletter_sms_price');
-                $email_price_setting_info = $this->model_setting_pu_setting->getSettingValue('newsletter_email_price');
-
-                $sms_price = $sms_price_setting_info[0]['value'];
-                $email_price = $email_price_setting_info[0]['value'];
-
-                $total_price = 0;
-                $hasEmail = false;
-                $hasSms = false;
-
-                if ($email_plans != '') {
-                    $hasEmail = true;
-                    $total_price += $email_price;
-                }
-                if ($sms_plans != '') {
-                    $hasSms = true;
-                    $total_price += $sms_price;
-                }
-
-                if ($balance_value < $total_price) {
-                    $this->session->data['warning'] = $this->language->get('text_low_balance');
-                    $this->redirect($this->url->link('information/newsletter', '', 'SSL'));
-                }
-
-
-                $start_date = new DateTime();
-                $end_date = date('Y-m-d H:i:s', strtotime('+365' . ' days' . date('Y-m-d H:i:s', $start_date->getTimestamp())));
-                $this->load->model('purchase/pu_transaction');
-                $transaction_id = $this->model_purchase_pu_transaction->AddBuyTransaction($this->customer->getId(), $total_price, 1);
-
                 $this->model_information_pu_newsletter->addCustomerNewsletter(
-                    $this->customer->getId(), $email_plans, $sms_plans, date('Y-m-d H:i:s',
-                    $start_date->getTimestamp()), $end_date, $total_price, $hasSms, $hasEmail, $transaction_id);
-
-                $this->load->model('purchase/pu_transaction');
-                $this->model_purchase_pu_transaction->UpdateCustomerBalance($this->customer->getId(), (int)$total_price * (-1));
+                    $this->customer->getId(), $email_plans, $sms_plans);
             }
         }
         foreach ($results as $result) {
@@ -146,7 +93,11 @@ class ControllerInformationNewsletter extends Controller
         $this->data['plans'] = $plans;
 
         $customer_newsletter_info = $this->model_information_pu_newsletter->getCustomerNewsletterInfo($this->customer->getId());
-
+        $result = $this->model_information_pu_newsletter->getCustomerNewsletterStatus($this->customer->getId());
+        $customer_key = $result[0]['invitation_key'];
+        $invitation_link = $this->url->link('information/newsletter/invitedUser','' , 'SSL');
+        $invitation_link .= '&key=' . $customer_key;
+        $this->data['invitation_link'] = $invitation_link;
         $selected_sms_plans = isset($customer_newsletter_info[0]) ? $customer_newsletter_info[0]['sms_plans'] : '';
         $selected_email_plans = isset($customer_newsletter_info[0]) ? $customer_newsletter_info[0]['email_plans'] : '';
 
@@ -212,6 +163,16 @@ class ControllerInformationNewsletter extends Controller
     protected function validate()
     {
         return true;
+    }
+
+    public function canUseNewsletter(){
+        $this->load->model('information/pu_newsletter');
+        $result = $this->model_information_pu_newsletter->getCustomerNewsletterStatus($this->customer->getId());
+        if(isset($result)&&$result!=null&&$result){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

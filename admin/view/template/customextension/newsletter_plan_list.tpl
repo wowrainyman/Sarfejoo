@@ -42,17 +42,17 @@
                         <td><select name="parent_id[<?php echo $newsletter_plan['id']; ?>]">
                                 <option value="0" selected>ندارد</option>
                         <?php foreach ($allPlans as $allPlan) { ?>
-                                <?php if ($allPlan['id'] == $newsletter_plan['parent_id']) { ?>
-                                    <option value="<?php echo $allPlan['id']; ?>" selected><?php echo $allPlan['name']; ?></option>
-                                <?php }else{ ?>
-                                    <option value="<?php echo $allPlan['id']; ?>"><?php echo $allPlan['name']; ?></option>
+                                <?php if ($allPlan['parent_id'] == 0) { ?>
+                                    <?php if ($allPlan['id'] == $newsletter_plan['parent_id']) { ?>
+                                        <option value="<?php echo $allPlan['id']; ?>" selected><?php echo $allPlan['name']; ?></option>
+                                    <?php }else{ ?>
+                                        <option value="<?php echo $allPlan['id']; ?>"><?php echo $allPlan['name']; ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                         <?php } ?>
                         </select> </td>
                         <td>
-                            <?php if ($newsletter_plan['parent_id'] == 0) { ?>
-                                [<a href="<?php echo $newsletter_plan['mail_link'];?>">ویرایش ایمیل</a>]
-                            <?php } ?>
+                            [<a href="<?php echo $newsletter_plan['mail_link'];?>">ویرایش ایمیل</a>]
                         </td>
                     </tr>
                     <?php } ?>

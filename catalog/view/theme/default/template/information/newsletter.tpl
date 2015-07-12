@@ -61,6 +61,18 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                        <div class="col-md-12">
+دوستان خود را از طریق لینک زیر در خبرنامه صرفه جو به صورت رایگان عضو کنید.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea rows="4" readonly style="width: 100%;float: left;text-align: left;">
+                                <?php echo $invitation_link; ?>
+                            </textarea>
+                        </div>
+                    </div>
                     <?php echo $content_bottom; ?>
                 </div></div>
             <script type="text/javascript">

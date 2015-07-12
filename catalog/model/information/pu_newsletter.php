@@ -19,17 +19,14 @@ class ModelInformationPuNewsletter extends Model {
         return $query->rows;
     }
 
-    public function addCustomerNewsletter($customer_id,$email_plans,$sms_plans,$start_date,$end_date,
-                                          $price,$sms_pay_status,$email_pay_status,$first_transaction_id){
+    public function addCustomerNewsletter($customer_id,$email_plans,$sms_plans){
         $pu_database_name = $GLOBALS['pu_database_name'];
         $oc_database_name = $GLOBALS['oc_database_name'];
         $con_PU_db = $GLOBALS['con_PU_db'];
 
         $sql_insert_string = "INSERT INTO $pu_database_name.pu_newsletter_plan_customer" .
-            "(`customer_id`, `email_plans`, `sms_plans`, `start_date`,
-                 `end_date`, `price`, `sms_pay_status`, `email_pay_status`, `first_transaction_id`)" .
-            "VALUES ('$customer_id', '$email_plans', '$sms_plans','$start_date'
-                ,'$end_date','$price','$sms_pay_status','$email_pay_status','$first_transaction_id');";
+            "(`customer_id`, `email_plans`, `sms_plans`)" .
+            "VALUES ('$customer_id', '$email_plans', '$sms_plans');";
         echo $sql_insert_string;
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $id = mysqli_insert_id($con_PU_db);
@@ -90,7 +87,23 @@ class ModelInformationPuNewsletter extends Model {
     public function getCustomerNewsletterInfo($customer_id){
         $pu_database_name = $GLOBALS['pu_database_name'];
         $oc_database_name = $GLOBALS['oc_database_name'];
-        $sql = "SELECT * FROM $pu_database_name.pu_newsletter_plan_customer tab1 WHERE end_date > now() AND customer_id = $customer_id";
+        $sql = "SELECT * FROM $pu_database_name.pu_newsletter_plan_customer tab1 WHERE customer_id = $customer_id";
+        $query = $this->db->query($sql);
+        return $query->rows;
+    }
+
+    public function getCustomerNewsletterStatus($customer_id){
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $sql = "SELECT * FROM $pu_database_name.pu_newsletter_plan_verification tab1 WHERE customer_id = $customer_id";
+        $query = $this->db->query($sql);
+        return $query->rows;
+    }
+
+    public function getCustomerNewsletterStatusByKey($key){
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $sql = "SELECT * FROM $pu_database_name.pu_newsletter_plan_verification tab1 WHERE invitation_key = '$key'";
         $query = $this->db->query($sql);
         return $query->rows;
     }
