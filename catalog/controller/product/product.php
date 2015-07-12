@@ -552,17 +552,25 @@ class ControllerProductProduct extends Controller
                     $update_date[$key]  = $row['update_date'];
                 }
                 array_multisort($update_date,SORT_DESC,$providers);
-            }else if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "price"){
+            }else if(isset($this->request->get['sort'])&&isset($this->request->get['order'])&&$this->request->get['sort'] == "price"&&$this->request->get['order'] == "ASC"){
                 foreach ($providers as $key => $row) {
                     $price[$key]  = $row['price'];
                 }
                 array_multisort($price,SORT_ASC,$providers);
+            }else if(isset($this->request->get['sort'])&&isset($this->request->get['order'])&&$this->request->get['sort'] == "price"&&$this->request->get['order'] == "DESC"){
+                foreach ($providers as $key => $row) {
+                    $price[$key]  = $row['price'];
+                }
+                array_multisort($price,SORT_DESC,$providers);
             }else if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "title"){
                 foreach ($providers as $key => $row) {
                     $title[$key]  = $row['title'];
                 }
                 array_multisort($title,SORT_DESC,$providers);
             }
+            $this->data['sort'] = $this->request->get['sort'];
+            $this->data['order'] = $this->request->get['order'];
+
             $this->data['providers'] = $providers;
             $this->data['is_service'] = $is_service;
             //print_r($providers);
