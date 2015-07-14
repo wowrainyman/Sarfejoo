@@ -35,42 +35,14 @@
       }
       
  if (!empty($subprofile_id)) {
- 
-     $sql_insert = "INSERT INTO pu_subprofile_product (
-                                                                           product_id,
-                                                                           subprofile_id,
-                                                                           price,
-                                                                           description,
-                                                                           availability,
-                                                                           update_date,
-                                                                           status_id
-                                                            ) VALUES (
-                                                                           '$product_id',
-                                                                           '$subprofile_id',
-                                                                           '$price',
-                                                                           '$description',
-                                                                           0,
-                                                                           NOW(),
-                                                                           1
-                                                                      )";
-     
-          mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
 
-          $sql_id = "SELECT id FROM pu_subprofile_product ORDER BY id DESC limit 1";
-          $result_id = mysqli_query($link_PU_DB, $sql_id) or die(mysqli_error());
-          while ($row = mysqli_fetch_assoc($result_id)) {
-                                                                           $subprofile_product_id = $row['id'];
-          }
-     $sql_insert = "INSERT INTO pu_subprofile_product_history (
-                                                                                     subprofile_product_id,
-                                                                                     price,
-                                                                                     bot
-                                                                      ) VALUES (
-                                                                                     '$subprofile_product_id',
-                                                                                     '$price',
-                                                                                     '1'
-                                                                                )";
-          mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
+     $url = "http://sarfejoo.com/bot_iran/ins.php?product_id=$product_id&subprofile_id=$subprofile_id&price=$price&description=$description";
+     $ch = curl_init();
+     curl_setopt($ch, CURLOPT_URL, $url);
+     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+     $data = curl_exec($ch);
+     curl_close($ch);
+     echo $data;
 
      $username=$_SESSION['user_name'];
      echo $username;

@@ -107,17 +107,17 @@ foreach ($divisions as $division) {
                     <?php }
                 }
             } ?>
-            <?php foreach ($division->getElementsByTagName('span') as $child) {
+            <?php foreach ($division->getElementsByTagName('a') as $child) {
                 foreach ($child->attributes as $attrib) {
                     $hasIt = false;
-                    if ($attrib->name == 'id' && strpos($attrib->value, 'lblDescription') !== false) { ?>
+                    if ($attrib->name == 'id' && strpos($attrib->value, 'hlinkcurrentitemtitle') !== false) { ?>
                         <div id="<?php echo $count ?>-4">
-                            <?php echo str_replace(",", "", $child->textContent); ?>
+                            <?php echo $child->textContent; ?>
                         </div>
                     <?php }
                 }
             } ?>
-            <?php foreach ($division->getElementsByTagName('span') as $child) {
+            <?php foreach ($division->getElementsByTagName('a') as $child) {
                 foreach ($child->attributes as $attrib) {
                     $hasIt = false;
                     if ($attrib->name == 'id' && strpos($attrib->value, 'lblGheymat') !== false) { ?>
@@ -166,7 +166,7 @@ if ($rand_id == $next_id) {
 ?>
 <script type="text/javascript">
     setTimeout(function () {
-        window.location.href = "sdb.php?id=<?php echo ($rand_id) ?>";
+        window.location.href = "sdblocal.php?id=<?php echo ($rand_id) ?>";
     }, 60000);
 </script>
 </body>

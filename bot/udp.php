@@ -54,36 +54,13 @@ $login = new Login();
         }
 
  if (!empty($subprofile_id)) {
-
-          $sql_update = "UPDATE `pu_subprofile_product` SET
-                                                                                `price`='$price',
-                                                                                `availability`='0',
-                                                                                `status_id`='1',
-                                                                                `description`='$description',
-                                                                                `update_date`= NOW()
-                                                                      WHERE 
-                                                                                `product_id` = $product_id
-                                                                         AND
-                                                                                `subprofile_id` = $subprofile_id";
-                                                                                
-          mysqli_query($link_PU_DB, $sql_update) or die(mysqli_error());
-
-
-          $sql_id = "SELECT id FROM pu_subprofile_product WHERE `product_id` = $product_id  AND `subprofile_id` = $subprofile_id";
-          $result_id = mysqli_query($link_PU_DB, $sql_id) or die(mysqli_error());
-          while ($row = mysqli_fetch_assoc($result_id)) {
-                                                                           $subprofile_product_id = $row['id'];
-          }
-     $sql_insert = "INSERT INTO pu_subprofile_product_history (
-                                                                                     subprofile_product_id,
-                                                                                     price,
-                                                                                     bot
-                                                                      ) VALUES (
-                                                                                     '$subprofile_product_id',
-                                                                                     '$price',
-                                                                                     '1'
-                                                                                )";
-          mysqli_query($link_PU_DB, $sql_insert) or die(mysqli_error());
+     $url = "http://sarfejoo.com/bot_iran/udp.php?product_id=$product_id&subprofile_id=$subprofile_id&price=$price&description=$description";
+     $ch = curl_init();
+     curl_setopt($ch, CURLOPT_URL, $url);
+     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+     $data = curl_exec($ch);
+     curl_close($ch);
+     echo $data;
      $username=$_SESSION['user_name'];
 
           $sql_update = "UPDATE `emalls_updated_price` SET

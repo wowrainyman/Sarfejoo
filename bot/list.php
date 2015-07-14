@@ -705,7 +705,7 @@ foreach ($categories as $category) {
             <br/>
             کالا: <span style="color:#5555FF;"><?php echo $model ?></span>
          <span style="float:left;">
-         <a href="../index.php?route=product/product&product_id=<?php echo $related_id ?>"
+         <a href="http://sarfejoo.com/index.php?route=product/product&product_id=<?php echo $related_id ?>"
             title="Sarfejoo: <?php echo $related_id ?>" target="_blank">IN</a> |
          <a href="http://sarfejoo.com/uoo.php?u=emalls.ir/price_compar.aspx?ID=<?php echo $emalls_id ?>"
             title="Emalls: <?php echo $emalls_id ?>" target="_blank">OUT</a>
