@@ -270,6 +270,8 @@ class ControllerProductProduct extends Controller
 
         $this->data['date_added'] = jdate("l - j F o",strtotime($product_info['date_added']));
 
+
+
         if ($product_info) {
             $this->data['stext'] = $this->generateSeoText($product_info['seo_generator'],$product_info['rss_link']);
             $url = '';
@@ -469,6 +471,7 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
             } else {
                 $this->data['price'] = false;
             }
+            $this->data['lastUpdate'] = jdate("l - j F o",strtotime($this->model_provider_pu_subprofile->getLastUpdateTimeOfProduct($this->request->get['product_id'])));
 # Start Prices
             $this->data['minprice'] = $this->model_provider_pu_subprofile->GetMinimumPriceOfProduct($this->request->get['product_id']);
             $this->data['maxprice'] = $this->model_provider_pu_subprofile->GetMaximumPriceOfProduct($this->request->get['product_id']);
@@ -604,17 +607,25 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
                     $update_date[$key]  = $row['update_date'];
                 }
                 array_multisort($update_date,SORT_DESC,$providers);
-            }else if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "price"){
+            }else if(isset($this->request->get['sort'])&&isset($this->request->get['order'])&&$this->request->get['sort'] == "price"&&$this->request->get['order'] == "ASC"){
                 foreach ($providers as $key => $row) {
                     $price[$key]  = $row['price'];
                 }
                 array_multisort($price,SORT_ASC,$providers);
+            }else if(isset($this->request->get['sort'])&&isset($this->request->get['order'])&&$this->request->get['sort'] == "price"&&$this->request->get['order'] == "DESC"){
+                foreach ($providers as $key => $row) {
+                    $price[$key]  = $row['price'];
+                }
+                array_multisort($price,SORT_DESC,$providers);
             }else if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "title"){
                 foreach ($providers as $key => $row) {
                     $title[$key]  = $row['title'];
                 }
                 array_multisort($title,SORT_DESC,$providers);
             }
+            $this->data['sort'] = $this->request->get['sort'];
+            $this->data['order'] = $this->request->get['order'];
+
             $this->data['providers'] = $providers;
             $this->data['is_service'] = $is_service;
             //print_r($providers);

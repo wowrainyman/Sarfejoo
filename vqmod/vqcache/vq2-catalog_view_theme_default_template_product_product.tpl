@@ -133,6 +133,14 @@ return "$difference $periods[$j] پیش ";
                 <div class="row row-centered" style="margin-top: 20px;margin-bottom: 20px;">
                     <div class="col-md-12 col-centered">
                         <button type="button" class="btn btn-default" style="cursor: default;">
+                            آخرین بروز رسانی:
+                            <?php echo $lastUpdate; ?>
+                        </button>
+                    </div>
+                </div>
+                <div class="row row-centered" style="margin-top: 20px;margin-bottom: 20px;">
+                    <div class="col-md-12 col-centered">
+                        <button type="button" class="btn btn-default" style="cursor: default;">
                             <?php echo $date_added; ?>
 معرفی شده است
                         </button>
@@ -188,20 +196,13 @@ return "$difference $periods[$j] پیش ";
                                     مرتب سازی بر اساس
                                     <select class="form-control" id="sel1" onchange="location = this.value;">
                                         <option value="<?php echo $url; ?>">
-                                            پیش فرض
+آخرین بروزرسانی
                                         </option>
-                                        <option value="<?php echo $url; ?>&sort=price">
-قیمت
+                                        <option value="<?php echo $url; ?>&sort=price&order=ASC" <?php if($sort=="price"&&$order=="ASC") echo "selected"; ?>>
+قیمت (ارزانترین در ابتدا)
                                         </option>
-                                        <option value="<?php echo $url; ?>&sort=date">
-                                            تاریخ عرضه
-
-                                        </option>
-                                        <option value="<?php echo $url; ?>&sort=fav">
-                                            محبوبیت
-                                        </option>
-                                        <option value="<?php echo $url; ?>&sort=title">
-                                            نام
+                                        <option value="<?php echo $url; ?>&sort=price&order=DESC" <?php if($sort=="price"&&$order=="DESC") echo "selected"; ?>>
+                                            قیمت (گرانترین در ابتدا)
                                         </option>
                                     </select>
                                 </div>
@@ -259,7 +260,7 @@ return "$difference $periods[$j] پیش ";
                                                     <?php echo number_format($provider['price']);?>
                                                 </button>
                                                 <?php if(!empty($provider['buy_link'])) { ?>
-                                                    <a role="button" href="index.php?route=linkrelay/external&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                    <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
                                                         <?php echo $p_buy_online;?>
                                                     </a>
                                                 <?php } ?>
@@ -354,7 +355,7 @@ return "$difference $periods[$j] پیش ";
                                                     <?php echo number_format($provider['guarantee_price']);?>
                                                 </button>
                                                 <?php if(!empty($provider['buy_link'])) { ?>
-                                                <a role="button" href="index.php?route=linkrelay/external&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
                                                     <?php echo $p_buy_online;?>
                                                 </a>
                                                 <?php } ?>

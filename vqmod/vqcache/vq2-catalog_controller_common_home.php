@@ -5,9 +5,26 @@ class ControllerCommonHome extends Controller
     public function index()
     {
         if (isset($this->request->get['u'])){
-
+            $this->load->model('common/seo');
             $this->data['url'] = $this->request->get['u'];
-
+            $this->data['url'] = str_ireplace("www.","", $this->data['url']);
+            $results = $this->model_common_seo->GetProductsByLink($this->request->get['u']);
+            if(count($results)>0){
+                $index = rand(0,count($results)-1);
+                $product_id = $results[$index]['product_id'];
+                $this->session->data['seo'] = $results[$index]['buy_link'];
+                $this->data['url'] = $this->url->link('product/product', '&product_id=' . $product_id);
+                $this->data['url']=str_replace("&amp;","&",$this->data['url']);
+            }else{
+                $this->data['url'] = $this->url->link('product/category', '&path=59_66');
+                $this->data['url']=str_replace("&amp;","&",$this->data['url']);
+            }
+        }
+        if (isset($this->request->get['lifetime'])){
+            $this->session->data['lifetime'] = "true";
+        }
+        if (isset($this->request->get['unsetlifetime'])){
+            unset($this->session->data['lifetime']);
         }
 
 			//if (isset($this->session->data['proute']) && (($this->session->data['proute'] == 'product/product') || ($this->session->data['proute'] == 'product/category') || ($this->session->data['proute'] == 'product/manufacturer/product') || ($this->session->data['proute'] == 'information/information') || ($this->session->data['proute'] == 'product/manufacturer/info'))) {unset($this->request->post['redirect']);$this->session->data['proute'] = '';}
@@ -157,7 +174,7 @@ $this->document->setKeywords($this->config->get('config_meta_keywords'));
         $this->data['topServices'] = $topServices;
 
 //total Products
-        $data = array(
+        /*$data = array(
             'filter_category_id' => '59',
             'filter_sub_category' => true,
             'filter_filter'      => '',
@@ -166,11 +183,11 @@ $this->document->setKeywords($this->config->get('config_meta_keywords'));
             'start'              => '0',
             'limit'              => '10000'
         );
-        $topProducts_info = $this->model_catalog_product->getProducts($data);
-        $this->data['totalProducts'] = count($topProducts_info);
+        $topProducts_info = $this->model_catalog_product->getProducts($data);*/
+        $this->data['totalProducts'] = "1140";
 
 //total Services
-        $data = array(
+       /* $data = array(
             'filter_category_id' => '60',
             'filter_sub_category' => true,
             'filter_filter'      => '',
@@ -179,8 +196,8 @@ $this->document->setKeywords($this->config->get('config_meta_keywords'));
             'start'              => '0',
             'limit'              => '10000'
         );
-        $topServices_info = $this->model_catalog_product->getProducts($data);
-        $this->data['totalServices'] = count($topServices_info);
+        $topServices_info = $this->model_catalog_product->getProducts($data);*/
+        $this->data['totalServices'] = "881";
 
 //total subprofiles
         $subs = $this->model_provider_pu_subprofile->GetCountSubprofiles();

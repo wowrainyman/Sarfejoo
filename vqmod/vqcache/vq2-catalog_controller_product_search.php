@@ -558,11 +558,16 @@ class ControllerProductSearch extends Controller
 
         $this->load->model('tool/image');
         $term = $this->request->get['term'];
-        $query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product_description WHERE name LIKE '%".$term."%'");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON(p.product_id=pd.product_id) WHERE name LIKE '%".$term."%' AND p.status = 1 LIMIT 10");
         foreach ($query->rows as $result) {
-            $product_data[$result['product_id']] = $this->getProduct($result['product_id']);
+            $product_data[] = $result;
         }
-        $results = $product_data;
+        $productResults = $product_data;
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description cd LEFT JOIN " . DB_PREFIX . "category c ON(c.category_id=cd.category_id) WHERE name LIKE '%".$term."%' AND c.status = 1 LIMIT 6");
+        foreach ($query->rows as $result) {
+            $category_data[] = $result;
+        }
+        $categoryResults = $category_data;
         echo '<div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12" style="padding: 0px;">
@@ -570,28 +575,27 @@ class ControllerProductSearch extends Controller
                             <span>
                                 <i class="" ></i>
                                 <a class="mj-font"  style="font-size: 14px;margin-right: 10px;">
-                                کالاها
+                                کالا و خدمات
                                 </a>
                             </span>
-                        </div>
-                        <br/>';
-                        foreach($results as $result){
-                            echo '<span style="color:black">' . $result['name'] . '</span><br/>';
+                        </div>';
+                        if(count($productResults)<1){
+                            echo '<span style="color:black;font-size: 12px;">' .'
+                                            موردی یافت نشد
+                                            </span>';
+                        }
+                        foreach($productResults as $result){
+                            $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+                            $url = $this->url->link('product/product', 'product_id=' . $result['product_id']);
+                            echo '<a href="'.$url.'">
+                                        <img src="'.$image.'" width="30" height="30" />
+                                        <span style="color:black;font-size: 12px;">' .
+                                            $result['name'] .
+                                        '</span>
+                                  </a><br/>';
                         }
 
         echo       '</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="padding: 0px;">
-                        <div class="strike-black" style="margin: 0px;padding: 0px;">
-                            <span>
-                                <i class="" ></i>
-                                <a class="mj-font"  style="font-size: 14px;margin-right: 10px;">
-خدمات
-                                </a>
-                            </span>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -601,11 +605,43 @@ class ControllerProductSearch extends Controller
                             <span>
                                 <i class="" ></i>
                                 <a class="mj-font"  style="font-size: 14px;margin-right: 10px;">
-                                کالاها
+گروه ها
                                 </a>
                             </span>
-                        </div>
-                    </div>
+                        </div>';
+                        if(count($categoryResults)<1){
+                            echo '<span style="color:black;font-size: 12px;">' .'
+                            موردی یافت نشد
+                            </span>';
+                        }
+                        foreach($categoryResults as $result){
+                            $url = $this->url->link('product/category', 'path=' . $result['category_id']);
+                            echo '<a href="'.$url.'">
+                                    <span style="color:black;font-size: 12px;">' .
+                                        $result['name'] .
+                                    '</span>
+                                  </a><br/>';
+                        }
+          echo      '</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <div class="strike-black" style="margin: 0px;padding: 0px;">
+                            <span>
+                                <i class="" ></i>
+                                <a class="mj-font"  style="font-size: 14px;margin-right: 10px;">
+وبلاگ
+                                </a>
+                            </span>
+                        </div>';
+                        $url = "http://blog.sarfejoo.com/search.php?term=".$term;
+                         $ch = curl_init();
+                         curl_setopt($ch, CURLOPT_URL, $url);
+                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                         $data = curl_exec($ch);
+                         curl_close($ch);
+                         echo $data;
+   echo           '</div>
                 </div>
             </div>';
 

@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <head>
+<!-- Start Open Web Analytics Tracker -->
+<script type="text/javascript">
+    //<![CDATA[
+    var owa_baseUrl = 'http://tracking.sarfejoo.com/';
+    var owa_cmds = owa_cmds || [];
+    owa_cmds.push(['setSiteId', '695b13e2138927c89b621acc0e57b574']);
+    owa_cmds.push(['trackPageView']);
+
+    (function() {
+        var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+        owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+        _owa.src = owa_baseUrl + 'modules/base/js/owa.tracker-combined-min.js';
+        var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+    }());
+    //]]>
+</script>
 
 <style type="text/css">
 div.html-pa { margin:0; padding:0; border:0; }
@@ -80,6 +96,12 @@ div.html-pa.ten p { height:10em; }
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/jquery-gmaps-latlon-picker.css"/>
 <script src="catalog/view/javascript/map/jquery-gmaps-latlon-picker.js"></script>
 <script>
+    if (typeof String.prototype.startsWith != 'function') {
+        // see below for better implementation!
+        String.prototype.startsWith = function (str){
+            return this.indexOf(str) === 0;
+        };
+    }
 $(document).ready(function() {
 
      $("#go-top").click(function(){
@@ -154,13 +176,137 @@ $(document).ready(function() {
         return false;
        }
      });
+    $('#header-search-text').on('input',function (e) {
+        var termText = $('#header-search-text').val();
+        $('#fix-search-text').val(termText);
+        if(termText!=""){
+            $('#header-search-box').css("display","");
+        }else{
+            $('#header-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#header-search-box').html(content);
+            }
+        });
+    });
+    $('#fix-search-text').on('input',function (e) {
+        var termText = $('#fix-search-text').val();
+        $('#header-search-text').val(termText);
+        if(termText!=""){
+            $('#fix-search-box').css("display","");
+        }else{
+            $('#fix-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#fix-search-box').html(content);
+            }
+        });
+    });
+    $('#header-search-text').focus(function (e) {
+        var termText = $('#header-search-text').val();
+        if(termText!=""){
+            $('#header-search-box').css("display","");
+        }else{
+            $('#header-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#header-search-box').html(content);
+                $('#fix-search-box').html(content);
+            }
+        });
+    });
+    $('#fix-search-text').focus(function (e) {
+        var termText = $('#fix-search-text').val();
+        if(termText!=""){
+            $('#fix-search-box').css("display","");
+        }else{
+            $('#fix-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#header-search-box').html(content);
+                $('#fix-search-box').html(content);
+            }
+        });
+    });
+    $(document).mouseup(function (e)
+    {
+        var container = $("#fix-search-text");
+
+        if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            $('#fix-search-box').hide();
+        }
+        var container = $("#header-search-text");
+
+        if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            $('#header-search-box').hide();
+        }
+    });
 
      $('.bar-full-fix').hide();
+
+    $(".first-search").change(function() {
+        // Check input( $( this ).val() ) for validity here
+        $(".second-search").val($(".first-search").val());
+    });
+    $(".second-search").change(function() {
+        // Check input( $( this ).val() ) for validity here
+        $(".first-search").val($(".second-search").val());
+    });
 });
 
 $(window).scroll(function(){
+
      if ($(this).scrollTop() > 350) {
           $('#compareblock').addClass('compareDivfix');
+
      } else {
           $('#compareblock').removeClass('compareDivfix');
      }
@@ -286,11 +432,9 @@ DD_belatedPNG.fix('#logo img');
         <div class="row row-offcanvas row-offcanvas-left" style="background-color: #8926a8">
             <!-- sidebar -->
             <div class="column col-sm-2 col-xs-1 sidebar-offcanvas visible-xs" id="sidebar">
-
                 <ul class="nav">
                     <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
                 </ul>
-
                 <ul class="nav hidden-xs" id="lg-menu">
                     <li class="active">
                         <a href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%AF%D8%A7%D8%A6%D9%85%DB%8C-%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1%DB%8C"><i class="fa fa-wifi"></i>
@@ -373,7 +517,8 @@ DD_belatedPNG.fix('#logo img');
             </div>
             <div id="search" class="s-he-search top-search" style="margin-top: -2px;margin-right: 160px;display: none;">
                 <div class="button-search b-search"></div>
-                <input type="text" name="search" id="q-input" class="q-input" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <input type="text" name="search" id="fix-search-text" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <div id="fix-search-box" class="row" style="position: absolute;width: 600px;opacity: 0.95;background-color: #ececec;height: 400px;z-index: 500;margin-right: -150px;display: none;"></div>
             </div>
             <div  id="fi-left" class="s-fi-block">
                 <ul>
@@ -391,13 +536,15 @@ DD_belatedPNG.fix('#logo img');
                         <div>
                             <ul>
                                 <li>
-                                    <a href="http://blog.sarfejoo.com/category/%d8%a7%d8%ae%d8%a8%d8%a7%d8%b1-%d8%b5%d8%b1%d9%81%d9%87-%d8%ac%d9%88/" >اخبار صرفه جو</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d8%b4%d8%a7%d8%af-%d8%b2%db%8c%d8%b3%d8%aa%d9%86/" >شاد زیستن</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d8%ab%d8%b1%d9%88%d8%aa%d9%85%d9%86%d8%af-%d8%b4%d9%88%db%8c%d8%af/" >ثروتمند شوید</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d9%85%d8%b5%d8%b1%d9%81-%d8%a8%d9%87%db%8c%d9%86%d9%87/" >مصرف بهینه</a>
-                                    <a href="http://blog.sarfejoo.com/category/%d9%88%d9%82%d8%aa-%d8%b7%d9%84%d8%a7%d8%b3%d8%aa/" >وقت طلاست</a>
-                                    <a href="http://blog.sarfejoo.com/category/%da%86%da%af%d9%88%d9%86%d9%87-%d8%a8%d9%87%d8%aa%d8%b1-%d8%a7%d9%86%d8%aa%d8%ae%d8%a7%d8%a8-%da%a9%d9%86%db%8c%d9%85/" >چگونه بهتر انتخاب کنیم</a>
-                                    <a href="http://blog.sarfejoo.com/category/%da%a9%d8%b3%d8%a8-%d9%88-%da%a9%d8%a7%d8%b1-%d9%85%d9%88%d9%81%d9%82/" >کسب و کار موفق</a>
+                                    <?php
+                                         $url = "http://blog.sarfejoo.com/get_categories.php";
+                                         $ch = curl_init();
+                                         curl_setopt($ch, CURLOPT_URL, $url);
+                                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                         $data = curl_exec($ch);
+                                         curl_close($ch);
+                                         echo $data;
+                                     ?>
                                 </li>
                             </ul>
                         </div>
@@ -419,10 +566,9 @@ DD_belatedPNG.fix('#logo img');
         <div class="col-md-6 hidden-xs">
             <div id="search" class="s-he-search">
                 <div class="button-search b-search"></div>
-                <input type="text" name="search" id="q-input" class="q-input" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <input type="text" name="search" id="header-search-text" class="" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <div id="header-search-box" style="position: absolute;width: 600px;opacity: 0.95;background-color: #ececec;height: 400px;z-index: 500;margin-right: -150px;display: none;"></div>
             </div>
-
-
         </div>
         <div class="col-md-6 visible-xs">
             <div id="search" class="s-he-search-mob">
@@ -486,10 +632,22 @@ DD_belatedPNG.fix('#logo img');
                                         </span>
                                     </div>
                                     <?php if ($category['children'][$i]['children_level2']) { ?>
-                                    <ul class="custom-list-green">
+                                    <ul class="custom-list-green row">
                                         <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                        <li style="display: inline;margin-right: 5px;margin-top: 5px;">
-                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                        <li class="col-md-4" style="display: inline;padding: 0;margin: 0;margin-top: 5px;">
+                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                                    <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                             </a>
                                         </li>
                                         <?php } ?>
@@ -522,10 +680,22 @@ DD_belatedPNG.fix('#logo img');
                                         </span>
                                     </div>
                                     <?php if ($category['children'][$i]['children_level2']) { ?>
-                                    <ul class="custom-list-green">
+                                    <ul class="custom-list-green row">
                                         <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                        <li style="display: inline;margin-right: 5px;margin-top: 5px;">
-                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                        <li class="col-md-4" style="display: inline;margin-top: 5px;padding: 0;margin: 0;">
+                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                                    <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                             </a>
                                         </li>
                                         <?php } ?>
@@ -684,10 +854,10 @@ DD_belatedPNG.fix('#logo img');
                 -ms-filter: blur(15px);
                 filter: blur(15px);
             }
-            .custom-list-purple li:not(:first-child):before{
+            .custom-list-purple li:before{
                 content: url(catalog/view/images/splitter.png);
             }
-            .custom-list-green li:not(:first-child):before{
+            .custom-list-green li:before{
                 content: url(catalog/view/images/splitter2.png);
             }
 
@@ -749,10 +919,22 @@ DD_belatedPNG.fix('#logo img');
                                         </span>
                                     </div>
                                     <?php if ($category['children'][$i]['children_level2']) { ?>
-                                    <ul class="custom-list-purple">
+                                    <ul class="custom-list-purple row">
                                         <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                        <li style="display: inline;margin-top: 5px;">
-                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                        <li class="col-md-4" style="display: inline;padding: 0;margin: 0;margin-top: 5px;">
+                                            <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                                    <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                             </a>
                                         </li>
                                         <?php } ?>
@@ -785,10 +967,22 @@ DD_belatedPNG.fix('#logo img');
                                                                 </span>
                                                             </div>
                                                             <?php if ($category['children'][$i]['children_level2']) { ?>
-                                                                <ul class="custom-list-purple">
+                                                                <ul class="custom-list-purple row">
                                                                     <?php for ($wi = 0; $wi < count($category['children'][$i]['children_level2']); $wi++) { ?>
-                                                                    <li style="display: inline;margin-right: 5px;margin-top: 5px;">
-                                                                        <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  ><?php echo $category['children'][$i]['children_level2'][$wi]['name']; ?>
+                                                                    <li class="col-md-4" style="display: inline;padding: 0;margin: 0;;margin-top: 5px;">
+                                                                        <a style="margin-right: 10px;margin-left: 10px;" href="<?php echo $category['children'][$i]['children_level2'][$wi]['href']; ?>"  >
+                                                                            <?php
+                                                                                mb_internal_encoding("UTF-8");
+                                                                                $str = $category['children'][$i]['children_level2'][$wi]['name'];
+                                                                                $trimedStr = mb_substr($category['children'][$i]['children_level2'][$wi]['name'], 0, 12);
+                                                                            ?>
+                                                                                <span title='<?php echo $str?>' ><?php echo $trimedStr?>
+                                                                            <?php
+                                                                                if($str!=$trimedStr){
+                                                                                    echo '...';
+                                                                                }
+                                                                            ?>
+                                                                                </span>
                                                                         </a>
                                                                     </li>
                                                                     <?php } ?>
@@ -846,3 +1040,22 @@ width:140px!important;
 }
 </style>
  <![endif]-->
+<?php if(isset($this->session->data['lifetime'])){ ?>
+    <script>
+        $(document).ready(function() {
+            var base = "http://sarfejoo.com";
+            var forbid = "http://sarfejoo.com/index.php?route=linkrelay/external";
+            var arr = [], l = document.links;
+            for(var i=0; i<l.length; i++) {
+                if(l[i].href.startsWith(base) && !l[i].href.startsWith(forbid)){
+                    arr.push(l[i].href);
+                }
+            }
+            var myRand = Math.floor(Math.random() * (arr.length-1));
+            var delay=1000; //1 seconds
+            setTimeout(function(){
+                window.location=arr[myRand];
+            }, delay);
+        });
+    </script>
+<?php } ?>

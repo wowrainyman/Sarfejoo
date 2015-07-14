@@ -1,4 +1,4 @@
----------- Date: 2015-06-13 08:20:47 ~ IP : 192.168.87.4 ----------
+---------- Date: 2015-07-04 09:01:50 ~ IP : 192.168.87.4 ----------
 REQUEST URI : /sarfejoo/
 MOD DETAILS:
    modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
@@ -13,247 +13,7 @@ VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-06-13 08:21:26 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 08:21:41 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122&amp;subprofile_id=32
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 08:42:21 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/product&amp;path=66_122&amp;product_id=778
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 08:42:40 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 08:43:04 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122&amp;subprofile_id=17
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 08:43:14 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=66_122&amp;subprofile_id=17&amp;subprofile_id=22
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:11:24 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=account/account
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:11:30 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=account/logout
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:11:33 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=account/login
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:11:39 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=account/account
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:11:44 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=provider/price
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:12:01 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=provider/price/listsubprofileproduct&amp;id=233
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:12:12 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=provider/price/editsubprofileproduct&amp;id=3002
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:13:03 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/product&amp;path=66_122&amp;product_id=778
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:13:12 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/category&amp;path=405_258
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 09:13:18 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/product&amp;path=405_258&amp;product_id=633
-MOD DETAILS:
-   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
-   id        : List/Grid Categoury
-   version   : 0.6
-   vqmver    : 2.2.1
-   author    : M.Abooali
-
-File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
-VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
-
-----------------------------------------------------------------------
-
-
----------- Date: 2015-06-13 14:46:14 ~ IP : 192.168.87.4 ----------
+---------- Date: 2015-07-04 09:02:27 ~ IP : 192.168.87.4 ----------
 REQUEST URI : /sarfejoo/
 MOD DETAILS:
    modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
@@ -268,8 +28,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-06-13 15:30:13 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/product&amp;product_id=778
+---------- Date: 2015-07-04 09:02:31 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/account
 MOD DETAILS:
    modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
    id        : List/Grid Categoury
@@ -283,8 +43,8 @@ VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-06-13 15:41:15 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/product&amp;product_id=407
+---------- Date: 2015-07-04 09:02:38 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
 MOD DETAILS:
    modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
    id        : List/Grid Categoury
@@ -298,8 +58,488 @@ VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
 ----------------------------------------------------------------------
 
 
----------- Date: 2015-06-13 15:41:25 ~ IP : 192.168.87.4 ----------
-REQUEST URI : /sarfejoo/index.php?route=product/product&amp;product_id=921
+---------- Date: 2015-07-04 09:02:49 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 09:03:25 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/?unsetlifetime=true
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 09:03:43 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 09:03:47 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/account
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 09:03:50 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 09:10:24 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 11:12:16 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 11:12:35 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 11:19:09 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 11:21:02 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 11:24:57 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 13:47:42 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/account
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 13:47:46 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=provider/subprofile
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 13:47:53 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=financial/subprofile_plan&amp;id=70
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:02 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/account
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:08 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising_list
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:14 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=common/home
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:15 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:25 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=financial/advertising_plan/confirm&amp;id=6
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:37 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=financial/advertising_plan/confirm&amp;id=6
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:39 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:41 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising_list
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:46 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=common/home
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:47 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/account
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:07:57 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=information/newsletter
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:08:46 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=account/account
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:08:51 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising_list
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:08:55 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=common/home
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:08:56 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:09:04 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=financial/advertising_plan/confirm&amp;id=7
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:09:11 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=financial/advertising_plan/confirm&amp;id=7
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:09:38 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=ad/advertising
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
+   id        : List/Grid Categoury
+   version   : 0.6
+   vqmver    : 2.2.1
+   author    : M.Abooali
+
+File Name    : catalog/view/theme/*/template/common/footer.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <div id="s-footer">
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-07-04 14:09:42 ~ IP : 192.168.87.4 ----------
+REQUEST URI : /sarfejoo/index.php?route=financial/advertising_plan/confirm&amp;id=7
 MOD DETAILS:
    modFile   : C:\xampp\htdocs\sarfejoo\vqmod/xml/vqmod_list_grid_buttons.xml
    id        : List/Grid Categoury

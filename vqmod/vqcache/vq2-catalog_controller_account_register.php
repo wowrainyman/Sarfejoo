@@ -37,7 +37,9 @@ class ControllerAccountRegister extends Controller {
 			if($this->request->post['customer_group_id']==2){
 				$this->customer->login($this->request->post['email'], $this->request->post['password']);
 				unset($this->session->data['guest']);
-				$this->redirect($this->url->link('financial/provider_plan'));
+                $this->load->model('provider/pu_subprofile');
+                $id = $this->model_provider_pu_subprofile->AddTempSubprofile($this->request->post);
+				$this->redirect($this->url->link('financial/subprofile_plan', '&id=' . $id, 'SSL'));
 			}
 
 			$this->redirect($this->url->link('account/success'));
