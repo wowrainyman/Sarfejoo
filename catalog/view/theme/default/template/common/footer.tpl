@@ -182,8 +182,16 @@
         }
         if ($('#main').scrollTop() <= 90) {
             $('.top-search').css("display","none");
+            $('#fix-search-box').hide();
+            if($("#fix-search-text").is(":focus")) {
+                $('#header-search-text').focus();
+            }
         } else {
             $('.top-search').css("display","");
+            $('#header-search-box').hide();
+            if($("#header-search-text").is(":focus")) {
+                $('#fix-search-text').focus();
+            }
         }
     });
 

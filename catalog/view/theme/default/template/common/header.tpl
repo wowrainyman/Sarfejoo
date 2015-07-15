@@ -156,6 +156,119 @@ $(document).ready(function() {
         return false;
        }
      });
+    $('#header-search-text').on('input',function (e) {
+        var termText = $('#header-search-text').val();
+        $('#fix-search-text').val(termText);
+        if(termText!=""){
+            $('#header-search-box').css("display","");
+        }else{
+            $('#header-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#header-search-box').html(content);
+            }
+        });
+    });
+    $('#fix-search-text').on('input',function (e) {
+        var termText = $('#fix-search-text').val();
+        $('#header-search-text').val(termText);
+        if(termText!=""){
+            $('#fix-search-box').css("display","");
+        }else{
+            $('#fix-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#fix-search-box').html(content);
+            }
+        });
+    });
+    $('#header-search-text').focus(function (e) {
+        var termText = $('#header-search-text').val();
+        if(termText!=""){
+            $('#header-search-box').css("display","");
+        }else{
+            $('#header-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#header-search-box').html(content);
+                $('#fix-search-box').html(content);
+            }
+        });
+    });
+    $('#fix-search-text').focus(function (e) {
+        var termText = $('#fix-search-text').val();
+        if(termText!=""){
+            $('#fix-search-box').css("display","");
+        }else{
+            $('#fix-search-box').css("display","none");
+        }
+        $.ajax({
+            url: 'index.php?route=product/search/customAjaxSearch',
+            type: 'get',
+            data: {
+                term: termText
+            },
+            dataType: 'html',
+            beforeSend: function () {
+            },
+            complete: function () {
+            },
+            success: function (content) {
+                $('#header-search-box').html(content);
+                $('#fix-search-box').html(content);
+            }
+        });
+    });
+    $(document).mouseup(function (e)
+    {
+        var container = $("#fix-search-text");
+
+        if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            $('#fix-search-box').hide();
+        }
+        var container = $("#header-search-text");
+
+        if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            $('#header-search-box').hide();
+        }
+    });
 
      $('.bar-full-fix').hide();
 
@@ -170,8 +283,10 @@ $(document).ready(function() {
 });
 
 $(window).scroll(function(){
+
      if ($(this).scrollTop() > 350) {
           $('#compareblock').addClass('compareDivfix');
+
      } else {
           $('#compareblock').removeClass('compareDivfix');
      }
@@ -367,7 +482,8 @@ DD_belatedPNG.fix('#logo img');
             </div>
             <div id="search" class="s-he-search top-search" style="margin-top: -2px;margin-right: 160px;display: none;">
                 <div class="button-search b-search"></div>
-                <input type="text" name="search" id="q-input" class="q-input first-search" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <input type="text" name="search" id="fix-search-text" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <div id="fix-search-box" class="row" style="position: absolute;width: 600px;opacity: 0.95;background-color: #ececec;height: 400px;z-index: 500;margin-right: -150px;display: none;"></div>
             </div>
             <div  id="fi-left" class="s-fi-block">
                 <ul>
@@ -415,10 +531,9 @@ DD_belatedPNG.fix('#logo img');
         <div class="col-md-6 hidden-xs">
             <div id="search" class="s-he-search">
                 <div class="button-search b-search"></div>
-                <input type="text" name="search" id="q-input" class="q-input second-search" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <input type="text" name="search" id="header-search-text" class="" placeholder="جستجوی هوشمند کالا و خدمات..." value="<?php echo $search; ?>" />
+                <div id="header-search-box" style="position: absolute;width: 600px;opacity: 0.95;background-color: #ececec;height: 400px;z-index: 500;margin-right: -150px;display: none;"></div>
             </div>
-
-
         </div>
         <div class="col-md-6 visible-xs">
             <div id="search" class="s-he-search-mob">
