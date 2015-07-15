@@ -156,15 +156,10 @@ $(document).ready(function() {
         return false;
        }
      });
-    $('#header-search-text').on('input',function (e) {
-        var termText = $('#header-search-text').val();
-        $('#fix-search-text').val(termText);
-        if(termText!=""){
-            $('#header-search-box').css("display","");
-        }else{
-            $('#header-search-box').css("display","none");
-        }
-        $.ajax({
+    var xhr;
+    function customSearch(termText){
+        if(xhr) xhr.abort();
+        xhr = $.ajax({
             url: 'index.php?route=product/search/customAjaxSearch',
             type: 'get',
             data: {
@@ -177,8 +172,21 @@ $(document).ready(function() {
             },
             success: function (content) {
                 $('#header-search-box').html(content);
+                $('#fix-search-box').html(content);
             }
         });
+    }
+    var timer;
+    $('#header-search-text').on('input',function (e) {
+        var termText = $('#header-search-text').val();
+        $('#fix-search-text').val(termText);
+        if(termText!=""){
+            $('#header-search-box').css("display","");
+        }else{
+            $('#header-search-box').css("display","none");
+        }
+        customSearch(termText);
+
     });
     $('#fix-search-text').on('input',function (e) {
         var termText = $('#fix-search-text').val();
@@ -188,21 +196,8 @@ $(document).ready(function() {
         }else{
             $('#fix-search-box').css("display","none");
         }
-        $.ajax({
-            url: 'index.php?route=product/search/customAjaxSearch',
-            type: 'get',
-            data: {
-                term: termText
-            },
-            dataType: 'html',
-            beforeSend: function () {
-            },
-            complete: function () {
-            },
-            success: function (content) {
-                $('#fix-search-box').html(content);
-            }
-        });
+        customSearch(termText);
+
     });
     $('#header-search-text').focus(function (e) {
         var termText = $('#header-search-text').val();
@@ -211,22 +206,7 @@ $(document).ready(function() {
         }else{
             $('#header-search-box').css("display","none");
         }
-        $.ajax({
-            url: 'index.php?route=product/search/customAjaxSearch',
-            type: 'get',
-            data: {
-                term: termText
-            },
-            dataType: 'html',
-            beforeSend: function () {
-            },
-            complete: function () {
-            },
-            success: function (content) {
-                $('#header-search-box').html(content);
-                $('#fix-search-box').html(content);
-            }
-        });
+        customSearch(termText);
     });
     $('#fix-search-text').focus(function (e) {
         var termText = $('#fix-search-text').val();
@@ -235,23 +215,10 @@ $(document).ready(function() {
         }else{
             $('#fix-search-box').css("display","none");
         }
-        $.ajax({
-            url: 'index.php?route=product/search/customAjaxSearch',
-            type: 'get',
-            data: {
-                term: termText
-            },
-            dataType: 'html',
-            beforeSend: function () {
-            },
-            complete: function () {
-            },
-            success: function (content) {
-                $('#header-search-box').html(content);
-                $('#fix-search-box').html(content);
-            }
-        });
+        customSearch(termText);
+
     });
+
     $(document).mouseup(function (e)
     {
         var container = $("#fix-search-text");
