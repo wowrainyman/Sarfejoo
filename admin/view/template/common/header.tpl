@@ -287,6 +287,16 @@ $(document).ready(function(){
                 <li><a href="<?php echo $ad_information; ?>"><?php echo $text_ad_information; ?></a></li>
             </ul>
         </li>
+        <li id="financial"><a class="top"><?php echo $text_financial; ?></a>
+            <ul>
+                <li><a href="<?php echo $features; ?>"><?php echo $text_features; ?></a></li>
+                <li><a href="<?php echo $plans; ?>"><?php echo $text_plans; ?></a></li>
+                <li><a href="<?php echo $periods; ?>"><?php echo $text_periods; ?></a></li>
+                <li><a href="<?php echo $plans_discount; ?>"><?php echo $text_plans_discount; ?></a></li>
+                <li><a href="<?php echo $plans_features; ?>"><?php echo $text_plans_features; ?></a></li>
+                <li><a href="<?php echo $plans_periods; ?>"><?php echo $text_plans_periods; ?></a></li>
+            </ul>
+        </li>
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
           <li><a href="http://www.opencart.com" target="_blank"><?php echo $text_opencart; ?></a></li>

@@ -100,7 +100,7 @@ class ModelPurchasePuTransaction extends Model
     }
 
 
-    public function UpdateSuccessfulTransaction($id, $transaction_gateway_id)
+    public function UpdateSuccessfulTransaction($id)
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
         $exist = false;
@@ -114,8 +114,7 @@ class ModelPurchasePuTransaction extends Model
         }
         if ($exist) {
             $sql_update_string = "UPDATE `pu_transaction` SET " .
-                "`transaction_gateway_id`='$transaction_gateway_id'" .
-                ",`successful`='1'" .
+                "`successful`='1'" .
                 " WHERE `id` = $id";
             $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
             return true;

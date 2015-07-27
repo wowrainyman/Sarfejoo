@@ -839,7 +839,7 @@ class ModelProviderPuSubprofile extends Model
         }
         return false;
     }
-    public function setSubprofileExpireDate($subprofile_id,$expire_date)
+    public function setSubprofileExpireDate($subprofile_id,$expire_date,$plan_id,$period_id)
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
         $pu_database_name = $GLOBALS['pu_database_name'];
@@ -854,13 +854,15 @@ class ModelProviderPuSubprofile extends Model
         if ($exist) {
             $sql_update_string = "UPDATE `pu_subprofile_verification` SET " .
                 "`expire_date`='$expire_date'" .
+                ",`plan_id`='$plan_id'" .
+                ",`period_id`='$period_id'" .
                 " WHERE `subprofile_id` = $subprofile_id";
 
             $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
         }else{
             $sql_insert_string = "INSERT INTO $pu_database_name.pu_subprofile_verification" .
-                "(`subprofile_id`, `expire_date`)" .
-                "VALUES ('$subprofile_id', '$expire_date');";
+                "(`subprofile_id`, `expire_date`, `plan_id`, `period_id`)" .
+                "VALUES ('$subprofile_id', '$expire_date', '$plan_id', '$period_id');";
             $result_select = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         }
 

@@ -28,13 +28,15 @@
                         <?php } ?>
                     </div>
                     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="plan_id" value="<?php echo $plan['id'];?>" />
+                        <input type="hidden" name="plan_id" value="<?php echo $plan_id;?>" />
                         <input type="hidden" name="subprofile_id" value="<?php echo $subprofile_id;?>" />
-                        <h2><?php echo $text_profile; ?> </h2>
+                        <input type="hidden" name="period_id" value="<?php echo $period_id;?>" />
+                        <h2>
+                            پیش فاکتور
+                        </h2>
                         <div class="content">
                             <table class="form">
                                 <thead>
-                                <td>            پلن های دوره ای</td>
                                 <td>نام پلن</td>
                                 <td>مدت دوره(روز)</td>
                                 <td>
@@ -42,10 +44,9 @@
                                 </td>
                                 </thead>
                                 <tr>
-                                    <td></td>
                                     <td><?php echo $plan['name']; ?></td>
-                                    <td><?php echo $plan['duration']; ?></td>
-                                    <td><?php echo $plan['price']; ?></td>
+                                    <td><?php echo $period['duration']; ?></td>
+                                    <td><?php echo ($monthlyPrice)*(intval($period['duration']/30)); ?></td>
                                 </tr>
                             </table>
                         </div>

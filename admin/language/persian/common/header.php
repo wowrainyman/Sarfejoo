@@ -121,12 +121,22 @@ $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = 'Search';
 $_['text_recurring_profile']           = 'Recurring Profiles';
 
-$_['text_ad_plan_byclick']           = 'Click Plans';
-$_['text_ad_plan_byview']           = 'View Plans';
-$_['text_ad_plan_bytime']           = 'Time Plans';
-$_['text_ad_plans']           = 'Plans';
-$_['text_ad_position']           = 'Positions';
+$_['text_ad_plan_byclick']              = 'Click Plans';
+$_['text_ad_plan_byview']               = 'View Plans';
+$_['text_ad_plan_bytime']               = 'Time Plans';
+$_['text_ad_plans']                     = 'Plans';
+$_['text_ad_position']                  = 'Positions';
 
-$_['text_ad_information']           = 'Ads Info';
+$_['text_ad_information']               = 'Ads Info';
+
+$_['text_financial']                    = 'Financial';
+$_['text_features']                     = 'Features';
+$_['text_plans']                        = 'Plans';
+$_['text_periods']                      = 'Periods';
+$_['text_plans_features']               = 'Plans Features';
+$_['text_plans_periods']                = 'Plans Periods';
+$_['text_plans_discount']                = 'Plans Discount';
+
+
 
 ?>

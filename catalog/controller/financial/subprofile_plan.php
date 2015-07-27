@@ -1,5 +1,6 @@
 <?php
 require_once "settings.php";
+
 /**
  * Created by PhpStorm.
  * User: Amir
@@ -9,6 +10,7 @@ require_once "settings.php";
 class ControllerFinancialSubprofilePlan extends Controller
 {
     private $error = array();
+
     public function index()
     {
         if (!$this->customer->isLogged()) {
@@ -66,13 +68,49 @@ class ControllerFinancialSubprofilePlan extends Controller
         }
 
         $this->load->model('provider/pu_subprofile');
+
+        $this->load->model('financial/pu_feature_based_plan');
+
+        $featuredPlans = $this->model_financial_pu_feature_based_plan->getPlans();
+        $this->data['featuredPlans'] = $featuredPlans;
+        $features = $this->model_financial_pu_feature_based_plan->getFeatures();
+        $periods = $this->model_financial_pu_feature_based_plan->getPeriods();
+        $this->data['periods'] = $periods;
+        foreach ($features as $feature) {
+            $plan_structure = array();
+            foreach ($featuredPlans as $plan) {
+                $value = $this->model_financial_pu_feature_based_plan->getPlanFeatureValue($plan['id'], $feature['id']);
+                $value = $value[0]['value'];
+                $featureWithValue = $feature;
+                $featureWithValue['value'] = $value;
+                $featureWithValue['is_recommended'] = $plan['is_recommended'];
+                $plan_structure[] = $featureWithValue;
+
+            }
+            $plan_structures[] = $plan_structure;
+        }
+        foreach ($periods as $period) {
+            $plan_price_structure = array();
+            foreach ($featuredPlans as $plan) {
+                $value = $this->model_financial_pu_feature_based_plan->getPlanPeriodValue($plan['id'], $period['id']);
+                $value = $value[0]['value'];
+                $periodWithValue = $period;
+                $periodWithValue['value'] = $value;
+                $periodWithValue['is_recommended'] = $plan['is_recommended'];
+                $plan_price_structure[] = $periodWithValue;
+
+            }
+            $plan_price_structures[] = $plan_price_structure;
+        }
+        $this->data['plan_price_structures'] = $plan_price_structures;
+        $this->data['plan_structures'] = $plan_structures;
         $subprofile_id = $this->request->get['id'];
 
         $subprofile_info = $this->model_provider_pu_subprofile->GetSubprofileInfo($subprofile_id);
 
         $this->data['subprofile_id'] = $subprofile_id;
 
-        if($subprofile_info['group_id'])
+        if ($subprofile_info['group_id'])
             $results = $this->model_financial_pu_subprofile_plan->getPlans(0);
         else
             $results = $this->model_financial_pu_subprofile_plan->getPlans(1);
@@ -85,7 +123,7 @@ class ControllerFinancialSubprofilePlan extends Controller
                 'id' => $result['id'],
                 'name' => $result['name'],
                 'duration' => $result['duration'],
-                'price' =>  $result['price']
+                'price' => $result['price']
             );
         }
 
@@ -134,43 +172,91 @@ class ControllerFinancialSubprofilePlan extends Controller
         $this->load->model('purchase/pu_transaction');
         $this->load->model('financial/pu_subprofile_plan_subprofile_transaction');
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-            $plan_id = $this->request->post['plan_id'];
-            $subprofile_id = $this->request->post['subprofile_id'];
+            if (isset($this->request->post['plan_id'])) {
+                $this->data['plan_id'] = $this->request->post['plan_id'];
+                $plan_id = $this->request->post['plan_id'];
+            } else {
+                $this->redirect($this->url->link('account/account', '', 'SSL'));
+            }
+            if (isset($this->request->post['period_id'])) {
+                $this->data['period_id'] = $this->request->post['period_id'];
+                $period_id = $this->request->post['period_id'];
+            } else {
+                $this->redirect($this->url->link('account/account', '', 'SSL'));
+            }
+            if (isset($this->request->post['subprofile_id'])) {
+                $this->data['subprofile_id'] = $this->request->post['subprofile_id'];
+                $subprofile_id = $this->request->post['subprofile_id'];
+            } else {
+                $this->redirect($this->url->link('account/account', '', 'SSL'));
+            }
+
+            $this->load->model('financial/pu_feature_based_plan');
+            $plan = $this->model_financial_pu_feature_based_plan->getPlan($plan_id);
+            $period = $this->model_financial_pu_feature_based_plan->getPeriod($period_id);
+            $monthlyPrice = $this->model_financial_pu_feature_based_plan->getPlanPeriodValue($plan_id,$period_id);
+            $total_price = ($monthlyPrice[0]['value'])*(intval($period['duration']/30));
 
             $result = $this->model_financial_pu_subprofile_plan->getPlan($plan_id);
-            $data["customer_id"] = $this->customer->getId();
+            $customer_id = $this->customer->getId();
+            $data["customer_id"] = $customer_id;
             $data["payment_gateway_id"] = 1;
-            $data["value"] = $result["price"];
+            $data["value"] = $total_price;
 
             $transaction_id = $this->model_purchase_pu_transaction->AddTransaction($data);
-            $this->model_financial_pu_subprofile_plan_subprofile_transaction->add($plan_id,
+
+            $history_id = $this->model_financial_pu_feature_based_plan->addSubprofileHistory($customer_id,
+                $subprofile_id,
+                $plan_id,
+                $period_id,
+                $total_price,
+                $period['duration'],
                 $transaction_id,
-                $subprofile_id);
+                0);
 
 
             $client = new SoapClient("http://www.jahanpay.com/webservice?wsdl");
             $api = $GLOBALS['JAHANPAY_API_KEY'];
-            $amount =  $result["price"]; //Tooman
+            $amount = $total_price; //Tooman
             $callbackUrl = $this->url->link('financial/subprofile_plan/receive', 'order_id=' . $transaction_id, 'SSL');
             $orderId = $transaction_id;
             $txt = $transaction_id;
             $res = $client->requestpayment($api, $amount, $callbackUrl, $orderId, $txt);
             $this->model_purchase_pu_transaction->UpdateTransactionGatewayId($orderId, $res);
             if ($res > 0) {
-                $this->session->data['success']="";
+                $this->session->data['success'] = "";
                 header("location: http://www.jahanpay.com/pay_invoice/{$res}");
             } else {
                 $this->error['warning'] = $errorCode[$res];
             }
-        }else {
+        } else {
             if (isset($this->request->get['plan_id'])) {
-                $this->data['subprofile_id'] = $this->request->get['subprofile_id'];
+                $this->data['plan_id'] = $this->request->get['plan_id'];
                 $plan_id = $this->request->get['plan_id'];
-                $result = $this->model_financial_pu_subprofile_plan->getPlan($plan_id);
-                $this->data['plan'] = $result;
             } else {
                 $this->redirect($this->url->link('account/account', '', 'SSL'));
             }
+            if (isset($this->request->get['period_id'])) {
+                $this->data['period_id'] = $this->request->get['period_id'];
+                $period_id = $this->request->get['period_id'];
+            } else {
+                $this->redirect($this->url->link('account/account', '', 'SSL'));
+            }
+            if (isset($this->request->get['subprofile_id'])) {
+                $this->data['subprofile_id'] = $this->request->get['subprofile_id'];
+                $subprofile_id = $this->request->get['subprofile_id'];
+            } else {
+                $this->redirect($this->url->link('account/account', '', 'SSL'));
+            }
+            $this->load->model('financial/pu_feature_based_plan');
+            $plan = $this->model_financial_pu_feature_based_plan->getPlan($plan_id);
+            $period = $this->model_financial_pu_feature_based_plan->getPeriod($period_id);
+            $monthlyPrice = $this->model_financial_pu_feature_based_plan->getPlanPeriodValue($plan_id,$period_id);
+            $this->data['plan'] = $plan;
+            $this->data['period'] = $period;
+            $this->data['monthlyPrice'] = $monthlyPrice[0]['value'];
+
+
             $this->data['breadcrumbs'] = array();
             $this->data['breadcrumbs'][] = array(
                 'text' => $this->language->get('text_home'),
@@ -262,36 +348,39 @@ class ControllerFinancialSubprofilePlan extends Controller
         $this->load->model('financial/pu_subprofile_plan');
         $this->load->model('provider/pu_subprofile');
         $transaction_info = $this->model_purchase_pu_transaction->GetTransactionInfo($orderId);
+        $transaction_id = $transaction_info['id'];
         $api = $GLOBALS['JAHANPAY_API_KEY'];
         $amount = $transaction_info['value']; //Tooman
         $client = new SoapClient("http://www.jahanpay.com/webservice?wsdl");
         $result = $client->verification($api, $amount, $_GET["au"]);
-        if (! empty($result) and $result == 1) {
-            $this->model_purchase_pu_transaction->UpdateSuccessfulTransaction($orderId, $_GET["au"]);
-            $plan_id = $this->model_financial_pu_subprofile_plan_subprofile_transaction->getPlanId($transaction_info['id']);
-            $subprofile_id = $this->model_financial_pu_subprofile_plan_subprofile_transaction->getSubprofileId($transaction_info['id']);
-            $plan_info = $this->model_financial_pu_subprofile_plan->getPlan($plan_id);
-            $cur_expire_date = $this->model_provider_pu_subprofile->getSubprofileExpireDate($subprofile_id);
-            if($cur_expire_date && strtotime($cur_expire_date) > time()) {
-                $expire_date = date('Y-m-d H:i:s', strtotime('+' . $plan_info['duration'] . ' days' . date('Y-m-d H:i:s', strtotime($cur_expire_date))));
-            }else{
-                $currentDate = new DateTime();
-                $currentDate = $currentDate->getTimestamp();
-                $expire_date = date('Y-m-d H:i:s', strtotime('+' . $plan_info['duration'] . ' days' . date('Y-m-d H:i:s', $currentDate)));
+        if (!empty($result) and $result == 1) {
+
+            $this->model_purchase_pu_transaction->UpdateSuccessfulTransaction($transaction_id);
+            $this->load->model('financial/pu_feature_based_plan');
+            $history = $this->model_financial_pu_feature_based_plan->getHistoryByTransactionId($transaction_id);
+            $plan = $this->model_financial_pu_feature_based_plan->getPlan($history['plan_id']);
+            $period = $this->model_financial_pu_feature_based_plan->getPeriod($history['period_id']);
+            $currentDate = new DateTime();
+            $currentDate = $currentDate->getTimestamp();
+            $expire_date = date('Y-m-d H:i:s', strtotime('+' . $period['duration'] . ' days' . date('Y-m-d H:i:s', $currentDate)));
+            $this->model_provider_pu_subprofile->setSubprofileExpireDate($history['subprofile_id'], $expire_date,$history['plan_id'],$history['period_id']);
+            $this->model_financial_pu_feature_based_plan->updateSuccessfulPayHistory($history['id']);
+            $subprofile_info = $this->model_provider_pu_subprofile->GetSubprofileInfo($history['subprofile_id']);
+
+            $features = $this->model_financial_pu_feature_based_plan->getFeatures();
+            foreach ($features as $feature) {
+                $value = $this->model_financial_pu_feature_based_plan->getPlanFeatureValue($history['plan_id'], $feature['id']);
+                $this->model_financial_pu_feature_based_plan->addSubprofileFeatureValue($history['subprofile_id'],$feature['id'],$value['value']);
             }
-            echo $subprofile_id;
-            echo $expire_date;
-            $this->model_provider_pu_subprofile->setSubprofileExpireDate($subprofile_id,$expire_date);
-            $subprofile_info = $this->model_provider_pu_subprofile->GetSubprofileInfo($subprofile_id);
-            if($subprofile_info['address']==''){
-                $callbackUrl = $this->url->link('provider/subprofile/Add','', 'SSL');
-                $callbackUrl .= '&id=' . $subprofile_id;
-                $go= $callbackUrl;
+            if ($subprofile_info['address'] == '') {
+                $callbackUrl = $this->url->link('provider/subprofile/Add', '', 'SSL');
+                $callbackUrl .= '&id=' . $history['subprofile_id'];
+                $go = $callbackUrl;
                 header("Location: $go");
                 die();
             }
-            $callbackUrl = $this->url->link('provider/subprofile','', 'SSL');
-            $go= $callbackUrl;
+            $callbackUrl = $this->url->link('provider/subprofile', '', 'SSL');
+            $go = $callbackUrl;
             header("Location: $go");
             die();
         } else {
