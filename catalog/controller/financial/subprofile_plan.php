@@ -80,7 +80,7 @@ class ControllerFinancialSubprofilePlan extends Controller
             $plan_structure = array();
             foreach ($featuredPlans as $plan) {
                 $value = $this->model_financial_pu_feature_based_plan->getPlanFeatureValue($plan['id'], $feature['id']);
-                $value = $value[0]['value'];
+                $value = $value['value'];
                 $featureWithValue = $feature;
                 $featureWithValue['value'] = $value;
                 $featureWithValue['is_recommended'] = $plan['is_recommended'];

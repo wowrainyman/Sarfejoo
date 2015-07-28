@@ -78,20 +78,25 @@
                                 </a>
                             </td>
                         </tr>
-
+                        <?php $counter = 0; ?>
                         <!-- Table Content -->
                         <?php foreach ($plan_structures as $plan_structure) { ?>
-                        <tr>
+                        <tr class="<?php if($counter%2) echo 'altRow'; ?>">
                             <?php foreach ($plan_structure as $pstr) { ?>
                                 <td class="<?php if($pstr['is_recommended']) echo 'recommended' ?>">
                                     <?php echo $pstr['title']; ?>
                                     <br/>
                                     <strong>
-                                        <?php echo $pstr['value']; ?>
+                                        <?php if($pstr['value']== -1){ ?>
+                                            نامحدود
+                                        <?php }else{ ?>
+                                            <?php echo $pstr['value']; ?>
+                                        <?php } ?>
                                     </strong>
                                 </td>
                             <?php } ?>
                         </tr>
+                        <?php $counter++; ?>
                         <?php } ?>
                         <!-- Table Footer -->
                         <tfoot>
@@ -161,10 +166,10 @@
                             <td>
                             </td>
                         </tr>
-
+                        <?php $counter = 0; ?>
                         <!-- Table Content -->
                         <?php foreach ($plan_price_structures as $plan_price_structure) { ?>
-                        <tr>
+                        <tr class="<?php if($counter%2) echo 'altRow'; ?>">
                             <?php foreach ($plan_price_structure as $pstr) { ?>
                             <td class="<?php if($pstr['is_recommended']) echo 'recommended' ?>">
                                 <?php echo $pstr['name']; ?>
@@ -178,6 +183,7 @@
                                 درماه
                             </td>
                             <?php } ?>
+                            <?php $counter++; ?>
                         </tr>
                         <?php } ?>
                         <!-- Table Footer -->
