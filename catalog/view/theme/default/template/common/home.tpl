@@ -624,13 +624,13 @@
             </div>
             <div class="col-md-4" style="background-color: #129F8C;margin:auto;padding-top:10px;color:#FFFFFF;height: 50px;font-size: 17px;font-weight: bold;">
                 <a href="http://blog.sarfejoo.com" style="font-size: 17px;font-weight: bold;color:#FFFFFF;">
-                ورود به وبلاگ
+                    ورود به وبلاگ
                 </a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12" style="padding: 0px;">
-                <img src="catalog/view/images/samples/gift.jpg" style="width: 100%;" height="220" />
+                <a target="_blank" href="http://hediyeirani.com"><img src="catalog/view/images/samples/300-250-2.gif" style="width: 100%;" height="220" /></a>
             </div>
         </div>
     </div>
