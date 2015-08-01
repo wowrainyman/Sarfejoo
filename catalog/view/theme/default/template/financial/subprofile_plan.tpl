@@ -86,12 +86,51 @@
                                 <td class="<?php if($pstr['is_recommended']) echo 'recommended' ?>">
                                     <?php echo $pstr['title']; ?>
                                     <br/>
-                                    <strong>
-                                        <?php if($pstr['value']== -1){ ?>
-                                            نامحدود
-                                        <?php }else{ ?>
-                                            <?php echo $pstr['value']; ?>
-                                        <?php } ?>
+                                    <strong dir="rtl">
+                                        <?php switch ($pstr['type']) {
+                                                case 'int':
+                                                    if($pstr['value']== -1){
+                                                        echo 'نامحدود' . '&nbsp;';
+                                                    }else{
+                                                        echo $pstr['value'] . '&nbsp;';
+                                                        echo 'عدد' . '&nbsp;';
+                                                    }
+                                                    break;
+                                                case 'person':
+                                                    if($pstr['value']== -1){
+                                                        echo 'نامحدود' . '&nbsp;';
+                                                    }else{
+                                                        echo $pstr['value'] . '&nbsp;';
+                                                        echo 'نفر' . '&nbsp;';
+                                                    }
+                                                    break;
+                                                case 'time':
+                                                    if($pstr['value']== -1){
+                                                        echo 'نامحدود' . '&nbsp;';
+                                                    }else{
+                                                        echo $pstr['value'] . '&nbsp;';
+                                                        echo 'بار' . '&nbsp;';
+                                                    }
+                                                    break;
+                                                case 'perc':
+                                                if($pstr['value']== -1){
+                                                    echo 'نامحدود' . '&nbsp;';
+                                                }else{
+                                                    echo $pstr['value'] . '&nbsp;';
+                                                    echo '%' . '&nbsp;';
+                                                }
+                                                break;
+                                                case 'hour':
+                                                    echo $pstr['value'] . '&nbsp;';
+                                                    break;
+                                                case 'bool':
+                                                    if($pstr['value']== 1){
+                                                        echo '<img src="catalog/view/icons/check-icon.png" width="15" height="15">';
+                                                    }else{
+                                                        echo '<img src="catalog/view/icons/delete-icon.png" width="15" height="15">';
+                                                    }
+                                                    break;
+                                            } ?>
                                     </strong>
                                 </td>
                             <?php } ?>
@@ -175,7 +214,7 @@
                                 <?php echo $pstr['name']; ?>
                                 <br/>
                                 <h4>
-                                    <strong>
+                                    <strong style="font-size: x-large;">
                                         <?php echo intval($pstr['value']/1000); ?>
                                         <sup><?php echo str_pad($pstr['value']%1000, 3, '0', STR_PAD_LEFT);?></sup>
                                     </strong>

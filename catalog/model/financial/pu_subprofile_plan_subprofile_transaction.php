@@ -20,7 +20,6 @@ class ModelFinancialPuSubprofilePlanSubprofileTransaction extends Model {
         $sql_insert_string = "INSERT INTO $pu_database_name.pu_subprofile_plan_subprofile_transaction" .
             "(`subprofile_plan_id`, `transaction_id`, `subprofile_id`)" .
             " VALUES ('$subprofile_plan_id', '$transaction_id', '$subprofile_id');";
-        echo $sql_insert_string;
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $return_id = mysqli_insert_id($con_PU_db);
         return $return_id;

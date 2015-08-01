@@ -46,7 +46,24 @@ class ModelPurchasePuTransaction extends Model
             return $row;
         }
     }
-
+    public function getTransactionByTransactionGatewayId($transaction_gateway_id)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $sql_select_string = "SELECT * FROM `pu_transaction` WHERE `transaction_gateway_id` = $transaction_gateway_id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            return $row;
+        }
+    }
+    public function getTransactionByToken($token)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $sql_select_string = "SELECT * FROM `pu_transaction` WHERE `token` = $token";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            return $row;
+        }
+    }
     public function UpdateTransactionGatewayId($id, $transaction_gateway_id)
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
@@ -67,9 +84,48 @@ class ModelPurchasePuTransaction extends Model
             return false;
         }
     }
+    public function UpdateToken($id, $token)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_transaction` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_transaction` SET " .
+                "`token`='$token'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function UpdateStoreTrackingNumber($id, $store_tracking_number)
+    {
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $exist = false;
+        $sql_select_string = "SELECT * FROM `pu_transaction` WHERE `id` = $id";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $exist = true;
+            break;
+        }
+        if ($exist) {
+            $sql_update_string = "UPDATE `pu_transaction` SET " .
+                "`store_tracking_number`='$store_tracking_number'" .
+                " WHERE `id` = $id";
+            $result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function UpdateCustomerBalance($customer_id, $amount)
     {
-        echo $amount;
         $date = new DateTime();
         $date = date('Y-m-d H:i:s',$date->getTimestamp());
         $con_PU_db = $GLOBALS['con_PU_db'];

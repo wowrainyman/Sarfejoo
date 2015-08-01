@@ -105,7 +105,6 @@ class ModelFinancialPuFeatureBasedPlan extends Model {
         $sql_insert_string = "INSERT INTO $pu_database_name.pu_financial_subprofile_history" .
             "(`customer_id`, `subprofile_id`, `plan_id`, `period_id`, `date`, `payed_price`, `period_duration`, `transaction_id`, `is_payed`)" .
             " VALUES ('$customer_id', '$subprofile_id', '$plan_id', '$period_id', NOW(), '$payed_price', '$period_duration', '$transaction_id', '$is_payed');";
-        echo $sql_insert_string;
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $return_id = mysqli_insert_id($con_PU_db);
         return $return_id;
@@ -143,7 +142,6 @@ class ModelFinancialPuFeatureBasedPlan extends Model {
         $sql_insert_string = "INSERT INTO $pu_database_name.pu_financial_plans_features_subprofiles" .
             "(`subprofile_id`, `feature_id`, `start_value`, `current_value`)" .
             " VALUES ('$subprofile_id', '$feature_id', '$value', '$value');";
-        echo $sql_insert_string;
         $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
         $return_id = mysqli_insert_id($con_PU_db);
         return $return_id;
