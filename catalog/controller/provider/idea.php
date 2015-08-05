@@ -5,7 +5,7 @@
  * Date: 11/5/2014
  * Time: 8:56 AM
  */
-class ControllerProviderEtrust extends Controller {
+class ControllerProvider extends Controller {
     private $error = array();
 
     public function index() {

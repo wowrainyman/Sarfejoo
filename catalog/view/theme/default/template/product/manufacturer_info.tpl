@@ -62,7 +62,7 @@
                                     <img src="catalog/view/icons/green-down.png" width="15" height="10" />
                                     <?php echo $product['price']; ?>
                                     <?php }else { ?>
-                                    <?php echo $text_without_price; ?>
+                                    <?php if(isset($text_without_price)) echo $text_without_price; ?>
                                     <?php } ?>
                                     <?php } else { ?>
                                     <span class="price-old">
@@ -106,15 +106,15 @@
                                         <img src="catalog/view/images/up-down-arrow.png" style="float: right;margin-right: 10px;margin-top: 20px;" />
                                         <div  style="float: right;margin-top: 20px;margin-right: 30px;">
                                     <span style="display: block;">
-                                        <?php echo number_format($product['maxprice'])?>
+                                        <?php if(isset($product['maxprice'])) echo number_format($product['maxprice'])?>
                                         تومان
                                     </span>
                                     <span style="display: block;margin-top: 7px;font-size: large;color: #8AB705;">
-                                        <?php echo number_format($product['avg_price'])?>
+                                        <?php if(isset($product['avg_price'])) echo number_format($product['avg_price'])?>
                                         تومان
                                     </span>
                                     <span style="display: block;margin-top: 7px;">
-                                        <?php echo number_format($product['minprice'])?>
+                                        <?php if(isset($product['minprice'])) echo number_format($product['minprice'])?>
                                         تومان
                                     </span>
                                         </div>
@@ -122,7 +122,7 @@
                                     <div class="row row-centered" style="margin-top: 5px;">
                                         <div class="col-md-12 col-centered">
                                             <img src="catalog/view/images/splitter2.png" height="10" width="10" />
-                                            <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($product['providers_count'])?></span>
+                                            <span style="color: #8AB705;font-size: 17px;"><?php if(isset($product['providers_count'])) echo number_format($product['providers_count'])?></span>
                                     <span>
                                         عرضه کننده
                                         این محصول
@@ -150,7 +150,7 @@
                     </div>
                     <div class="s-pc-c-c-pagenation"><?php echo $pagination; ?></div>
                     <?php } ?>
-                    <?php if (!$categories && !$products) { ?>
+                    <?php if (isset($categories) && !$categories && !$products) { ?>
                     <div class="content"><?php echo $text_empty; ?></div>
                     <div class="buttons">
                         <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
@@ -186,14 +186,14 @@
     }
     $("#filter-subprofile").change(function () {
         if($( this ).val() != 0){
-            var link = "<?php echo $currentUrl; ?>";
+            var link = "<?php if(isset($currentUrl)) echo $currentUrl; ?>";
             for(var i=0;i<10;i++){
 
                 var link = link.replace("&amp;", "&");
             }
             window.location.href = link+"&subprofile_id="+$( this ).val();
         }else{
-            var link = "<?php echo $Url; ?>";
+            var link = "<?php if(isset($Url)) echo $Url; ?>";
             for(var i=0;i<10;i++){
 
                 var link = link.replace("&amp;", "&");
@@ -206,7 +206,7 @@
 </div>
 
 <div id="bseo">
-    <?php echo $stext; ?>
+    <?php if(isset($stext)) echo $stext; ?>
 </div>
 
 <?php echo $footer; ?>

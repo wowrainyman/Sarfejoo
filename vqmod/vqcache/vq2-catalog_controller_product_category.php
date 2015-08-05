@@ -606,7 +606,11 @@ class ControllerProductCategory extends Controller
             $pagination->text = $this->language->get('text_pagination');
             $pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
 
-            $this->data['currentUrl'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $myurl);
+            if(isset($myurl)){
+                $this->data['currentUrl'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $myurl);
+            }else{
+                $this->data['currentUrl'] = $this->url->link('product/category', 'path=' . $this->request->get['path']);
+            }
             $this->data['Url'] = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url);
             $this->data['pagination'] = $pagination->render();
 
@@ -803,8 +807,8 @@ class ControllerProductCategory extends Controller
     public function generateSeoText($seo_generator_terms, $rss_link)
     {
         $text = "";
-        $terms = explode("-", $seo_generator_terms);
-        if (count($terms) == 5) {
+        $terms = explode("$", $seo_generator_terms);
+        if (count($terms) > 0 && $rss_link) {
             $content = file_get_contents($rss_link);
             $x = new SimpleXmlElement($content);
             $text = "";
@@ -815,38 +819,24 @@ class ControllerProductCategory extends Controller
 
             $all_words = explode(" ", $text);
             $all_words_count = count($all_words);
-            $ac = intval(($all_words_count / 100) * 3.5);
-            $ad = intval(($all_words_count / 100) * 3);
-            $ae = intval(($all_words_count / 100) * 2.5);
-            $bc = intval(($all_words_count / 100) * 2);
-            $bd = intval(($all_words_count / 100) * 1.5);
-            $be = intval(($all_words_count / 100) * 1);
-            for ($i = 0; $i < $ac; $i++) {
-                $place = rand(0, $all_words_count - 1);
-                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[2] . ' ';
-            }
-            for ($i = 0; $i < $ad; $i++) {
-                $place = rand(0, $all_words_count - 1);
-                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[3] . ' ';
-            }
-            for ($i = 0; $i < $ae; $i++) {
-                $place = rand(0, $all_words_count - 1);
-                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[4] . ' ';
-            }
+            $percentage = array();
+            $percentage[0] = intval(($all_words_count / 100) * 4);
+            $percentage[1] = intval(($all_words_count / 100) * 3.5);
+            $percentage[2] = intval(($all_words_count / 100) * 3);
+            $percentage[3] = intval(($all_words_count / 100) * 2.5);
+            $percentage[4] = intval(($all_words_count / 100) * 2);
+            $percentage[5] = intval(($all_words_count / 100) * 1.5);
+            $percentage[6] = intval(($all_words_count / 100) * 1);
+            for ($i = 0; $i < count($terms); $i++) {
+                if($i<=6){
+                    for ($j = 0; $j < $percentage[$i]; $j++) {
+                        $place = rand(0, $all_words_count - 1);
+                        $all_words[$place] = $all_words[$place] . ' ' . $terms[$i] . ' ';
+                    }
+                }else{
 
-            for ($i = 0; $i < $bc; $i++) {
-                $place = rand(0, $all_words_count - 1);
-                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[2] . ' ';
+                }
             }
-            for ($i = 0; $i < $bd; $i++) {
-                $place = rand(0, $all_words_count - 1);
-                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[3] . ' ';
-            }
-            for ($i = 0; $i < $be; $i++) {
-                $place = rand(0, $all_words_count - 1);
-                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[4] . ' ';
-            }
-
             $text = implode(" ", $all_words);
         }
         return $text;

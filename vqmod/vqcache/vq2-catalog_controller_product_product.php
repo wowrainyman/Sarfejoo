@@ -459,6 +459,24 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
             }
             $this->data['href'] = $this->url->link('product/product', 'product_id=' . $product_id);
             $this->data['images'] = array();
+            $related_products = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
+            foreach ($related_products as $result) {
+                if ($result['image']) {
+                    $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+                } else {
+                    $image = false;
+                }
+                $this->data['related_products'][] = array(
+                    'product_id' => $result['product_id'],
+                    'thumb' => $image,
+                    'name' => $result['name'],
+                    'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 100) . '..',
+                    'rating' => $result['rating'],
+                    'reviews' => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+                    'href' => $this->url->link('product/product', '&product_id=' . $result['product_id'] . $url),
+                );
+            }
+
             $results = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
             foreach ($results as $result) {
                 $this->data['images'][] = array(
@@ -601,6 +619,7 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
                     }
                 }
             }
+            if(!isset($this->request->get['path'])) $this->request->get['path'] = '';
             $this->data['url'] = $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $this->request->get['product_id']);
             if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "date"){
                 foreach ($providers as $key => $row) {
@@ -623,8 +642,16 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
                 }
                 array_multisort($title,SORT_DESC,$providers);
             }
-            $this->data['sort'] = $this->request->get['sort'];
-            $this->data['order'] = $this->request->get['order'];
+            if(isset($this->request->get['sort'])){
+                $this->data['sort'] = $this->request->get['sort'];
+            }else{
+                $this->data['sort'] = '';
+            }
+            if(isset($this->request->get['order'])){
+                $this->data['order'] = $this->request->get['order'];
+            }else{
+                $this->data['order'] = '';
+            }
 
             $this->data['providers'] = $providers;
             $this->data['is_service'] = $is_service;
@@ -1105,52 +1132,38 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
     }
 
     public function generateSeoText($seo_generator_terms,$rss_link){
-        $text="";
-        $terms = explode("-", $seo_generator_terms);
-        if(count($terms)==5){
+        $text = "";
+        $terms = explode("$", $seo_generator_terms);
+        if (count($terms) > 0 && $rss_link) {
             $content = file_get_contents($rss_link);
             $x = new SimpleXmlElement($content);
             $text = "";
-            foreach($x->channel->item as $entry) {
+            foreach ($x->channel->item as $entry) {
                 $text .= $entry->description;
             }
             $text = strip_tags($text);
 
             $all_words = explode(" ", $text);
             $all_words_count = count($all_words);
-            $ac = intval(($all_words_count/100)*3.5);
-            $ad = intval(($all_words_count/100)*3);
-            $ae = intval(($all_words_count/100)*2.5);
-            $bc = intval(($all_words_count/100)*2);
-            $bd = intval(($all_words_count/100)*1.5);
-            $be = intval(($all_words_count/100)*1);
-            for($i=0;$i<$ac;$i++){
-                $place = rand(0,$all_words_count-1);
-                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[2] . ' ';
-            }
-            for($i=0;$i<$ad;$i++){
-                $place = rand(0,$all_words_count-1);
-                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[3] . ' ';
-            }
-            for($i=0;$i<$ae;$i++){
-                $place = rand(0,$all_words_count-1);
-                $all_words[$place] = ' ' . $terms[0] . ' ' . $terms[4] . ' ';
-            }
+            $percentage = array();
+            $percentage[0] = intval(($all_words_count / 100) * 4);
+            $percentage[1] = intval(($all_words_count / 100) * 3.5);
+            $percentage[2] = intval(($all_words_count / 100) * 3);
+            $percentage[3] = intval(($all_words_count / 100) * 2.5);
+            $percentage[4] = intval(($all_words_count / 100) * 2);
+            $percentage[5] = intval(($all_words_count / 100) * 1.5);
+            $percentage[6] = intval(($all_words_count / 100) * 1);
+            for ($i = 0; $i < count($terms); $i++) {
+                if($i<=6){
+                    for ($j = 0; $j < $percentage[$i]; $j++) {
+                        $place = rand(0, $all_words_count - 1);
+                        $all_words[$place] = $all_words[$place] . ' ' . $terms[$i] . ' ';
+                    }
+                }else{
 
-            for($i=0;$i<$bc;$i++){
-                $place = rand(0,$all_words_count-1);
-                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[2] . ' ';
+                }
             }
-            for($i=0;$i<$bd;$i++){
-                $place = rand(0,$all_words_count-1);
-                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[3] . ' ';
-            }
-            for($i=0;$i<$be;$i++){
-                $place = rand(0,$all_words_count-1);
-                $all_words[$place] = ' ' . $terms[1] . ' ' . $terms[4] . ' ';
-            }
-
-            $text = implode(" ",$all_words);
+            $text = implode(" ", $all_words);
         }
         return $text;
     }

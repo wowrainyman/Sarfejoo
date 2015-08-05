@@ -28,19 +28,19 @@ class ControllerCommonHeader extends Controller
         $this->data['direction'] = $this->language->get('direction');
         $this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');
 
-          $category_blog_id = 0;
-          if (!empty($this->request->get['path'])) {
-               $cbi_explode   =    explode('_', $this->request->get['path']);
-               $category_blog_id = (int) array_pop($cbi_explode);
-          }
+        $category_blog_id = 0;
+        if (!empty($this->request->get['path'])) {
+            $cbi_explode   =    explode('_', $this->request->get['path']);
+            $category_blog_id = (int) array_pop($cbi_explode);
+        }
 
-          $this->load->model('blog/blog');
-          $category_blog_how_to = $this->model_blog_blog->getCateguryHowToBuyLink($category_blog_id);
-             while ($row = mysqli_fetch_assoc($category_blog_how_to)) {
-                  $this->data['blog_post_title'] =$row ['title'];
-                  $this->data['blog_post_link'] =$row ['link'];
-              }
-              
+        $this->load->model('blog/blog');
+        $category_blog_how_to = $this->model_blog_blog->getCateguryHowToBuyLink($category_blog_id);
+        while ($row = mysqli_fetch_assoc($category_blog_how_to)) {
+            $this->data['blog_post_title'] =$row ['title'];
+            $this->data['blog_post_link'] =$row ['link'];
+        }
+
         // Load balance
         if ($this->customer->isLogged()) {
             $this->load->model('payment/balance');
@@ -177,7 +177,7 @@ class ControllerCommonHeader extends Controller
                     }
                     $children_data[] = array (
                         'name' => $child['name'],
-                        'icon_class' => $child['icon_class'],
+                        //'icon_class' => $child['icon_class'],
                         'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
                         'id' => $category['category_id'] . '_' . $child['category_id'],
                         'children_level2' => $children_data_level2,
@@ -208,76 +208,78 @@ class ControllerCommonHeader extends Controller
         $this->data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
         $this->data['text_count_compare'] = isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0;
 
+        if(isset($this->session->data['compare'])){
+            foreach ($this->session->data['compare'] as $key => $product_id) {
+                $product_info = $this->model_catalog_product->getProduct($product_id);
+                if ($product_info) {
+                    if ($product_info['image']) {
+                        $image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_compare_width'), $this->config->get('config_image_compare_height'));
+                    } else {
+                        $image = false;
+                    }
 
-        foreach ($this->session->data['compare'] as $key => $product_id) {
-            $product_info = $this->model_catalog_product->getProduct($product_id);
-            if ($product_info) {
-                if ($product_info['image']) {
-                    $image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_compare_width'), $this->config->get('config_image_compare_height'));
+                    if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+                        $price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+                    } else {
+                        $price = false;
+                    }
+                    $this->data['compare_products'][] = array(
+                        'product_id' => $product_info['product_id'],
+                        'name' => $product_info['name'],
+                        'thumb' => $image,
+                        'price' => $price,
+                        'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+                        'model' => $product_info['model'],
+                        'manufacturer' => $product_info['manufacturer'],
+                        'rating' => (int)$product_info['rating'],
+                        'reviews' => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
+                        'weight' => $this->weight->format($product_info['weight'], $product_info['weight_class_id']),
+                        'length' => $this->length->format($product_info['length'], $product_info['length_class_id']),
+                        'width' => $this->length->format($product_info['width'], $product_info['length_class_id']),
+                        'height' => $this->length->format($product_info['height'], $product_info['length_class_id']),
+                        'href' => $this->url->link('product/product', 'product_id=' . $product_id),
+                        'remove' => $this->url->link('product/compare', 'remove=' . $product_id)
+                    );
                 } else {
-                    $image = false;
+                    unset($this->session->data['compare'][$key]);
                 }
-
-                if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-                    $price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
-                } else {
-                    $price = false;
-                }
-                $this->data['compare_products'][] = array(
-                    'product_id' => $product_info['product_id'],
-                    'name' => $product_info['name'],
-                    'thumb' => $image,
-                    'price' => $price,
-                    'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
-                    'model' => $product_info['model'],
-                    'manufacturer' => $product_info['manufacturer'],
-                    'rating' => (int)$product_info['rating'],
-                    'reviews' => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-                    'weight' => $this->weight->format($product_info['weight'], $product_info['weight_class_id']),
-                    'length' => $this->length->format($product_info['length'], $product_info['length_class_id']),
-                    'width' => $this->length->format($product_info['width'], $product_info['length_class_id']),
-                    'height' => $this->length->format($product_info['height'], $product_info['length_class_id']),
-                    'href' => $this->url->link('product/product', 'product_id=' . $product_id),
-                    'remove' => $this->url->link('product/compare', 'remove=' . $product_id)
-                );
-            } else {
-                unset($this->session->data['compare'][$key]);
             }
         }
+        if(isset($this->session->data['wishlist'])){
+            foreach ($this->session->data['wishlist'] as $key => $product_id) {
+                $product_info = $this->model_catalog_product->getProduct($product_id);
+                if ($product_info) {
+                    if ($product_info['image']) {
+                        $image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_compare_width'), $this->config->get('config_image_compare_height'));
+                    } else {
+                        $image = false;
+                    }
 
-        foreach ($this->session->data['wishlist'] as $key => $product_id) {
-            $product_info = $this->model_catalog_product->getProduct($product_id);
-            if ($product_info) {
-                if ($product_info['image']) {
-                    $image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_compare_width'), $this->config->get('config_image_compare_height'));
+                    if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+                        $price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+                    } else {
+                        $price = false;
+                    }
+                    $this->data['wish_products'][] = array(
+                        'product_id' => $product_info['product_id'],
+                        'name' => $product_info['name'],
+                        'thumb' => $image,
+                        'price' => $price,
+                        'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+                        'model' => $product_info['model'],
+                        'manufacturer' => $product_info['manufacturer'],
+                        'rating' => (int)$product_info['rating'],
+                        'reviews' => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
+                        'weight' => $this->weight->format($product_info['weight'], $product_info['weight_class_id']),
+                        'length' => $this->length->format($product_info['length'], $product_info['length_class_id']),
+                        'width' => $this->length->format($product_info['width'], $product_info['length_class_id']),
+                        'height' => $this->length->format($product_info['height'], $product_info['length_class_id']),
+                        'href' => $this->url->link('product/product', 'product_id=' . $product_id),
+                        'remove' => $this->url->link('product/compare', 'remove=' . $product_id)
+                    );
                 } else {
-                    $image = false;
+                    unset($this->session->data['compare'][$key]);
                 }
-
-                if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-                    $price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
-                } else {
-                    $price = false;
-                }
-                $this->data['wish_products'][] = array(
-                    'product_id' => $product_info['product_id'],
-                    'name' => $product_info['name'],
-                    'thumb' => $image,
-                    'price' => $price,
-                    'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
-                    'model' => $product_info['model'],
-                    'manufacturer' => $product_info['manufacturer'],
-                    'rating' => (int)$product_info['rating'],
-                    'reviews' => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-                    'weight' => $this->weight->format($product_info['weight'], $product_info['weight_class_id']),
-                    'length' => $this->length->format($product_info['length'], $product_info['length_class_id']),
-                    'width' => $this->length->format($product_info['width'], $product_info['length_class_id']),
-                    'height' => $this->length->format($product_info['height'], $product_info['length_class_id']),
-                    'href' => $this->url->link('product/product', 'product_id=' . $product_id),
-                    'remove' => $this->url->link('product/compare', 'remove=' . $product_id)
-                );
-            } else {
-                unset($this->session->data['compare'][$key]);
             }
         }
         $this->data['compare_link'] = $this->url->link('product/compare', '');

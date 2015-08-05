@@ -558,7 +558,7 @@ class ControllerProductSearch extends Controller
 
         $this->load->model('tool/image');
         $term = $this->request->get['term'];
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON(p.product_id=pd.product_id) WHERE name LIKE '%".$term."%' AND p.status = 1 LIMIT 10");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON(p.product_id=pd.product_id) WHERE (pd.name LIKE '%".$term."%' OR pd.custom_title LIKE '%".$term."%') AND p.status = 1 LIMIT 10");
         foreach ($query->rows as $result) {
             $product_data[] = $result;
         }

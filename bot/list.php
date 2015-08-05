@@ -58,7 +58,7 @@ if ($login->isUserLoggedIn() != true) {
                 min-width: 90%;
             }
 
-            z
+
         }
 
         .upd {

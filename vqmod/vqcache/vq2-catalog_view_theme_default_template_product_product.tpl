@@ -21,7 +21,7 @@ function ago($time) {
        $difference     = $now - $time;
        $tense         = "ago";
    for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
-$difference /= $lengths[$j]; 
+$difference /= $lengths[$j];
 }
 $difference = round($difference);
 return "$difference $periods[$j] پیش ";
@@ -64,15 +64,15 @@ return "$difference $periods[$j] پیش ";
         </div>
     </div>
 </div>
-<?php if(!$is_service){ ?>
-    <div class="row" style="margin-top: 60px;">
-        <div class="col-md-8" style="padding: 0px;">
-            <div class="breadcrumb row" style="margin-bottom: 0;padding-bottom: 3px;">
-                <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+<?php if(!$is_service) { ?>
+<div class="row" style="margin-top: 60px;">
+    <div class="col-md-8" style="padding: 0px;">
+        <div class="breadcrumb row" style="margin-bottom: 0;padding-bottom: 3px;">
+            <?php foreach ($breadcrumbs as $breadcrumb) { ?>
                 <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-                <?php } ?>
-            </div>
-            <div class="row" style="margin-top: 0;">
+            <?php } ?>
+        </div>
+        <div class="row" style="margin-top: 0;">
             <div class="col-md-12 box-shadow" style="padding-top: 20px;margin-top: 0;">
                 <div class="row">
                     <div class="col-md-6">
@@ -124,9 +124,9 @@ return "$difference $periods[$j] پیش ";
                 <div class="row row-centered" style="margin-top: 20px;">
                     <div class="col-md-12 col-centered">
                         <?php foreach ($images as $image) { ?>
-                            <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" data-gallery>
-                                <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $custom_alt; ?>" width="100" height="80"/>
-                            </a>
+                        <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" data-gallery>
+                            <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $custom_alt; ?>" width="100" height="80"/>
+                        </a>
                         <?php } ?>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ return "$difference $periods[$j] پیش ";
                     <div class="col-md-12 col-centered">
                         <button type="button" class="btn btn-default" style="cursor: default;">
                             <?php echo $date_added; ?>
-معرفی شده است
+                            معرفی شده است
                         </button>
                         <a class="btn btn-default" role="button" onclick="addToWishList('<?php echo $product_id; ?>','<?php echo $thumb; ?>','<?php echo $href; ?>','<?php echo $model; ?>');">
                             <img src="catalog/view/icons/favorite-icon.png" width="10" height="10" />
@@ -154,191 +154,192 @@ return "$difference $periods[$j] پیش ";
                         </a>
                     </div>
                 </div>
-                </div>
             </div>
-            <style>
-    .mytab:not(.active){
-        color:#ffffff;background-color: #24AA99;
-    }
-            </style>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center;padding: 0px;margin: 0px;">
-                    <ul class="nav nav-tabs">
-                        <li role="presentation" class="active mytab" style="width: 22%;background-color: #24AA99">
-                            <a data-toggle="tab" href="#providers-tab" style="">
-                                فروشندگان
-                            </a>
-                        </li>
-                        <li role="presentation" class="mytab" style="width: 22%;border-right-color: #000000;border-right-width: 5px;">
-                            <a data-toggle="tab" href="#map-tab" style="">
-                                نقشه
-                            </a>
-                        </li>
-     <!--                   <li role="presentation" style="width: 22%;border-right-color: #000000;border-right-width: 5px;">
-                            <a data-toggle="tab" href="#" style="color:#ffffff;background-color: #24AA99;">
-                                نظرات
-                            </a>
-                        </li>
-                        <li role="presentation" style="width: 22%;border-right-color: #000000;border-right-width: 5px;">
-                            <a data-toggle="tab" href="#" style="color:#ffffff;background-color: #24AA99;">
-                                آمار
-                            </a>
-                        </li> -->
-                    </ul>
-                </div>
+        </div>
+        <style>
+            .mytab:not(.active){
+                color:#ffffff;background-color: #24AA99;
+            }
+        </style>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;padding: 0px;margin: 0px;">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active mytab" style="width: 22%;background-color: #24AA99">
+                        <a data-toggle="tab" href="#providers-tab" style="">
+                            فروشندگان
+                        </a>
+                    </li>
+                    <li role="presentation" class="mytab" style="width: 22%;border-right-color: #000000;border-right-width: 5px;">
+                        <a data-toggle="tab" href="#map-tab" style="">
+                            نقشه
+                        </a>
+                    </li>
+                    <!--                   <li role="presentation" style="width: 22%;border-right-color: #000000;border-right-width: 5px;">
+                                           <a data-toggle="tab" href="#" style="color:#ffffff;background-color: #24AA99;">
+                                               نظرات
+                                           </a>
+                                       </li>
+                                       <li role="presentation" style="width: 22%;border-right-color: #000000;border-right-width: 5px;">
+                                           <a data-toggle="tab" href="#" style="color:#ffffff;background-color: #24AA99;">
+                                               آمار
+                                           </a>
+                                       </li> -->
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-md-12 box-shadow" style="text-align: right;padding: 0px;margin: 0px;">
-                    <div class="tab-content">
-                        <div id="providers-tab" class="tab-pane fade in active">
-                            <div class="row" style="padding-right: 20px;padding-top: 5px;">
-                                <div class="col-md-5">
-                                    مرتب سازی بر اساس
-                                    <select class="form-control" id="sel1" onchange="location = this.value;">
-                                        <option value="<?php echo $url; ?>">
-آخرین بروزرسانی
-                                        </option>
-                                        <option value="<?php echo $url; ?>&sort=price&order=ASC" <?php if($sort=="price"&&$order=="ASC") echo "selected"; ?>>
-قیمت (ارزانترین در ابتدا)
-                                        </option>
-                                        <option value="<?php echo $url; ?>&sort=price&order=DESC" <?php if($sort=="price"&&$order=="DESC") echo "selected"; ?>>
-                                            قیمت (گرانترین در ابتدا)
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4"></div>
-                                <div class="col-md-3" style="margin-top: 5px;padding: 0px;">
-                                    <input id="guarantee-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
-فیلتر گارانتی
-                                    <br/>
-                                    <input id="online-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
-فیلتر خرید آنلاین
-                                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 box-shadow" style="text-align: right;padding: 0px;margin: 0px;">
+                <div class="tab-content">
+                    <div id="providers-tab" class="tab-pane fade in active">
+                        <div class="row" style="padding-right: 20px;padding-top: 5px;">
+                            <div class="col-md-5">
+                                مرتب سازی بر اساس
+                                <select class="form-control" id="sel1" onchange="location = this.value;">
+                                    <option value="<?php echo $url; ?>">
+                                        آخرین بروزرسانی
+                                    </option>
+                                    <option value="<?php echo $url; ?>&sort=price&order=ASC" <?php if($sort=="price"&&$order=="ASC") echo "selected"; ?>>
+                                    قیمت (ارزانترین در ابتدا)
+                                    </option>
+                                    <option value="<?php echo $url; ?>&sort=price&order=DESC" <?php if($sort=="price"&&$order=="DESC") echo "selected"; ?>>
+                                    قیمت (گرانترین در ابتدا)
+                                    </option>
+                                </select>
                             </div>
-                            <?php foreach ($providers as $provider) { ?>
-                                <?php if($provider['price']){ ?>
-                                    <div class="row row-centered no-guarantee <?php if(empty($provider['buy_link'])) echo 'no-online'; ?>">
-                                    <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
-                                        <div class="row">
-                                            <div class="col-md-3 col-xs-5">
-                                                <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
-                                            </div>
-                                            <div class="col-md-3">
-                                                <?php echo $provider['title']; ?>
-                                                <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
-                                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-3" style="margin-top: 5px;padding: 0px;">
+                                <input id="guarantee-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
+                                فیلتر گارانتی
+                                <br/>
+                                <input id="online-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
+                                فیلتر خرید آنلاین
+                            </div>
+                        </div>
+                        <?php foreach ($providers as $provider) { ?>
+                        <?php if($provider['price']){ ?>
+                        <div class="row row-centered no-guarantee <?php if(empty($provider['buy_link'])) echo 'no-online'; ?>">
+                            <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
+                                <div class="row">
+                                    <div class="col-md-3 col-xs-5">
+                                        <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <?php echo $provider['title']; ?>
+                                        <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
+                                    </div>
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                                 <span>
                                                     وضعیت:
                                                 </span>
                                                 <span>
                                                     موجود
                                                 </span>
-                                                <br/>
+                                        <br/>
                                                 <span>
     بروز رسانی:
                                                 </span>
-                                                <span><?php echo ago(strtotime($provider['update_date']));?></span>
+                                        <span><?php echo ago(strtotime($provider['update_date']));?></span>
                                                 <span>
                                                     گارانتی
                                                 </span>
                                                 <span>
                                                     ندارد
                                                 </span>
-                                            </div>
-                                            <div class="col-md-3">
-
-                                            </div>
-                                            <div class="col-md-5">
-                                                <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
-                                                    <?php echo number_format($provider['price']);?>
-                                                </button>
-                                                <?php if(!empty($provider['buy_link'])) { ?>
-                                                    <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                        <?php echo $p_buy_online;?>
-                                                    </a>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <!--<span>
-                                                    توضیحات فروشگاه:
-                                                </span>
-                                                <span>
-                                                    <?php echo $provider['description'];?>
-                                                </span>-->
-                                            </div>
-                                        </div>
                                     </div>
-                                    <table>
-                                        <?php if (isset($provider['custom_attributes'])) { ?>
-                                            <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+                                    <div class="col-md-3">
 
-                                                    <tr>
-                                                        <td><?php echo $cAttributes['name'];?></td>
-                                                        <td>
-                                                            <?php if ($cAttributes['type'] == 'Text') { ?>
-                                                                <?php echo $cAttributes['selected_value']['value'];?>
-                                                            <?php }else{ ?>
-                                                                <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
-                                                                <?php $str=''; ?>
-                                                                <?php foreach ($ids as $id) { ?>
-                                                                    <?php foreach ($cAttributes['values'] as $value) { ?>
-                                                                        <?php if ($value['id'] == $id) { ?>
-                                                                            <?php if ($str == '') { ?>
-                                                                                <?php $str = $value['value'];  ?>
-                                                                            <?php }else{ ?>
-                                                                                <?php $str .= ' و ' . $value['value'];  ?>
-                                                                            <?php } ?>
-                                                                        <?php } ?>
-                                                                    <?php } ?>
-                                                                <?php } ?>
-                                                                <?php echo $str;?>
-                                                            <?php } ?>
-                                                        </td>
-                                                    </tr>
-
-                                            <?php } ?>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
+                                            <?php echo number_format($provider['price']);?>
+                                        </button>
+                                        <?php if(!empty($provider['buy_link'])) { ?>
+                                        <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                            <?php echo $p_buy_online;?>
+                                        </a>
                                         <?php } ?>
-                                    </table>
+                                    </div>
                                 </div>
-                                <?php } ?>
-                                <?php if($provider['guarantee_status'] == 1){ ?>
-                                    <div class="row row-centered <?php if(empty($provider['buy_link'])) echo 'no-online'; ?>">
-                                    <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
-                                        <div class="row">
-                                            <div class="col-md-3 col-xs-5">
-                                                <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
-                                            </div>
-                                            <div class="col-md-3">
-                                                <?php echo $provider['title']; ?>
-                                                <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--<span>
+                                            توضیحات فروشگاه:
+                                        </span>
+                                        <span>
+                                            <?php echo $provider['description'];?>
+                                        </span>-->
+                                    </div>
+                                </div>
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
+                            </div>
+                            <table>
+                                <?php if (isset($provider['custom_attributes'])) { ?>
+                                <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+
+                                <tr>
+                                    <td><?php echo $cAttributes['name'];?></td>
+                                    <td>
+                                        <?php if ($cAttributes['type'] == 'Text') { ?>
+                                        <?php echo $cAttributes['selected_value']['value'];?>
+                                        <?php }else{ ?>
+                                        <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
+                                        <?php $str=''; ?>
+                                        <?php foreach ($ids as $id) { ?>
+                                        <?php foreach ($cAttributes['values'] as $value) { ?>
+                                        <?php if ($value['id'] == $id) { ?>
+                                        <?php if ($str == '') { ?>
+                                        <?php $str = $value['value'];  ?>
+                                        <?php }else{ ?>
+                                        <?php $str .= ' و ' . $value['value'];  ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php echo $str;?>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <?php } ?>
+                                <?php } ?>
+                            </table>
+                        </div>
+                        <?php } ?>
+                        <?php if($provider['guarantee_status'] == 1){ ?>
+                        <div class="row row-centered <?php if(empty($provider['buy_link'])) echo 'no-online'; ?>">
+                            <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
+                                <div class="row">
+                                    <div class="col-md-3 col-xs-5">
+                                        <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <?php echo $provider['title']; ?>
+                                        <a target="_blank" class="mapUrl" href="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAYXooqll6ww3TkM5fiP336kUYyhXaxli4&&destination=<?php echo $provider['lat'];?>,<?php echo $provider['lon'];?>"><img src="catalog/view/icons/map-icon.png" /></a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="subRate" style="direction: ltr;margin-right: 80px;" data-id="<?php echo $provider['subprofile_id']; ?>" data-average="3.5"></div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                                     <span>
                                                         وضعیت:
                                                     </span>
                                                     <span>
                                                         موجود
                                                     </span>
-                                                <br/>
+                                        <br/>
                                                     <span>
         بروز رسانی:
                                                     </span>
-                                                <span><?php echo ago(strtotime($provider['update_date']));?></span>
+                                        <span><?php echo ago(strtotime($provider['update_date']));?></span>
                                                     <span>
                                                         گارانتی
                                                     </span>
@@ -346,33 +347,33 @@ return "$difference $periods[$j] پیش ";
 دارد
                                                     </span>
 
-                                            </div>
-                                            <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3">
 
-                                            </div>
-                                            <div class="col-md-5">
-                                                <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
-                                                    <?php echo number_format($provider['guarantee_price']);?>
-                                                </button>
-                                                <?php if(!empty($provider['buy_link'])) { ?>
-                                                <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                    <?php echo $p_buy_online;?>
-                                                </a>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <button type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #7C2981;color: #ffffff;">
+                                            <?php echo number_format($provider['guarantee_price']);?>
+                                        </button>
+                                        <?php if(!empty($provider['buy_link'])) { ?>
+                                        <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                            <?php echo $p_buy_online;?>
+                                        </a>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
                                                     <span>
 مدت زمان گارانتی                                                    :
                                                     </span>
                                                     <span>
                                                         <?php echo $provider['guarantee_time'];?>
                                                         <?php if($provider['guarantee_time_type']==0){ ?>
-                                                            &nbsp;
+                                                        &nbsp;
                                                             ماه
                                                         <?php }else{ ?>
-                                                            &nbsp;
+                                                        &nbsp;
                                                             سال
                                                         <?php } ?>
                                                     </span><br/>
@@ -382,69 +383,100 @@ return "$difference $periods[$j] پیش ";
                                                     <span>
                                                         <?php echo $provider['guarantee_description'];?>
                                                     </span>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <table>
-                                        <?php if (isset($provider['custom_attributes'])) { ?>
-                                        <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
-
-                                        <tr>
-                                            <td><?php echo $cAttributes['name'];?></td>
-                                            <td>
-                                                <?php if ($cAttributes['type'] == 'Text') { ?>
-                                                <?php echo $cAttributes['selected_value']['value'];?>
-                                                <?php }else{ ?>
-                                                <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
-                                                <?php $str=''; ?>
-                                                <?php foreach ($ids as $id) { ?>
-                                                <?php foreach ($cAttributes['values'] as $value) { ?>
-                                                <?php if ($value['id'] == $id) { ?>
-                                                <?php if ($str == '') { ?>
-                                                <?php $str = $value['value'];  ?>
-                                                <?php }else{ ?>
-                                                <?php $str .= ' و ' . $value['value'];  ?>
-                                                <?php } ?>
-                                                <?php } ?>
-                                                <?php } ?>
-                                                <?php } ?>
-                                                <?php echo $str;?>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-
-                                        <?php } ?>
-                                        <?php } ?>
-                                    </table>
                                 </div>
-                                <?php } ?>
-                            <?php } ?>
-                        </div>
-                        <div id="map-tab" class="tab-pane fade">
-                            <!--[if lte IE 8 ]>
-                            <div class="s-ie-old"><?php echo $text_he_notif; ?></div>
-                            <![endif]-->
-                            <div id="Gmap" style="height:400px;width:768px;">
                             </div>
+                            <table>
+                                <?php if (isset($provider['custom_attributes'])) { ?>
+                                <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+
+                                <tr>
+                                    <td><?php echo $cAttributes['name'];?></td>
+                                    <td>
+                                        <?php if ($cAttributes['type'] == 'Text') { ?>
+                                        <?php echo $cAttributes['selected_value']['value'];?>
+                                        <?php }else{ ?>
+                                        <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
+                                        <?php $str=''; ?>
+                                        <?php foreach ($ids as $id) { ?>
+                                        <?php foreach ($cAttributes['values'] as $value) { ?>
+                                        <?php if ($value['id'] == $id) { ?>
+                                        <?php if ($str == '') { ?>
+                                        <?php $str = $value['value'];  ?>
+                                        <?php }else{ ?>
+                                        <?php $str .= ' و ' . $value['value'];  ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php echo $str;?>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <?php } ?>
+                                <?php } ?>
+                            </table>
+                        </div>
+                        <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <div id="map-tab" class="tab-pane fade">
+                        <!--[if lte IE 8 ]>
+                        <div class="s-ie-old"><?php echo $text_he_notif; ?></div>
+                        <![endif]-->
+                        <div id="Gmap" style="height:400px;width:768px;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4"  style="padding: 0px;">
-            <div class="col-md-12" style="padding-left: 0px;">
-                <?php foreach ($attribute_groups as $attribute_group) { ?>
-                    <div class="row" style="border-right-width: 20px;border-right-color: #9A33CC">
-                        <div class="col-md-12 mj-font" style="text-align: center;">
-                            <?php echo $attribute_group['name']; ?>
-                        </div>
+        <div class="row">
+            <div class="col-md-12" style="padding: 0px;">
+                <div class="strike-black" style="margin: 0px;padding: 0px;">
+            <span>
+                <i class=""></i>
+                <a class="mj-font" style="font-size: 20px;margin-right: 10px;">
+                    کالاهای مرتبط
+
+                </a>
+            </span>
+                </div>
+            </div>
+        </div>
+        <div class="row row-centered">
+            <?php foreach ($related_products as $product) { ?>
+            <div class="col-md-4 col-xs-6 col-centered" style="padding: 4px;">
+                <div class="col-md-12 box-shadow" style="text-align: center;padding: 20px;">
+                    <div class="row" style="height: 50px;">
+                        <a href="<?php echo $product['href']; ?>">
+                        <span style="margin: auto;" title="<?php echo $product['name']; ?>">
+                            <?php echo $product['name']; ?>
+                        </span>
+                        </a>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 box-shadow">
-                            <?php $attr_counter = 0; foreach ($attribute_group['attribute'] as $attribute) { ?>
-                                <div class="row" style="<?php if($attr_counter%2) echo 'background-color:#DDDDDD'; ?>">
-                                    <div class="col-md-12">
-                                        <span><?php echo $attribute['name']; ?>:</span>
+                        <img src="<?php echo $product['thumb']; ?>" width="100" height="100"/>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="col-md-4"  style="padding: 0px;">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <?php foreach ($attribute_groups as $attribute_group) { ?>
+            <div class="row" style="border-right-width: 20px;border-right-color: #9A33CC">
+                <div class="col-md-12 mj-font" style="text-align: center;">
+                    <?php echo $attribute_group['name']; ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 box-shadow">
+                    <?php $attr_counter = 0; foreach ($attribute_group['attribute'] as $attribute) { ?>
+                    <div class="row" style="<?php if($attr_counter%2) echo 'background-color:#DDDDDD'; ?>">
+                        <div class="col-md-12">
+                            <span><?php echo $attribute['name']; ?>:</span>
 
                                         <span style="float: left;">
                                             <?php if($attribute['text'] == "ندارد") { ?>
@@ -455,15 +487,18 @@ return "$difference $periods[$j] پیش ";
                                             <?php echo $attribute['text']; ?>
                                             <?php } ?>
                                         </span>
-                                    </div>
-                                </div>
-                            <?php $attr_counter++; } ?>
                         </div>
                     </div>
-                <?php } ?>
+                    <?php $attr_counter++; } ?>
+                </div>
             </div>
+            <?php } ?>
         </div>
+
     </div>
+
+</div>
+
 <?php }else{ ?>
 <style>
     .truncate {
@@ -548,16 +583,16 @@ return "$difference $periods[$j] پیش ";
                 <?php $counter=0; ?>
                 <?php $firstId=0; ?>
                 <?php foreach ($providers as $provider) { ?>
-                    <?php if ($counter == 0) { ?>
-                        <?php $firstId=$provider['subprofile_id']; ?>
-                    <?php } ?>
-                    <div class="row" style="cursor: pointer;<?php if(!($counter++)%2) echo 'background-color:#FFFFFF'; ?>" id="btn-div-<?php echo $provider['subprofile_id'];?>">
-                        <div class="col-md-12" style="padding: 0px;">
-                            <div>
-                                <?php echo $provider['title'];?>
-                            </div>
+                <?php if ($counter == 0) { ?>
+                <?php $firstId=$provider['subprofile_id']; ?>
+                <?php } ?>
+                <div class="row" style="cursor: pointer;<?php if(!($counter++)%2) echo 'background-color:#FFFFFF'; ?>" id="btn-div-<?php echo $provider['subprofile_id'];?>">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <div>
+                            <?php echo $provider['title'];?>
                         </div>
                     </div>
+                </div>
                 <?php } ?>
             </div>
         </div>
@@ -584,98 +619,98 @@ return "$difference $periods[$j] پیش ";
                     <?php $popCounter=0; ?>
                     <div class="col-md-12" style="padding: 4px;">
                         <?php if (isset($provider['custom_attributes'])) { ?>
-                            <?php $counter=0; ?>
-                            <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
-                                <?php if ($cAttributes['is_block']) { ?>
-                                    <div class="row" style="<?php if(($counter++)%2) echo 'background-color:#FFFFFF'; ?>">
-                                        <div class="col-md-3" style="padding: 4px;">
+                        <?php $counter=0; ?>
+                        <?php foreach ($provider['custom_attributes'] as $cAttributes) { ?>
+                        <?php if ($cAttributes['is_block']) { ?>
+                        <div class="row" style="<?php if(($counter++)%2) echo 'background-color:#FFFFFF'; ?>">
+                            <div class="col-md-3" style="padding: 4px;">
                                                 <span>
                                                     <?php echo $cAttributes['name'];?>:
                                                 </span>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <button data-toggle="modal" data-target="#Modal<?php echo $popCounter ?>">اطلاعات بیشتر</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="Modal<?php echo $popCounter ?>" role="dialog">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title"><?php echo $cAttributes['name'];?></h4>
-                                                        </div>
-                                                        <div class="modal-body" style="padding: 20px;">
-                                                            <table class="table table-striped table-bordered">
-                                                                <tr>
-                                                                    <?php foreach ($cAttributes['selected_value'][0] as $sub) { ?>
-                                                                    <th>
-                                                                        <?php echo $sub['subattribute_name']; ?>
-                                                                    </th>
-                                                                    <?php } ?>
-                                                                </tr>
-                                                                <?php foreach ($cAttributes['selected_value'] as $cur_block) { ?>
-                                                                <tr>
-                                                                    <?php foreach ($cur_block as $sub) { ?>
-                                                                    <td style="width: 100px;">
-                                                                        <?php echo str_replace("$","*",$sub['value']); ?>
-                                                                    </td>
-                                                                    <?php } ?>
-                                                                </tr>
-                                                                <?php } ?>
-                                                            </table>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">بستن پنجره</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <button data-toggle="modal" data-target="#Modal<?php echo $popCounter ?>">اطلاعات بیشتر</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="Modal<?php echo $popCounter ?>" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title"><?php echo $cAttributes['name'];?></h4>
                                             </div>
-                                            <?php $popCounter++; ?>
+                                            <div class="modal-body" style="padding: 20px;">
+                                                <table class="table table-striped table-bordered">
+                                                    <tr>
+                                                        <?php foreach ($cAttributes['selected_value'][0] as $sub) { ?>
+                                                        <th>
+                                                            <?php echo $sub['subattribute_name']; ?>
+                                                        </th>
+                                                        <?php } ?>
+                                                    </tr>
+                                                    <?php foreach ($cAttributes['selected_value'] as $cur_block) { ?>
+                                                    <tr>
+                                                        <?php foreach ($cur_block as $sub) { ?>
+                                                        <td style="width: 100px;">
+                                                            <?php echo str_replace("$","*",$sub['value']); ?>
+                                                        </td>
+                                                        <?php } ?>
+                                                    </tr>
+                                                    <?php } ?>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">بستن پنجره</button>
+                                            </div>
                                         </div>
                                     </div>
-                                <?php }else { ?>
-                                    <div class="row" style="<?php if(($counter++)%2) echo 'background-color:#FFFFFF'; ?>">
-                                        <div class="col-md-3" style="padding: 4px;">
+                                </div>
+                                <?php $popCounter++; ?>
+                            </div>
+                        </div>
+                        <?php }else { ?>
+                        <div class="row" style="<?php if(($counter++)%2) echo 'background-color:#FFFFFF'; ?>">
+                            <div class="col-md-3" style="padding: 4px;">
                                             <span>
                                                 <?php echo $cAttributes['name'];?>:
                                             </span>
-                                        </div>
-                                        <div class="col-md-9">
+                            </div>
+                            <div class="col-md-9">
                                             <span>
                                                 <?php if ($cAttributes['type'] == 'Text') { ?>
-                                                    <?php if($cAttributes['selected_value']['value'] == "ندارد") { ?>
-                                                        <img src="catalog/view/icons/delete-icon.png" width="10" height="10" />
-                                                    <?php } else if($cAttributes['selected_value']['value'] == "دارد") { ?>
-                                                        <img src="catalog/view/icons/check-icon.png" width="10" height="10" />
-                                                    <?php }else{ ?>
-                                                        <?php echo $cAttributes['selected_value']['value'];?>
-                                                    <?php } ?>
+                                                <?php if($cAttributes['selected_value']['value'] == "ندارد") { ?>
+                                                <img src="catalog/view/icons/delete-icon.png" width="10" height="10" />
+                                                <?php } else if($cAttributes['selected_value']['value'] == "دارد") { ?>
+                                                <img src="catalog/view/icons/check-icon.png" width="10" height="10" />
                                                 <?php }else{ ?>
-                                                    <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
-                                                    <?php $str=''; ?>
-                                                    <?php foreach ($ids as $id) { ?>
-                                                        <?php foreach ($cAttributes['values'] as $value) { ?>
-                                                            <?php if ($value['id'] == $id) { ?>
-                                                                <?php if ($str == '') { ?>
-                                                                    <?php $str = $value['value'];  ?>
-                                                                <?php }else{ ?>
-                                                                    <?php $str .= ' و ' . $value['value'];  ?>
-                                                                <?php } ?>
-                                                            <?php } ?>
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                    <?php if($str == "ندارد") { ?>
-                                                        <img src="catalog/view/icons/delete-icon.png" width="10" height="10" />
-                                                    <?php } else if($str == "دارد") { ?>
-                                                        <img src="catalog/view/icons/check-icon.png" width="10" height="10" />
-                                                    <?php }else{ ?>
-                                                        <?php echo $str;?>
-                                                    <?php } ?>
+                                                <?php echo $cAttributes['selected_value']['value'];?>
+                                                <?php } ?>
+                                                <?php }else{ ?>
+                                                <?php $ids = explode(',',$cAttributes['selected_value']['value']); ?>
+                                                <?php $str=''; ?>
+                                                <?php foreach ($ids as $id) { ?>
+                                                <?php foreach ($cAttributes['values'] as $value) { ?>
+                                                <?php if ($value['id'] == $id) { ?>
+                                                <?php if ($str == '') { ?>
+                                                <?php $str = $value['value'];  ?>
+                                                <?php }else{ ?>
+                                                <?php $str .= ' و ' . $value['value'];  ?>
+                                                <?php } ?>
+                                                <?php } ?>
+                                                <?php } ?>
+                                                <?php } ?>
+                                                <?php if($str == "ندارد") { ?>
+                                                <img src="catalog/view/icons/delete-icon.png" width="10" height="10" />
+                                                <?php } else if($str == "دارد") { ?>
+                                                <img src="catalog/view/icons/check-icon.png" width="10" height="10" />
+                                                <?php }else{ ?>
+                                                <?php echo $str;?>
+                                                <?php } ?>
                                                 <?php } ?>
                                             </span>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php } ?>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <?php } ?>
                         <?php } ?>
                     </div>
                 </div>
@@ -684,7 +719,75 @@ return "$difference $periods[$j] پیش ";
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12" style="padding: 0px;">
+        <div class="strike-black" style="margin: 0px;padding: 0px;">
+            <span>
+                <i class=""></i>
+                <a class="mj-font" style="font-size: 20px;margin-right: 10px;">
+خدمات مرتبط
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row row-centered">
+    <?php foreach ($related_products as $product) { ?>
+    <div class="col-md-2 col-xs-6 col-centered" style="padding: 4px;">
+        <div class="col-md-12 box-shadow" style="text-align: center;padding: 20px;">
+            <div class="row" style="height: 50px;">
+                <a href="<?php echo $product['href']; ?>">
+                        <span style="margin: auto;" title="<?php echo $product['name']; ?>">
+                            <?php echo $product['name']; ?>
+                        </span>
+                </a>
+            </div>
+            <div class="row">
+                <img src="<?php echo $product['thumb']; ?>" width="100" height="100"/>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+</div>
 <?php } ?>
+
+<style>
+    .strike-black {
+        display: block;
+        text-align: right;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .strike-black > span {
+        position: relative;
+        display: inline-block;
+        font-size: 20px;
+    }
+
+    .strike-black > span:before,
+    .strike-black > span:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 9999px;
+        height: 2px;
+        background: #909090;
+    }
+
+    .strike-black > span:before {
+        right: 100%;
+        margin-right: 15px;
+    }
+
+    .strike-black > span:after {
+        left: 100%;
+        margin-left: 15px;
+    }
+</style>
+
+
+
 <script type="text/javascript">
     $("div[id^='btn-div-']").on("click",function() {
         $("div[id^='place-div-']").fadeOut( "slow" );
@@ -692,179 +795,180 @@ return "$difference $periods[$j] پیش ";
         $thisId = $thisId.replace("btn-div-", "");
         $("div[id='place-div-" + $thisId + "']").fadeIn( "slow" );
     });
-    $("div[id='place-div-<?php echo $firstId; ?>']").css("display","");
+    $("div[id='place-div-<?php if(isset($firstId)) echo $firstId; ?>']").css("display","");
 </script>
 
 
 <script type="text/javascript">
-        $('.subRate').jRating({
-            step:true,
-            length : 5
-        });
+    $('.subRate').jRating({
+        step:true,
+        length : 5
+    });
 </script>
 <script type="text/javascript"><!--
-$(document).ready(function() {
-	$('.colorbox').colorbox({
-		overlayClose: true,
-		opacity: 0.5,
-		rel: "colorbox"
-	});
-});
-//--></script> 
+    $(document).ready(function() {
+        $('.colorbox').colorbox({
+            overlayClose: true,
+            opacity: 0.5,
+            rel: "colorbox"
+        });
+    });
+    //--></script>
 <script type="text/javascript"><!--
 
-$('select[name="profile_id"], input[name="quantity"]').change(function(){
-    $.ajax({
-		url: 'index.php?route=product/product/getRecurringDescription',
-		type: 'post',
-		data: $('input[name="product_id"], input[name="quantity"], select[name="profile_id"]'),
-		dataType: 'json',
-        beforeSend: function() {
-            $('#profile-description').html('');
-        },
-		success: function(json) {
-			$('.success, .warning, .attention, information, .error').remove();
-            
-			if (json['success']) {
-                $('#profile-description').html(json['success']);
-			}	
-		}
-	});
-});
-    
-$('#button-cart').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=checkout/cart/add',
-		type: 'post',
-		data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
-		dataType: 'json',
-		success: function(json) {
-			$('.success, .warning, .attention, information, .error').remove();
-			
-			if (json['error']) {
-				if (json['error']['option']) {
-					for (i in json['error']['option']) {
-						$('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
-					}
-				}
-                
-                if (json['error']['profile']) {
-                    $('select[name="profile_id"]').after('<span class="error">' + json['error']['profile'] + '</span>');
+    $('select[name="profile_id"], input[name="quantity"]').change(function(){
+        $.ajax({
+            url: 'index.php?route=product/product/getRecurringDescription',
+            type: 'post',
+            data: $('input[name="product_id"], input[name="quantity"], select[name="profile_id"]'),
+            dataType: 'json',
+            beforeSend: function() {
+                $('#profile-description').html('');
+            },
+            success: function(json) {
+                $('.success, .warning, .attention, information, .error').remove();
+
+                if (json['success']) {
+                    $('#profile-description').html(json['success']);
                 }
-			} 
-			
-			if (json['success']) {
-				$('#notification').html('<div class="success" style="display: none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
-					
-				$('.success').fadeIn('slow');
-					
-				$('#cart-total').html(json['total']);
-				
-				$('html, body').animate({ scrollTop: 0 }, 'slow'); 
-			}	
-		}
-	});
-});
-//--></script>
+            }
+        });
+    });
+
+    $('#button-cart').bind('click', function() {
+        $.ajax({
+            url: 'index.php?route=checkout/cart/add',
+            type: 'post',
+            data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
+            dataType: 'json',
+            success: function(json) {
+                $('.success, .warning, .attention, information, .error').remove();
+
+                if (json['error']) {
+                    if (json['error']['option']) {
+                        for (i in json['error']['option']) {
+                            $('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
+                        }
+                    }
+
+                    if (json['error']['profile']) {
+                        $('select[name="profile_id"]').after('<span class="error">' + json['error']['profile'] + '</span>');
+                    }
+                }
+
+                if (json['success']) {
+                    $('#notification').html('<div class="success" style="display: none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+
+                    $('.success').fadeIn('slow');
+
+                    $('#cart-total').html(json['total']);
+
+                    $('html, body').animate({ scrollTop: 0 }, 'slow');
+                }
+            }
+        });
+    });
+    //--></script>
 <?php if ($options) { ?>
-<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
-<?php foreach ($options as $option) { ?>
-<?php if ($option['type'] == 'file') { ?>
-<script type="text/javascript"><!--
-new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
-	action: 'index.php?route=product/product/upload',
-	name: 'file',
-	autoSubmit: true,
-	responseType: 'json',
-	onSubmit: function(file, extension) {
-		$('#button-option-<?php echo $option['product_option_id']; ?>').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
-		$('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', true);
-	},
-	onComplete: function(file, json) {
-		$('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', false);
-		
-		$('.error').remove();
-		
-		if (json['success']) {
-			alert(json['success']);
-			
-			$('input[name=\'option[<?php echo $option['product_option_id']; ?>]\']').attr('value', json['file']);
-		}
-		
-		if (json['error']) {
-			$('#option-<?php echo $option['product_option_id']; ?>').after('<span class="error">' + json['error'] + '</span>');
-		}
-		
-		$('.loading').remove();	
-	}
-});
-//--></script>
-<?php } ?>
-<?php } ?>
-<?php } ?>
-<script type="text/javascript"><!--
-$('#review .pagination a').live('click', function() {
-	$('#review').fadeOut('slow');
-		
-	$('#review').load(this.href);
-	
-	$('#review').fadeIn('slow');
-	
-	return false;
-});			
+    <script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
+    <?php foreach ($options as $option) { ?>
+        <?php if ($option['type'] == 'file') { ?>
+        <script type="text/javascript"><!--
+            new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
+                action: 'index.php?route=product/product/upload',
+                name: 'file',
+                autoSubmit: true,
+                responseType: 'json',
+                onSubmit: function(file, extension) {
+                    $('#button-option-<?php echo $option['product_option_id']; ?>').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+                    $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', true);
+                },
+                onComplete: function(file, json) {
+                    $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', false);
 
-$('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
+                    $('.error').remove();
 
-$('#button-review').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
-		type: 'post',
-		dataType: 'json',
-		data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
-		beforeSend: function() {
-			$('.success, .warning').remove();
-			$('#button-review').attr('disabled', true);
-			$('#review-title').after('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-review').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(data) {
-			if (data['error']) {
-				$('#review-title').after('<div class="warning">' + data['error'] + '</div>');
-			}
-			
-			if (data['success']) {
-				$('#review-title').after('<div class="success">' + data['success'] + '</div>');
-								
-				$('input[name=\'name\']').val('');
-				$('textarea[name=\'text\']').val('');
-				$('input[name=\'rating\']:checked').attr('checked', '');
-				$('input[name=\'captcha\']').val('');
-			}
-		}
-	});
-});
-//--></script> 
-<script type="text/javascript"><!--
-$('#tabs a').tabs();
-//--></script> 
-<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	if ($.browser.msie && $.browser.version == 6) {
-		$('.date, .datetime, .time').bgIframe();
-	}
+                    if (json['success']) {
+                        alert(json['success']);
 
-	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-	$('.datetime').datetimepicker({
-		dateFormat: 'yy-mm-dd',
-		timeFormat: 'h:m'
-	});
-	$('.time').timepicker({timeFormat: 'h:m'});
-});
-//--></script>
+                        $('input[name=\'option[<?php echo $option['product_option_id']; ?>]\']').attr('value', json['file']);
+                    }
+
+                    if (json['error']) {
+                        $('#option-<?php echo $option['product_option_id']; ?>').after('<span class="error">' + json['error'] + '</span>');
+                    }
+
+                    $('.loading').remove();
+                }
+            });
+            //--></script>
+        <?php } ?>
+    <?php } ?>
+<?php } ?>
+
+<script type="text/javascript"><!--
+    $('#review .pagination a').live('click', function() {
+        $('#review').fadeOut('slow');
+
+        $('#review').load(this.href);
+
+        $('#review').fadeIn('slow');
+
+        return false;
+    });
+
+    $('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
+
+    $('#button-review').bind('click', function() {
+        $.ajax({
+            url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
+            type: 'post',
+            dataType: 'json',
+            data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
+            beforeSend: function() {
+                $('.success, .warning').remove();
+                $('#button-review').attr('disabled', true);
+                $('#review-title').after('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+            },
+            complete: function() {
+                $('#button-review').attr('disabled', false);
+                $('.attention').remove();
+            },
+            success: function(data) {
+                if (data['error']) {
+                    $('#review-title').after('<div class="warning">' + data['error'] + '</div>');
+                }
+
+                if (data['success']) {
+                    $('#review-title').after('<div class="success">' + data['success'] + '</div>');
+
+                    $('input[name=\'name\']').val('');
+                    $('textarea[name=\'text\']').val('');
+                    $('input[name=\'rating\']:checked').attr('checked', '');
+                    $('input[name=\'captcha\']').val('');
+                }
+            }
+        });
+    });
+    //--></script>
+<script type="text/javascript"><!--
+    $('#tabs a').tabs();
+    //--></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript"><!--
+    $(document).ready(function() {
+        if ($.browser.msie && $.browser.version == 6) {
+            $('.date, .datetime, .time').bgIframe();
+        }
+
+        $('.date').datepicker({dateFormat: 'yy-mm-dd'});
+        $('.datetime').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'h:m'
+        });
+        $('.time').timepicker({timeFormat: 'h:m'});
+    });
+    //--></script>
 <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBM_cpcmVumeIbUSmEZLhhgfThkbV678CA&sensor=false" />-->
 <script type="text/javascript">
 
@@ -906,27 +1010,27 @@ $(document).ready(function() {
     var count=0;
     function loadPoints() {
     <?php foreach ($providers as $provider) { ?>
-        point[count] = new google.maps.LatLng(<?php echo $provider['lat'] ?>, <?php echo $provider['lon'] ?>);
-        marker[count] = new google.maps.Marker({
-            position: point[count],
-            animation: google.maps.Animation.DROP
-        });
-        infowindow[count] = new google.maps.InfoWindow({
-            content: "<span style='text-align: center;padding-right: 20px;'><?php echo $provider['title'] ?></span>"
-        });
-        google.maps.event.addListener(marker[count], 'click', function () {
-            for (var i = 0; i < infoWindowses.length; i++) {
-                infoWindowses[i].close();
-            }
-            infoWindowses[count-1].open(map, marker[count]);
-            map.panTo(point[count]);
-        });
-        marker[count].setMap(map);
-        markers.push(marker[count]);
-        points.push(point[count]);
-        infoWindowses.push(infowindow[count]);
-        count++;
-    <?php } ?>
+            point[count] = new google.maps.LatLng(<?php echo $provider['lat'] ?>, <?php echo $provider['lon'] ?>);
+            marker[count] = new google.maps.Marker({
+                position: point[count],
+                animation: google.maps.Animation.DROP
+            });
+            infowindow[count] = new google.maps.InfoWindow({
+                content: "<span style='text-align: center;padding-right: 20px;'><?php echo $provider['title'] ?></span>"
+            });
+            google.maps.event.addListener(marker[count], 'click', function () {
+                for (var i = 0; i < infoWindowses.length; i++) {
+                    infoWindowses[i].close();
+                }
+                infoWindowses[count-1].open(map, marker[count]);
+                map.panTo(point[count]);
+            });
+            marker[count].setMap(map);
+            markers.push(marker[count]);
+            points.push(point[count]);
+            infoWindowses.push(infowindow[count]);
+            count++;
+        <?php } ?>
     }
     function MakeMap() {
         if (navigator.geolocation) {

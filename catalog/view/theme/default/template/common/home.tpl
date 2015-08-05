@@ -8,10 +8,6 @@
     setTimeout(function () {
         window.location = "<?php echo $url; ?>";
     }, delay);
-    <
-    !--
-
-    //-->
 </script>
 <?php } ?>
 <div class="row hidden-xs" style="margin-top: 0px;">
@@ -464,7 +460,7 @@
         <div class="col-md-12 box-shadow" style="text-align: center;padding: 20px;">
             <div class="row" style="height: 50px;">
                 <a href="<?php echo $product['href']; ?>">
-                        <span style="margin: auto;">
+                        <span style="margin: auto;" title="<?php echo $product['name']; ?>">
                             <?php echo $product['name']; ?>
                         </span>
                 </a>

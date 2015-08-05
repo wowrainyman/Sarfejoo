@@ -14,6 +14,7 @@ $_['text_menu_inbox']  = 'صندوق پیام';
 $_['text_menu_bank']  = 'حساب مالی';
 $_['text_menu_advertisments']  = 'تبلیغات در صرفه جو';
 $_['text_menu_namads']  = 'دریافت نمادها';
+$_['text_menu_idea']  = 'پیشنهادات';
 
 
 

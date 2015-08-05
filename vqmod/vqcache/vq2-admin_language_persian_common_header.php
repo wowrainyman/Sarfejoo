@@ -128,31 +128,22 @@ $_['text_paypal_manage']               = 'PayPal';
 $_['text_paypal_search']               = 'Search';
 $_['text_recurring_profile']           = 'Recurring Profiles';
 
-$_['text_ad_plan_byclick']           = 'Click Plans';
-$_['text_ad_plan_byview']           = 'View Plans';
-$_['text_ad_plan_bytime']           = 'Time Plans';
-$_['text_ad_plans']           = 'Plans';
-$_['text_ad_position']           = 'Positions';
+$_['text_ad_plan_byclick']              = 'Click Plans';
+$_['text_ad_plan_byview']               = 'View Plans';
+$_['text_ad_plan_bytime']               = 'Time Plans';
+$_['text_ad_plans']                     = 'Plans';
+$_['text_ad_position']                  = 'Positions';
 
-$_['text_ad_information']           = 'Ads Info';
+$_['text_ad_information']               = 'Ads Info';
+
+$_['text_financial']                    = 'Financial';
+$_['text_features']                     = 'Features';
+$_['text_plans']                        = 'Plans';
+$_['text_periods']                      = 'Periods';
+$_['text_plans_features']               = 'Plans Features';
+$_['text_plans_periods']                = 'Plans Periods';
+$_['text_plans_discount']                = 'Plans Discount';
 
 
-// Admin Enhanced
-$_['text_january']                     = 'January';
-$_['text_february']                    = 'February';
-$_['text_march']                       = 'March';
-$_['text_april']                       = 'April';
-$_['text_may']                         = 'May';
-$_['text_june']                        = 'June';
-$_['text_july']                        = 'July';
-$_['text_august']                      = 'August';
-$_['text_september']                   = 'September';
-$_['text_october']                     = 'October';
-$_['text_november']                    = 'November';
-$_['text_december']                    = 'December';
-$_['text_year']                        = '';
-// Admin Enhanced
-			
-// BOF - Zappo - vQModerator - ONE LINE - Added vQModerator Text
-$_['text_vqmoderator']                       = 'vQModerator';
+
 ?>
