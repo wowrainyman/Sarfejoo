@@ -100,17 +100,17 @@ foreach ($divisions as $division) {
             <?php foreach ($division->getElementsByTagName('a') as $child) {
                 foreach ($child->attributes as $attrib) {
                     $hasIt = false;
-                    if ($attrib->name == 'id' && strpos($attrib->value, 'lblShopName') !== false) { ?>
+                    if ($attrib->name == 'style' && strpos($attrib->value, 'display:block; font-size:14px;') !== false) { ?>
                         <div id="<?php echo $count ?>-2">
                             <?php echo $child->textContent; ?>
                         </div>
                     <?php }
                 }
             } ?>
-            <?php foreach ($division->getElementsByTagName('a') as $child) {
+            <?php foreach ($division->getElementsByTagName('span') as $child) {
                 foreach ($child->attributes as $attrib) {
                     $hasIt = false;
-                    if ($attrib->name == 'id' && strpos($attrib->value, 'hlinkcurrentitemtitle') !== false) { ?>
+                    if ($attrib->name == 'class' && strpos($attrib->value, 'shop-description') !== false) { ?>
                         <div id="<?php echo $count ?>-4">
                             <?php echo $child->textContent; ?>
                         </div>
@@ -120,7 +120,7 @@ foreach ($divisions as $division) {
             <?php foreach ($division->getElementsByTagName('a') as $child) {
                 foreach ($child->attributes as $attrib) {
                     $hasIt = false;
-                    if ($attrib->name == 'id' && strpos($attrib->value, 'lblGheymat') !== false) { ?>
+                    if ($attrib->name == 'class' && strpos($attrib->value, 'shop-price') !== false) { ?>
                         <div id="<?php echo $count ?>-6">
                             <?php echo str_replace(",", "", $child->textContent); ?>
                         </div>
