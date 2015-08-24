@@ -317,9 +317,15 @@ return "$difference $periods[$j] پیش ";
                                             <?php echo number_format($provider['price']);?>
                                         </button>
                                         <?php if(!empty($provider['buy_link'])) { ?>
-                                        <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                            <?php echo $p_buy_online;?>
-                                        </a>
+                                            <?php if($provider['subprofile_id']==371) { ?>
+                                                <a role="button" target="_blank" href="<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                    <?php echo $p_buy_online;?>
+                                                </a>
+                                            <?php }else{ ?>
+                                                <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                    <?php echo $p_buy_online;?>
+                                                </a>
+                                            <?php } ?>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -413,9 +419,15 @@ return "$difference $periods[$j] پیش ";
                                             <?php echo number_format($provider['guarantee_price']);?>
                                         </button>
                                         <?php if(!empty($provider['buy_link'])) { ?>
-                                        <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                            <?php echo $p_buy_online;?>
-                                        </a>
+                                            <?php if($provider['subprofile_id']==371) { ?>
+                                                <a role="button" target="_blank" href="<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                    <?php echo $p_buy_online;?>
+                                                </a>
+                                            <?php }else{ ?>
+                                                <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                                    <?php echo $p_buy_online;?>
+                                                </a>
+                                            <?php } ?>
                                         <?php } ?>
                                     </div>
                                 </div>
