@@ -111,6 +111,60 @@ return "$difference $periods[$j] پیش ";
 
                             </div>
                         </div>
+                        <style>
+                            label.btn.btn-default.active.toggle-off{
+                                line-height: 11px !important;
+                            }
+                            label.btn.btn-success.toggle-on{
+                                line-height: 11px !important;
+                            }
+                        </style>
+                        <?php if($canUseNewslette){ ?>
+                        <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
+                            <div class="col-md-12">
+                                <button data-toggle="modal" class="btn btn-default" data-target="#Modal-tell-me">
+                                    به من خبر بده
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="Modal-tell-me" role="dialog">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">
+                                                    به من خبر بده
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body" style="padding: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        در صورت موجود بودن کالا به من اطلاع بده.
+                                                    </div>
+                                                    <div class="col-md-3" style="margin-top: 5px;padding: 0px;">
+                                                        <input id="tell-me-available" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" />
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top: 20px;">
+                                                    <div class="col-md-12">
+قیمت از
+                                                        <input type="text"  id="tell-me-price-lower-text" />
+                                                        کمتر به من خبر بده
+                                                        <button class="btn btn-default" id="tell-me-price-lower-btn">
+ثبت
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">بستن پنجره</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
                         <!--<div class="row" style="margin-top: 30px;">
                             <button type="button" class="btn btn-default" style="background-color: #F7F7F7;border-right-color: #F96A26;border-right-width: 5px;">
                                 قیمت گذاری و ثبت فروشگاه
@@ -121,16 +175,19 @@ return "$difference $periods[$j] پیش ";
                         </div>-->
                     </div>
                 </div>
-                <div class="row row-centered" style="margin-top: 20px;">
-                    <div class="col-md-12 col-centered">
-                        <?php foreach ($images as $image) { ?>
-                        <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" data-gallery>
-                            <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" width="100" height="80"/>
-                        </a>
-                        <?php } ?>
+                <?php if($images && count($images)>0){ ?>
+                    <div class="row row-centered" style="margin-top: 20px;">
+                        <div class="col-md-12 col-centered">
+                            <?php foreach ($images as $image) { ?>
+                            <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" data-gallery>
+                                <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" width="100" height="80"/>
+                            </a>
+                            <?php } ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row row-centered" style="margin-top: 20px;margin-bottom: 20px;">
+                <?php } ?>
+
+                <div class="row row-centered" style="margin-top: 5px;margin-bottom: 20px;">
                     <div class="col-md-12 col-centered">
                         <button type="button" class="btn btn-default" style="cursor: default;">
                             آخرین بروز رسانی:
@@ -249,7 +306,7 @@ return "$difference $periods[$j] پیش ";
                                                     گارانتی
                                                 </span>
                                                 <span>
-                                                    ندارد
+                                                    نامشخص
                                                 </span>
                                     </div>
                                     <div class="col-md-3">
@@ -802,7 +859,10 @@ return "$difference $periods[$j] پیش ";
 <script type="text/javascript">
     $('.subRate').jRating({
         step:true,
-        length : 5
+        length : 5, // nb of stars
+        onSuccess : function(element,rate,data){
+            alert(data.message);
+    }
     });
 </script>
 <script type="text/javascript"><!--
@@ -1133,6 +1193,46 @@ return "$difference $periods[$j] پیش ";
         }else{
             $('.no-online').css("display","");
         }
+    });
+    $("#tell-me-available").change(function() {
+        if(this.checked) {
+            $.ajax({
+                url: 'index.php?route=product/product/AddCustomerProductAvailableRemind',
+                type: 'post',
+                data: { product_id: "<?php echo $product_id; ?>"},
+                dataType: 'json',
+                success: function(json) {
+                }
+            });
+        }else{
+            $.ajax({
+                url: 'index.php?route=product/product/RemoveCustomerProductAvailableRemind',
+                type: 'post',
+                data: { product_id: "<?php echo $product_id; ?>"},
+                dataType: 'json',
+                success: function(json) {
+                }
+            });
+        }
+    });
+    $("#tell-me-price-lower-btn").click(function() {
+        $.ajax({
+            url: 'index.php?route=product/product/AddCustomerPriceLowerRemind',
+            type: 'post',
+            data: {product_id: "<?php echo $product_id; ?>",price:$("#tell-me-price-lower-text").val()},
+            dataType: 'json',
+            beforeSend: function() {
+                $('#profile-description').html('');
+            },
+            success: function(json) {
+                $('.success, .warning, .attention, information, .error').remove();
+
+                if (json['result'] == 'success') {
+                    $("#tell-me-price-lower-btn").css("background-color","#449d44");
+                    $("#tell-me-price-lower-btn").css("color","white");
+                }
+            }
+        });
     });
 </script>
 
