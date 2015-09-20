@@ -311,6 +311,12 @@
 		</ul>
 		<?php echo $buttons['bottom']; ?>
 	</div>
+    <div class="row row-centered" style="margin-top: 10px;">
+        <script type="text/javascript">var anetwork_pram = anetwork_pram || [];anetwork_pram["aduser"] = "1439467157";anetwork_pram["adheight"] = "240";anetwork_pram["adwidth"] = "120";</script><script type="text/javascript" src="http://static-cdn.anetwork.ir/showad/pub.js"></script>
+    </div>
+    <div class="row row-centered" style="margin-top: 250px;">
+        <script type="text/javascript">var anetwork_pram = anetwork_pram || [];anetwork_pram["aduser"] = "1439467157";anetwork_pram["adheight"] = "240";anetwork_pram["adwidth"] = "120";</script><script type="text/javascript" src="http://static-cdn.anetwork.ir/showad/pub.js"></script>
+    </div>
 </div>
 
 <?php if( ! empty( $hide_container ) ) { ?>

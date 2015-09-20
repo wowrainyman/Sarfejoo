@@ -14,6 +14,7 @@ class ControllerModulepumenu extends Controller
         $this->data['text_menu_set_prices'] = $this->language->get('text_menu_set_prices');
         $this->data['text_menu_set_discounts'] = $this->language->get('text_menu_set_discounts');
         $this->data['text_menu_pofiles_stat'] = $this->language->get('text_menu_pofiles_stat');
+        $this->data['text_menu_customer_modules'] = $this->language->get('text_menu_customer_modules');
         $this->data['text_menu_inbox'] = $this->language->get('text_menu_inbox');
         $this->data['text_menu_bank'] = $this->language->get('text_menu_bank');
         $this->data['text_menu_advertisments'] = $this->language->get('text_menu_advertisments');

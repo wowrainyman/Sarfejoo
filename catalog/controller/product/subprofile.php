@@ -53,8 +53,8 @@ class ControllerProductSubprofile extends Controller
             }
 
         } else {
-            if (isset($this->request->get['id'])) {
-                $subprofile_id = $this->request->get['id'];
+            if (isset($this->request->get['subprofile_id'])) {
+                $subprofile_id = $this->request->get['subprofile_id'];
             } else {
                 $subprofile_id = '0';
             }
@@ -98,52 +98,26 @@ class ControllerProductSubprofile extends Controller
 
 # Gets
 
-
 # Models 
         $this->language->load('product/category');
-
         $subprofile = $this->model_provider_pu_subprofile->GetSubprofileByID($subprofile_id);
-
-
         if (isset($subprofile)) {
             $this->data['subprofile'] = $subprofile;
         }
         $this->data['subprofile_id'] = $subprofile_id;
-
-        $rating_items = $this->model_provider_pu_rating->getRatingItems();
-
-        $rates_info = array();
-
-        foreach ($rating_items as $rating_item) {
-            $rating_info = $this->model_provider_pu_rating->getSubprofileRating($subprofile['id'], $rating_item['id']);
-            $user_rate_info = null;
-            if ($this->customer->isLogged()) {
-                $user_rate_info = $this->model_provider_pu_rating->getUserRate($this->customer->getId(), $subprofile['id'], $rating_item['id']);
-                $rates_info[] = array(
-                    'rating_item' => $rating_item,
-                    'rating_info' => $rating_info,
-                    'user_rate_info' => $user_rate_info
-                );
-            } else {
-                $rates_info[] = array(
-                    'rating_item' => $rating_item,
-                    'rating_info' => $rating_info
-                );
-            }
-
-        }
-        $this->data['rates_info'] = $rates_info;
-
         $total = $this->model_provider_pu_subprofile->CountGetListOfProductsOfSubprofileByID($subprofile_id);
         $products = $this->model_provider_pu_subprofile->GetListOfProductsOfSubprofileByID($subprofile_id,$page,$limit);
-        for($i=0;$i<count($products)-1;$i++){
+        $this->load->model('tool/image');
+        for($i=0;$i<count($products);$i++){
             $info = $this->model_provider_pu_subprofile->GetSpecificProductsOfSubprofile($subprofile_id,$products[$i]['product_id']);
-            $products[$i]['sub_price'] = $info['price'];
+            $image = $this->model_tool_image->resize($products[$i]['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+            $products[$i]['sub_price'] = $this->currency->format($info['price']);
+            $products[$i]['thumb'] = $image;
+            $products[$i]['href'] = $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $products[$i]['product_id']);
             $products[$i]['buy_link'] = $info['buy_link'];
             $products[$i]['description'] = $info['description'];
             $products[$i]['update_date'] = $info['update_date'];
         }
-
         $this->data['comments'] = $this->model_provider_pu_subprofile->GetSubprofileComments($subprofile_id);
         if (isset($products)) {
             $this->data['products'] = $products;
@@ -166,7 +140,7 @@ class ControllerProductSubprofile extends Controller
         $pagination->page = $page;
         $pagination->limit = $limit;
         $pagination->text = $this->language->get('text_pagination');
-        $pagination->url = $this->url->link('product/subprofile', 'id=' . $subprofile_id . '&page={page}');
+        $pagination->url = $this->url->link('product/subprofile', 'subprofile_id=' . $subprofile_id . '&page={page}');
         $this->data['pagination'] = $pagination->render();
 
 # Children

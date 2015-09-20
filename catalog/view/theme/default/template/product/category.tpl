@@ -17,11 +17,11 @@
             </span>
             <select id="filter-subprofile" class="form-control">
                 <option value="0">
-بدون فیلتر
+                    بدون فیلتر
                 </option>
                 <?php foreach($allsubs as $subprofile){ ?>
                 <option value="<?php echo $subprofile['id'] ?>" <?php if($subprofile['id'] == $filter_subprofile) echo 'selected'; ?>>
-                    <?php echo $subprofile['title'] ?>
+                <?php echo $subprofile['title'] ?>
                 </option>
                 <?php } ?>
             </select>
@@ -29,6 +29,7 @@
         <div class="col-md-12 box-shadow">
             <?php echo $column_right; ?>
         </div>
+
     </div>
     <div class="col-md-9 col-xs-12 custom-margin-50" style="padding: 4px">
         <div class="row">
@@ -36,12 +37,41 @@
                 <?php echo $column_left; ?>
             </div>
         </div>
-        <div class="row custom-margin hidden-xs" style="margin-top: 60px;">
+        <div class="row custom-margin hidden-xs box-shadow" style="margin-top: 60px;">
             <div class="col-md-12">
                 <div class="">
                     <?php if ($products) { ?>
                     <div class="product-filter">
-                        <div class="display">
+                        مرتب سازی بر اساس:
+                        <select id="input-sort" class="" style="width: 150px;height: 30px;" onchange="location = this.value;">
+                            <?php foreach ($sorts as $sorts) { ?>
+                            <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
+                            <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
+                            <?php } else { ?>
+                            <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+                            <?php } ?>
+                            <?php } ?>
+                        </select>
+                        <div style="margin-right: 10px;display: inline;">
+                        تعداد نمایش:
+                        <select id="input-limit" style="width: 60px;height: 30px;" onchange="location = this.value;">
+                            <?php foreach ($limits as $limits) { ?>
+                            <?php if ($limits['value'] == $limit) { ?>
+                            <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
+                            <?php } else { ?>
+                            <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
+                            <?php } ?>
+                            <?php } ?>
+                        </select>
+                        </div>
+                        <br/>
+                        <div style="margin-top: 5px;">
+                        فقط نمایش کالاهای دارای پیشنهاد قیمت
+                            <div style="padding-right: 17px;display: inline;">
+                                <input id="just-btn" type="checkbox" data-toggle="toggle" data-style="ios" data-width="50" data-height="25" data-onstyle="success" <?php if($filter_zero_price != 'false') echo 'checked'; ?> />
+                            </div>
+                        </div>
+                        <div class="display" style="margin-top: -50px;">
                             <a style="margin: 5px;" onclick="display('list');"><img id="list-icon" src="catalog/view/icons/view-list.png" width="25" height="25" /></a>
                             <a style="margin: 5px;" onclick="display('grid');"><img id="grid-icon" src="catalog/view/icons/view-column-inactive.png" width="25" height="25" /></a>
                         </div>
@@ -95,7 +125,7 @@
                                     <?php } ?>
                                 </span>
                                     </div>
-                                    <div class="row" style="margin-top: 5px;margin-right: -10px;">
+                                    <div class="row" style="margin-top: 5px;margin-right: 0px;">
 
                                         <a class="btn btn-default" style="font-size: 13px;" role="button" onclick="addToWishList('<?php echo $product['product_id']; ?>','<?php echo $product['thumb']; ?>','<?php echo $product['href']; ?>','<?php echo $product['name']; ?>');">
                                             <img src="catalog/view/icons/favorite-icon.png" width="10" height="10" />
@@ -207,7 +237,7 @@
         display(view);
     } else {
         display('grid');
-        
+
     }
     $("#filter-subprofile").change(function () {
         if($( this ).val() != 0){
@@ -227,6 +257,19 @@
         }
 
     });
+    $("#just-btn").change(function() {
+        var link = "<?php echo $currentUrl; ?>";
+        if(this.checked) {
+            link += "&filter_zero_price=true";
+            link = link.replace("&amp;", "&");
+            window.location.href = link ;
+        }else{
+            link += "&filter_zero_price=false";
+            link = link.replace("&amp;", "&");
+            window.location.href = link ;
+        }
+    });
+
 </script>
 </div>
 

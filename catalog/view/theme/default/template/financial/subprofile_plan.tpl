@@ -256,10 +256,10 @@
             <!-- end pageContainer -->
         </div>
         <div class="col-md-12" id="third-step" style="display: none;">
-            <?php $count=0;foreach ($featuredPlans as $plan) { ?>
+            <?php $count=0;foreach ($featuredPlans as $plan) { $plan_id=$plan['id']; ?>
             <div class="final-step-<?php echo $plan['id'];?>" style="display: none;">
                 <form action="<?php echo $action;?>" method="get">
-                    <input type="hidden" name="route" value="financial/subprofile_plan/confirm" />
+                    <input type="hidden" id="route" name="route" value="financial/subprofile_plan/confirm" />
                     <input type="hidden" name="subprofile_id" value="<?php echo $subprofile_id;?>" />
                     <input type="hidden" name="plan_id" value="<?php echo $plan['id'];?>" />
                     <div class="col-md-12" style="margin: 10px;">
@@ -276,26 +276,41 @@
 مدت دوره:
                         </div>
                         <div class="col-md-4" style="margin: 10px;">
-                            <?php foreach ($periods as $period) { ?>
-                                <div class="row">
-                                    <div class="col-md-6">
+                            <?php $innercount = 0; foreach ($periods as $period) { ?>
+                                <div class="row row-<?php echo $count . '-' . $period['id']; ?>">
+                                    <div class="col-md-6 div-<?php echo $count . '-' . $period['id']; ?>">
                                         <input type="radio" name="period_id" value="<?php echo $period['id']; ?>">
                                         <?php echo $period['name']; ?>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 div-<?php echo $count . '-' . $period['id']; ?>">
                                         <label id="price-<?php echo $count . '-' . $period['id']; ?>"></label>
                                         <script type="text/javascript">
                                             $("#price-<?php echo $count . '-' . $period['id']; ?>").html(prices[<?php echo $count;?>][<?php echo $period['id'];?>]);
+                                            if(prices[<?php echo $count;?>][<?php echo $period['id'];?>] == 0){
+                                                $(".div-<?php echo $count . '-' . $period['id']; ?>").remove();
+                                                if(<?php echo $innercount; ?> == 0){
+                                                    $(".row-<?php echo $count . '-' . $period['id']; ?>").append('<a class="btn bt-default button" href="index.php?route=financial/subprofile_plan_free&id=<?php echo $subprofile_id;?>&plan_id=<?php echo $plan_id;?>">' +
+                                                    'ثبت اکانت ' +
+                                                    'رایگان ' +
+                                                    'به مدت دو هفته' +
+                                                    '</a>');
+                                                }
+                                            }
                                         </script>
                                         تومان
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php $innercount++; } ?>
                         </div>
                     </div>
                     <div class="col-md-12" style="margin: 10px;">
                         <div class="col-md-4" style="margin: 10px;">
-                            <input type="submit" value="<?php echo $button_continue; ?>" class="button"/>
+                            <input type="submit" class="btn bt-default button" value="پرداخت از طریق بانک اقتصاد نوین" />
+                            <br/>
+                            <br/>
+                            <!--<button id="jahanpay<?php echo $count;?>" onclick='$("#route<?php echo $count;?>").val("financial/subprofile_plan_jahanpay/confirm");$("#myForm<?php echo $count;?>").submit();' class="button back-button">
+پرداخت از طریق درگاه جهان پی
+                            </button>-->
                         </div>
                         <div class="col-md-3" style="margin: 10px;">
                         </div>

@@ -36,22 +36,41 @@
                         <span class="ico-cat-422 ico-cat"></span>
                         دوربین</a></li>
                 <li id="cr6">
-                    <span class="ico-cat-459 ico-cat"></span>
-                    کنسول بازی
+                    <a
+                            href="http://sarfejoo.com/%DA%A9%D8%A7%D9%84%D8%A7/%D8%B3%D8%A7%D8%B9%D8%AA">
+                        <span class="ico-cat-461 ico-cat"></span>
+                        ساعت
+                    </a>
+
                 </li>
                 <li id="cr7">
-                    <span class="ico-cat-432 ico-cat"></span>
-                    لوازم صوتی و تصویری
+                    <a
+                            href="http://sarfejoo.com/%DA%A9%D8%A7%D9%84%D8%A7/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-all-in-one-%D9%84%DB%8C%D8%B3%D8%AA-%D9%82%DB%8C%D9%85%D8%AA-all-in-one-%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%A2%D9%84-%D8%A7%DB%8C%D9%86-%D9%88%D8%A7%D9%86-%D9%84%DB%8C%D8%B3%D8%AA-%D9%82%DB%8C%D9%85%D8%AA-%D8%A2%D9%84-%D8%A7%DB%8C%D9%86-%D9%88%D8%A7%D9%86">
+                        <img class="ico-cat-464 ico-cat" src="catalog/view/images/samples/imac1.png" style="width:15px;height:15px;margin-left:10px;margin-right:15px;margin-bottom:0px;" />
+					<span>
+                    All in one
+					</span>
+                    </a>
                 </li>
             </ul>
             <ul class="left">
                 <li id="cr8">
-                    <span class="ico-cat-460 ico-cat"></span>
-                    طلا و جواهر
+                    <a
+                            href="http://sarfejoo.com/%DA%A9%D8%A7%D9%84%D8%A7/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D9%BE%D8%B1%DB%8C%D9%86%D8%AA%D8%B1-%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D9%81%DA%A9%D8%B3-%DA%A9%D9%BE%DB%8C-%D8%A7%D8%B3%DA%A9%D9%86%D8%B1-%D9%84%DB%8C%D8%B3%D8%AA-%D9%82%DB%8C%D9%85%D8%AA-%DA%86%D9%86%D8%AF%DA%A9%D8%A7%D8%B1%D9%87">
+                        <img class="ico-cat-464 ico-cat" src="catalog/view/images/samples/printer70.png" style="width:15px;height:15px;margin-left:10px;margin-right:15px;margin-bottom:0px;" />
+					<span>
+                    ماشین اداری
+					</span>
+                    </a>
                 </li>
                 <li id="cr9">
-                    <span class="ico-cat-461 ico-cat"></span>
-                    ساعت
+                    <a
+                            href="http://sarfejoo.com/%DA%A9%D8%A7%D9%84%D8%A7/%D8%B3%D9%84%D8%A7%D9%85%D8%AA%DB%8C-%D9%88-%D8%B2%DB%8C%D8%A8%D8%A7%DB%8C%DB%8C">
+                        <img class="ico-cat-464 ico-cat" src="catalog/view/images/samples/mascara.png" style="width:15px;height:15px;margin-left:10px;margin-right:15px;margin-bottom:0px;" />
+					<span>
+                    سلامتی و زیبایی
+					</span>
+                    </a>
                 </li>
                 <li id="cr10">
                     <span class="ico-cat-427 ico-cat"></span>
@@ -70,30 +89,30 @@
                     آلات موسیقی
                 </li>
                 <li id="cr14">
-                    <span class="ico-cat-465 ico-cat"></span>
-                    لوازم شکار
+                    <span class="ico-cat-432 ico-cat"></span>
+                    لوازم صوتی و تصویری
                 </li>
             </ul>
         </div>
     </div>
     <div id="h-services" class="right">
         <div id="h-s-slide" class="cbox-bg"></div>
-        <div id="list-s-cat" class="h-list-cat">
+        <div id="list-s-cat" class="h-list-cat" style="padding-bottom:4px;">
             <ul class="right">
-                <li id="cl1"><a
-                            href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%AF%D8%A7%D8%A6%D9%85%DB%8C-%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1%DB%8C">
+                <li id="cl1"><a disabled="disabled"
+                                href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%AF%D8%A7%D8%A6%D9%85%DB%8C-%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1%DB%8C">
                         <span class="ico-cat-63 ico-cat"></span>
                         خدمات تلفن همراه</a></li>
-                <li id="cl2"><a
-                            href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%A7%DB%8C%D9%86%D8%AA%D8%B1%D9%86%D8%AA-adsl">
+                <li id="cl2"><a disabled="disabled"
+                                href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%85%D9%82%D8%A7%DB%8C%D8%B3%D9%87-%D8%A7%DB%8C%D9%86%D8%AA%D8%B1%D9%86%D8%AA-adsl">
                         <span class="ico-cat-65 ico-cat"></span>
                         سرویس دهندگان اینترنت</a></li>
-                <li id="cl3"><a
-                            href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D8%A8%D8%A7%D8%B4%DA%AF%D8%A7%D9%87-%D9%88%D8%B1%D8%B2%D8%B4%DB%8C">
+                <li id="cl3"><a disabled="disabled"
+                                href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D8%A8%D8%A7%D8%B4%DA%AF%D8%A7%D9%87-%D9%88%D8%B1%D8%B2%D8%B4%DB%8C">
                         <span class="ico-cat-383 ico-cat"></span>
                         باشگاه ورزشی</a></li>
-                <li id="cl4"><a
-                            href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%87%D8%AA%D9%84-%D8%A2%D9%BE%D8%A7%D8%B1%D8%AA%D9%85%D8%A7%D9%86-%D9%85%D9%87%D9%85%D8%A7%D9%86%D8%B3%D8%B1%D8%A7">
+                <li id="cl4"><a disabled="disabled"
+                                href="http://sarfejoo.com/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D9%87%D8%AA%D9%84-%D8%A2%D9%BE%D8%A7%D8%B1%D8%AA%D9%85%D8%A7%D9%86-%D9%85%D9%87%D9%85%D8%A7%D9%86%D8%B3%D8%B1%D8%A7">
                         <span class="ico-cat-384 ico-cat"></span>
                         هتل، هتل آپارتمان</a></li>
                 <li id="cl5">
@@ -104,10 +123,7 @@
                     <span class="ico-cat-397 ico-cat"></span>
                     رستوران ها
                 </li>
-                <li id="cl7">
-                    <span class="ico-cat-64 ico-cat"></span>
-                    آموزشگاه ها
-                </li>
+
             </ul>
             <ul class="left">
                 <li id="cl8">
@@ -131,11 +147,14 @@
                     بیمه ها
                 </li>
                 <li id="cl13">
-                    <span class="ico-cat-458 ico-cat"></span>
-                    خدمات پستی
+                    <span class="ico-cat-64 ico-cat"></span>
+                    آموزشگاه ها
                 </li>
                 <li id="cl14"></li>
             </ul>
+			<span style="font-size:x-large;margin-bottom:10px;">
+					بخش خدمات به زودی افتتاح می گردد
+                </span>
         </div>
     </div>
 </div>
@@ -171,6 +190,10 @@
         z-index: 15;
     }
 </style>
+<!--<div class="row row-centered" style="overflow: hidden;margin-top: 20px;">
+    <script type="text/javascript">var anetwork_pram = anetwork_pram || [];anetwork_pram["aduser"] = "1439467157";anetwork_pram["adheight"] = "90";anetwork_pram["adwidth"] = "728";</script><script type="text/javascript" src="http://static-cdn.anetwork.ir/showad/pub.js"></script>
+
+</div>-->
 <div class="row box-shadow hidden-xs" style="height: 50px;overflow: hidden;margin-top: 20px;">
     <div class="col-md-2">
         <ol class="carousel-custom">
@@ -183,7 +206,7 @@
     </div>
     <div class="col-md-10">
         <div id="carousel-text" class="carousel slide" data-ride="carousel" style="margin-top: 10px;">
-            <!-- Wrapper for slides -->
+
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <div class="carousel-content">
@@ -292,32 +315,32 @@
             <div class="row" style="height: 50px;">
                 <div class="col-md-12" style="">
                     <img src="catalog/view/images/splitter2.png" height="10" width="10"/>
-                    <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoServices[0]['providers_count'])?></span>
-                    <a href="<?php echo $twoServices[0]['href']?>">
+                    <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoProducts[2]['providers_count'])?></span>
+                    <a href="<?php echo $twoProducts[2]['href']?>">
                     <span>
                         عرضه کننده
-                        <?php echo $twoServices[0]['name']?>
+                        <?php echo $twoProducts[2]['name']?>
                         را ارائه میدهند
                     </span>
                     </a>
                 </div>
             </div>
             <div class="row">
-                <img src="<?php echo $twoServices[0]['image']?>" width="130" height="130" style="float: right;"/>
+                <img src="<?php echo $twoProducts[2]['image']?>" width="130" height="130" style="float: right;"/>
                 <img src="catalog/view/images/up-down-arrow.png"
                      style="float: right;margin-right: 10px;margin-top: 20px;"/>
 
                 <div style="float: right;margin-top: 20px;margin-right: 30px;">
                     <span style="display: block;">
-                        <?php echo number_format($twoServices[0]['maxprice'])?>
+                        <?php echo number_format($twoProducts[2]['maxprice'])?>
                         تومان
                     </span>
                     <span style="display: block;margin-top: 7px;font-size: large;color: #8AB705;">
-                        <?php echo number_format($twoServices[0]['avg_price'])?>
+                        <?php echo number_format($twoProducts[2]['avg_price'])?>
                         تومان
                     </span>
                     <span style="display: block;margin-top: 7px;">
-                        <?php echo number_format($twoServices[0]['minprice'])?>
+                        <?php echo number_format($twoProducts[2]['minprice'])?>
                         تومان
                     </span>
                 </div>
@@ -369,32 +392,32 @@
             <div class="row" style="height: 50px;">
                 <div class="col-md-12" style="">
                     <img src="catalog/view/images/splitter2.png" height="10" width="10"/>
-                    <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoServices[1]['providers_count'])?></span>
-                    <a href="<?php echo $twoServices[1]['href']?>">
+                    <span style="color: #8AB705;font-size: 17px;"><?php echo number_format($twoProducts[3]['providers_count'])?></span>
+                    <a href="<?php echo $twoProducts[3]['href']?>">
                     <span>
                         عرضه کننده
-                        <?php echo $twoServices[1]['name']?>
+                        <?php echo $twoProducts[3]['name']?>
                         را ارائه میدهند
                     </span>
                     </a>
                 </div>
             </div>
             <div class="row">
-                <img src="<?php echo $twoServices[1]['image']?>" width="130" height="130" style="float: right;"/>
+                <img src="<?php echo $twoProducts[3]['image']?>" width="130" height="130" style="float: right;"/>
                 <img src="catalog/view/images/up-down-arrow.png"
                      style="float: right;margin-right: 10px;margin-top: 20px;"/>
 
                 <div style="float: right;margin-top: 20px;margin-right: 30px;">
                     <span style="display: block;">
-                        <?php echo number_format($twoServices[1]['maxprice'])?>
+                        <?php echo number_format($twoProducts[3]['maxprice'])?>
                         تومان
                     </span>
                     <span style="display: block;margin-top: 7px;font-size: large;color: #8AB705;">
-                        <?php echo number_format($twoServices[1]['avg_price'])?>
+                        <?php echo number_format($twoProducts[3]['avg_price'])?>
                         تومان
                     </span>
                     <span style="display: block;margin-top: 7px;">
-                        <?php echo number_format($twoServices[1]['minprice'])?>
+                        <?php echo number_format($twoProducts[3]['minprice'])?>
                         تومان
                     </span>
                 </div>
@@ -571,6 +594,9 @@
     </div>
     <?php } ?>
 </div>
+<!--<div class="row row-centered" style="overflow: hidden;margin-top: 20px;">
+    <script type="text/javascript">var anetwork_pram = anetwork_pram || [];anetwork_pram["aduser"] = "1439467157";anetwork_pram["adheight"] = "90";anetwork_pram["adwidth"] = "728";</script><script type="text/javascript" src="http://static-cdn.anetwork.ir/showad/pub.js"></script>
+</div>-->
 <div class="row">
     <div class="col-md-12" style="padding: 0px;">
         <div class="strike-black" style="margin: 0px;padding: 0px;">
@@ -673,11 +699,8 @@
                 </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12" style="padding: 0px;">
-                <a target="_blank" href="http://hediyeirani.com"><img src="catalog/view/images/samples/300-250-2.gif"
-                                                                      style="width: 100%;" height="220"/></a>
-            </div>
+        <div class="row row-centered">
+            <script type="text/javascript">var anetwork_pram = anetwork_pram || [];anetwork_pram["aduser"] = "1439467157";anetwork_pram["adheight"] = "250";anetwork_pram["adwidth"] = "300";</script><script type="text/javascript" src="http://static-cdn.anetwork.ir/showad/pub.js"></script>
         </div>
     </div>
 
@@ -781,5 +804,7 @@ return "$difference $periods[$j] پیش ";
     }
 
 </script>
-
+<div id="bseo">
+    <?php echo $stext; ?>
+</div>
 <?php echo $footer; ?>

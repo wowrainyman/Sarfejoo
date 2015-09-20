@@ -68,6 +68,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <a href='https://accounts.google.com/o/oauth2/auth?client_id=<?php echo $gmailclientid; ?>&redirect_uri=<?php echo $gmailredirecturi ?>&scope=https://www.google.com/m8/feeds/&response_type=code'>دعوت از طریق گوگل</a>
+                            <a href='https://login.live.com/oauth20_authorize.srf?client_id=<?php echo $hotmailclient_id; ?>&scope=wl.signin%20wl.basic%20wl.emails%20wl.contacts_emails&response_type=code&redirect_uri=<?php echo $hotmailredirect_uri; ?>'>
+دعوت از طریق hotmail
+                            </a>
+
                             <textarea rows="4" readonly style="width: 100%;float: left;text-align: left;">
                                 <?php echo $invitation_link; ?>
                             </textarea>

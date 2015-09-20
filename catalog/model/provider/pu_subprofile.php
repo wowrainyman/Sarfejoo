@@ -753,11 +753,22 @@ class ModelProviderPuSubprofile extends Model
         $con_PU_db = $GLOBALS['con_PU_db'];
         $exist = false;
         $result = array();
-        $sql_select_string = "SELECT MIN(price), subprofile_id FROM `pu_subprofile_product` WHERE product_id = $product_id and `availability`=0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY)";
+        $sql_select_string = "
+            SELECT MIN(TheMin),subprofile_id FROM (
+            SELECT
+            *,
+            Case WHEN price < guarantee_price AND price <> 0 THEN price
+                 WHEN guarantee_status = 1 AND guarantee_price <> 0 THEN guarantee_price
+                 WHEN price <> 0 THEN price
+                 END AS TheMin
+            FROM `pu_subprofile_product`
+            WHERE product_id = $product_id AND `availability`=0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY) ) AS Table1
+        ";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         while ($row = mysqli_fetch_assoc($result_select)) {
             $exist = true;
-            $result = $row;
+            $result['MIN(price)'] = $row['MIN(TheMin)'];
+            $result['subprofile_id'] = $row['subprofile_id'];
             break;
         }
         if ($exist)
@@ -770,11 +781,22 @@ class ModelProviderPuSubprofile extends Model
         $con_PU_db = $GLOBALS['con_PU_db'];
         $exist = false;
         $result = array();
-        $sql_select_string = "SELECT MAX(price), subprofile_id FROM `pu_subprofile_product` WHERE product_id = $product_id and `availability`=0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY)";
+        $sql_select_string = "
+            SELECT MAX(TheMax),subprofile_id FROM (
+            SELECT
+            *,
+            Case WHEN price > guarantee_price AND price <> 0 THEN price
+                 WHEN guarantee_status = 1 AND guarantee_price <> 0 THEN guarantee_price
+                 WHEN price <> 0 THEN price
+                 END AS TheMax
+            FROM `pu_subprofile_product`
+            WHERE product_id = $product_id AND `availability`=0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY) ) AS Table1
+        ";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         while ($row = mysqli_fetch_assoc($result_select)) {
             $exist = true;
-            $result = $row;
+            $result['MAX(price)'] = $row['MAX(TheMax)'];
+            $result['subprofile_id'] = $row['subprofile_id'];
             break;
         }
         if ($exist)

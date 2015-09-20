@@ -13,7 +13,7 @@ class ModelModuleHome extends Model
         $con_PU_db = $GLOBALS['con_PU_db'];
         $exist = false;
         $result = array();
-        $sql_select_string = "SELECT tab2.id as subprofile_product_id, tab2.price as new_price, tab1.name, tab2.product_id, tab2.update_date,tab3.title,tab3.id,tab3.logo,tab3.customer_id FROM $oc_database_name.oc_product_description tab1,$pu_database_name.pu_subprofile_product tab2,$pu_database_name.pu_subprofile tab3 WHERE tab1.product_id = tab2.product_id AND tab2.subprofile_id = tab3.id ORDER BY tab2.update_date DESC LIMIT 5";
+        $sql_select_string = "SELECT tab2.id as subprofile_product_id, tab2.price as new_price, tab1.name, tab2.product_id, tab2.update_date,tab3.title,tab3.id,tab3.logo,tab3.customer_id FROM $oc_database_name.oc_product_description tab1,$pu_database_name.pu_subprofile_product tab2,$pu_database_name.pu_subprofile tab3 WHERE tab1.product_id = tab2.product_id AND tab2.subprofile_id = tab3.id AND tab2.availability = 0 GROUP BY tab1.product_id ORDER BY tab2.update_date DESC LIMIT 5";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         $myres=array();
         while($row = $result_select->fetch_assoc()) {

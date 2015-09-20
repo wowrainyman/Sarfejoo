@@ -97,7 +97,10 @@ class ControllerCommonSeoUrl extends Controller {
 				}
 			
 						$this->request->get['information_id'] = $url[1];
-					}	
+					}
+                    if ($url[0] == 'subprofile_id') {
+                        $this->request->get['subprofile_id'] = $url[1];
+                    }
 				} else {
 					$this->request->get['route'] = 'error/not_found';	
 				}
@@ -139,7 +142,9 @@ class ControllerCommonSeoUrl extends Controller {
 				$this->request->get['route'] = 'product/manufacturer/info'; $this->session->data['manufacturer_id'] = $this->request->get['manufacturer_id'];
 			} elseif (isset($this->request->get['information_id'])) {
 				$this->request->get['route'] = 'information/information'; $this->session->data['information_id'] = $this->request->get['information_id'];
-			}
+			} elseif (isset($this->request->get['subprofile_id'])) {
+                $this->request->get['route'] = 'product/subprofile';
+            }
 			
 			
 			if (isset($this->request->get['route'])) { $this->session->data['proute'] = $this->request->get['route']; }
@@ -166,17 +171,13 @@ class ControllerCommonSeoUrl extends Controller {
 		
 		foreach ($data as $key => $value) {
 			if (isset($data['route'])) {
-				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id') || ($data['route'] == 'product/subprofile' && $key == 'subprofile_id')) {
 					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE language_id = " . (int)$this->config->get('config_language_id') . " AND `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
-				
 					if ($query->num_rows) {
 						$url .= '/' . $query->row['keyword'];
-						
 						unset($data[$key]);
 					}
-					
-// $url_1 = '&' . $data['route'] . '=' . $value;	
-	
+// $url_1 = '&' . $data['route'] . '=' . $value;
 
 			} elseif (isset($data['route']) && $data['route'] ==   'common/home') { $url .=  '/';
 			} elseif (isset($data['route']) && $data['route'] ==   'account/wishlist' && $key != 'remove') { $url .=  '/wishlist';
@@ -191,7 +192,7 @@ class ControllerCommonSeoUrl extends Controller {
 			} elseif (isset($data['route']) && $data['route'] ==   'account/register') { $url .=  '/register';
 			
 				} elseif ($data['route'] == 'provider/product' && $key == 'path') {
-	$url_1 = '&' . $data['route'] . '=' . $value;	
+	$url_1 = '&' . $data['route'] . '=' . $value;
 	$url_2 = '&' . $key . '=' . $value;
 
 			} elseif (isset($data['route']) && $data['route'] ==   'common/home') { $url .=  '/';
@@ -208,10 +209,8 @@ class ControllerCommonSeoUrl extends Controller {
 			
 				} elseif ($key == 'path') {
 					$categories = explode('_', $value);
-					
 					foreach ($categories as $category) {
 						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE language_id = " . (int)$this->config->get('config_language_id') . " AND `query` = 'category_id=" . (int)$category . "'");
-				
 						if ($query->num_rows) {
 							$url .= '/' . $query->row['keyword'];
 						}							

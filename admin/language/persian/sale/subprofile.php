@@ -43,6 +43,7 @@ $_['entry_mobile']      = 'Mob:';
 $_['entry_status_id']          = 'Status Id:';
 $_['entry_is_payed']       = 'Payed:';
 $_['entry_email']       = 'Email:';
+$_['entry_seo_keyword']       = 'SEO Keyword:';
 $_['entry_website']       = 'Website:';
 $_['entry_picture']       = 'Picture:';
 $_['entry_logo']       = 'Logo:';

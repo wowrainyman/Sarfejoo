@@ -7,6 +7,7 @@ define('DB_PU_USERNAME', 'root');
 define('DB_PU_PASSWORD', '');
 define('DB_OC_DATABASE', 'sarfe_oc');
 define('DB_PU_DATABASE', 'sarfe_pu');
+define('DB_BOT_DATABASE', 'sarfe_bot');
 #################################################
 $site_url = 'http://172.16.19.110/sarfejoo';
 
@@ -46,6 +47,18 @@ if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
+
+$BOT_name = DB_BOT_DATABASE;          // ProviderModel db name
+$PU_user = DB_PU_USERNAME;          // ProviderModel db username
+$PU_pwd = DB_PU_PASSWORD;        // ProviderModel db password
+$PU_host = DB_PU_HOSTNAME;        // ProviderModel db hostname
+
+$con_BOT_db = mysqli_connect($PU_host, $PU_user, $PU_pwd, $BOT_name) or die ('Cannot connect to server');
+mysqli_set_charset($con_PU_db, 'utf8');
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
 mb_http_input('UTF-8');
@@ -57,6 +70,7 @@ ob_start('mb_output_handler');
 
 $GLOBALS['con_PU_db'] = $con_PU_db;
 $GLOBALS['con_OC_db'] = $con_OC_db;
+$GLOBALS['con_BOT_db'] = $con_BOT_db;
 //  Test MOd
 
 ?>

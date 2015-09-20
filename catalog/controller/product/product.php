@@ -84,6 +84,7 @@ class ControllerProductProduct extends Controller
             $this->data['myurl'] = $this->session->data['seo'];
             unset($this->session->data['seo']);
         }
+
         $this->document->addStyle("catalog/view/css/BootstrapImageGallery/css/blueimp-gallery.min.css");
         $this->document->addScript('catalog/view/css/BootstrapImageGallery/js/jquery.blueimp-gallery.min.js');
         $this->document->addStyle("catalog/view/css/BootstrapImageGallery/css/bootstrap-image-gallery.css");
@@ -472,10 +473,12 @@ class ControllerProductProduct extends Controller
             foreach ($important_attributes as $important_attribute) {
                 $importants[] = $important_attribute['attribute_id'];
             }
-
             if (isset($providers)) {
                 $count = 0;
+                $provCounter = 0;
                 foreach ($providers as $provider) {
+                    $providers[$provCounter]['href'] = $this->url->link('product/subprofile', 'subprofile_id=' . $provider['subprofile_id']);
+                    $provCounter++;
                     $this->data['providers'] = $providers;
                     $customAttributes = null;
                     $blockAttributesId = '';
@@ -569,6 +572,7 @@ class ControllerProductProduct extends Controller
                             }
                         }
                         $providers[$count]['custom_attributes'] = $attributes;
+
                         $count++;
                     }
                 }

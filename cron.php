@@ -1,6 +1,6 @@
 <?php
 
-ini_set('max_execution_time', 0); 
+ini_set('max_execution_time', 0);
 
 require_once('provider.php');
 require_once('settings.php');
@@ -12,32 +12,32 @@ if (isset($_GET["type"]))
 switch ($type) {
     case "update-price":
 # Start Free Oc Prices
-              $admin_price_products_id = array(
-                                                            "452",
-                                                            "459",
-                                                            "461", 
-                                                            "463",
-                                                            "1233",
-                                                            "455",
-                                                            "457",
-                                                            "453",
-                                                            "1231"
-                                                       );                                                 
-               $sql = "UPDATE oc_product SET price = '0' WHERE product_id NOT IN ( '" . implode($admin_price_products_id, "', '") . "' )";
-                      $retval = mysqli_query($con_OC_db, $sql);
-                      if (!$retval) {
-                          die('Could not update data: ' . mysqli_error());
-                      }
+        $admin_price_products_id = array(
+            "452",
+            "459",
+            "461",
+            "463",
+            "1233",
+            "455",
+            "457",
+            "453",
+            "1231"
+        );
+        $sql = "UPDATE oc_product SET price = '0' WHERE product_id NOT IN ( '" . implode($admin_price_products_id, "', '") . "' )";
+        $retval = mysqli_query($con_OC_db, $sql);
+        if (!$retval) {
+            die('Could not update data: ' . mysqli_error());
+        }
         $sql = "DELETE FROM `pu_product_avg` WHERE 1";
         $retval = mysqli_query($con_PU_db, $sql);
 # End Free Oc Prices
-        $sql_select_string = "SELECT product_id  FROM `pu_subprofile_product` WHERE availability = 0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY)  AND status_id = 1 GROUP BY product_id";
+        $sql_select_string = "SELECT product_id  FROM `pu_subprofile_product` WHERE availability = 0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY)  AND status_id = 1 AND price <> 0 GROUP BY product_id";
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         while ($row = mysqli_fetch_assoc($result_select)) {
             $product_all[] = $row;
         }
         foreach ($product_all as $row) {
-          $product_id = $row['product_id'];
+            $product_id = $row['product_id'];
 # Start Update Avrage Price By ID
             $sql_select_string = "SELECT product_id, AVG(price)  FROM `pu_subprofile_product` WHERE `product_id`= $product_id and `availability`=0 AND `update_date` > DATE_SUB(CURDATE(), INTERVAL 60 DAY)  AND status_id = 1";
             $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
@@ -71,27 +71,27 @@ switch ($type) {
             echo "Updated Avrage Price for $product_id to $avg_price\n";
             echo '<br />';
 # End Update Avrage Price By ID
-               if (!in_array($product_id, $admin_price_products_id)) {
+            if (!in_array($product_id, $admin_price_products_id)) {
 # Start Update Price To Minimum By ID
-                      $sql_select_string = "SELECT MIN(price) FROM `pu_subprofile_product` WHERE product_id = $product_id and availability = 0";
-                      $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
-                      while ($row = mysqli_fetch_assoc($result_select)) {
-                          $min_price = $row['MIN(price)'];
-                      }
-                      $sql = "UPDATE oc_product SET price = '" . $min_price . "' WHERE product_id = '" . $product_id . "'";
-                      $retval = mysqli_query($con_OC_db, $sql);
-                      if (!$retval) {
-                          die('Could not update data: ' . mysqli_error());
-                      }
-                      //
-                      echo '<br />';
-                      echo "Updated Price for $product_id to $min_price\n";
-                      echo '<br />';
+                $sql_select_string = "SELECT MIN(price) FROM `pu_subprofile_product` WHERE product_id = $product_id and availability = 0 AND price<> 0";
+                $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+                while ($row = mysqli_fetch_assoc($result_select)) {
+                    $min_price = $row['MIN(price)'];
+                }
+                $sql = "UPDATE oc_product SET price = '" . $min_price . "' WHERE product_id = '" . $product_id . "'";
+                $retval = mysqli_query($con_OC_db, $sql);
+                if (!$retval) {
+                    die('Could not update data: ' . mysqli_error());
+                }
+                //
+                echo '<br />';
+                echo "Updated Price for $product_id to $min_price\n";
+                echo '<br />';
 # End UpdaT te Price To Minimum By ID
-               }
+            }
         }
         break;
-        
+
 #SELECT CONCAT(type,' ',class) FROM `pu_attributetype`
     case "update-custom-tags":
         set_time_limit(0);
@@ -176,13 +176,13 @@ switch ($type) {
         }
         mysqli_query($con_PU_db,'TRUNCATE TABLE pu_category_view');
         foreach ($category_count as $row) {
-        
+
             $category_id = $row['category_id'];
             $sum_viewed = $row['sum(viewed)'];
             $parent_id = $row['parent_id'];
             $sort_order = $row['sort_order'];
-       
-          $sql = "INSERT INTO pu_category_view (
+
+            $sql = "INSERT INTO pu_category_view (
                                                  related_id,
                                                  subprofile_name,
                                                  price,
@@ -195,12 +195,12 @@ switch ($type) {
                                                  '$price',
                                                  '$text'
                                              )";
-          $retval = mysqli_query($con_PU_db, $sql);
-          if (!$retval) {
-              die('Could not update data: ' . mysqli_error());
-          }
-     echo $category_id . ' > ' . $sum_viewed . '<br />';
-         }
+            $retval = mysqli_query($con_PU_db, $sql);
+            if (!$retval) {
+                die('Could not update data: ' . mysqli_error());
+            }
+            echo $category_id . ' > ' . $sum_viewed . '<br />';
+        }
         break;
     case "":
         echo "PLEASE SET TYPE!!!!!!!";

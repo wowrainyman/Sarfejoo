@@ -431,7 +431,7 @@ class ControllerFinancialSubprofilePlan extends Controller
             $login = $login['return'];
 
             $params['login'] = $login;
-            $params['amount'] = $transaction_info['value'];
+            $params['amount'] = $transaction_info['value']*10;
             $params['token'] = $_POST['token'];
             $params['RefNum'] = $_POST['RefNum'];
 

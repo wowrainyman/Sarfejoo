@@ -23,10 +23,10 @@ require_once "config.php";
 if (!isset($_GET["id"]) || empty($_GET["id"])) {
     $next_id = 1;
 } else {
-    $next_id = $_GET["id"];
+    $next_id = $_GET["id"] + 1;
 }
 
-$sql = "SELECT * FROM `emals_related` WHERE id = $next_id";
+$sql = "SELECT * FROM `emals_related` WHERE id = $next_id ORDER BY id DESC LIMIT 1 OFFSET $next_id";
 $result_select = mysqli_query($link_DB, $sql) or die(mysqli_error());
 while ($row = mysqli_fetch_assoc($result_select)) {
 
@@ -44,36 +44,41 @@ $emalls_id = $row['emalls_id'];
 
 # sTART gRAB lINK
 
-$page_url = "http://emalls.ir/price_compar.aspx?ID=$emalls_id";
+$page_url = "http://emalls.ir/Spec/$emalls_id";
+echo $page_url;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $page_url);
-curl_setopt($ch, CURLOPT_HEADER, TRUE);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-$a = curl_exec($ch);
-if (preg_match('#Location: (.*)#', $a, $r))
-    $l = trim($r[1]);
-$page_url = "$l";
-$date = date('m-d-Y');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$data = curl_exec($ch);
+curl_close($ch);
+$page_content = $data;
 
-if (!file_exists($date)) {
-    mkdir($date);
-}
-$local_file = $date . '/' . $product_id . '.html';
-$context = stream_context_create($opts);
-try {
-    $page_content = file_get_contents('http://emalls.ir/' . urlencode($page_url));
-} catch (Exception $exc) {
-    echo $exc;
-}
-
-$myfile = fopen("$local_file", "w") or die("Unable to open file!");
-fwrite($myfile, $page_content);
-
-
-$page_content = file_get_contents($local_file);
 
 $doc = new DOMDocument();
+
+$doc->loadHTML(mb_convert_encoding($page_content, 'HTML-ENTITIES', 'UTF-8'));
+
+$alla = $doc->getElementsByTagName('a');
+foreach ($alla as $a) {
+    foreach ($a->attributes as $attrib) {
+        if ($attrib->name == 'style' && $attrib->value == 'color:blue;text-decoration-line:underline;font-size:large') {
+            foreach ($a->attributes as $attrib2) {
+                if ($attrib2->name == 'href'){
+                    $page_url = $attrib2->value;
+                }
+            }
+        }
+    }
+}
+
+$url = "http://emalls.ir" . $page_url;
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$data = curl_exec($ch);
+curl_close($ch);
+
+$page_content = $data;
 
 $doc->loadHTML(mb_convert_encoding($page_content, 'HTML-ENTITIES', 'UTF-8'));
 
@@ -154,19 +159,9 @@ foreach ($divisions as $division) {
 }
 }
 ?>
-<?php
-
-$sql = "SELECT * FROM `emals_related`";
-$result = mysqli_query($link_DB, $sql) or die(mysqli_error($con_rb));
-$bot_count = mysqli_num_rows($result);
-$rand_id = rand(1, $bot_count);
-if ($rand_id == $next_id) {
-    $rand_id = $rand_id + 1;
-}
-?>
 <script type="text/javascript">
     setTimeout(function () {
-        window.location.href = "sdblocal.php?id=<?php echo ($rand_id) ?>";
+        window.location.href = "sdb.php?id=<?php echo ($next_id) ?>";
     }, 60000);
 </script>
 </body>

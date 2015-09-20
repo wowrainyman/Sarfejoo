@@ -14,75 +14,10 @@
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
 <link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet.css" />
-
-<!-- Admin Enhanced -->
-<?php if ($emisc1 == 1) { ?>
-<style type="text/css">
-#menu > ul #dashboard a.top {
-	padding-left: 35px;
-	background: url('view/image/home.png') 9px 7px no-repeat;
-}
-#menu > ul #catalog a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/category.png') 9px 7px no-repeat;
-}
-#menu > ul #extension a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/module.png') 9px 7px no-repeat;
-}
-#menu > ul #sale a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/order.png') 9px 7px no-repeat;
-}
-#menu > ul #system a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/setting.png') 9px 7px no-repeat;
-}
-#menu > ul #reports a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/report.png') 9px 7px no-repeat;
-}
-#menu > ul #localisation a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/language.png') 9px 7px no-repeat;
-}
-#menu > ul #help a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/help.png') 9px 7px no-repeat;
-}
-#menu > ul #store a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/preview.png') 9px 7px no-repeat;
-}
-#menu > ul #logged a.top {
-	padding-left: 35px;
-	background: url('../eadmin/image/menu/lockscreen.png') 9px 7px no-repeat;
-}
-#menu > ul #dashboard:hover, #menu > ul #catalog:hover, #menu > ul #extension:hover, #menu > ul #sale:hover, #menu > ul #system:hover, #menu > ul #reports:hover, #menu > ul #localisation:hover, #menu > ul #help:hover, #menu > ul #store:hover, #menu > ul #logged:hover {
-	background: url('../eadmin/image/menu/top-hover.png') repeat-x;
-}
-#menu > ul .selected {
-	background: url('../eadmin/image/menu/selected.png') repeat-x!important;
-	color: #FFFFFF;
-}
-#menu > ul .selected:hover, #menu > ul .sfhover {
-	background: url('../eadmin/image/menu/selected.png') repeat-x!important;
-}
-</style>
-<?php } ?>
-
-
 <link rel="stylesheet" type="text/css" href="view/stylesheet/tableedit.css" />
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
-
-	<!-- Admin Enhanced -->
-	<?php if ($emisc4 == 1) { ?>
-	<link rel="stylesheet" type="text/css" href="view/stylesheet/highlight-css.css" />
-	<?php } ?>
-	<!-- Admin Enhanced -->
-			
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/tableedit.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
@@ -90,7 +25,6 @@
 <script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/superfish/js/superfish.js"></script>
 <script type="text/javascript" src="view/javascript/common.js"></script>
-<!-- Admin Enhanced --><?php if ($egana == 1) { ?><script type="text/javascript" src='view/javascript/oocharts/oocharts.js'></script><?php } ?><!-- Admin Enhanced -->
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
@@ -127,168 +61,12 @@ $(document).ready(function(){
     });
         });
     </script>
-
-<!-- Admin Enhanced -->
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/colorbox/colorbox.css?v=1.0" media="screen" />
-<script type="text/javascript" src="view/javascript/jquery/colorbox/jquery.colorbox-min.js"></script>
-<link rel="stylesheet" type="text/css" href="../eadmin/css/eadmin.css" />
-<?php if ($emisc6 == 1) { ?>
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/tooltipster/css/tooltipster.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/tooltipster/css/themes/tooltipster-noir.css" />
-<script type="text/javascript" src="view/javascript/jquery/tooltipster/js/jquery.tooltipster.min.js"></script>
-<?php } ?>
-<?php if ($edate == 1) { ?>
-<script language="JavaScript" type="text/javascript">
-function clock() {
-var d = new Date();
-var month = d.getMonth()
-var day = d.getDate();
-var hours = d.getHours();
-var minutes = d.getMinutes();
-var seconds = d.getSeconds();
-if (month == 0) month = "<?php echo $text_january; ?>"
- else if (month == 1) month = "<?php echo $text_february; ?>"
- else if (month == 2) month = "<?php echo $text_march; ?>"
- else if (month == 3) month = "<?php echo $text_april; ?>"
- else if (month == 4) month = "<?php echo $text_may; ?>"
- else if (month == 5) month = "<?php echo $text_june; ?>"
- else if (month == 6) month = "<?php echo $text_july; ?>"
- else if (month == 7) month = "<?php echo $text_august; ?>"
- else if (month == 8) month = "<?php echo $text_september; ?>"
- else if (month == 9) month = "<?php echo $text_october; ?>"
- else if (month == 10) month = "<?php echo $text_november; ?>"
- else if (month == 11) month = "<?php echo $text_december; ?>";
-if (day <= 9) day = "0" + day;
-if (hours <= 9) hours = "0" + hours;
-if (minutes <= 9) minutes = "0" + minutes;
-if (seconds <= 9) seconds = "0" + seconds;
-date_time =+ day + " " + month + " " + d.getFullYear() +
-"<?php echo $text_year; ?><br />"+ hours + ":" + minutes + ":" + seconds;
-if (document.layers) {
- document.layers.doc_time.document.write(date_time);
- document.layers.doc_time.document.close();}
-else document.getElementById("doc_time").innerHTML = date_time;
- setTimeout("clock()", 1000);
-}
-</script>
-<?php } ?>
-<?php if ($eprod7 == 1 || $ecats4 == 1) { ?>
-<script language="JavaScript" type="text/javascript">
-$(document).scroll(function () {
-    var y = $(this).scrollTop();
-    if (y > 276) {
-        $('.heading2').fadeIn('slow');
-    } else {
-        $('.heading2').fadeOut('fast');
-    }
-});
-</script>
-<style>
-.box > .heading2 {
-	width:100%;
-	padding-left: 7px;
-	padding-right: 7px;
-	border-bottom: 2px solid #DBDBDB;
-	background: #fff url('view/image/box.png') repeat-x;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	-khtml-border-radius: 0px;
-	border-radius: 0px;
-	display:none;
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	box-shadow: 0 3px 6px #999;	
-}
-.box > .heading2 h1 {
-	margin: 0 0 0 45px;
-	padding: 11px 0px 0px 0px;
-	color: #003A88;
-	font-size: 16px;
-	float: left;
-}
-.box > .heading2 h1 img {
-	float: left;
-	margin-top: -1px;
-	margin-left: 3px;
-	margin-right: 8px;
-}
-.box > .heading2 .buttons2 {
-	float: right;
-	padding-top: 7px;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	-khtml-border-radius: 0px;
-	border-radius: 0px;
-	margin: -1px 30px 0 0!important;
-	padding: 6px;
-}
-.box > .heading2 .buttons2 .button {
-	margin-left: 5px;
-}
-</style>
-<?php } ?>
-<style>
-span.success2 {
-	margin: 13px 0 0 25px;
-	padding: 0 0 0 20px;
-	color: #060;
-	font-weight:bold;
-	font-size: 13px;
-	background: url('view/image/success.png') no-repeat 0 0;
-	height:16px;
-	float:left;
-}
-span.warning2 {
-	margin: 13px 0 0 25px;
-	padding: 0 0 0 20px;
-	color: #900;
-	font-weight:bold;
-	font-size: 13px;
-	background: url('view/image/warning.png') no-repeat 0 0;
-	height:16px;
-	float:left;
-}
-#toTop {
-	display:none;
-	text-decoration:none;
-	position:fixed;
-	bottom:10px;
-	right:10px;
-	overflow:hidden;
-	width:25px;
-	height:25px;
-	border:none;
-	text-indent:100%;
-	background:url(view/image/ui.totop.png) no-repeat left top;
-}
-#toTopHover {
-	background:url(view/image/ui.totop.png) no-repeat left -25px;
-	width:25px;
-	height:25px;
-	display:block;
-	overflow:hidden;
-	float:left;
-	opacity: 0;
-	-moz-opacity: 0;
-	filter:alpha(opacity=0);
-}
-#toTop:active, #toTop:focus {
-	outline:none;
-}
-</style>
-<!-- Admin Enhanced -->
-          	
-      		
 </head>
 <body>
 <div id="container">
     <div id="header">
   <div class="div1">
     <div class="div2"><img src="view/image/logo.png" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
-
-			<?php if ($edate == 1) { ?><div id="doc_time" style="float:left;position:relative;top:13px;left:20px;color:white"><script language="JavaScript" type="text/javascript">clock();</script></div><?php } ?>
-			
     <?php if ($logged) { ?>
     <div class="div3"><img src="view/image/lock.png" alt="" style="position: relative; top: 3px;" />&nbsp;<?php echo $logged; ?></div>
     <?php } ?>
@@ -301,27 +79,6 @@ span.warning2 {
         <ul>
           <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>
           <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
-<li><a class="parent">SEO</a>
-			<ul>			
-			<li><a href="<?php echo $seopack; ?>"><?php echo $text_seopack; ?></a></li>
-			<li><a href="<?php echo $seoimages; ?>"><?php echo $text_seoimages; ?></a></li>
-			<li>
-				<?php if (file_exists(DIR_APPLICATION.'controller/catalog/autolinks.php')) { ?>
-				<a href="<?php echo $autolinks; ?>"><?php echo $text_autolinks; ?></a>
-				<?php } else { ?>
-				<a onclick="alert('Auto Internal Links is not installed!\nYou can purchase Auto Internal Links from\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=5650\nor you can purchase the whole Opencart SEO Pack PRO:\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=6182');" class="button"><?php echo $text_autolinks; ?></a>
-				<?php } ?>
-			</li>
-			<li>
-				<?php if (file_exists(DIR_APPLICATION.'controller/catalog/seoeditor.php')) { ?>
-				<a href="<?php echo $seoeditor; ?>"><?php echo $text_seoeditor; ?></a>
-				<?php } else { ?>
-				<a onclick="alert('Advanced SEO Editor is not installed!\nYou can purchase Advanced SEO Editor from\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=6183\nor you can purchase the whole Opencart SEO Pack PRO:\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=6182');" class="button"><?php echo $text_seoeditor; ?></a>
-				<?php } ?>
-			</li>
-			<li><a href="<?php echo $seoreport; ?>"><?php echo $text_seoreport; ?></a></li>
-			</ul>
-			</li>
           <li><a href="<?php echo $product_attribute; ?>"><?php echo $text_product_attribute; ?></a></li>
             <li><a href="<?php echo $payment2; ?>"><?php echo $text_payment; ?></a></li>
             <li><a href="<?php echo $attribute_type; ?>"><?php echo $text_attribute_type; ?></a></li>
@@ -365,12 +122,11 @@ span.warning2 {
       <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
         <ul>
           <li><a href="<?php echo $module; ?>"><?php echo $text_module; ?></a></li>
+            <li><a href="<?php echo $module; ?>"><?php echo $text_customer_module; ?></a></li>
           <li><a href="<?php echo $shipping; ?>"><?php echo $text_shipping; ?></a></li>
           <li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
           <li><a href="<?php echo $total; ?>"><?php echo $text_total; ?></a></li>
           <li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
-<?php // BOF - Zappo - vQModerator - ONE LINE - Added vQModerator to Menu ?>
-          <li><a href="<?php echo $vqmoderator; ?>"><?php echo $text_vqmoderator; ?></a></li>
           <?php if ($openbay_show_menu == 1) { ?>
             <li><a class="parent"><?php echo $text_openbay_extension; ?></a>
                 <ul>
@@ -560,12 +316,7 @@ span.warning2 {
           <?php } ?>
         </ul>
       </li>
-      
-      <!-- Admin Enhanced -->
-	  <li id="logged"><a class="top" href="<?php echo $logout; ?>">
-	  <!-- Admin Enhanced -->
-          	
-      		<?php echo $text_logout; ?></a></li>
+      <li><a class="top" href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
     </ul>
   </div>
   <?php } ?>

@@ -8,8 +8,8 @@ class ControllerAccountAccount extends Controller
             $this->session->data['redirect'] = $this->url->link('account/account', '', 'SSL');
             $this->redirect($this->url->link('account/login', '', 'SSL'));
         }
-        $this->language->load('account/account');
-        $this->language->load('provider');
+        $this->data += $this->language->load('account/account');
+        $this->data += $this->language->load('provider');
         $this->document->setTitle($this->language->get('heading_title'));
         $this->data['breadcrumbs'] = array();
         $this->data['breadcrumbs'][] = array(
@@ -41,36 +41,10 @@ class ControllerAccountAccount extends Controller
         } else {
             $CustomerGroupId = '0';
         }
+
+
         $this->data['Customer_Group_Id'] = $CustomerGroupId;
-        $this->data['heading_title'] = $this->language->get('heading_title');
-        $this->data['text_profile'] = $this->language->get('text_profile');
-        $this->data['text_menu_profiles'] = $this->language->get('text_menu_profiles');
-        $this->data['text_menu_sub_profiles'] = $this->language->get('text_menu_sub_profiles');
-        $this->data['text_menu_add_products'] = $this->language->get('text_menu_add_products');
-        $this->data['text_menu_set_prices'] = $this->language->get('text_menu_set_prices');
-        $this->data['text_menu_set_discounts'] = $this->language->get('text_menu_set_discounts');
-        $this->data['text_menu_pofiles_stat'] = $this->language->get('text_menu_pofiles_stat');
-        $this->data['text_menu_inbox'] = $this->language->get('text_menu_inbox');
-        $this->data['text_menu_bank'] = $this->language->get('text_menu_bank');
-        $this->data['text_menu_advertisments'] = $this->language->get('text_menu_advertisments');
-        $this->data['text_menu_namads'] = $this->language->get('text_menu_namads');
-        $this->data['text_my_account'] = $this->language->get('text_my_account');
-        $this->data['text_my_orders'] = $this->language->get('text_my_orders');
-        $this->data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
-        $this->data['text_edit'] = $this->language->get('text_edit');
-        $this->data['text_password'] = $this->language->get('text_password');
-        $this->data['text_address'] = $this->language->get('text_address');
-        $this->data['text_wishlist'] = $this->language->get('text_wishlist');
-        $this->data['text_order'] = $this->language->get('text_order');
-        $this->data['text_download'] = $this->language->get('text_download');
-        $this->data['text_reward'] = $this->language->get('text_reward');
-        $this->data['text_return'] = $this->language->get('text_return');
-        $this->data['text_transaction'] = $this->language->get('text_transaction');
-        $this->data['text_newsletter'] = $this->language->get('text_newsletter');
-        $this->data['text_ad'] = $this->language->get('text_ad');
-        $this->data['text_recurring'] = $this->language->get('text_recurring');
-        $this->data['text_user_not_payed'] = $this->language->get('text_user_not_payed');
-        $this->data['text_link'] = $this->language->get('text_link');
+
         $this->data['edit'] = $this->url->link('account/edit', '', 'SSL');
         $this->data['password'] = $this->url->link('account/password', '', 'SSL');
         $this->data['address'] = $this->url->link('account/address', '', 'SSL');
@@ -89,6 +63,7 @@ class ControllerAccountAccount extends Controller
         $this->data['rebate'] = $this->url->link('provider/rebate', '', 'SSL');
         $this->data['etrust'] = $this->url->link('provider/etrust', '', 'SSL');
         $this->data['buy_plan_link'] = $this->url->link('financial/provider_plan', '', 'SSL');
+        $this->data['customer_modules'] = $this->url->link('provider/customer_modules', '', 'SSL');
         if ($this->config->get('reward_status')) {
             $this->data['reward'] = $this->url->link('account/reward', '', 'SSL');
         } else {

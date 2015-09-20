@@ -28,6 +28,7 @@
                 <li><a href="index.php?route=provider/subprofile"><?php echo $text_menu_sub_profiles; ?></a></li>
                 <li><a href="index.php?route=provider/product/allsubprofiles"><?php echo $text_menu_add_products; ?></a></li>
                 <li><a href="index.php?route=provider/price"><?php echo $text_menu_set_prices; ?></a></li>
+                <li><a href="index.php?route=provider/customer_modules"><?php echo $text_menu_customer_modules; ?></a></li>
                 <li><a href="index.php?route=provider/rebate"><?php echo $text_menu_set_discounts; ?></a></li>
                 <!--
                 <li><a href="index.php?route=provider/stat"  ><?php echo $text_menu_pofiles_stat; ?></a></li>

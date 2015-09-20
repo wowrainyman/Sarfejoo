@@ -77,6 +77,7 @@
                                              <?php echo $text_menu_profiles   ?>
                                         </div>
                                    </a>
+
                                    <a href="<?php echo $subprofile   ?>" >
                                         <div class="a-box">
                                              <i class="flaticon-services"></i><br />
@@ -95,6 +96,12 @@
                                              <?php echo $text_menu_set_prices   ?>
                                         </div>
                                    </a>
+                                  <a href="<?php echo $customer_modules   ?>" >
+                                      <div class="a-box">
+                                          <i class="flaticon-services2"></i><br />
+                                          <?php echo $text_customer_modules;?>
+                                      </div>
+                                  </a>
                                    <a href="<?php echo $rebate   ?>" >
                                         <div class="a-box">
                                              <i class="flaticon-like3"></i><br />

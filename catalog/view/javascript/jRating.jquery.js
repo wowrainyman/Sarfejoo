@@ -177,7 +177,7 @@
 									/** Here you can display an alert box,
 										or use the jNotify Plugin :) http://www.myqjqueryplugins.com/jNotify
 										exemple :	*/
-									if(opts.onSuccess) opts.onSuccess( element, rate );
+									if(opts.onSuccess) opts.onSuccess( element, rate, data);
 								}
 								else
 								{

@@ -19,6 +19,8 @@ class ControllerProductCategory extends Controller
 
         $this->document->addStyle("catalog/view/theme/default/stylesheet/sarfejoo/lightbox/lib/sweet-alert.css");
         $this->document->addScript('catalog/view/theme/default/stylesheet/sarfejoo/lightbox/lib/sweet-alert.min.js');
+        $this->document->addStyle("catalog/view/css/bootstrap-toggle/css/bootstrap2-toggle.css");
+        $this->document->addScript('catalog/view/css/bootstrap-toggle/js/bootstrap2-toggle.js');
 
         $this->language->load('product/category');
 
@@ -27,6 +29,11 @@ class ControllerProductCategory extends Controller
         $this->load->model('catalog/product');
 
         $this->load->model('tool/image');
+        if (isset($this->request->get['filter_zero_price'])) {
+            $this->data['filter_zero_price'] = $this->request->get['filter_zero_price'];
+        }else{
+            $this->data['filter_zero_price'] = 'true';
+        }
 
         if (isset($this->request->get['filter'])) {
             $filter = $this->request->get['filter'];
@@ -37,13 +44,13 @@ class ControllerProductCategory extends Controller
         if (isset($this->request->get['sort'])) {
             $sort = $this->request->get['sort'];
         } else {
-            $sort = 'p.sort_order';
+            $sort = 'p.date_available';
         }
 
         if (isset($this->request->get['order'])) {
             $order = $this->request->get['order'];
         } else {
-            $order = 'ASC';
+            $order = 'DESC';
         }
 
         if (isset($this->request->get['page'])) {
@@ -263,6 +270,12 @@ class ControllerProductCategory extends Controller
                     $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
                 }
             }
+            if (isset($this->request->get['filter_zero_price'])) {
+                $url .= '&filter_zero_price=' . $this->request->get['filter_zero_price'];
+                $filter_zero_price = $this->request->get['filter_zero_price'];
+            }else{
+                $filter_zero_price = 'true';
+            }
 
 
 				$fmSettings = $this->config->get('mega_filter_settings');
@@ -280,7 +293,8 @@ class ControllerProductCategory extends Controller
             foreach ($results as $result) {
                 $data = array(
                     'filter_category_id' => $result['category_id'],
-                    'filter_sub_category' => true
+                    'filter_sub_category' => true,
+                    'filter_zero_price' => $filter_zero_price
                 );
 
 
@@ -340,9 +354,11 @@ class ControllerProductCategory extends Controller
                 'sort' => $sort,
                 'order' => $order,
                 'start' => ($page - 1) * $limit,
-                'limit' => $limit
+                'limit' => $limit,
+                'filter_zero_price' => $filter_zero_price
             );
             $allproducts = $this->model_catalog_product->getProducts($data);
+
             $allproductsIds = array();
             foreach ($allproducts as $prod) {
                 $allproductsIds[] = $prod['product_id'];
@@ -359,7 +375,8 @@ class ControllerProductCategory extends Controller
                 'sort' => $sort,
                 'order' => $order,
                 'start' => ($page - 1) * $limit,
-                'limit' => $limit
+                'limit' => $limit,
+                'filter_zero_price' => $filter_zero_price
             );
 
 				$fmSettings = $this->config->get('mega_filter_settings');
@@ -474,13 +491,19 @@ class ControllerProductCategory extends Controller
                     $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
                 }
             }
+            if (isset($this->request->get['filter_zero_price'])) {
+                $url .= '&filter_zero_price=' . $this->request->get['filter_zero_price'];
+                $filter_zero_price = $this->request->get['filter_zero_price'];
+            }else{
+                $filter_zero_price = true;
+            }
 
             $this->data['sorts'] = array();
 
             $this->data['sorts'][] = array(
                 'text' => $this->language->get('text_default'),
-                'value' => 'p.sort_order-ASC',
-                'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.sort_order&order=ASC' . $url)
+                'value' => 'p.date_available-DESC',
+                'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.date_available&order=DESC' . $url)
             );
 
             $this->data['sorts'][] = array(
@@ -507,32 +530,6 @@ class ControllerProductCategory extends Controller
                 'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price&order=DESC' . $url)
             );
 
-            if ($this->config->get('config_review_status')) {
-                $this->data['sorts'][] = array(
-                    'text' => $this->language->get('text_rating_desc'),
-                    'value' => 'rating-DESC',
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=DESC' . $url)
-                );
-
-                $this->data['sorts'][] = array(
-                    'text' => $this->language->get('text_rating_asc'),
-                    'value' => 'rating-ASC',
-                    'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=rating&order=ASC' . $url)
-                );
-            }
-
-            $this->data['sorts'][] = array(
-                'text' => $this->language->get('text_model_asc'),
-                'value' => 'p.model-ASC',
-                'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=ASC' . $url)
-            );
-
-            $this->data['sorts'][] = array(
-                'text' => $this->language->get('text_model_desc'),
-                'value' => 'p.model-DESC',
-                'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
-            );
-
             $url = '';
 
 				if( ! empty( $this->request->get['mfp'] ) ) {
@@ -555,6 +552,12 @@ class ControllerProductCategory extends Controller
                 if ($this->request->get['subprofile_id'] != 0) {
                     $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
                 }
+            }
+            if (isset($this->request->get['filter_zero_price'])) {
+                $url .= '&filter_zero_price=' . $this->request->get['filter_zero_price'];
+                $filter_zero_price = $this->request->get['filter_zero_price'];
+            }else{
+                $filter_zero_price = 'true';
             }
 
             $this->data['limits'] = array();
@@ -597,6 +600,12 @@ class ControllerProductCategory extends Controller
                 if ($this->request->get['subprofile_id'] != 0) {
                     $myurl = $url . '&subprofile_id=' . $this->request->get['subprofile_id'];
                 }
+            }
+            if (isset($this->request->get['filter_zero_price'])) {
+                $url .= '&filter_zero_price=' . $this->request->get['filter_zero_price'];
+                $filter_zero_price = $this->request->get['filter_zero_price'];
+            }else{
+                $filter_zero_price = 'true';
             }
 
             $pagination = new Pagination();
@@ -713,9 +722,15 @@ class ControllerProductCategory extends Controller
                 $url .= '&page=' . $this->request->get['page'];
             }
 
-
             if (isset($this->request->get['limit'])) {
                 $url .= '&limit=' . $this->request->get['limit'];
+            }
+
+            if (isset($this->request->get['filter_zero_price'])) {
+                $url .= '&filter_zero_price=' . $this->request->get['filter_zero_price'];
+                $filter_zero_price = $this->request->get['filter_zero_price'];
+            }else{
+                $filter_zero_price = 'true';
             }
 
             $this->data['breadcrumbs'][] = array(
@@ -841,6 +856,39 @@ class ControllerProductCategory extends Controller
         }
         return $text;
     }
+
+    /*public function fillDatabase(){
+        require_once "provider.php";
+
+        require_once "settings.php";
+
+        $this->load->model('catalog/product');
+
+        $data = array(
+            'filter_category_id' => 67,
+            'filter_sub_category' => true
+        );
+
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+
+        $con_PU_db = $GLOBALS['con_PU_db'];
+
+        $allproducts = $this->model_catalog_product->getProducts($data);
+        echo count($allproducts);
+
+        foreach($allproducts as $product){
+            $product_id = $product['product_id'];
+            $product_name = $product['name'];
+            $product_name = str_replace("'","\'",$product_name);
+            $sql_insert_string = "INSERT INTO $pu_database_name.mobileir_product_relate" .
+                "(`product_id`, `product_name`, `mobileir_url`)" .
+                "VALUES ('$product_id', '$product_name', '');";
+            echo $sql_insert_string;
+
+            $result_select = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
+        }
+    }*/
 
 }
 

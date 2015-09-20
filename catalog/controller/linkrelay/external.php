@@ -30,15 +30,10 @@ class ControllerLinkRelayExternal extends Controller {
     }
 
      $this->data['site_link'] = $this->url->link('product/product', '&product_id=' . $return_id);
-
-     if (isset($this->request->get['url'])) {
-          $relay_url  =$this->request->get['url'];
-     } else {
-          $relay_url = HTTP_SERVER;
-     }
-
-
-
+     $uri = $_SERVER['REQUEST_URI'];
+     $uri = explode('url=',$uri);
+     $uri = $uri[count($uri)-1];
+     $relay_url = $uri;
      if (isset($this->request->get['type'])) {
           $type = $this->request->get['type'];
      } else {

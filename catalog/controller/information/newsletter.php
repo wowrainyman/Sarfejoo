@@ -107,6 +107,15 @@ class ControllerInformationNewsletter extends Controller
         $this->data['selected_sms_plans'] = $selected_sms_plans;
         $this->data['selected_email_plans'] = $selected_email_plans;
 
+        $this->data['gmailclientid'] = '505281806589-shr3dvgg47ho13luhm25n8g59vfva2sc.apps.googleusercontent.com';
+        $this->data['gmailclientsecret'] = '2nGItEpzAsC9pnGopuSyzShx';
+        $this->data['gmailredirecturi'] = 'http://sarfejoo.com/index.php?route=information/newsletter&#38;gmail=true';
+        $this->data['gmailmaxresults'] = 5000; // Number of mailid you want to display.
+
+        $this->data['hotmailclient_id'] = '0000000048168780';
+        $this->data['hotmailclient_secret'] = '34zRwo62appzMKA4QQ4dS575xVzsr2xA';
+        $this->data['hotmailredirect_uri'] = 'http://sarfejoo.com/index.php?route=information/newsletter&#38;hotmail=true';
+
         $this->document->setTitle($this->language->get('heading_title'));
         $this->data['breadcrumbs'] = array();
         $this->data['breadcrumbs'][] = array(
@@ -172,6 +181,73 @@ class ControllerInformationNewsletter extends Controller
             return true;
         }else{
             return false;
+        }
+    }
+
+    public function campaign(){
+        $this->load->model('information/pu_newsletter');
+        $email = $this->request->post['email'];
+        $result = $this->model_information_pu_newsletter->addFirstCampaignEmail($email);
+        if(isset($result)&&$result!=null&&$result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function gmail(){
+        $clientid = '505281806589-shr3dvgg47ho13luhm25n8g59vfva2sc.apps.googleusercontent.com';
+        $clientsecret = '2nGItEpzAsC9pnGopuSyzShx';
+        $redirecturi = 'http://sarfejoo.com/index.php?route=information/newsletter&gmail=true';
+        $maxresults = 5000; // Number of mailid you want to display.
+        echo "<a href='https://accounts.google.com/o/oauth2/auth?client_id=$clientid&redirect_uri=$redirecturi&scope=https://www.google.com/m8/feeds/&response_type=code'>دعوت از طریق گوگل</a>";
+    }
+    public function gmailresult(){
+        $clientid = '505281806589-shr3dvgg47ho13luhm25n8g59vfva2sc.apps.googleusercontent.com';
+        $clientsecret = '2nGItEpzAsC9pnGopuSyzShx';
+        $redirecturi = 'http://sarfejoo.com/index.php?route=information/newsletter/gmailresult';
+        $maxresults = 5000; // Number of mailid you want to display.
+        $authcode = $_GET["code"];
+        $fields=array(
+            'code'=> urlencode($authcode),
+            'client_id'=> urlencode($clientid),
+            'client_secret'=> urlencode($clientsecret),
+            'redirect_uri'=> urlencode($redirecturi),
+            'grant_type'=> urlencode('authorization_code') );
+
+        $fields_string = '';
+        foreach($fields as $key=>$value){ $fields_string .= $key.'='.$value.'&'; }
+        $fields_string = rtrim($fields_string,'&');
+
+        $headers[0] = 'Content-Type: application/x-www-form-urlencoded';
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $response = json_decode($result);
+        $accesstoken = $response->access_token;
+        if( $accesstoken!='')
+            $_SESSION['token']= $accesstoken;
+        $result = file_get_contents('https://www.google.com/m8/feeds/contacts/default/full?max-results=10000&oauth_token='. $_SESSION['token']);
+
+        $xml=  new SimpleXMLElement($result);
+        $xml->registerXPathNamespace('gd', 'http://schemas.google.com/g/2005');
+        $count=0;
+        foreach($xml->entry as $entry)
+        {
+            $count++;
+            $title = $entry->title;
+            $subs = $entry->children('gd', true);
+            $phone = $subs->phoneNumber;
+            $email = $subs->attributes()->address;
+
+            echo '('.$count.') -> '.$title.' -> '.$phone.' -> '.$email.'<br/>';
         }
     }
 

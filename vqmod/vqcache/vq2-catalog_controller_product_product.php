@@ -17,6 +17,7 @@ class ControllerProductProduct extends Controller
 
         if (isset($_POST['action'])) {
             if (htmlentities($_POST['action'], ENT_QUOTES, 'UTF-8') == 'rating') {
+
                 /*
                 * vars
                 */
@@ -43,6 +44,15 @@ class ControllerProductProduct extends Controller
 
                     echo json_encode($aResponse);
                 } else {
+                    $aResponse['message'] = 'رای شما قبلا ثبت شده است';
+
+                    // ONLY FOR THE DEMO, YOU CAN REMOVE THE CODE UNDER
+                    $aResponse['server'] = '<strong>Success answer :</strong> Success : Your rate has been recorded. Thanks for your rate :)<br />';
+                    $aResponse['server'] .= '<strong>Rate received :</strong> ' . $rate . '<br />';
+                    $aResponse['server'] .= '<strong>ID to update :</strong> ' . $id;
+                    // END ONLY FOR DEMO
+
+                    echo json_encode($aResponse);
                 }
             } else {
                 $aResponse['error'] = true;
@@ -70,10 +80,11 @@ class ControllerProductProduct extends Controller
 
     public function index()
     {
-        if (isset($this->session->data['seo'])){
+        if (isset($this->session->data['seo'])) {
             $this->data['myurl'] = $this->session->data['seo'];
             unset($this->session->data['seo']);
         }
+
         $this->document->addStyle("catalog/view/css/BootstrapImageGallery/css/blueimp-gallery.min.css");
         $this->document->addScript('catalog/view/css/BootstrapImageGallery/js/jquery.blueimp-gallery.min.js');
         $this->document->addStyle("catalog/view/css/BootstrapImageGallery/css/bootstrap-image-gallery.css");
@@ -268,12 +279,11 @@ class ControllerProductProduct extends Controller
 
         $product_info = $this->model_catalog_product->getProduct($product_id);
 
-        $this->data['date_added'] = jdate("l - j F o",strtotime($product_info['date_added']));
-
+        $this->data['date_added'] = jdate("l - j F o", strtotime($product_info['date_added']));
 
 
         if ($product_info) {
-            $this->data['stext'] = $this->generateSeoText($product_info['seo_generator'],$product_info['rss_link']);
+            $this->data['stext'] = $this->generateSeoText($product_info['seo_generator'], $product_info['rss_link']);
             $url = '';
 
             if (isset($this->request->get['path'])) {
@@ -489,7 +499,7 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
             } else {
                 $this->data['price'] = false;
             }
-            $this->data['lastUpdate'] = jdate("l - j F o",strtotime($this->model_provider_pu_subprofile->getLastUpdateTimeOfProduct($this->request->get['product_id'])));
+            $this->data['lastUpdate'] = jdate("l - j F o", strtotime($this->model_provider_pu_subprofile->getLastUpdateTimeOfProduct($this->request->get['product_id'])));
 # Start Prices
             $this->data['minprice'] = $this->model_provider_pu_subprofile->GetMinimumPriceOfProduct($this->request->get['product_id']);
             $this->data['maxprice'] = $this->model_provider_pu_subprofile->GetMaximumPriceOfProduct($this->request->get['product_id']);
@@ -518,10 +528,12 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
             foreach ($important_attributes as $important_attribute) {
                 $importants[] = $important_attribute['attribute_id'];
             }
-
             if (isset($providers)) {
                 $count = 0;
+                $provCounter = 0;
                 foreach ($providers as $provider) {
+                    $providers[$provCounter]['href'] = $this->url->link('product/subprofile', 'subprofile_id=' . $provider['subprofile_id']);
+                    $provCounter++;
                     $this->data['providers'] = $providers;
                     $customAttributes = null;
                     $blockAttributesId = '';
@@ -567,13 +579,13 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
                                 $is_block = false;
                                 if ($this->model_customextension_pu_attribute->isBlockAttribute($attribute_info['attribute_id'])) {
                                     $is_block = true;
-                                    $selected_value = $this->model_customextension_pu_block_attribute_subprofile_value->get($provider['subprofile_id'],$this->request->get['product_id'],$attribute_info['attribute_id']);
-                                    $selected_value2=array();
+                                    $selected_value = $this->model_customextension_pu_block_attribute_subprofile_value->get($provider['subprofile_id'], $this->request->get['product_id'], $attribute_info['attribute_id']);
+                                    $selected_value2 = array();
                                     $first_attr_name = $selected_value[0]['subattribute_name'];
                                     $subs = array();
-                                    $cnt=0;
+                                    $cnt = 0;
                                     foreach ($selected_value as $this_selected_value) {
-                                        if($this_selected_value['subattribute_name'] == $first_attr_name && $cnt!=0){
+                                        if ($this_selected_value['subattribute_name'] == $first_attr_name && $cnt != 0) {
                                             $selected_value2[] = $subs;
                                             $subs = array();
                                         }
@@ -596,8 +608,8 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
 
                                     }
                                     $selected_value2[] = $subs;
-                                    $selected_value=$selected_value2;
-                                }else{
+                                    $selected_value = $selected_value2;
+                                } else {
 
                                     $selected_value = $this->model_provider_pu_attribute->getAttributeValue($provider['subprofile_id'], $this->request->get['product_id'], $attribute_info['attribute_id']);
                                 }
@@ -615,41 +627,42 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
                             }
                         }
                         $providers[$count]['custom_attributes'] = $attributes;
+
                         $count++;
                     }
                 }
             }
-            if(!isset($this->request->get['path'])) $this->request->get['path'] = '';
+            if (!isset($this->request->get['path'])) $this->request->get['path'] = '';
             $this->data['url'] = $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $this->request->get['product_id']);
-            if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "date"){
+            if (isset($this->request->get['sort']) && $this->request->get['sort'] == "date") {
                 foreach ($providers as $key => $row) {
-                    $update_date[$key]  = $row['update_date'];
+                    $update_date[$key] = $row['update_date'];
                 }
-                array_multisort($update_date,SORT_DESC,$providers);
-            }else if(isset($this->request->get['sort'])&&isset($this->request->get['order'])&&$this->request->get['sort'] == "price"&&$this->request->get['order'] == "ASC"){
+                array_multisort($update_date, SORT_DESC, $providers);
+            } else if (isset($this->request->get['sort']) && isset($this->request->get['order']) && $this->request->get['sort'] == "price" && $this->request->get['order'] == "ASC") {
                 foreach ($providers as $key => $row) {
-                    $price[$key]  = $row['price'];
+                    $price[$key] = $row['price'];
                 }
-                array_multisort($price,SORT_ASC,$providers);
-            }else if(isset($this->request->get['sort'])&&isset($this->request->get['order'])&&$this->request->get['sort'] == "price"&&$this->request->get['order'] == "DESC"){
+                array_multisort($price, SORT_ASC, $providers);
+            } else if (isset($this->request->get['sort']) && isset($this->request->get['order']) && $this->request->get['sort'] == "price" && $this->request->get['order'] == "DESC") {
                 foreach ($providers as $key => $row) {
-                    $price[$key]  = $row['price'];
+                    $price[$key] = $row['price'];
                 }
-                array_multisort($price,SORT_DESC,$providers);
-            }else if(isset($this->request->get['sort'])&&$this->request->get['sort'] == "title"){
+                array_multisort($price, SORT_DESC, $providers);
+            } else if (isset($this->request->get['sort']) && $this->request->get['sort'] == "title") {
                 foreach ($providers as $key => $row) {
-                    $title[$key]  = $row['title'];
+                    $title[$key] = $row['title'];
                 }
-                array_multisort($title,SORT_DESC,$providers);
+                array_multisort($title, SORT_DESC, $providers);
             }
-            if(isset($this->request->get['sort'])){
+            if (isset($this->request->get['sort'])) {
                 $this->data['sort'] = $this->request->get['sort'];
-            }else{
+            } else {
                 $this->data['sort'] = '';
             }
-            if(isset($this->request->get['order'])){
+            if (isset($this->request->get['order'])) {
                 $this->data['order'] = $this->request->get['order'];
-            }else{
+            } else {
                 $this->data['order'] = '';
             }
 
@@ -798,6 +811,12 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
                     );
                 }
             }
+            $CanUseNewsletter = false;
+            if ($this->canUseNewsletter() && $this->customer->isLogged()) {
+                $CanUseNewsletter = true;
+            }
+
+            $this->data['canUseNewslette'] = $CanUseNewsletter;
 
             $this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
             $this->data['profiles'] = $this->model_catalog_product->getProfiles($product_info['product_id']);
@@ -1131,7 +1150,8 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
         $this->response->setOutput(json_encode($json));
     }
 
-    public function generateSeoText($seo_generator_terms,$rss_link){
+    public function generateSeoText($seo_generator_terms, $rss_link)
+    {
         $text = "";
         $terms = explode("$", $seo_generator_terms);
         if (count($terms) > 0 && $rss_link) {
@@ -1154,18 +1174,68 @@ $this->data['custom_alt'] = $product_info['custom_alt'];
             $percentage[5] = intval(($all_words_count / 100) * 1.5);
             $percentage[6] = intval(($all_words_count / 100) * 1);
             for ($i = 0; $i < count($terms); $i++) {
-                if($i<=6){
+                if ($i <= 6) {
                     for ($j = 0; $j < $percentage[$i]; $j++) {
                         $place = rand(0, $all_words_count - 1);
                         $all_words[$place] = $all_words[$place] . ' ' . $terms[$i] . ' ';
                     }
-                }else{
+                } else {
 
                 }
             }
             $text = implode(" ", $all_words);
         }
         return $text;
+    }
+
+    public function canUseNewsletter()
+    {
+        if ($this->customer->isLogged()) {
+            $this->load->model('information/pu_newsletter');
+            $result = $this->model_information_pu_newsletter->getCustomerNewsletterStatus($this->customer->getId());
+            if (isset($result) && $result != null && $result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    public function AddCustomerProductAvailableRemind(){
+        $json = array();
+        $json['result'] = 'error';
+        if ($this->customer->isLogged()) {
+            $product_id = $this->request->post['product_id'];
+            $customer_id = $this->customer->getId();
+            $this->load->model('information/pu_newsletter');
+            $result = $this->model_information_pu_newsletter->addAvailableReminder($customer_id,$product_id);
+            $json['result'] = 'success';
+        }
+        $this->response->setOutput(json_encode($json));
+    }
+    public function RemoveCustomerProductAvailableRemind(){
+        $json = array();
+        $json['result'] = 'error';
+        if ($this->customer->isLogged()) {
+            $product_id = $this->request->post['product_id'];
+            $customer_id = $this->customer->getId();
+            $this->load->model('information/pu_newsletter');
+            $result = $this->model_information_pu_newsletter->removeAvailableReminder($customer_id,$product_id);
+            $json['result'] = 'success';
+        }
+        $this->response->setOutput(json_encode($json));
+    }
+    public function AddCustomerPriceLowerRemind(){
+        $json = array();
+        $json['result'] = 'error';
+        if ($this->customer->isLogged()) {
+            $product_id = $this->request->post['product_id'];
+            $customer_id = $this->customer->getId();
+            $price = $this->request->post['price'];
+            $this->load->model('information/pu_newsletter');
+            $result = $this->model_information_pu_newsletter->addPriceLowerReminder($customer_id,$product_id,$price);
+            $json['result'] = 'success';
+        }
+        $this->response->setOutput(json_encode($json));
     }
 }
 

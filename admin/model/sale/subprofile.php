@@ -285,7 +285,9 @@ class ModelSaleSubprofile extends Model
 	}
 	public function EditSubprofile($id,$data)
 	{
-		$con_PU_db = $GLOBALS['con_PU_db'];
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $con_OC_db = $GLOBALS['con_OC_db'];
+
 		//$customer_id = $data['customer_id'];
 		$group_id = $data['group_id'];
 		$title = $data['title'];
@@ -302,7 +304,19 @@ class ModelSaleSubprofile extends Model
 		$website = $data['website'];
 		$status_id = $data['status_id'];
 		$is_payed = $data['is_payed'];
-		$adminmessage = $data['adminmessage'];
+        $adminmessage = $data['adminmessage'];
+        $seo_keyword = $data['seo_keyword'];
+
+        if($seo_keyword && $seo_keyword!=''){
+            $sql_delete_string = "DELETE FROM oc_url_alias WHERE `query` = 'subprofile_id=".$id."'";
+            $result_test_mod = mysqli_query($con_OC_db, $sql_delete_string) or die(mysqli_error());
+
+            $queryy = 'subprofile_id=' . $id;
+            $sql_insert_string = "INSERT INTO `oc_url_alias`" .
+                "(`query`, `keyword`, `language_id`)" .
+                "VALUES ('$queryy', '$seo_keyword', '2');";
+            mysqli_query($con_OC_db, $sql_insert_string) or die(mysqli_error());
+        }
 
 		$exist = false;
 		$sql_select_string = "SELECT `customer_id` FROM `pu_subprofile` WHERE `id` = $id";
@@ -326,7 +340,8 @@ class ModelSaleSubprofile extends Model
 				",`website`='$website'" .
 				",`status_id`='$status_id'" .
 				",`is_payed`='$is_payed'" .
-				",`adminmessage`='$adminmessage'" .
+                ",`adminmessage`='$adminmessage'" .
+                ",`seo_keyword`='$seo_keyword'" .
 				" WHERE `id` = $id";
 			$result_test_mod = mysqli_query($con_PU_db, $sql_update_string) or die(mysqli_error());
 			return true;

@@ -58,7 +58,8 @@ class ModelPurchasePuTransaction extends Model
     public function getTransactionByToken($token)
     {
         $con_PU_db = $GLOBALS['con_PU_db'];
-        $sql_select_string = "SELECT * FROM `pu_transaction` WHERE `token` = $token";
+        $sql_select_string = "SELECT * FROM `pu_transaction` WHERE `token` = '$token'";
+        echo $sql_select_string;
         $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
         while ($row = mysqli_fetch_assoc($result_select)) {
             return $row;

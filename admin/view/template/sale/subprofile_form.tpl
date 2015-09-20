@@ -36,6 +36,10 @@
                     <td><input type="text" name="title" value="<?php echo $title; ?>" />
                 </tr>
                 <tr>
+                    <td><?php echo $entry_seo_keyword; ?></td>
+                    <td><input type="text" name="seo_keyword" value="<?php echo $seo_keyword; ?>" />
+                </tr>
+                <tr>
                     <td><?php echo $entry_legalperson_id; ?></td>
                     <td><input type="text" name="legalperson_id" value="<?php echo $legalperson_id; ?>" />
                 </tr>

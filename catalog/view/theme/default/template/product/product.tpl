@@ -69,7 +69,7 @@ return "$difference $periods[$j] پیش ";
     <div class="col-md-8" style="padding: 0px;">
         <div class="breadcrumb row" style="margin-bottom: 0;padding-bottom: 3px;">
             <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-                <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+            <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
             <?php } ?>
         </div>
         <div class="row" style="margin-top: 0;">
@@ -100,13 +100,13 @@ return "$difference $periods[$j] پیش ";
                             <img src="catalog/view/images/up-down-arrow.png" style="float: right;margin-right: 10px;margin-top: 20px;" />
                             <div  style="float: right;margin-top: 20px;margin-right: 30px;">
                                 <span style="display: block;">
-                                    <a href="index.php?route=product/subprofile&id=<?php echo $maxprice['subprofile_id'] ; ?>"><?php echo (number_format($maxprice['MAX(price)']) . $toman); ?>
+                                    <a href="index.php?route=product/subprofile&subprofile_id=<?php echo $maxprice['subprofile_id'] ; ?>"><?php echo (number_format($maxprice['MAX(price)']) . $toman); ?>
                                 </span>
                                 <span style="display: block;margin-top: 7px;font-size: large;color: #54B6A9;">
                                      <?php echo (number_format($avg_price) . $toman); ?>
                                 </span>
                                 <span style="display: block;margin-top: 7px;">
-                                    <a href="index.php?route=product/subprofile&id=<?php echo $minprice['subprofile_id'];  ?>"><?php echo (number_format($minprice['MIN(price)']) . $toman); ?></a>
+                                    <a href="index.php?route=product/subprofile&subprofile_id=<?php echo $minprice['subprofile_id'];  ?>"><?php echo (number_format($minprice['MIN(price)']) . $toman); ?></a>
                                 </span>
 
                             </div>
@@ -146,11 +146,11 @@ return "$difference $periods[$j] پیش ";
                                                 </div>
                                                 <div class="row" style="margin-top: 20px;">
                                                     <div class="col-md-12">
-قیمت از
+                                                        قیمت از
                                                         <input type="text"  id="tell-me-price-lower-text" />
                                                         کمتر به من خبر بده
                                                         <button class="btn btn-default" id="tell-me-price-lower-btn">
-ثبت
+                                                            ثبت
                                                         </button>
                                                     </div>
 
@@ -176,15 +176,15 @@ return "$difference $periods[$j] پیش ";
                     </div>
                 </div>
                 <?php if($images && count($images)>0){ ?>
-                    <div class="row row-centered" style="margin-top: 20px;">
-                        <div class="col-md-12 col-centered">
-                            <?php foreach ($images as $image) { ?>
-                            <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" data-gallery>
-                                <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" width="100" height="80"/>
-                            </a>
-                            <?php } ?>
-                        </div>
+                <div class="row row-centered" style="margin-top: 20px;">
+                    <div class="col-md-12 col-centered">
+                        <?php foreach ($images as $image) { ?>
+                        <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" data-gallery>
+                            <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" width="100" height="80"/>
+                        </a>
+                        <?php } ?>
                     </div>
+                </div>
                 <?php } ?>
 
                 <div class="row row-centered" style="margin-top: 5px;margin-bottom: 20px;">
@@ -278,7 +278,9 @@ return "$difference $periods[$j] پیش ";
                             <div class="col-md-11 box-shadow col-centered" style="text-align: right;">
                                 <div class="row">
                                     <div class="col-md-3 col-xs-5">
+                                        <a href="<?php echo $provider['href'] ?>">
                                         <img style="width: 100%;" height="30" src="ProvidersScans/<?php echo $provider['customer_id'] . '/' . $provider['subprofile_id'] . '/' . 'logo_' . $provider['logo'] ?>" />
+                                        </a>
                                     </div>
                                     <div class="col-md-3">
                                         <?php echo $provider['title']; ?>
@@ -302,6 +304,7 @@ return "$difference $periods[$j] پیش ";
     بروز رسانی:
                                                 </span>
                                         <span><?php echo ago(strtotime($provider['update_date']));?></span>
+                                        <br/>
                                                 <span>
                                                     گارانتی
                                                 </span>
@@ -317,26 +320,26 @@ return "$difference $periods[$j] پیش ";
                                             <?php echo number_format($provider['price']);?>
                                         </button>
                                         <?php if(!empty($provider['buy_link'])) { ?>
-                                            <?php if($provider['subprofile_id']==371) { ?>
-                                                <a role="button" target="_blank" href="<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                    <?php echo $p_buy_online;?>
-                                                </a>
-                                            <?php }else{ ?>
-                                                <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                    <?php echo $p_buy_online;?>
-                                                </a>
-                                            <?php } ?>
+                                        <?php if($provider['subprofile_id']==371) { ?>
+                                        <a role="button" target="_blank" href="<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                            <?php echo $p_buy_online;?>
+                                        </a>
+                                        <?php }else{ ?>
+                                        <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                            <?php echo $p_buy_online;?>
+                                        </a>
+                                        <?php } ?>
                                         <?php } ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <!--<span>
+                                        <span>
                                             توضیحات فروشگاه:
                                         </span>
                                         <span>
                                             <?php echo $provider['description'];?>
-                                        </span>-->
+                                        </span>
                                     </div>
                                 </div>
 
@@ -403,6 +406,7 @@ return "$difference $periods[$j] پیش ";
         بروز رسانی:
                                                     </span>
                                         <span><?php echo ago(strtotime($provider['update_date']));?></span>
+                                        <br/>
                                                     <span>
                                                         گارانتی
                                                     </span>
@@ -419,15 +423,15 @@ return "$difference $periods[$j] پیش ";
                                             <?php echo number_format($provider['guarantee_price']);?>
                                         </button>
                                         <?php if(!empty($provider['buy_link'])) { ?>
-                                            <?php if($provider['subprofile_id']==371) { ?>
-                                                <a role="button" target="_blank" href="<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                    <?php echo $p_buy_online;?>
-                                                </a>
-                                            <?php }else{ ?>
-                                                <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
-                                                    <?php echo $p_buy_online;?>
-                                                </a>
-                                            <?php } ?>
+                                        <?php if($provider['subprofile_id']==371) { ?>
+                                        <a role="button" target="_blank" href="<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                            <?php echo $p_buy_online;?>
+                                        </a>
+                                        <?php }else{ ?>
+                                        <a role="button" href="index.php?route=linkrelay/external&return_id=<?php echo $product_id; ?>&type=buy&url=<?php echo $provider['buy_link']; ?>" type="button" class="btn btn-default" style="width:200px;border-radius: 15px;background-color: #8AB705;color: #ffffff;">
+                                            <?php echo $p_buy_online;?>
+                                        </a>
+                                        <?php } ?>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -625,13 +629,13 @@ return "$difference $periods[$j] پیش ";
                                 <img src="catalog/view/images/up-down-arrow.png" style="float: right;margin-right: 10px;margin-top: 20px;" />
                                 <div  style="float: right;margin-top: 20px;margin-right: 30px;">
                                     <span style="display: block;">
-                                        <a href="index.php?route=product/subprofile&id=<?php echo $maxprice['subprofile_id'] ; ?>"><?php echo (number_format($maxprice['MAX(price)']) . $toman); ?>
+                                        <a href="index.php?route=product/subprofile&subprofile_id=<?php echo $maxprice['subprofile_id'] ; ?>"><?php echo (number_format($maxprice['MAX(price)']) . $toman); ?>
                                     </span>
                                     <span style="display: block;margin-top: 7px;font-size: large;color: #54B6A9;">
                                          <?php echo (number_format($avg_price) . $toman); ?>
                                     </span>
                                     <span style="display: block;margin-top: 7px;">
-                                        <a href="index.php?route=product/subprofile&id=<?php echo $minprice['subprofile_id'];  ?>"><?php echo (number_format($minprice['MIN(price)']) . $toman); ?></a>
+                                        <a href="index.php?route=product/subprofile&subprofile_id=<?php echo $minprice['subprofile_id'];  ?>"><?php echo (number_format($minprice['MIN(price)']) . $toman); ?></a>
                                     </span>
 
                                 </div>
@@ -794,7 +798,7 @@ return "$difference $periods[$j] پیش ";
             <span>
                 <i class=""></i>
                 <a class="mj-font" style="font-size: 20px;margin-right: 10px;">
-خدمات مرتبط
+                    خدمات مرتبط
                 </a>
             </span>
         </div>
@@ -874,7 +878,7 @@ return "$difference $periods[$j] پیش ";
         length : 5, // nb of stars
         onSuccess : function(element,rate,data){
             alert(data.message);
-    }
+        }
     });
 </script>
 <script type="text/javascript"><!--
@@ -942,40 +946,40 @@ return "$difference $periods[$j] پیش ";
     });
     //--></script>
 <?php if ($options) { ?>
-    <script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
-    <?php foreach ($options as $option) { ?>
-        <?php if ($option['type'] == 'file') { ?>
-        <script type="text/javascript"><!--
-            new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
-                action: 'index.php?route=product/product/upload',
-                name: 'file',
-                autoSubmit: true,
-                responseType: 'json',
-                onSubmit: function(file, extension) {
-                    $('#button-option-<?php echo $option['product_option_id']; ?>').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
-                    $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', true);
-                },
-                onComplete: function(file, json) {
-                    $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', false);
+<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
+<?php foreach ($options as $option) { ?>
+<?php if ($option['type'] == 'file') { ?>
+<script type="text/javascript"><!--
+    new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
+        action: 'index.php?route=product/product/upload',
+        name: 'file',
+        autoSubmit: true,
+        responseType: 'json',
+        onSubmit: function(file, extension) {
+            $('#button-option-<?php echo $option['product_option_id']; ?>').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
+            $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', true);
+        },
+        onComplete: function(file, json) {
+            $('#button-option-<?php echo $option['product_option_id']; ?>').attr('disabled', false);
 
-                    $('.error').remove();
+            $('.error').remove();
 
-                    if (json['success']) {
-                        alert(json['success']);
+            if (json['success']) {
+                alert(json['success']);
 
-                        $('input[name=\'option[<?php echo $option['product_option_id']; ?>]\']').attr('value', json['file']);
-                    }
+                $('input[name=\'option[<?php echo $option['product_option_id']; ?>]\']').attr('value', json['file']);
+            }
 
-                    if (json['error']) {
-                        $('#option-<?php echo $option['product_option_id']; ?>').after('<span class="error">' + json['error'] + '</span>');
-                    }
+            if (json['error']) {
+                $('#option-<?php echo $option['product_option_id']; ?>').after('<span class="error">' + json['error'] + '</span>');
+            }
 
-                    $('.loading').remove();
-                }
-            });
-            //--></script>
-        <?php } ?>
-    <?php } ?>
+            $('.loading').remove();
+        }
+    });
+    //--></script>
+<?php } ?>
+<?php } ?>
 <?php } ?>
 
 <script type="text/javascript"><!--

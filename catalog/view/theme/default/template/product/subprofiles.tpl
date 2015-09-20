@@ -39,12 +39,12 @@
     <?php foreach ($subprofiles as $subprofile) { ?>
     <div>
       <?php if ($subprofile['logo']) { ?>
-      <div class="image"><a href="index.php?route=product/subprofile&id=<?php echo $subprofile['id']; ?>">
+      <div class="image"><a href="index.php?route=product/subprofile&subprofile_id=<?php echo $subprofile['id']; ?>">
       <img class="p-logo-list" src="ProvidersScans/<?php echo $subprofile['customer_id'] . '/' . $subprofile['id'] . '/' . 'logo_' . $subprofile['logo'] ?>" alt="<?php echo $subprofile['title'] ?>" />
 
 </a></div>
       <?php } ?>
-      <div class="name"><a href="index.php?route=product/subprofile&id=<?php echo $subprofile['id']; ?>"><?php echo $subprofile['title']; ?></a></div>
+      <div class="name"><a href="index.php?route=product/subprofile&subprofile_id=<?php echo $subprofile['id']; ?>"><?php echo $subprofile['title']; ?></a></div>
       <div class="wishlist"><a onclick="addToWishList('<?php echo $subprofile['id']; ?>');"><?php echo $button_wishlist; ?></a></div>
       <div class="compare"><a onclick="addToCompare('<?php echo $subprofile['id']; ?>','ProvidersScans/<?php echo $subprofile['customer_id'] . '/' . $subprofile['id'] . '/' . 'logo_' . $subprofile['logo'] ?>" alt="<?php echo $subprofile['title'] ?>');"><?php echo $button_compare; ?></a></div>
     </div>

@@ -108,6 +108,51 @@ class ModelInformationPuNewsletter extends Model {
         return $query->rows;
     }
 
+    public function addAvailableReminder($customer_id,$product_id){
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $con_PU_db = $GLOBALS['con_PU_db'];
+
+        $sql_insert_string = "INSERT INTO $pu_database_name.pu_newsletter_tel_me_available" .
+            "(`customer_id`, `product_id`, `created_date`, `sent_time`)" .
+            "VALUES ('$customer_id', '$product_id', NOW(), '0');";
+        $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
+        $id = mysqli_insert_id($con_PU_db);
+        return $id;
+    }
+    public function removeAvailableReminder($customer_id,$product_id){
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $sql_insert_string = "DELETE FROM $pu_database_name.pu_newsletter_tel_me_available" .
+            " WHERE customer_id=$customer_id AND product_id = $product_id";
+        $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
+    }
+    public function addPriceLowerReminder($customer_id,$product_id,$price){
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $con_PU_db = $GLOBALS['con_PU_db'];
+
+        $sql_insert_string = "INSERT INTO $pu_database_name.pu_newsletter_tel_price_lower" .
+            "(`customer_id`, `product_id`, `price`, `created_date`, `sent_time`)" .
+            "VALUES ('$customer_id', '$product_id', '$price', NOW(), '0');";
+        $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
+        $id = mysqli_insert_id($con_PU_db);
+        return $id;
+    }
+    public function addFirstCampaignEmail($email){
+        $pu_database_name = $GLOBALS['pu_database_name'];
+        $oc_database_name = $GLOBALS['oc_database_name'];
+        $con_PU_db = $GLOBALS['con_PU_db'];
+
+        $sql_insert_string = "INSERT INTO $pu_database_name.pu_first_campaign" .
+            "(`email`, `time`)" .
+            "VALUES ('$email', NOW());";
+        $result_test_mod = mysqli_query($con_PU_db, $sql_insert_string) or die(mysqli_error());
+        $id = mysqli_insert_id($con_PU_db);
+        return $id;
+    }
+
 
 }
 ?>

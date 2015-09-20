@@ -187,8 +187,12 @@ class ModelCatalogProduct extends Model {
            
 //Filter products based on price slider
             
-		if (!empty($data['filter_manufacturer_id'])) {
-			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
+        if (!empty($data['filter_manufacturer_id'])) {
+            $sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
+        }
+
+		if (!empty($data['filter_zero_price']) && $data['filter_zero_price'] != 'false' && ($data['filter_zero_price'] == 0 || $data['filter_zero_price'] == 'true') && $data['filter_zero_price'] !== 'false') {
+			$sql .= " AND p.price > 0";
 		}
 
         if(!empty($data['filter_subprofile']) && $data['filter_subprofile']){
@@ -211,7 +215,7 @@ class ModelCatalogProduct extends Model {
 			'p.in_home',
 			'rating',
 			'p.sort_order',
-			'p.date_added'
+			'p.date_available'
 		);	
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -643,6 +647,10 @@ class ModelCatalogProduct extends Model {
 		if (!empty($data['filter_manufacturer_id'])) {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
+
+        if (!empty($data['filter_zero_price']) && $data['filter_zero_price'] != 'false' && ($data['filter_zero_price'] == 0 || $data['filter_zero_price'] == 'true') && $data['filter_zero_price'] !== 'false') {
+            $sql .= " AND p.price > 0";
+        }
 
         if(!empty($data['filter_subprofile']) && $data['filter_subprofile']){
             $subprofile_id = $data['filter_subprofile'];

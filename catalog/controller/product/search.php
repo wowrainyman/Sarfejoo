@@ -1,5 +1,6 @@
 <?php
-
+require_once "provider.php";
+require_once "settings.php";
 class ControllerProductSearch extends Controller
 {
     public function index()
@@ -483,22 +484,33 @@ class ControllerProductSearch extends Controller
 
     public function customAjaxSearch()
     {
+
         $this->load->model('catalog/category');
 
         $this->load->model('catalog/product');
 
         $this->load->model('tool/image');
+
         $term = $this->request->get['term'];
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON(p.product_id=pd.product_id) WHERE (pd.name LIKE '%".$term."%' OR pd.custom_title LIKE '%".$term."%') AND p.status = 1 LIMIT 10");
         foreach ($query->rows as $result) {
             $product_data[] = $result;
         }
         $productResults = $product_data;
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description cd LEFT JOIN " . DB_PREFIX . "category c ON(c.category_id=cd.category_id) WHERE name LIKE '%".$term."%' AND c.status = 1 LIMIT 6");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description cd LEFT JOIN " . DB_PREFIX . "category c ON(c.category_id=cd.category_id) WHERE name LIKE '%".$term."%' AND c.status = 1 LIMIT 5");
         foreach ($query->rows as $result) {
             $category_data[] = $result;
         }
         $categoryResults = $category_data;
+
+        $con_PU_db = $GLOBALS['con_PU_db'];
+        $sql_select_string = "SELECT * FROM pu_subprofile WHERE title LIKE '%".$term."%' OR website LIKE '%".$term."%' LIMIT 2";
+        $result_select = mysqli_query($con_PU_db, $sql_select_string) or die(mysqli_error());
+        while ($row = mysqli_fetch_assoc($result_select)) {
+            $subprofile_data[] = $row;
+        }
+
+        $subprofileResults = $subprofile_data;
         echo '<div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12" style="padding: 0px;">
@@ -561,20 +573,27 @@ class ControllerProductSearch extends Controller
                             <span>
                                 <i class="" ></i>
                                 <a class="mj-font"  style="font-size: 14px;margin-right: 10px;">
-وبلاگ
+عرضه کنندگان
                                 </a>
                             </span>
                         </div>';
-                        $url = "http://blog.sarfejoo.com/search.php?term=".$term;
-                         $ch = curl_init();
-                         curl_setopt($ch, CURLOPT_URL, $url);
-                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                         $data = curl_exec($ch);
-                         curl_close($ch);
-                         echo $data;
-   echo           '</div>
+                        if(count($subprofileResults)<1){
+                            echo '<span style="color:black;font-size: 12px;">' .'
+                                            موردی یافت نشد
+                                            </span>';
+                        }
+                        foreach($subprofileResults as $result){
+                            $url = $this->url->link('product/subprofile', 'subprofile_id=' . $result['id']);
+                            echo '<a href="'.$url.'">
+                                                    <span style="color:black;font-size: 12px;">' .
+                                $result['title'] .
+                                '</span>
+                                                  </a><br/>';
+                        }
+        echo      '</div>
                 </div>
             </div>';
+
 
     }
     public function getProduct($product_id) {

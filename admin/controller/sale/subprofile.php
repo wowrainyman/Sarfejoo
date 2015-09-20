@@ -18,7 +18,7 @@ class ControllerSaleSubprofile extends Controller
         $this->load->model('sale/subprofile');
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
             $this->model_sale_subprofile->EditSubprofile($this->request->post['id'], $this->request->post);
-            $this->model_sale_subprofile->UpdateSubprofileRate($this->request->post['id'], $this->request->post['rate']);
+
             if(isset($this->request->post['status_sms'])){
                 $this->load->model('connection/sms');
                 $subprofile_info = $this->model_sale_subprofile->GetSubprofileInfo($this->request->post['id']);
@@ -27,6 +27,7 @@ class ControllerSaleSubprofile extends Controller
                 else
                     $this->model_connection_sms->sendSms($subprofile_info['mobile'],false,$this->language->get('status_problem'));
             }
+
             if(isset($this->request->post['pay_sms'])){
                 $this->load->model('connection/sms');
                 $subprofile_info = $this->model_sale_subprofile->GetSubprofileInfo($this->request->post['id']);

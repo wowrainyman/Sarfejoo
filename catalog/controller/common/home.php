@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: text/html; charset=utf-8');
 class ControllerCommonHome extends Controller
 {
     public function index()
@@ -12,7 +12,7 @@ class ControllerCommonHome extends Controller
             if(count($results)>0){
                 $index = rand(0,count($results)-1);
                 $product_id = $results[$index]['product_id'];
-                $this->session->data['seo'] = $results[$index]['buy_link'];
+                $this->session->data['seo'] = str_replace("&amp;","&",$results[$index]['buy_link']);
                 $this->data['url'] = $this->url->link('product/product', '&product_id=' . $product_id);
                 $this->data['url']=str_replace("&amp;","&",$this->data['url']);
             }else{
@@ -56,6 +56,7 @@ class ControllerCommonHome extends Controller
             $percentage_price = ($percentage / $sql_old_prices) * 100;
 
             $list_updates[] = array(
+                'href'  =>  $this->url->link('product/subprofile', 'subprofile_id=' . $up_subprofile['id']),
                 'new_price' => $up_subprofile['new_price'],
                 'name' => $up_subprofile['name'],
                 'product_id' => $up_subprofile['product_id'],
@@ -73,7 +74,6 @@ class ControllerCommonHome extends Controller
         $this->load->model('provider/pu_subprofile');
         $this->load->model('account/customer');
 
-
 //Two selective product
         $data = array(
             'filter_category_id' => '59',
@@ -82,7 +82,7 @@ class ControllerCommonHome extends Controller
             'sort'               => 'p.in_home',
             'order'              => 'DESC',
             'start'              => '0',
-            'limit'              => '2'
+            'limit'              => '4'
         );
         $topProducts_info = $this->model_catalog_product->getProducts($data);
 
@@ -90,9 +90,7 @@ class ControllerCommonHome extends Controller
             $product['image'] = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
             $product['href'] = $this->url->link('product/product', '&product_id=' . $product['product_id']);
             $product['minprice'] = $this->model_provider_pu_subprofile->GetMinimumPriceOfProduct($product['product_id']);
-            $product['minprice'] = $product['minprice']['MIN(price)'];
             $product['maxprice'] = $this->model_provider_pu_subprofile->GetMaximumPriceOfProduct($product['product_id']);
-            $product['maxprice'] = $product['maxprice']['MAX(price)'];
             $product['avg_price'] = $this->model_provider_pu_subprofile->GetAveragepricePriceOfProduct($product['product_id']);
             $providers = $this->model_provider_pu_subprofile->GetAllSubprofileOfProducts($product['product_id']);
             $product['providers_count'] = count($providers);
@@ -114,7 +112,7 @@ class ControllerCommonHome extends Controller
 
         foreach($topServices_info as $service){
             $service['image'] = $this->model_tool_image->resize($service['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-            $service['href'] = $this->url->link('product/product', '&product_id=' . $product['product_id']);
+            $service['href'] = $this->url->link('product/product', '&product_id=' . $service['product_id']);
             $service['minprice'] = $this->model_provider_pu_subprofile->GetMinimumPriceOfProduct($service['product_id']);
             $service['minprice'] = $service['minprice']['MIN(price)'];
             $service['maxprice'] = $this->model_provider_pu_subprofile->GetMaximumPriceOfProduct($service['product_id']);
@@ -197,6 +195,8 @@ class ControllerCommonHome extends Controller
 //total customers
         $customers = $this->model_account_customer->GetCountCustomers();
 
+        $this->data['stext'] = $this->generateSeoText();
+
         $this->data['totalCustomers'] = $customers[0]['COUNT(customer_id)'];
 
         $this->data['list_updates'] = $list_updates;
@@ -211,6 +211,47 @@ class ControllerCommonHome extends Controller
         );
 
         $this->response->setOutput($this->render());
+    }
+    public function generateSeoText()
+    {
+        $text = "";
+        $terms[]= 'لیست قیمت گوشی';
+        $terms[]= 'لیست قیمت گوشی موبایل';
+        $terms[]= 'مقایسه قیمت';
+        $terms[]= 'مقایسه گوشی';
+        $terms[]= 'صرفه جویی';
+        if (count($terms) > 0) {
+            $content = file_get_contents("homeseo.xml");
+            $x = new SimpleXmlElement($content);
+            $text = "";
+            foreach ($x->channel->item as $entry) {
+                $text .= $entry->description;
+            }
+            $text = strip_tags($text);
+
+            $all_words = explode(" ", $text);
+            $all_words_count = count($all_words);
+            $percentage = array();
+            $percentage[0] = intval(($all_words_count / 100) * 4);
+            $percentage[1] = intval(($all_words_count / 100) * 3.5);
+            $percentage[2] = intval(($all_words_count / 100) * 3);
+            $percentage[3] = intval(($all_words_count / 100) * 2.5);
+            $percentage[4] = intval(($all_words_count / 100) * 2);
+            $percentage[5] = intval(($all_words_count / 100) * 1.5);
+            $percentage[6] = intval(($all_words_count / 100) * 1);
+            for ($i = 0; $i < count($terms); $i++) {
+                if ($i <= 6) {
+                    for ($j = 0; $j < $percentage[$i]; $j++) {
+                        $place = rand(0, $all_words_count - 1);
+                        $all_words[$place] = $all_words[$place] . ' ' . $terms[$i] . ' ';
+                    }
+                } else {
+
+                }
+            }
+            $text = implode(" ", $all_words);
+        }
+        return $text;
     }
 }
 
